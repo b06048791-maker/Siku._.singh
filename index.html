@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sikku Singh">
+<title>Sikku Singh - Ultimate Masterpiece Ecosystem v30.0 (Final Combined Edition)</title>
+
+<link rel="icon" type="image/jpeg" href="sikku.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="sikku.jpg">
+<link rel="apple-touch-icon" href="sikku.jpg">
+
+<style>
+  :root {
+    --bg: #030712;
+    --card: rgba(15, 23, 42, 0.95);
+    --card-hover: rgba(30, 41, 59, 0.99);
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #ec4899 100%);
+    --border: rgba(255, 255, 255, 0.16);
+    --shadow: 0 25px 50px -12px rgba(0,0,0,0.85);
+  }
+  body.light-mode {
+    --bg: #f8fafc;
+    --card: rgba(255, 255, 255, 0.96);
+    --card-hover: rgba(241, 245, 249, 0.99);
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --accent: #0284c7;
+    --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #db2777 100%);
+    --border: rgba(0, 0, 0, 0.1);
+    --shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  body {
+    background-color: var(--bg);
+    background-image: linear-gradient(rgba(3, 7, 18, 0.82), rgba(3, 7, 18, 0.96)), url('sikku.jpg');
+    background-size: cover; background-position: center top; background-attachment: fixed;
+    color: var(--text); padding-bottom: 140px; min-height: 100vh;
+  }
+
+  #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
+
+  .status-bar {
+    background: rgba(3, 7, 18, 0.98); backdrop-filter: blur(25px);
+    display: flex; justify-content: space-between; padding: 8px 22px;
+    font-size: 0.76rem; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--border);
+  }
+  .live-battery-indicator { padding: 2px 8px; border-radius: 8px; font-weight: 700; color: #fff; }
+
+  header {
+    background: var(--card); backdrop-filter: blur(30px); padding: 14px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow);
+  }
+  .brand-box { display: flex; align-items: center; gap: 12px; }
+  .app-logo-icon { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); box-shadow: 0 0 15px rgba(56,189,248,0.5); }
+  header h1 { font-size: 1.25rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+  .action-chip { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; cursor: pointer; font-size: 0.78rem; font-weight: 700; text-decoration: none; transition: 0.2s; }
+  .action-chip:hover { border-color: var(--accent); }
+
+  .container { max-width: 520px; margin: 20px auto; padding: 0 16px; }
+  
+  .tab-content {
+    display: none; background: var(--card); backdrop-filter: blur(25px); padding: 24px;
+    border-radius: 30px; border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 20px;
+  }
+  .tab-content.active { display: block; animation: smoothSlide 0.3s ease; }
+  @keyframes smoothSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  h2 { margin-bottom: 18px; font-size: 1.25rem; border-bottom: 2px solid var(--border); padding-bottom: 10px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+
+  /* Bottom Navigation Bar */
+  .bottom-nav-bar {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: rgba(3, 7, 18, 0.98); backdrop-filter: blur(30px);
+    display: flex; justify-content: space-around; padding: 8px 2px;
+    border-top: 1px solid var(--border); z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+  }
+  .nav-item {
+    background: transparent; border: none; color: var(--text-muted);
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    cursor: pointer; font-size: 0.46rem; font-weight: 700; transition: 0.3s;
+  }
+  .nav-item span.nav-icon { font-size: 1.1rem; }
+  .nav-item.active, .nav-item:hover { color: var(--accent); transform: translateY(-3px); }
+
+  input, select, textarea {
+    width: 100%; padding: 14px 16px; margin-bottom: 14px; border-radius: 16px;
+    border: 1px solid var(--border); background: rgba(0, 0, 0, 0.3); color: var(--text); font-size: 0.95rem; outline: none; transition: 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(56,189,248,0.2); }
+
+  button.action-btn {
+    width: 100%; padding: 15px; background: var(--accent-gradient); color: #fff; border: none;
+    border-radius: 16px; font-size: 1rem; cursor: pointer; margin-bottom: 12px; font-weight: 800;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); transition: 0.2s;
+  }
+  button.action-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(56,189,248,0.6); }
+  button.action-btn:active { transform: scale(0.97); }
+
+  .grid-menu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 15px; }
+  .grid-tile {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px;
+    padding: 16px 10px; text-align: center; cursor: pointer; font-weight: 700; font-size: 0.82rem;
+    display: flex; flex-direction: column; align-items: center; gap: 6px; transition: 0.3s;
+  }
+  .grid-tile:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(56,189,248,0.15); }
+  .grid-tile span.icon { font-size: 1.8rem; }
+
+  .chat-container { display: flex; flex-direction: column; height: 380px; background: rgba(0, 0, 0, 0.4); border: 1.5px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 12px; }
+  .chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 0.92rem; line-height: 1.4; }
+  .chat-bubble.user { background: var(--accent-gradient); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .chat-bubble.ai { background: rgba(255,255,255,0.08); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border); }
+  .chat-input-row { display: flex; padding: 12px; background: rgba(15,23,42,0.95); border-top: 1px solid var(--border); gap: 10px; }
+  .chat-input-row input { margin-bottom: 0; flex: 1; padding: 12px 16px; }
+
+  #calc-display { width: 100%; height: 75px; background: rgba(0,0,0,0.5); color: var(--text); border: 1.5px solid var(--border); border-radius: 18px; text-align: right; padding: 14px 20px; font-size: 2.2rem; margin-bottom: 16px; outline: none; }
+  .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .calc-btn { padding: 18px; font-size: 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.06); color: var(--text); cursor: pointer; border: 1px solid var(--border); font-weight: 700; transition: 0.15s; }
+  .calc-btn:hover { background: rgba(255,255,255,0.12); }
+  .calc-btn:active { transform: scale(0.93); }
+  .calc-btn.op { background: var(--accent-gradient); color: #fff; border: none; box-shadow: 0 4px 15px rgba(56,189,248,0.3); }
+
+  .settings-section { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 14px; border-radius: 16px; margin-bottom: 14px; }
+  .settings-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.88rem; color: var(--text-muted); }
+  
+  /* Toggle Switch */
+  .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .3s; border-radius: 24px; }
+  .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+  input:checked + .slider { background-color: var(--accent); }
+  input:checked + .slider:before { transform: translateX(20px); }
+
+  #apps-modal, #welcome-insta-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(25px); z-index: 2000;
+    justify-content: center; align-items: center; padding: 20px;
+  }
+  .modal-card { background: var(--card); border: 2px solid var(--accent); border-radius: 32px; width: 100%; max-width: 480px; padding: 28px; text-align: center; max-height: 85vh; overflow-y: auto; box-shadow: 0 25px 60px rgba(56,189,248,0.4); }
+  .apps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; text-align: left; }
+  .app-tile { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px; padding: 16px 10px; text-align: center; cursor: pointer; font-size: 0.8rem; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: 0.2s; }
+  .app-tile:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-3px); }
+  .app-tile span.icon { font-size: 2rem; }
+
+  #startup-splash-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #030712; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 99999; transition: opacity 0.5s ease;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Splash Screen -->
+<div id="startup-splash-screen">
+  <img src="sikku.jpg" alt="Sikku Singh" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #38bdf8; box-shadow: 0 0 30px rgba(56,189,248,0.6); margin-bottom: 20px;">
+  <div style="font-size: 2rem; font-weight: 900; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px;">Sikku Singh</div>
+  <p style="font-size: 0.9rem; color: #94a3b8; font-weight: 600; margin-bottom: 24px;">Ultimate Masterpiece Ecosystem v30.0</p>
+  <button onclick="dismissSplash()" style="background: var(--accent-gradient); color: #fff; border: none; padding: 14px 32px; border-radius: 18px; font-weight: bold; cursor: pointer; font-size: 1.05rem; box-shadow: 0 8px 25px rgba(56,189,248,0.5);">🚀 Launch App Now</button>
+</div>
+
+<!-- Welcome Modal -->
+<div id="welcome-insta-modal">
+  <div class="modal-card">
+    <img src="sikku.jpg" alt="Profile" style="width:80px; height:80px; border-radius:50%; border:3px solid var(--accent); object-fit:cover; margin-bottom:16px; box-shadow: 0 0 20px rgba(56,189,248,0.5);">
+    <h2>Welcome to Sikku Singh!</h2>
+    <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:20px;">Connect with Sikku Singh on Instagram for absolute system access:</p>
+    <a href="https://www.instagram.com/siku._.singh/" target="_blank" onclick="closeWelcomeModal()" style="text-decoration:none;">
+      <button class="action-btn" style="background:linear-gradient(135deg, #f58529, #dd2a7b, #8134af); margin-bottom:12px;">📸 Visit Instagram (@siku._.singh)</button>
+    </a>
+    <button class="action-btn" style="background:#334155; padding:13px;" onclick="closeWelcomeModal()">🚀 Enter Dashboard</button>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span id="live-clock-display">00:00:00 AM</span>
+  <span>5G Pro 📶 <span class="live-battery-indicator" style="background:#10b981;">100% 🔋</span></span>
+</div>
+
+<header>
+  <div class="brand-box">
+    <img src="sikku.jpg" alt="Profile" class="app-logo-icon">
+    <h1>Sikku Singh</h1>
+  </div>
+  <div class="header-actions">
+    <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="action-chip" style="background:linear-gradient(135deg, #f58529, #dd2a7b, #8134af); color:#fff; border:none;">📸 Insta</a>
+    <button class="action-chip" onclick="openAppsModal()">🚀 Apps</button>
+    <button class="action-chip" onclick="toggleTheme()">🌓 Theme</button>
+  </div>
+</header>
+
+<!-- Apps & Custom Shortcut Hub Modal -->
+<div id="apps-modal">
+  <div class="modal-card">
+    <h2>🚀 Web Shortcuts Hub</h2>
+    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">Launch direct apps or add your own website link:</p>
+    
+    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:18px; border:1px solid var(--border); margin-bottom:16px; text-align:left;">
+      <p style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:8px;">➕ Add Custom Website Shortcut:</p>
+      <input type="text" id="custom-app-name" placeholder="App Name (e.g. My Website)" style="margin-bottom:8px; padding:10px; font-size:0.88rem;">
+      <input type="text" id="custom-app-url" placeholder="URL (https://example.com)" style="margin-bottom:10px; padding:10px; font-size:0.88rem;">
+      <button class="action-btn" onclick="addCustomShortcut()" style="padding:10px; font-size:0.88rem; margin-bottom:0;">✨ Create App Shortcut</button>
+    </div>
+
+    <div class="apps-grid" id="dynamic-apps-grid">
+      <div class="app-tile" onclick="window.open('https://web.whatsapp.com','_blank')"><span class="icon">💬</span><span>WhatsApp</span></div>
+      <div class="app-tile" onclick="window.open('https://www.youtube.com','_blank')"><span class="icon">▶️</span><span>YouTube</span></div>
+      <div class="app-tile" onclick="window.open('https://www.instagram.com','_blank')"><span class="icon">📸</span><span>Instagram</span></div>
+      <div class="app-tile" onclick="window.open('https://chatgpt.com','_blank')"><span class="icon">🤖</span><span>ChatGPT</span></div>
+      <div class="app-tile" onclick="window.open('https://maps.google.com','_blank')"><span class="icon">🗺️</span><span>Maps</span></div>
+      <div class="app-tile" onclick="window.open('https://www.flipkart.com','_blank')"><span class="icon">🛍️</span><span>Flipkart</span></div>
+    </div>
+    <button class="action-btn" style="background:#ef4444; margin-top:20px; padding:12px;" onclick="closeAppsModal()">❌ Close Hub</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TAB 1: HOME -->
+  <div id="tab-home" class="tab-content active">
+    <h2>🏠 Master Dashboard Hub</h2>
+    <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:20px;">Welcome to your absolute master ecosystem v30.0. Select any tool below:</p>
+    
+    <div class="grid-menu">
+      <div class="grid-tile" onclick="switchTab('tab-search'); setActiveNav(document.getElementById('nav-search'));"><span class="icon">🔍</span><span>Live Search</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-ai'); setActiveNav(document.getElementById('nav-ai'));"><span class="icon">🤖</span><span>Siku AI Chat</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-tools'); setActiveNav(document.getElementById('nav-tools'));"><span class="icon">🧮</span><span>Calculator</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-utilities'); setActiveNav(document.getElementById('nav-utilities'));"><span class="icon">⏳</span><span>Age Calculator</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-converter'); setActiveNav(document.getElementById('nav-converter'));"><span class="icon">💱</span><span>Unit Converter</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-notepad'); setActiveNav(document.getElementById('nav-notepad'));"><span class="icon">📝</span><span>Quick Notepad</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-health'); setActiveNav(document.getElementById('nav-health'));"><span class="icon">❤️</span><span>BMI Health Calc</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-timer'); setActiveNav(document.getElementById('nav-timer'));"><span class="icon">⏱️</span><span>Stopwatch Timer</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-todo'); setActiveNav(document.getElementById('nav-todo'));"><span class="icon">📋</span><span>Smart To-Do</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-extra'); setActiveNav(document.getElementById('nav-extra'));"><span class="icon">🌍</span><span>World Time & Tools</span></div>
+      <div class="grid-tile" onclick="switchTab('tab-settings'); setActiveNav(document.getElementById('nav-settings'));"><span class="icon">⚙️</span><span>Settings Hub</span></div>
+    </div>
+  </div>
+
+  <!-- TAB 2: LIVE SEARCH -->
+  <div id="tab-search" class="tab-content">
+    <h2>🌐 Live Direct Website Search</h2>
+    <div style="background: rgba(255,255,255,0.04); padding: 16px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 16px;">
+      <input type="text" id="global-search-input" placeholder="Type keyword (e.g. YouTube, Wikipedia)..." style="margin-bottom: 12px; padding: 14px;">
+      <button class="action-btn" onclick="performInternetSearch()" style="margin-bottom: 0; padding: 13px;">🚀 Find Websites</button>
+    </div>
+    <div class="btn-row" style="margin-bottom: 16px; display:flex; gap:10px;">
+      <button class="action-btn" onclick="window.open('https://www.google.com','_blank')" style="background:#ea4335; margin-bottom:0; padding:12px;">🌍 Google</button>
+      <button class="action-btn" onclick="window.open('https://www.youtube.com','_blank')" style="background:#ff0000; margin-bottom:0; padding:12px;">▶️ YouTube</button>
+    </div>
+    <div id="search-status" style="text-align:center; font-size:0.9rem; margin-bottom:12px; color: var(--accent); font-weight: bold;">Ready.</div>
+    <div id="search-results-box"></div>
+  </div>
+
+  <!-- TAB 3: AI CHAT -->
+  <div id="tab-ai" class="tab-content">
+    <h2>🤖 Siku AI Assistant</h2>
+    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">Created by Sikku Singh. Ask anything:</p>
+    <div class="chat-container">
+      <div class="chat-messages" id="chat-box"></div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendUserMessage()">
+        <button class="action-btn" onclick="sendUserMessage()" style="margin-bottom:0; padding:12px 18px; width:auto;">Send</button>
+      </div>
+    </div>
+    <button class="action-btn" style="background:#ef4444; padding:12px; font-size:0.88rem;" onclick="clearChat()">🗑️ Clear Chat History</button>
+  </div>
+
+  <!-- TAB 4: CALCULATOR -->
+  <div id="tab-tools" class="tab-content">
+    <h2>🧮 Advanced Calculator</h2>
+    <input type="text" id="calc-display" readonly placeholder="0">
+    <div class="calc-grid">
+      <button class="calc-btn op" onclick="calcClear()">C</button>
+      <button class="calc-btn op" onclick="calcAppend('/')">/</button>
+      <button class="calc-btn op" onclick="calcAppend('*')">×</button>
+      <button class="calc-btn op" onclick="calcBack()">⌫</button>
+      <button class="calc-btn" onclick="calcAppend('7')">7</button>
+      <button class="calc-btn" onclick="calcAppend('8')">8</button>
+      <button class="calc-btn" onclick="calcAppend('9')">9</button>
+      <button class="calc-btn op" onclick="calcAppend('-')">-</button>
+      <button class="calc-btn" onclick="calcAppend('4')">4</button>
+      <button class="calc-btn" onclick="calcAppend('5')">5</button>
+      <button class="calc-btn" onclick="calcAppend('6')">6</button>
+      <button class="calc-btn op" onclick="calcAppend('+')">+</button>
+      <button class="calc-btn" onclick="calcAppend('1')">1</button>
+      <button class="calc-btn" onclick="calcAppend('2')">2</button>
+      <button class="calc-btn" onclick="calcAppend('3')">3</button>
+      <button class="calc-btn op" onclick="calcResult()">=</button>
+      <button class="calc-btn" onclick="calcAppend('0')" style="grid-column: span 2;">0</button>
+      <button class="calc-btn" onclick="calcAppend('.')">.</button>
+      <button class="calc-btn op" onclick="calcAppend('%')">%</button>
+    </div>
+  </div>
+
+  <!-- TAB 5: AGE CALCULATOR -->
+  <div id="tab-utilities" class="tab-content">
+    <h2>⏳ Exact Age Calculator</h2>
+    <div style="margin-bottom:22px;">
+      <label style="font-size:0.88rem; color:var(--text-muted); display:block; margin-bottom:8px; font-weight:bold;">Select your Birth Date (DOB):</label>
+      <input type="date" id="dob-input" style="padding: 16px; font-size: 1.1rem; border-radius: 16px; border: 2px solid var(--accent); background: rgba(255,255,255,0.08); color: var(--text); margin-bottom: 14px;">
+      <button class="action-btn" onclick="calculateExactAge()" style="padding:14px; font-size:1rem; margin-bottom:0;">📊 Calculate Exact Age</button>
+      <div id="age-result" style="margin-top:15px; padding:16px; background:rgba(255,255,255,0.06); border-radius:16px; text-align:center; font-size: 1.05rem; font-weight:bold; color:var(--accent);">Select DOB above to view exact age.</div>
+    </div>
+  </div>
+
+  <!-- TAB 6: UNIT & CURRENCY CONVERTER -->
+  <div id="tab-converter" class="tab-content">
+    <h2>💱 Smart Unit & Currency</h2>
+    <div style="margin-bottom:16px;">
+      <label style="font-size:0.85rem; color:var(--text-muted); font-weight:bold;">Convert Centimeters to Inches:</label>
+      <input type="number" id="cm-input" placeholder="Enter cm..." style="margin-top:6px;" oninput="convertCmToInch()">
+      <p id="inch-result" style="font-weight:bold; color:var(--accent); margin-top:4px;"></p>
+    </div>
+    <div style="margin-bottom:16px;">
+      <label style="font-size:0.85rem; color:var(--text-muted); font-weight:bold;">Convert INR to USD (Approx 86.5 rate):</label>
+      <input type="number" id="inr-input" placeholder="Enter INR amount..." style="margin-top:6px;" oninput="convertInrToUsd()">
+      <p id="usd-result" style="font-weight:bold; color:var(--accent); margin-top:4px;"></p>
+    </div>
+  </div>
+
+  <!-- TAB 7: QUICK NOTEPAD -->
+  <div id="tab-notepad" class="tab-content">
+    <h2>📝 Quick Notepad</h2>
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Jot down notes, thoughts, or reminders instantly:</p>
+    <textarea id="notepad-text" placeholder="Type your notes here..." style="width:100%; height:200px; padding:14px; border-radius:16px; background:rgba(0,0,0,0.3); color:var(--text); font-size:0.95rem; margin-bottom:12px;" oninput="saveNotepad()"></textarea>
+    <button class="action-btn" onclick="clearNotepad()" style="background:#ef4444; padding:12px; font-size:0.9rem;">🗑️ Clear Notepad</button>
+  </div>
+
+  <!-- TAB 8: BMI HEALTH CALCULATOR -->
+  <div id="tab-health" class="tab-content">
+    <h2>❤️ BMI Health Calculator</h2>
+    <label style="font-size:0.85rem; color:var(--text-muted); font-weight:bold;">Weight (kg):</label>
+    <input type="number" id="bmi-weight" placeholder="e.g. 65" style="margin-top:6px; margin-bottom:12px;">
+    <label style="font-size:0.85rem; color:var(--text-muted); font-weight:bold;">Height (cm):</label>
+    <input type="number" id="bmi-height" placeholder="e.g. 175" style="margin-top:6px; margin-bottom:14px;">
+    <button class="action-btn" onclick="calculateBMI()" style="padding:13px; font-size:0.95rem; margin-bottom:10px;">Calculate BMI</button>
+    <div id="bmi-result" style="padding:14px; background:rgba(255,255,255,0.06); border-radius:14px; text-align:center; font-weight:bold; color:var(--accent);">Enter weight & height to check BMI.</div>
+  </div>
+
+  <!-- TAB 9: STOPWATCH TIMER -->
+  <div id="tab-timer" class="tab-content">
+    <h2>⏱️ Stopwatch & Timer</h2>
+    <div style="margin-bottom:22px; text-align:center;">
+      <div id="sw-display" style="font-size:3rem; font-weight:900; margin-bottom:16px; font-variant-numeric:tabular-nums; color:var(--accent);">00:00:00</div>
+      <div style="display:flex; gap:8px; justify-content:center;">
+        <button class="action-btn" onclick="startStopwatch()" style="padding:12px; font-size:0.9rem; margin-bottom:0;">Start</button>
+        <button class="action-btn" onclick="stopStopwatch()" style="background:#eab308; padding:12px; font-size:0.9rem; margin-bottom:0;">Stop</button>
+        <button class="action-btn" onclick="resetStopwatch()" style="background:#ef4444; padding:12px; font-size:0.9rem; margin-bottom:0;">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 10: SMART TO-DO LIST -->
+  <div id="tab-todo" class="tab-content">
+    <h2>📋 Smart To-Do List</h2>
+    <input type="text" id="todo-input" placeholder="Add a new task..." style="margin-bottom:10px;">
+    <button class="action-btn" onclick="addTodoItem()" style="padding:12px; font-size:0.9rem; margin-bottom:14px;">+ Add Task</button>
+    <ul id="todo-list-box" style="list-style:none;"></ul>
+  </div>
+
+  <!-- TAB 11: WORLD TIME & EXTRA TOOLS -->
+  <div id="tab-extra" class="tab-content">
+    <h2>🌍 World Time & Security</h2>
+    
+    <div style="margin-bottom:22px; border-bottom:1px solid var(--border); padding-bottom:18px; text-align:center;">
+      <h3 style="font-size:1rem; color:var(--accent); margin-bottom:10px;">🕒 Live Digital Clock & Date</h3>
+      <div id="world-clock-box" style="font-size:2rem; font-weight:900; margin-bottom:6px; color:var(--text);">00:00:00</div>
+      <p id="world-date-box" style="font-size:0.9rem; color:var(--text-muted); font-weight:bold;"></p>
+    </div>
+
+    <div>
+      <h3 style="font-size:1rem; color:var(--accent); margin-bottom:10px;">🔐 Secure Password Generator</h3>
+      <button class="action-btn" onclick="generateSecurePassword()" style="padding:12px; font-size:0.9rem; margin-bottom:10px;">🔑 Generate Strong Password</button>
+      <input type="text" id="pass-output" readonly placeholder="Generated password..." style="text-align:center; font-weight:bold; color:var(--accent); margin-bottom:0;">
+    </div>
+  </div>
+
+  <!-- TAB 12: SETTINGS HUB -->
+  <div id="tab-settings" class="tab-content">
+    <h2>⚙️ Sikku Master Settings Hub</h2>
+    <div style="background:rgba(16, 185, 129, 0.15); border:1px solid #10b981; padding:14px; border-radius:16px; margin-bottom:18px; font-size:0.88rem; color:#34d399;">
+      🔒 <b>Owner Lock:</b> Created and designed exclusively by Sikku Singh.
+    </div>
+
+    <div class="settings-section">
+      <h3 style="font-size:0.95rem; color:var(--accent); margin-bottom:12px;">👤 Security & Account Controls</h3>
+      <div class="settings-row"><span>Biometric App Unlock</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+      <div class="settings-row"><span>Cloud Profile Sync</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+      <div class="settings-row"><span>Remember Login Session</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+    </div>
+
+    <div class="settings-section">
+      <h3 style="font-size:0.95rem; color:var(--accent); margin-bottom:12px;">🤖 Siku AI Neural Preferences</h3>
+      <div class="settings-row"><span>Auto-Speak AI Response</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+      <div class="settings-row"><span>Advanced Context Memory</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+    </div>
+
+    <div class="settings-section">
+      <h3 style="font-size:0.95rem; color:var(--accent); margin-bottom:12px;">🎨 Theme & System Management</h3>
+      <div class="settings-row"><span>Matrix Cyber Rain FX</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+      <div class="settings-row"><span>Glassmorphism Blur Effect</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+      
+      <div style="margin-top:16px; display:flex; gap:10px;">
+        <button class="action-btn" style="background:#ef4444; margin-bottom:0; padding:12px; font-size:0.85rem;" onclick="localStorage.clear(); alert('Cache cleared!'); location.reload();">🗑️ Clear App Data</button>
+        <button class="action-btn" style="background:#334155; margin-bottom:0; padding:12px; font-size:0.85rem;" onclick="location.reload();">🔄 Restart App</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Clean Bottom Navigation Bar -->
+<nav class="bottom-nav-bar">
+  <button id="nav-home" class="nav-item active" onclick="switchTab('tab-home'); setActiveNav(this);"><span class="nav-icon">🏠</span><span>Home</span></button>
+  <button id="nav-search" class="nav-item" onclick="switchTab('tab-search'); setActiveNav(this);"><span class="nav-icon">🔍</span><span>Search</span></button>
+  <button id="nav-ai" class="nav-item" onclick="switchTab('tab-ai'); setActiveNav(this);"><span class="nav-icon">🤖</span><span>AI</span></button>
+  <button id="nav-tools" class="nav-item" onclick="switchTab('tab-tools'); setActiveNav(this);"><span class="nav-icon">🧮</span><span>Calc</span></button>
+  <button id="nav-utilities" class="nav-item" onclick="switchTab('tab-utilities'); setActiveNav(this);"><span class="nav-icon">⏳</span><span>Age</span></button>
+  <button id="nav-converter" class="nav-item" onclick="switchTab('tab-converter'); setActiveNav(this);"><span class="nav-icon">💱</span><span>Units</span></button>
+  <button id="nav-notepad" class="nav-item" onclick="switchTab('tab-notepad'); setActiveNav(this);"><span class="nav-icon">📝</span><span>Notes</span></button>
+  <button id="nav-health" class="nav-item" onclick="switchTab('tab-health'); setActiveNav(this);"><span class="nav-icon">❤️</span><span>BMI</span></button>
+  <button id="nav-timer" class="nav-item" onclick="switchTab('tab-timer'); setActiveNav(this);"><span class="nav-icon">⏱️</span><span>Timer</span></button>
+  <button id="nav-todo" class="nav-item" onclick="switchTab('tab-todo'); setActiveNav(this);"><span class="nav-icon">📋</span><span>Todo</span></button>
+  <button id="nav-extra" class="nav-item" onclick="switchTab('tab-extra'); setActiveNav(this);"><span class="nav-icon">🌍</span><span>Extra</span></button>
+  <button id="nav-settings" class="nav-item" onclick="switchTab('tab-settings'); setActiveNav(this);"><span class="nav-icon">⚙️</span><span>Set</span></button>
+</nav>
+
+<script>
+  function dismissSplash() {
+    const splash = document.getElementById('startup-splash-screen');
+    if (splash) {
+      splash.style.opacity = '0';
+      setTimeout(() => splash.style.display = 'none', 500);
+    }
+    if (!sessionStorage.getItem('sikku_welcomed')) {
+      document.getElementById('welcome-insta-modal').style.display = 'flex';
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => { dismissSplash(); }, 1200);
+    loadChat();
+    loadCustomShortcuts();
+    loadNotepad();
+    loadTodoList();
+  });
+
+  // Matrix Cyber Rain FX
+  const canvas = document.getElementById('matrix-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const letters = '01SIKKUSINGHOS';
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(3, 7, 18, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters.charAt(Math.floor(Math.random() * letters.length));
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  setInterval(drawMatrix, 40);
+
+  function closeWelcomeModal() {
+    sessionStorage.setItem('sikku_welcomed', 'true');
+    document.getElementById('welcome-insta-modal').style.display = 'none';
+  }
+
+  function updateLiveStatus() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const timeStr = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById('live-clock-display').innerText = timeStr;
+    const wcBox = document.getElementById('world-clock-box');
+    if(wcBox) wcBox.innerText = timeStr;
+    const wdBox = document.getElementById('world-date-box');
+    if(wdBox) wdBox.innerText = now.toDateString();
+  }
+  setInterval(updateLiveStatus, 1000);
+  updateLiveStatus();
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  function setActiveNav(btn) {
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+  }
+
+  function openAppsModal() { document.getElementById('apps-modal').style.display = 'flex'; }
+  function closeAppsModal() { document.getElementById('apps-modal').style.display = 'none'; }
+
+  // Custom App Shortcut Adder
+  function addCustomShortcut() {
+    const name = document.getElementById('custom-app-name').value.trim();
+    const url = document.getElementById('custom-app-url').value.trim();
+    if (!name || !url) { alert('⚠️ Please enter both App Name and URL!'); return; }
+    const validUrl = url.startsWith('http') ? url : 'https://' + url;
+    let customList = JSON.parse(localStorage.getItem('sikku_custom_apps') || '[]');
+    customList.push({ name, url: validUrl });
+    localStorage.setItem('sikku_custom_apps', JSON.stringify(customList));
+    document.getElementById('custom-app-name').value = '';
+    document.getElementById('custom-app-url').value = '';
+    loadCustomShortcuts();
+    alert(`✅ Custom Shortcut "${name}" added successfully!`);
+  }
+
+  function loadCustomShortcuts() {
+    const grid = document.getElementById('dynamic-apps-grid');
+    if (!grid) return;
+    grid.querySelectorAll('.user-custom-tile').forEach(el => el.remove());
+    let customList = JSON.parse(localStorage.getItem('sikku_custom_apps') || '[]');
+    customList.forEach(item => {
+      const tile = document.createElement('div');
+      tile.className = 'app-tile user-custom-tile';
+      tile.innerHTML = `<span class="icon">🔗</span><span>${item.name}</span>`;
+      tile.onclick = () => window.open(item.url, '_blank');
+      grid.appendChild(tile);
+    });
+  }
+
+  // Live Internet Search Logic
+  function performInternetSearch() {
+    const query = document.getElementById('global-search-input').value.trim();
+    if (!query) return;
+    const status = document.getElementById('search-status');
+    const resultsBox = document.getElementById('search-results-box');
+    resultsBox.innerHTML = `
+      <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:16px; margin-bottom:12px;">
+        <h3 style="color:var(--accent); font-size:1.05rem; margin-bottom:6px;">Google Search: "${query}"</h3>
+        <button onclick="window.open('https://www.google.com/search?q=${encodeURIComponent(query)}','_blank')" class="action-btn" style="margin-top:8px; margin-bottom:0; padding:12px;">Open Google Results</button>
+      </div>
+    `;
+    status.innerText = `✅ Results ready:`;
+  }
+
+  // AI Chat Logic
+  let chatData = JSON.parse(localStorage.getItem('sikku_chat') || '[{"sender":"ai","text":"नमस्ते! मैं Siku AI हूँ (Created by Sikku Singh). बताइए आज क्या मदद करूँ?"}]');
+  function loadChat() {
+    const box = document.getElementById('chat-box');
+    if (!box) return;
+    box.innerHTML = '';
+    chatData.forEach(m => { box.innerHTML += `<div class="chat-bubble ${m.sender}">${m.text}</div>`; });
+    box.scrollTop = box.scrollHeight;
+  }
+  function sendUserMessage() {
+    const input = document.getElementById('chat-input');
+    const txt = input.value.trim();
+    if (!txt) return;
+    chatData.push({ sender: 'user', text: txt });
+    input.value = '';
+    loadChat();
+    setTimeout(() => {
+      let reply = `भाई, तूने जो पूछा ("${txt}") — एकदम बढ़िया है! बता इस पर और क्या जानना है?`;
+      if(txt.toLowerCase().includes('creator') || txt.toLowerCase().includes('banaya')) { reply = "मुझे Sikku Singh ने बनाया है!"; }
+      chatData.push({ sender: 'ai', text: reply });
+      localStorage.setItem('sikku_chat', JSON.stringify(chatData));
+      loadChat();
+    }, 400);
+  }
+  function clearChat() {
+    chatData = [{ sender: 'ai', text: 'चैट साफ़ हो गई है। बोल भाई!' }];
+    localStorage.setItem('sikku_chat', JSON.stringify(chatData));
+    loadChat();
+  }
+
+  // Calculator Logic
+  const calcDis = document.getElementById('calc-display');
+  function calcAppend(v) { calcDis.value += v; }
+  function calcClear() { calcDis.value = ''; }
+  function calcBack() { calcDis.value = calcDis.value.slice(0, -1); }
+  function calcResult() { try { calcDis.value = eval(calcDis.value) || ''; } catch { calcDis.value = 'Error'; } }
+
+  // Age Calculator
+  function calculateExactAge() {
+    const dob = document.getElementById('dob-input').value;
+    const box = document.getElementById('age-result');
+    if (!dob) { box.innerText = '⚠️ Please select your birth date above!'; box.style.color = '#ef4444'; return; }
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+    if (days < 0) { months--; days += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); }
+    if (months < 0) { years--; months += 12; }
+    box.style.color = 'var(--accent)';
+    box.innerHTML = `🎉 Exact Age: ${years} Years, ${months} Months, & ${days} Days!`;
+  }
+
+  // Unit & Currency Converter Logic
+  function convertCmToInch() {
+    const cm = document.getElementById('cm-input').value;
+    const res = document.getElementById('inch-result');
+    if(cm === '') { res.innerText = ''; return; }
+    res.innerText = `${cm} cm = ${(cm / 2.54).toFixed(2)} Inches`;
+  }
+  function convertInrToUsd() {
+    const inr = document.getElementById('inr-input').value;
+    const res = document.getElementById('usd-result');
+    if(inr === '') { res.innerText = ''; return; }
+    res.innerText = `₹${inr} = $${(inr / 86.5).toFixed(2)} USD`;
+  }
+
+  // Quick Notepad Logic
+  function saveNotepad() {
+    const text = document.getElementById('notepad-text').value;
+    localStorage.setItem('sikku_notepad', text);
+  }
+  function loadNotepad() {
+    const saved = localStorage.getItem('sikku_notepad');
+    if (saved) { document.getElementById('notepad-text').value = saved; }
+  }
+  function clearNotepad() {
+    document.getElementById('notepad-text').value = '';
+    localStorage.removeItem('sikku_notepad');
+  }
+
+  // BMI Calculator Logic
+  function calculateBMI() {
+    const w = parseFloat(document.getElementById('bmi-weight').value);
+    const h = parseFloat(document.getElementById('bmi-height').value) / 100;
+    const res = document.getElementById('bmi-result');
+    if(!w || !h) { res.innerText = '⚠️ Please enter valid weight and height!'; res.style.color = '#ef4444'; return; }
+    const bmi = (w / (h * h)).toFixed(1);
+    let status = '';
+    if(bmi < 18.5) status = 'Underweight';
+    else if(bmi < 25) status = 'Normal Weight';
+    else if(bmi < 30) status = 'Overweight';
+    else status = 'Obese';
+    res.style.color = 'var(--accent)';
+    res.innerText = `Your BMI is ${bmi} (${status})`;
+  }
+
+  // Stopwatch Logic
+  let swInterval, swTime = 0;
+  function startStopwatch() {
+    if (swInterval) return;
+    swInterval = setInterval(() => {
+      swTime++;
+      let hrs = String(Math.floor(swTime / 3600)).padStart(2, '0');
+      let mins = String(Math.floor((swTime % 3600) / 60)).padStart(2, '0');
+      let secs = String(swTime % 60).padStart(2, '0');
+      document.getElementById('sw-display').innerText = `${hrs}:${mins}:${secs}`;
+    }, 1000);
+  }
+  function stopStopwatch() { clearInterval(swInterval); swInterval = null; }
+  function resetStopwatch() { stopStopwatch(); swTime = 0; document.getElementById('sw-display').innerText = '00:00:00'; }
+
+  // Smart To-Do List Logic
+  let todos = JSON.parse(localStorage.getItem('sikku_todos') || '[]');
+  function loadTodoList() {
+    const box = document.getElementById('todo-list-box');
+    if (!box) return;
+    box.innerHTML = '';
+    todos.forEach((t, i) => {
+      box.innerHTML += `<li style="background:rgba(255,255,255,0.04); padding:12px; border-radius:12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;"><span>${t}</span><button onclick="removeTodo(${i})" style="background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer;">Del</button></li>`;
+    });
+  }
+  function addTodoItem() {
+    const input = document.getElementById('todo-input');
+    const val = input.value.trim();
+    if (!val) return;
+    todos.push(val);
+    localStorage.setItem('sikku_todos', JSON.stringify(todos));
+    input.value = '';
+    loadTodoList();
+  }
+  function removeTodo(i) {
+    todos.splice(i, 1);
+    localStorage.setItem('sikku_todos', JSON.stringify(todos));
+    loadTodoList();
+  }
+
+  // Secure Password Generator
+  function generateSecurePassword() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*!";
+    let pass = "";
+    for(let i=0; i<14; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
+    document.getElementById('pass-output').value = pass;
+  }
+</script>
+
+</body>
+</html>
