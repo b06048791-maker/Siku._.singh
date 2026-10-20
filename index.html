@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Sikku Singh Ecosystem - Ultimate Admin CMS v16</title>
+<title>Sikku Singh Ecosystem - Ultimate Master Dashboard v16</title>
 <link rel="icon" type="image/jpeg" href="sikku.jpg">
 <link rel="apple-touch-icon" href="sikku.jpg">
 
@@ -72,7 +72,7 @@
   }
   .battery-pill { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #10b981; padding: 2px 8px; border-radius: 10px; font-size: 0.72rem; }
 
-  /* HEADER WITH PERMANENT INSTA USERNAME */
+  /* HEADER */
   header {
     background: var(--card); backdrop-filter: blur(20px);
     padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;
@@ -148,7 +148,7 @@
 <!-- 3-SECOND INSTA SPLASH SCREEN -->
 <div id="insta-splash-modal">
   <div class="insta-splash-box">
-    <img src="sikku.jpg" alt="Sikku Singh" class="insta-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Sikku'">
+    <img src="sikku.jpg" alt="Sameer Kumar" class="insta-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Sikku'">
     <div>
       <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="insta-handle">@siku._.singh</a>
     </div>
@@ -165,11 +165,11 @@
   </div>
 </div>
 
-<!-- HEADER WITH PERMANENT INSTA USERNAME -->
+<!-- HEADER -->
 <header>
   <div class="brand-left">
     <img src="sikku.jpg" alt="Logo" class="app-logo-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Sikku'">
-    <div class="brand-name">Sikku Singh</div>
+    <div class="brand-name">Sameer Kumar (Sikku Singh)</div>
   </div>
   <div class="header-btns">
     <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="header-insta-tag">@siku._.singh</a>
@@ -186,14 +186,14 @@
 
     <div class="masterpiece-banner">
       <div style="font-size:0.75rem; color:var(--accent); font-weight:800;">👑 OFFICIAL MASTERPIECE</div>
-      <div style="font-size:1.05rem; font-weight:900; color:#fff; margin-top:3px;">Created & Powered by Sikku Singh</div>
+      <div style="font-size:1.05rem; font-weight:900; color:#fff; margin-top:3px;">Created & Powered by Sameer Kumar (Sikku Singh)</div>
     </div>
 
     <a href="https://drive.google.com/uc?export=download&id=1uNSZC5WQS8f3wJ1lS67bi9lvApJY4krG" target="_blank" class="full-btn btn-apk">
       📥 Download Official Android App (APK)
     </a>
 
-    <div style="font-size:0.85rem; font-weight:800; color:var(--accent); margin:8px 0;" id="home-guest-id">Permanent ID: GUEST-475997</div>
+    <div style="font-size:0.85rem; font-weight:800; color:var(--accent); margin:8px 0;" id="home-guest-id">Master System ID: ADMIN-SIKKU-3837</div>
 
     <div class="tile-grid">
       <div class="app-tile" onclick="openTab('tab-search')"><span style="font-size:1.9rem;">🌐</span><span style="font-weight:800; font-size:0.84rem;">Live Web Search</span></div>
@@ -357,16 +357,17 @@
     </div>
   </div>
 
-  <!-- TAB 13: GLOBAL ADMIN CMS & PUBLISHING ENGINE -->
+  <!-- TAB 13: GLOBAL ADMIN CMS & FIREBASE PUBLISHER -->
   <div id="tab-hub" class="tab-pane">
     <div class="sec-title">🎛️ Global Admin CMS & Publisher</div>
 
     <div class="sub-card">
       <h3>🆔 Master Admin Identity</h3>
-      <div id="hub-guest-disp" style="font-weight:900; color:var(--accent); font-size:1.1rem; margin-bottom:4px;">ADMIN-MASTER-2026</div>
+      <div id="hub-guest-disp" style="font-weight:900; color:var(--accent); font-size:1.1rem; margin-bottom:4px;">ADMIN-SIKKU-3837</div>
+      <div id="firebase-sync-status" style="font-size:0.75rem; color:#10b981; margin-top:4px;">⚡ Firebase Realtime Database: Connected</div>
     </div>
 
-    <!-- SEPARATE PERFORMANCE BOOSTER -->
+    <!-- PERFORMANCE BOOSTER -->
     <div class="sub-card" style="border: 2px solid #38bdf8;">
       <h3 style="color: #38bdf8;">⚡ Live System Performance & FPS Booster</h3>
       <p style="font-size: 0.76rem; color: var(--muted); margin-bottom: 10px;">ऐप की स्पीड और रिस्पॉन्सिविटी को तुरंत बूस्ट करें:</p>
@@ -377,23 +378,31 @@
       <button type="button" class="full-btn btn-cyan" style="margin-bottom: 0; padding: 12px; font-weight: bold;" onclick="triggerSystemBoost()">🚀 Boost App Speed Now</button>
     </div>
 
-    <!-- ADMIN PUBLISHING PANEL -->
+    <!-- FIREBASE ADMIN AUTH & PUBLISHING PANEL (MASTER KEY HIDDEN FROM PUBLIC) -->
     <div class="sub-card" style="border:1.5px dashed #ff007f;">
-      <h3 style="color:#ff007f;">👑 Master Admin Publishing Engine (Global CMS)</h3>
-      <input type="password" id="god-key-inp" placeholder="Enter Master Key (SIKKU-GOD-2026-X)...">
-      <button type="button" class="full-btn btn-pink" style="margin-bottom:0;" onclick="unlockGodPanel()">🔓 Unlock Admin Panel</button>
+      <h3 style="color:#ff007f;">👑 Master Admin Publishing Engine (Firebase CMS)</h3>
+      
+      <div id="admin-login-box">
+        <p style="font-size:0.78rem; color:var(--muted); margin-bottom:8px;">केवल ऑथराइज्ड एडमिन के लिए सुरक्षित लॉगिन:</p>
+        <input type="password" id="admin-pass-inp" placeholder="Enter Master Password / Key...">
+        <button type="button" class="full-btn btn-pink" style="margin-bottom:0;" onclick="loginFirebaseAdmin()">🔓 Authenticate & Unlock</button>
+      </div>
 
       <div id="god-mode-box" style="display:none; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,0,127,0.3);">
-        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">🌐 Add Global HTML Feature (पूरी वेबसाइट के लिए नया सेक्शन/HTML):</label>
+        <p style="color:#10b981; font-size:0.82rem; font-weight:bold; margin-bottom:10px;">✅ Admin Verified: Sameer Kumar (Sikku Singh)</p>
+        
+        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">🌐 Add Global HTML Feature (Firebase पर सेव होकर ग्लोबली दिखेगा):</label>
         <textarea id="god-html" rows="2" placeholder="<div id='global-new-section'>...</div>" style="font-family:monospace;"></textarea>
         
-        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">💻 Add Global JS Logic (पूरी वेबसाइट के लिए नया लॉजिक):</label>
+        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">💻 Add Global JS Logic (Firebase पर सेव होकर ग्लोबली चलेगा):</label>
         <textarea id="god-js" rows="2" placeholder="console.log('Global Feature Running...');" style="font-family:monospace;"></textarea>
         
-        <button type="button" class="full-btn btn-cyan" onclick="publishGlobalWebsiteUpdate()">🚀 Publish Global Update (All Users)</button>
+        <button type="button" class="full-btn btn-cyan" onclick="publishFirebaseGlobalUpdate()">🚀 Publish Globally to Firebase</button>
+
+        <button type="button" class="full-btn btn-secondary" style="margin-top:10px; background:#475569;" onclick="logoutFirebaseAdmin()">🔒 Lock & Logout Admin</button>
 
         <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
-        <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser (वेबसाइट से कोई खास एलिमेंट हटाएं):</label>
+        <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser:</label>
         <input type="text" id="target-erase-id" placeholder="हटाने वाले Element की ID या नाम लिखें..." style="margin-bottom:8px;">
         <button type="button" class="full-btn btn-red" style="margin-bottom:0;" onclick="targetedDeleteSpecificCode()">🗑️ Delete Global Element</button>
       </div>
@@ -419,6 +428,128 @@
   <button class="b-nav-item" data-tab="tab-hub" onclick="openTab('tab-hub')"><span class="i">🎛️</span><span>Hub</span></button>
 </nav>
 
+<!-- FIREBASE MODULAR SDKs (v12.5.0) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+  import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCDlj2W3DV6Glez87vf2DCobuydf95pb3s",
+    authDomain: "sikku-cms.firebaseapp.com",
+    databaseURL: "https://sikku-cms-default-rtdb.firebaseio.com",
+    projectId: "sikku-cms",
+    storageBucket: "sikku-cms.firebasestorage.app",
+    messagingSenderId: "841606180456",
+    appId: "1:841606180456:web:4ffacd609bfa715aff15dd"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
+  const globalRef = ref(db, "sikku_ecosystem_global_cms");
+
+  // रियल-टाइम डेटा सिंकिंग (जैसे ही डेटाबेस में कुछ अपडेट होगा, पूरी वेबसाइट पर ग्लोबली सिंक हो जाएगा)
+  onValue(globalRef, snapshot => {
+    const data = snapshot.val();
+    if (data) {
+      if (data.html && Array.isArray(data.html)) {
+        data.html.forEach((h, index) => {
+          if (!document.getElementById('firebase-h-' + index)) {
+            const el = document.createElement('div');
+            el.id = 'firebase-h-' + index;
+            el.innerHTML = h;
+            document.body.appendChild(el);
+          }
+        });
+      }
+      if (data.js && Array.isArray(data.js)) {
+        data.js.forEach((j, index) => {
+          if (!document.getElementById('firebase-j-' + index)) {
+            try {
+              const s = document.createElement('script');
+              s.id = 'firebase-j-' + index;
+              s.textContent = j;
+              document.body.appendChild(s);
+            } catch(e){}
+          }
+        });
+      }
+    }
+  }, error => {
+    console.error("Firebase Sync Error:", error);
+    const st = document.getElementById('firebase-sync-status');
+    if (st) st.innerText = "⚡ Firebase Realtime Database: Offline Mode";
+  });
+
+  // मास्टर एडमिन लॉगिन (मास्टर की या पासवर्ड से)
+  window.loginFirebaseAdmin = async function() {
+    const pass = document.getElementById('admin-pass-inp').value.trim();
+    if (!pass) return alert("⚠️ कृपया मास्टर पासवर्ड दर्ज करें!");
+    try {
+      await signInWithEmailAndPassword(auth, "Sikusingh7091@gmail.com", pass);
+      alert("👑 Master Admin Verified Successfully!");
+    } catch(err) {
+      alert("❌ लॉगिन विफल! मास्टर पासवर्ड गलत है।");
+      console.error(err);
+    }
+  };
+
+  window.logoutFirebaseAdmin = async function() {
+    try {
+      await signOut(auth);
+      document.getElementById('admin-pass-inp').value = '';
+      alert("🔒 Admin Logged Out Successfully.");
+    } catch(err) {
+      console.error(err);
+    }
+  };
+
+  onAuthStateChanged(auth, user => {
+    const loginBox = document.getElementById('admin-login-box');
+    const godBox = document.getElementById('god-mode-box');
+    if (user) {
+      if (loginBox) loginBox.style.display = 'none';
+      if (godBox) godBox.style.display = 'block';
+    } else {
+      if (loginBox) loginBox.style.display = 'block';
+      if (godBox) godBox.style.display = 'none';
+    }
+  });
+
+  // ग्लोबली पब्लिश करने का फंक्शन (Firebase पर सेव होगा)
+  window.publishFirebaseGlobalUpdate = async function() {
+    const h = document.getElementById('god-html').value.trim();
+    const j = document.getElementById('god-js').value.trim();
+    if (!h && !j) return alert("⚠️ कृपया HTML या JS बॉक्स में कोड दर्ज करें!");
+
+    try {
+      // मौजूदा डेटा फेच करके नया अपडेट जोड़ने की तैयारी
+      snapshot => {} // handled by onValue
+      let currentHtml = [];
+      let currentJs = [];
+
+      // हम सीधे नया डेटा सेट कर रहे हैं या पुराना मर्ज कर सकते हैं
+      if (h) currentHtml.push(h);
+      if (j) currentJs.push(j);
+
+      await set(globalRef, {
+        html: currentHtml,
+        js: currentJs,
+        updatedAt: Date.now(),
+        updatedBy: "Sameer Kumar (Sikku Singh)"
+      });
+
+      alert("🚀 सफलतापूर्वक Firebase पर ग्लोबली पब्लिश हो गया! अब दुनिया में कोई भी इस वेबसाइट को खोलेगा, उसे यह नया अपडेट ऑटोमैटिकली मिल जाएगा।");
+      document.getElementById('god-html').value = '';
+      document.getElementById('god-js').value = '';
+    } catch(err) {
+      alert("❌ पब्लिश करने में त्रुटि हुई!");
+      console.error(err);
+    }
+  };
+</script>
+
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     initMasterAdminId();
@@ -427,7 +558,6 @@
     loadAiChat();
     renderTodos();
     renderVault();
-    loadGlobalWebsiteUpdates(); // सर्वर/लोकल स्टोरेज से ग्लोबल अपडेट्स ऑटोमैटिक लोड करना
     
     setTimeout(() => {
       const splash = document.getElementById('insta-splash-modal');
@@ -454,7 +584,7 @@
   function initMasterAdminId() {
     let aid = localStorage.getItem('sikku_master_admin_id');
     if (!aid) {
-      aid = 'ADMIN-SIKKU-' + Math.floor(1000 + Math.random() * 9000);
+      aid = 'ADMIN-SIKKU-3837';
       localStorage.setItem('sikku_master_admin_id', aid);
     }
     const hDisp = document.getElementById('home-guest-id');
@@ -497,7 +627,7 @@
     }
   }
 
-  let aiChatHistory = JSON.parse(localStorage.getItem('sikku_ai_chat') || '[{"role":"ai","text":"नमस्ते! मैं Siku AI हूँ (Created by Sikku Singh)।"}]');
+  let aiChatHistory = JSON.parse(localStorage.getItem('sikku_ai_chat') || '[{"role":"ai","text":"नमस्ते! मैं Siku AI हूँ (Created by Sameer Kumar - Sikku Singh)।"}]');
   function loadAiChat() {
     const win = document.getElementById('ai-chat-window');
     if (!win) return;
@@ -579,7 +709,6 @@
     if (acc && usr && pwd) { vaultItems.push({acc, usr, pwd}); localStorage.setItem('sikku_vault_items', JSON.stringify(vaultItems)); renderVault(); alert('Saved!'); }
   }
 
-  /* FOCUS TIMER ENGINE */
   window.realFocusSecs = 1500;
   window.realFocusInterval = null;
 
@@ -668,73 +797,7 @@
     } catch(e) { out.value = ''; alert('🚫 गलत PIN!'); }
   };
 
-  function unlockGodPanel() {
-    const keyInp = document.getElementById('god-key-inp');
-    if (keyInp && keyInp.value.trim() === 'SIKKU-GOD-2026-X') {
-      const box = document.getElementById('god-mode-box');
-      if (box) box.style.display = 'block';
-      alert('👑 Welcome Master Sikku Singh (Global Admin)!');
-    } else {
-      alert('❌ अमान्य Master Key!');
-    }
-  }
-
-  // 1. ग्लोबल वेबसाइट अपडेट्स लोड करना (जो हर विजिटर को दिखेंगे)
-  function loadGlobalWebsiteUpdates() {
-    let globalHTMLList = JSON.parse(localStorage.getItem('sikku_global_cms_html') || '[]');
-    let globalJSList = JSON.parse(localStorage.getItem('sikku_global_cms_js') || '[]');
-
-    globalHTMLList.forEach((h, index) => {
-      if (!document.getElementById('cms-global-h-' + index)) {
-        const w = document.createElement('div');
-        w.id = 'cms-global-h-' + index;
-        w.innerHTML = h;
-        document.body.appendChild(w);
-      }
-    });
-
-    globalJSList.forEach((j, index) => {
-      if (!document.getElementById('cms-global-j-' + index)) {
-        try {
-          const s = document.createElement('script');
-          s.id = 'cms-global-j-' + index;
-          s.textContent = j;
-          document.body.appendChild(s);
-        } catch(e){}
-      }
-    });
-  }
-
-  // 2. ग्लोबल पब्लिशिंग इंजन (जैसे ही एडमिन पब्लिश करेगा, पूरी वेबसाइट पर हमेशा के लिए अपडेट हो जाएगा)
-  function publishGlobalWebsiteUpdate() {
-    const h = document.getElementById('god-html').value.trim();
-    const j = document.getElementById('god-js').value.trim();
-
-    let globalHTMLList = JSON.parse(localStorage.getItem('sikku_global_cms_html') || '[]');
-    let globalJSList = JSON.parse(localStorage.getItem('sikku_global_cms_js') || '[]');
-
-    let updated = false;
-    if (h) {
-      globalHTMLList.push(h);
-      localStorage.setItem('sikku_global_cms_html', JSON.stringify(globalHTMLList));
-      updated = true;
-    }
-    if (j) {
-      globalJSList.push(j);
-      localStorage.setItem('sikku_global_cms_js', JSON.stringify(globalJSList));
-      updated = true;
-    }
-
-    if (updated) {
-      alert('🚀 ग्लोबल वेबसाइट पब्लिश हो गई है! अब दुनिया में कोई भी इस वेबसाइट को खोलेगा, उसे यह नया फीचर ऑटोमैटिकली दिखाई देगा।');
-      location.reload();
-    } else {
-      alert('⚠️ कृपया HTML या JS बॉक्स में कुछ लिखें!');
-    }
-  }
-
-  // 3. टारगेटेड एलिमेंट इरेज़र
-  function targetedDeleteSpecificCode() {
+  window.targetedDeleteSpecificCode = function() {
     const targetKey = document.getElementById('target-erase-id').value.trim().toLowerCase();
     if (!targetKey) return alert('⚠️ कृपया हटाने वाले एलिमेंट की ID या नाम लिखें!');
     
@@ -753,16 +816,15 @@
     } else {
       alert(`❌ इस नाम का कोई एलिमेंट स्क्रीन पर नहीं मिला!`);
     }
-  }
+  };
 
-  // परफॉर्मेंस बूस्टर फंक्शन
-  function triggerSystemBoost() {
+  window.triggerSystemBoost = function() {
     const statusTxt = document.getElementById('booster-status-txt');
     const fpsBadge = document.getElementById('fps-counter-badge');
     if (statusTxt) statusTxt.innerText = 'Supercharged 🔥 (100% Boosted)';
     if (fpsBadge) fpsBadge.innerText = '120 FPS Max';
     alert('⚡ सफलता! ऐप का परफॉर्मेंस बूस्टर सफलतापूर्वक रन हो गया है!');
-  }
+  };
 </script>
 </body>
 </html>
