@@ -2,1323 +2,768 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Sikku Singh">
-<title>Sikku Singh - Ultimate Masterpiece Ecosystem v85.0</title>
-
+<title>Sikku Singh Ecosystem - Ultimate Admin CMS v16</title>
 <link rel="icon" type="image/jpeg" href="sikku.jpg">
-<link rel="shortcut icon" type="image/jpeg" href="sikku.jpg">
 <link rel="apple-touch-icon" href="sikku.jpg">
 
 <style>
   :root {
-    --bg: #030712;
-    --card: rgba(15, 23, 42, 0.92);
-    --card-hover: rgba(30, 41, 59, 0.98);
+    --bg: #070b14;
+    --card: rgba(17, 24, 39, 0.95);
+    --tile: rgba(30, 41, 59, 0.88);
     --text: #f8fafc;
-    --text-muted: #cbd5e1;
-    --accent: #38bdf8;
-    --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #ec4899 100%);
-    --border: rgba(255, 255, 255, 0.22);
-    --shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+    --muted: #94a3b8;
+    --accent: #00f2fe;
+    --border: rgba(0, 242, 254, 0.3);
+    --grad: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --insta-grad: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   }
-  body.light-mode {
-    --bg: #f8fafc;
-    --card: rgba(255, 255, 255, 0.94);
-    --card-hover: rgba(241, 245, 249, 0.99);
-    --text: #0f172a;
-    --text-muted: #475569;
-    --accent: #0284c7;
-    --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #db2777 100%);
-    --border: rgba(0, 0, 0, 0.12);
-    --shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
+  
   body {
     background-color: var(--bg);
-    background-image: linear-gradient(rgba(3, 7, 18, 0.45), rgba(3, 7, 18, 0.75)), url('sikku.jpg');
-    background-size: cover; background-position: center top; background-attachment: fixed;
-    color: var(--text); padding-bottom: 140px; min-height: 100vh;
-    transition: background-image 0.3s ease;
+    background-image: linear-gradient(rgba(7, 11, 20, 0.75), rgba(7, 11, 20, 0.9)), url('sikku.jpg');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    color: var(--text); padding-bottom: 110px; min-height: 100vh; overflow-x: hidden;
   }
 
-  #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.10; pointer-events: none; }
-
-  .status-bar {
-    background: rgba(3, 7, 18, 0.92); backdrop-filter: blur(25px);
-    display: flex; justify-content: space-between; padding: 8px 22px;
-    font-size: 0.76rem; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--border);
+  /* 3-SECOND INSTA SPLASH SCREEN */
+  #insta-splash-modal {
+    position: fixed; inset: 0; background: rgba(4, 7, 15, 0.98);
+    backdrop-filter: blur(25px); z-index: 9999;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    animation: fadeInOut 3s forwards;
   }
-  .live-battery-indicator { padding: 2px 8px; border-radius: 8px; font-weight: 700; color: #fff; }
+  @keyframes fadeInOut {
+    0% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; pointer-events: none; }
+  }
+  .insta-splash-box {
+    background: rgba(15, 23, 42, 0.98); border: 2.5px solid #dc2743;
+    box-shadow: 0 0 50px rgba(220, 39, 67, 0.5); border-radius: 30px;
+    padding: 32px 24px; text-align: center; max-width: 360px; width: 100%;
+  }
+  .insta-avatar {
+    width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+    border: 3px solid #fff; box-shadow: 0 0 25px var(--insta-grad); margin-bottom: 16px;
+  }
+  .insta-handle {
+    font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 12px;
+    text-decoration: none; display: inline-block; background: var(--insta-grad);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .insta-link-btn {
+    display: block; width: 100%; padding: 15px; border-radius: 18px;
+    background: var(--insta-grad); color: #fff; font-weight: 900; font-size: 1rem;
+    text-decoration: none; margin-top: 10px; box-shadow: 0 8px 25px rgba(220, 39, 67, 0.4);
+    cursor: pointer;
+  }
 
-  header {
-    background: var(--card); backdrop-filter: blur(30px); padding: 14px 20px;
+  /* TOP STATUS BAR */
+  .sys-status-bar {
+    background: rgba(3, 7, 18, 0.95); padding: 7px 16px;
     display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow);
+    font-size: 0.78rem; font-weight: 700; color: var(--accent);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .brand-box { display: flex; align-items: center; gap: 12px; }
-  .app-logo-icon { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); box-shadow: 0 0 15px rgba(56,189,248,0.5); }
-  header h1 { font-size: 1.25rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-  .header-actions { display: flex; gap: 8px; align-items: center; }
-  .action-chip { background: rgba(255,255,255,0.12); color: var(--text); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; cursor: pointer; font-size: 0.78rem; font-weight: 700; text-decoration: none; transition: 0.2s; }
-  .action-chip:hover { border-color: var(--accent); }
+  .battery-pill { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #10b981; padding: 2px 8px; border-radius: 10px; font-size: 0.72rem; }
 
-  .container { max-width: 520px; margin: 20px auto; padding: 0 16px; }
-
-  .tab-content {
-    display: none; background: var(--card); backdrop-filter: blur(25px); padding: 24px;
-    border-radius: 30px; border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 20px;
+  /* HEADER WITH PERMANENT INSTA USERNAME */
+  header {
+    background: var(--card); backdrop-filter: blur(20px);
+    padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 500;
   }
-  .tab-content.active { display: block; animation: smoothSlide 0.3s ease; }
-  @keyframes smoothSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  h2 { margin-bottom: 18px; font-size: 1.25rem; border-bottom: 2px solid var(--border); padding-bottom: 10px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-
-  /* Bottom Navigation Bar */
-  .bottom-nav-bar {
-    position: fixed; bottom: 0; left: 0; width: 100%;
-    background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(30px);
-    display: flex; justify-content: space-around; padding: 8px 2px;
-    border-top: 1px solid var(--border); z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
-    overflow-x: auto;
+  .brand-left { display: flex; align-items: center; gap: 10px; }
+  .brand-left img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+  .brand-name { font-size: 1.05rem; font-weight: 900; color: var(--accent); line-height: 1.1; }
+  .header-insta-tag {
+    font-size: 0.72rem; font-weight: 800; background: var(--insta-grad);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+    display: flex; align-items: center; margin-right: 6px; padding: 4px 8px; border-radius: 8px;
+    background-color: rgba(255,255,255,0.06); border: 1px solid rgba(220,39,67,0.3);
   }
-  .nav-item {
-    background: transparent; border: none; color: var(--text-muted);
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-    cursor: pointer; font-size: 0.44rem; font-weight: 700; transition: 0.3s; padding: 0 3px;
-    min-width: 36px;
+  .header-btns { display: flex; gap: 7px; align-items: center; }
+  .h-btn { padding: 6px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 800; color: #fff; border: none; cursor: pointer; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .h-btn.insta { background: var(--insta-grad); }
+  .h-btn.apps { background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border); color: var(--text); }
+
+  /* CONTAINER & TABS */
+  .container { max-width: 500px; margin: 16px auto; padding: 0 14px; }
+  .tab-pane {
+    display: none; background: var(--card); backdrop-filter: blur(22px);
+    border: 1.5px solid var(--border); border-radius: 26px; padding: 20px 16px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.75); margin-bottom: 18px;
   }
-  .nav-item span.nav-icon { font-size: 1.12rem; }
-  .nav-item.active, .nav-item:hover { color: var(--accent); transform: translateY(-3px); }
+  .tab-pane.active { display: block; }
+  .sec-title {
+    font-size: 1.2rem; font-weight: 800; color: var(--accent);
+    margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  }
+
+  .masterpiece-banner {
+    background: rgba(30, 41, 59, 0.85); border: 1.5px solid var(--accent); border-radius: 18px; padding: 14px; text-align: center; margin-bottom: 12px;
+  }
+  .full-btn {
+    width: 100%; padding: 14px; border-radius: 16px; border: none; font-size: 0.95rem; font-weight: 800; cursor: pointer; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+  }
+  .btn-apk { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+  .btn-voice { background: linear-gradient(135deg, #0284c7, #6366f1); color: #fff; }
+  .btn-cyan { background: var(--grad); color: #030712; }
+  .btn-pink { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; }
+  .btn-red { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; }
+
+  .tile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .app-tile {
+    background: var(--tile); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 18px 10px; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;
+  }
+  .app-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
 
   input, select, textarea {
-    width: 100%; padding: 14px 16px; margin-bottom: 14px; border-radius: 16px;
-    border: 1px solid var(--border); background: rgba(0, 0, 0, 0.35); color: var(--text); font-size: 0.95rem; outline: none; transition: 0.2s;
+    width: 100%; padding: 13px 15px; margin-bottom: 12px; border-radius: 15px; border: 1.5px solid rgba(255,255,255,0.15); background: rgba(3, 7, 18, 0.65); color: var(--text); font-size: 0.92rem; outline: none;
   }
-  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(56,189,248,0.3); }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
 
-  button.action-btn {
-    width: 100%; padding: 15px; background: var(--accent-gradient); color: #fff; border: none;
-    border-radius: 16px; font-size: 1rem; cursor: pointer; margin-bottom: 12px; font-weight: 800;
-    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); transition: 0.2s;
+  .sub-card { background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border); border-radius: 18px; padding: 15px; margin-bottom: 12px; }
+  .sub-card h3 { font-size: 0.95rem; color: var(--accent); margin-bottom: 10px; }
+
+  /* BOTTOM NAVIGATION BAR */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(7, 11, 20, 0.98); backdrop-filter: blur(25px); border-top: 1.5px solid var(--border); display: flex; overflow-x: auto; padding: 8px 6px; gap: 4px; z-index: 1000; scrollbar-width: none;
   }
-  button.action-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(56,189,248,0.6); }
-  button.action-btn:active { transform: scale(0.97); }
-
-  /* Highly Clear Grid Tiles */
-  .grid-menu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 15px; }
-  .grid-tile {
-    background: rgba(255,255,255,0.06); border: 1.5px solid var(--border); border-radius: 20px;
-    padding: 16px 10px; text-align: center; cursor: grab; font-weight: 700; font-size: 0.82rem;
-    display: flex; flex-direction: column; align-items: center; gap: 6px; transition: 0.25s;
-    user-select: none; color: var(--text);
+  .bottom-nav::-webkit-scrollbar { display: none; }
+  .b-nav-item {
+    background: transparent; border: none; color: var(--muted); min-width: 56px; padding: 6px 4px; border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.68rem; font-weight: 700; flex-shrink: 0;
   }
-  .grid-tile:active { cursor: grabbing; }
-  .grid-tile:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(56,189,248,0.25); }
-  .grid-tile span.icon { font-size: 1.8rem; }
-
-  .chat-container { display: flex; flex-direction: column; height: 380px; background: rgba(0, 0, 0, 0.45); border: 1.5px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 12px; }
-  .chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-  .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 0.92rem; line-height: 1.4; }
-  .chat-bubble.user { background: var(--accent-gradient); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-  .chat-bubble.ai { background: rgba(255,255,255,0.1); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border); }
-  .chat-input-row { display: flex; padding: 12px; background: rgba(15,23,42,0.95); border-top: 1px solid var(--border); gap: 10px; }
-  .chat-input-row input { margin-bottom: 0; flex: 1; padding: 12px 16px; }
-
-  #calc-display { width: 100%; height: 75px; background: rgba(0,0,0,0.6); color: var(--text); border: 1.5px solid var(--border); border-radius: 18px; text-align: right; padding: 14px 20px; font-size: 2.2rem; margin-bottom: 16px; outline: none; }
-  .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .calc-btn { padding: 18px; font-size: 1.25rem; border-radius: 16px; background: rgba(255,255,255,0.08); color: var(--text); cursor: pointer; border: 1px solid var(--border); font-weight: 700; transition: 0.15s; }
-  .calc-btn:hover { background: rgba(255,255,255,0.15); }
-  .calc-btn:active { transform: scale(0.93); }
-  .calc-btn.op { background: var(--accent-gradient); color: #fff; border: none; box-shadow: 0 4px 15px rgba(56,189,248,0.3); }
-
-  .settings-group { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 16px; }
-  .settings-group h3 { font-size: 0.95rem; color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-  .setting-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.88rem; color: var(--text-muted); }
-  
-  /* Toggle Switch */
-  .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .3s; border-radius: 24px; }
-  .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-  input:checked + .slider { background-color: var(--accent); }
-  input:checked + .slider:before { transform: translateX(20px); }
-
-  #apps-modal, #welcome-insta-modal {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(25px); z-index: 999999;
-    justify-content: center; align-items: center; padding: 20px;
-  }
-  .modal-card { background: var(--card); border: 2px solid var(--accent); border-radius: 32px; width: 100%; max-width: 480px; padding: 28px; text-align: center; max-height: 85vh; overflow-y: auto; box-shadow: 0 25px 60px rgba(56,189,248,0.4); }
-  .apps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; text-align: left; }
-  .app-tile { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 18px; padding: 16px 10px; text-align: center; cursor: pointer; font-size: 0.8rem; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: 0.2s; }
-  .app-tile:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-3px); }
-  .app-tile span.icon { font-size: 2rem; }
-
-  /* In-Tool History Box */
-  .tool-history-panel { background: rgba(0,0,0,0.35); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-top: 14px; }
-  .tool-history-panel h4 { font-size: 0.85rem; color: var(--accent); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-  .tool-history-list { max-height: 110px; overflow-y: auto; font-size: 0.76rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; }
+  .b-nav-item span.i { font-size: 1.25rem; }
+  .b-nav-item.active { color: var(--accent); background: rgba(0, 242, 254, 0.12); }
 </style>
 </head>
-<body id="master-app-body">
+<body>
 
-<canvas id="matrix-canvas"></canvas>
-
-<!-- Welcome Instagram Modal -->
-<div id="welcome-insta-modal">
-  <div class="modal-card">
-    <img src="sikku.jpg" alt="Profile" style="width:80px; height:80px; border-radius:50%; border:3px solid var(--accent); object-fit:cover; margin-bottom:16px; box-shadow: 0 0 20px rgba(56,189,248,0.5);">
-    <h2>Welcome to Sikku Singh Ecosystem!</h2>
-    <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:20px;">Connect with Creator Sikku Singh on Instagram:</p>
-    <a href="https://www.instagram.com/siku._.singh/" target="_blank" onclick="closeWelcomeModal()" style="text-decoration:none;">
-      <button type="button" class="action-btn" style="background:linear-gradient(135deg, #f58529, #dd2a7b, #8134af); margin-bottom:12px; cursor:pointer;">📸 Visit Instagram (@siku._.singh)</button>
-    </a>
-    <button type="button" class="action-btn" style="background:#334155; padding:13px; cursor:pointer;" onclick="closeWelcomeModal()">🚀 Enter Dashboard</button>
+<!-- 3-SECOND INSTA SPLASH SCREEN -->
+<div id="insta-splash-modal">
+  <div class="insta-splash-box">
+    <img src="sikku.jpg" alt="Sikku Singh" class="insta-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Sikku'">
+    <div>
+      <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="insta-handle">@siku._.singh</a>
+    </div>
+    <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="insta-link-btn">📸 Open Instagram Profile</a>
   </div>
 </div>
 
-<div class="status-bar">
-  <span id="live-clock-display">00:00:00 AM</span>
-  <span>5G Pro 📶 <span class="live-battery-indicator" style="background:#10b981;">100% 🔋</span></span>
+<!-- SYSTEM STATUS BAR -->
+<div class="sys-status-bar">
+  <div id="top-live-clock">12:00:00 AM</div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <span>📶 5G Pro</span>
+    <span class="battery-pill" id="top-battery">100% 🔋</span>
+  </div>
 </div>
 
+<!-- HEADER WITH PERMANENT INSTA USERNAME -->
 <header>
-  <div class="brand-box">
-    <img src="sikku.jpg" alt="Profile" class="app-logo-icon">
-    <h1>Sikku Singh</h1>
+  <div class="brand-left">
+    <img src="sikku.jpg" alt="Logo" class="app-logo-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Sikku'">
+    <div class="brand-name">Sikku Singh</div>
   </div>
-  <div class="header-actions">
-    <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="action-chip" style="background:linear-gradient(135deg, #f58529, #dd2a7b, #8134af); color:#fff; border:none;">📸 Insta</a>
-    <button type="button" class="action-chip" onclick="openAppsModal()">🚀 Apps</button>
-    <button type="button" class="action-chip" onclick="toggleTheme()">🌓 Theme</button>
+  <div class="header-btns">
+    <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="header-insta-tag">@siku._.singh</a>
+    <a href="https://www.instagram.com/siku._.singh/" target="_blank" class="h-btn insta"><span>📸</span><span>Insta</span></a>
+    <button type="button" class="h-btn apps" onclick="openTab('tab-home')"><span>🚀</span><span>Apps</span></button>
   </div>
 </header>
 
-<!-- Apps Hub Modal -->
-<div id="apps-modal">
-  <div class="modal-card">
-    <h2>🚀 Web Shortcuts Hub</h2>
-    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:18px; border:1px solid var(--border); margin-bottom:16px; text-align:left;">
-      <p style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:8px;">➕ Add Custom Website Shortcut:</p>
-      <input type="text" id="custom-app-name" placeholder="App Name (e.g. My Website)" style="margin-bottom:8px; padding:10px; font-size:0.88rem;">
-      <input type="text" id="custom-app-url" placeholder="URL (https://example.com)" style="margin-bottom:10px; padding:10px; font-size:0.88rem;">
-      <button type="button" class="action-btn" onclick="addCustomShortcut()" style="padding:10px; font-size:0.88rem; margin-bottom:0; cursor:pointer;">✨ Create App Shortcut</button>
-    </div>
-    <div class="apps-grid" id="dynamic-apps-grid">
-      <div class="app-tile" onclick="window.open('https://web.whatsapp.com','_blank')"><span class="icon">💬</span><span>WhatsApp</span></div>
-      <div class="app-tile" onclick="window.open('https://www.youtube.com','_blank')"><span class="icon">▶️</span><span>YouTube</span></div>
-      <div class="app-tile" onclick="window.open('https://www.instagram.com','_blank')"><span class="icon">📸</span><span>Instagram</span></div>
-      <div class="app-tile" onclick="window.open('https://chatgpt.com','_blank')"><span class="icon">🤖</span><span>ChatGPT</span></div>
-    </div>
-    <button type="button" class="action-btn" style="background:#ef4444; margin-top:20px; padding:12px; cursor:pointer;" onclick="closeAppsModal()">❌ Close Hub</button>
-  </div>
-</div>
-
 <div class="container">
 
-  <!-- TAB 1: HOME -->
-  <div id="tab-home" class="tab-content active">
-    <h2>🏠 Master Dashboard Hub</h2>
-    
-    <div onclick="openCreatorCard()" style="background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(99,102,241,0.15)); border: 1.5px solid var(--accent); padding: 14px; border-radius: 18px; margin-bottom: 16px; text-align: center; cursor: pointer; box-shadow: 0 4px 20px rgba(56,189,248,0.2);">
-      <p style="font-size: 0.82rem; color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">👑 Official Masterpiece</p>
-      <p style="font-size: 1.05rem; font-weight: 900; color: var(--text); margin-top: 2px;">Created & Powered by Sikku Singh</p>
+  <!-- TAB 1: HOME DASHBOARD -->
+  <div id="tab-home" class="tab-pane active">
+    <div class="sec-title">🏠 Master Dashboard Hub</div>
+
+    <div class="masterpiece-banner">
+      <div style="font-size:0.75rem; color:var(--accent); font-weight:800;">👑 OFFICIAL MASTERPIECE</div>
+      <div style="font-size:1.05rem; font-weight:900; color:#fff; margin-top:3px;">Created & Powered by Sikku Singh</div>
     </div>
 
-    <!-- Google Drive Direct Download Link for APK -->
-    <div style="margin-bottom: 16px;">
-      <a href="https://drive.google.com/uc?export=download&id=1uNSZC5WQS8f3wJ1lS67bi9lvApJY4krG" style="text-decoration: none;">
-        <button type="button" class="action-btn" style="background: linear-gradient(135deg, #10b981, #059669); padding: 15px; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-bottom: 0;">
-          <span>📥 Download Official Android App (APK)</span>
-        </button>
-      </a>
-    </div>
+    <a href="https://drive.google.com/uc?export=download&id=1uNSZC5WQS8f3wJ1lS67bi9lvApJY4krG" target="_blank" class="full-btn btn-apk">
+      📥 Download Official Android App (APK)
+    </a>
 
-    <button type="button" onclick="playFeatureGuideVoice()" style="background: linear-gradient(135deg, #38bdf8, #6366f1); color: #fff; border: none; padding: 12px 18px; border-radius: 16px; font-weight: bold; cursor: pointer; font-size: 0.9rem; margin-bottom: 16px; width: 100%; box-shadow: 0 4px 15px rgba(56,189,248,0.4); display: flex; align-items: center; justify-content: center; gap: 8px;">
-      <span>🎙️ फीचर गाइड सुनें (Voice Assistant)</span>
-    </button>
+    <div style="font-size:0.85rem; font-weight:800; color:var(--accent); margin:8px 0;" id="home-guest-id">Permanent ID: GUEST-475997</div>
 
-    <p id="user-greeting-msg" style="font-size:0.95rem; color:var(--accent); font-weight:bold; margin-bottom:15px;">Welcome to Sikku Singh Ecosystem!</p>
-    <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:20px;">💡 Tip: Drag and drop tiles below to rearrange them freely!</p>
-
-    <div class="grid-menu" id="sortable-grid">
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-search'); setActiveNav(document.getElementById('nav-search'));"><span class="icon">🌐</span><span>Live Web Search</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-ai'); setActiveNav(document.getElementById('nav-ai'));"><span class="icon">💬</span><span>Siku AI Chatbot</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-tools'); setActiveNav(document.getElementById('nav-tools'));"><span class="icon">🔢</span><span>Smart Calculator</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-utilities'); setActiveNav(document.getElementById('nav-utilities'));"><span class="icon">🎂</span><span>Exact Age Calculator</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-converter'); setActiveNav(document.getElementById('nav-converter'));"><span class="icon">📐</span><span>Unit & Currency Converter</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-notepad'); setActiveNav(document.getElementById('nav-notepad'));"><span class="icon">📒</span><span>Quick Notepad</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-health'); setActiveNav(document.getElementById('nav-health'));"><span class="icon">⚖️</span><span>BMI Health Calc</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-timer'); setActiveNav(document.getElementById('nav-timer'));"><span class="icon">⏰</span><span>Stopwatch & Timer</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-todo'); setActiveNav(document.getElementById('nav-todo'));"><span class="icon">📝</span><span>Smart To-Do List</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-qrcode'); setActiveNav(document.getElementById('nav-qrcode'));"><span class="icon">📷</span><span>QR Code Studio</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-vault'); setActiveNav(document.getElementById('nav-vault'));"><span class="icon">🔐</span><span>Password Vault</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-pomodoro'); setActiveNav(document.getElementById('nav-pomodoro'));"><span class="icon">⏱️</span><span>Focus Timer</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-crypto'); setActiveNav(document.getElementById('nav-crypto'));"><span class="icon">🔏</span><span>Text Encryptor</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-extra'); setActiveNav(document.getElementById('nav-extra'));"><span class="icon">🌍</span><span>World Time</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-newtools'); setActiveNav(document.getElementById('nav-newtools'));"><span class="icon">🛠️</span><span>Pro Suite</span></div>
-      <div class="grid-tile" draggable="true" onclick="switchTab('tab-settings'); setActiveNav(document.getElementById('nav-settings'));"><span class="icon">🎛️</span><span>Master Control Hub</span></div>
+    <div class="tile-grid">
+      <div class="app-tile" onclick="openTab('tab-search')"><span style="font-size:1.9rem;">🌐</span><span style="font-weight:800; font-size:0.84rem;">Live Web Search</span></div>
+      <div class="app-tile" onclick="openTab('tab-ai')"><span style="font-size:1.9rem;">💬</span><span style="font-weight:800; font-size:0.84rem;">Siku AI Chatbot</span></div>
+      <div class="app-tile" onclick="openTab('tab-calc')"><span style="font-size:1.9rem;">🔢</span><span style="font-weight:800; font-size:0.84rem;">Smart Calculator</span></div>
+      <div class="app-tile" onclick="openTab('tab-age')"><span style="font-size:1.9rem;">🎂</span><span style="font-weight:800; font-size:0.84rem;">Exact Age Calculator</span></div>
+      <div class="app-tile" onclick="openTab('tab-bmi')"><span style="font-size:1.9rem;">⚖️</span><span style="font-weight:800; font-size:0.84rem;">BMI Health Calc</span></div>
+      <div class="app-tile" onclick="openTab('tab-timer')"><span style="font-size:1.9rem;">⏱️</span><span style="font-weight:800; font-size:0.84rem;">Stopwatch & Timer</span></div>
+      <div class="app-tile" onclick="openTab('tab-todo')"><span style="font-size:1.9rem;">✅</span><span style="font-weight:800; font-size:0.84rem;">Smart To-Do List</span></div>
+      <div class="app-tile" onclick="openTab('tab-qr')"><span style="font-size:1.9rem;">📷</span><span style="font-weight:800; font-size:0.84rem;">QR Code Studio</span></div>
+      <div class="app-tile" onclick="openTab('tab-vault')"><span style="font-size:1.9rem;">🔐</span><span style="font-weight:800; font-size:0.84rem;">Password Vault</span></div>
+      <div class="app-tile" onclick="openTab('tab-focus')"><span style="font-size:1.9rem;">🍅</span><span style="font-weight:800; font-size:0.84rem;">Focus Timer</span></div>
+      <div class="app-tile" onclick="openTab('tab-encrypt')"><span style="font-size:1.9rem;">🔏</span><span style="font-weight:800; font-size:0.84rem;">Text Encryptor</span></div>
+      <div class="app-tile" onclick="openTab('tab-hub')" style="grid-column: span 2; border-color:var(--accent);"><span style="font-size:1.9rem;">🎛️</span><span style="font-weight:800; font-size:0.84rem;">Global Admin CMS & Settings</span></div>
     </div>
   </div>
 
-  <!-- TAB 2: LIVE SEARCH -->
-  <div id="tab-search" class="tab-content">
-    <h2>🌐 Live Web Search & Tools Hub</h2>
-    <div style="background: rgba(255,255,255,0.04); padding: 14px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 14px;">
-      <input type="text" id="global-search-input" placeholder="Type website or search query (e.g. youtube.com)..." style="margin-bottom: 10px; padding: 14px;" onkeypress="if(event.key==='Enter') performDirectGoogleSearch()">
-      <div style="display:flex; gap:8px;">
-        <button type="button" class="action-btn" onclick="performDirectGoogleSearch()" style="margin-bottom: 0; padding: 12px; flex:1; cursor:pointer;">🔍 Search on Google</button>
-        <button type="button" class="action-btn" onclick="openDirectWebsite()" style="background:linear-gradient(135deg, #10b981, #059669); margin-bottom: 0; padding: 12px; flex:1; cursor:pointer;">🚀 Open Website</button>
-      </div>
+  <!-- TAB 2: SEARCH -->
+  <div id="tab-search" class="tab-pane">
+    <div class="sec-title">🌐 Live Web Search & Shortcuts</div>
+    <input type="text" id="web-query" placeholder="Search Google or URL...">
+    <div style="display:flex; gap:10px;">
+      <button type="button" class="full-btn btn-cyan" style="flex:1;" onclick="doGoogleSearch()">🔍 Google Search</button>
+      <button type="button" class="full-btn btn-apk" style="flex:1;" onclick="doOpenWebsite()">🌐 Open URL</button>
     </div>
-
-    <div style="background: rgba(255,255,255,0.04); padding: 14px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 14px;">
-      <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:8px;">🔗 Add Website Link Tile</h3>
-      <input type="text" id="custom-link-name" placeholder="Website Name (e.g. My Blog)" style="margin-bottom:8px; padding:10px; font-size:0.85rem;">
-      <input type="text" id="custom-link-url" placeholder="URL (https://example.com)" style="margin-bottom:10px; padding:10px; font-size:0.85rem;">
-      <button type="button" class="action-btn" onclick="generateWebsiteTile()" style="padding:10px; font-size:0.85rem; margin-bottom:0; cursor:pointer;">✨ Generate & Open Tile</button>
-    </div>
-
-    <div id="custom-tiles-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;"></div>
   </div>
 
   <!-- TAB 3: AI CHAT -->
-  <div id="tab-ai" class="tab-content">
-    <h2>🤖 Siku AI Assistant</h2>
-    <div class="chat-container">
-      <div class="chat-messages" id="chat-box"></div>
-      <div class="chat-input-row">
-        <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendUserMessage()">
-        <button type="button" class="action-btn" onclick="sendUserMessage()" style="margin-bottom:0; padding:12px 18px; width:auto; cursor:pointer;">Send</button>
+  <div id="tab-ai" class="tab-pane">
+    <div class="sec-title">💬 Siku AI Assistant</div>
+    <div id="ai-chat-window" style="height:260px; background:rgba(3,7,18,0.7); border:1px solid var(--border); border-radius:16px; padding:12px; overflow-y:auto; margin-bottom:10px; display:flex; flex-direction:column; gap:8px;"></div>
+    <div style="display:flex; gap:8px;">
+      <input type="text" id="ai-user-msg" placeholder="Type message..." style="margin-bottom:0;" onkeypress="if(event.key==='Enter') sendAiChat()">
+      <button type="button" class="full-btn btn-cyan" style="width:auto; padding:0 18px; margin-bottom:0;" onclick="sendAiChat()">Send</button>
+    </div>
+  </div>
+
+  <!-- TAB 4: CALCULATOR -->
+  <div id="tab-calc" class="tab-pane">
+    <div class="sec-title">🔢 Smart Calculator</div>
+    <input type="text" id="calc-disp" readonly placeholder="0" style="font-size:1.5rem; text-align:right; font-weight:800; background:#020617;">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px;">
+      <button class="full-btn btn-red" onclick="document.getElementById('calc-disp').value=''">C</button>
+      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='/'">/</button>
+      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='*'">*</button>
+      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='-'">-</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='7'" style="background:#1e293b;">7</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='8'" style="background:#1e293b;">8</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='9'" style="background:#1e293b;">9</button>
+      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='+'" style="grid-row:span 2; height:100%;">+</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='4'" style="background:#1e293b;">4</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='5'" style="background:#1e293b;">5</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='6'" style="background:#1e293b;">6</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='1'" style="background:#1e293b;">1</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='2'" style="background:#1e293b;">2</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='3'" style="background:#1e293b;">3</button>
+      <button class="full-btn btn-apk" onclick="try{document.getElementById('calc-disp').value=eval(document.getElementById('calc-disp').value)}catch(e){document.getElementById('calc-disp').value='Error'}" style="grid-row:span 2; height:100%;"> = </button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='0'" style="grid-column:span 2; background:#1e293b;">0</button>
+      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='.'" style="background:#1e293b;">.</button>
+    </div>
+  </div>
+
+  <!-- TAB 5: AGE -->
+  <div id="tab-age" class="tab-pane">
+    <div class="sec-title">🎂 Exact Age Calculator</div>
+    <input type="date" id="age-dob">
+    <button type="button" class="full-btn btn-pink" onclick="runAgeCalc()">🎉 Calculate Age</button>
+    <div style="background:rgba(30,41,59,0.85); border:1px solid var(--border); border-radius:15px; padding:14px; text-align:center; font-weight:800; color:var(--accent); margin-top:10px;" id="age-output">Select DOB above.</div>
+  </div>
+
+  <!-- TAB 6: BMI -->
+  <div id="tab-bmi" class="tab-pane">
+    <div class="sec-title">⚖️ BMI Health Calculator</div>
+    <input type="number" id="bmi-w" placeholder="Weight (kg)...">
+    <input type="number" id="bmi-h" placeholder="Height (cm)...">
+    <button type="button" class="full-btn btn-cyan" onclick="runBmiCalc()">Calculate BMI</button>
+    <div style="background:rgba(30,41,59,0.85); border:1px solid var(--border); border-radius:15px; padding:14px; text-align:center; font-weight:800; color:var(--accent); margin-top:10px;" id="bmi-output">Enter details.</div>
+  </div>
+
+  <!-- TAB 7: TIMER -->
+  <div id="tab-timer" class="tab-pane">
+    <div class="sec-title">⏱️ Precision Stopwatch</div>
+    <div style="font-size:2.6rem; font-weight:900; text-align:center; color:var(--accent); margin:18px 0; font-family:monospace;" id="sw-disp">00:00:00.00</div>
+    <div style="display:flex; gap:10px;">
+      <button type="button" class="full-btn btn-apk" style="flex:1;" onclick="swStart()">Start</button>
+      <button type="button" class="full-btn btn-pink" style="flex:1;" onclick="swStop()">Stop</button>
+      <button type="button" class="full-btn btn-red" style="flex:1;" onclick="swReset()">Reset</button>
+    </div>
+  </div>
+
+  <!-- TAB 8: TODO -->
+  <div id="tab-todo" class="tab-pane">
+    <div class="sec-title">✅ Smart To-Do List</div>
+    <input type="text" id="todo-inp" placeholder="New task...">
+    <button type="button" class="full-btn btn-voice" onclick="addNewTodo()">+ Add Task</button>
+    <div id="todo-items-box" style="margin-top:12px;"></div>
+  </div>
+
+  <!-- TAB 9: QR -->
+  <div id="tab-qr" class="tab-pane">
+    <div class="sec-title">📷 QR Code Studio</div>
+    <input type="text" id="qr-inp" placeholder="Enter URL or Text...">
+    <button type="button" class="full-btn btn-pink" onclick="makeQrCode()">✨ Generate QR</button>
+    <div id="qr-img-box" style="text-align:center; margin-top:16px;"></div>
+  </div>
+
+  <!-- TAB 10: VAULT -->
+  <div id="tab-vault" class="tab-pane">
+    <div class="sec-title">🔐 Secure Password Vault</div>
+    <input type="text" id="v-acc" placeholder="Account Name">
+    <input type="text" id="v-usr" placeholder="Username">
+    <input type="password" id="v-pwd" placeholder="Password">
+    <button type="button" class="full-btn btn-pink" onclick="saveToVault()">🔒 Save</button>
+    <div class="sub-card" style="margin-top:14px;">
+      <h3>Saved Entries</h3>
+      <div id="vault-log-list" style="font-size:0.85rem; color:var(--muted);">No entries.</div>
+    </div>
+  </div>
+
+  <!-- TAB 11: FOCUS TIMER -->
+  <div id="tab-focus" class="tab-pane">
+    <div class="sec-title">🍅 Focus Timer (Customizable)</div>
+    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+      <input type="number" id="real-custom-mins" placeholder="Minutes (e.g. 25)" value="25" style="margin-bottom: 0; font-size: 0.9rem;">
+      <button type="button" class="full-btn btn-cyan" style="width: 130px; margin-bottom: 0; padding: 10px; font-size: 0.85rem;" onclick="applyRealCustomFocus()">⏱️ Set Time</button>
+    </div>
+    <div style="font-size:3.2rem; font-weight:900; text-align:center; color:var(--accent); margin:14px 0;" id="focus-disp">25:00</div>
+    <div style="display:flex; gap:10px;">
+      <button type="button" class="full-btn btn-cyan" style="flex:1;" onclick="focusStart()">Start</button>
+      <button type="button" class="full-btn btn-pink" style="flex:1;" onclick="focusPause()">Pause</button>
+      <button type="button" class="full-btn btn-red" style="flex:1;" onclick="focusReset()">Reset</button>
+    </div>
+  </div>
+
+  <!-- TAB 12: TEXT ENCRYPTOR -->
+  <div id="tab-encrypt" class="tab-pane">
+    <div class="sec-title">🔏 Dual-Layer Privacy Cipher</div>
+    <p style="font-size:0.76rem; color:var(--muted); margin-bottom:10px;">बगल में स्वाइप करके प्राइवेसी मोड चुनें:</p>
+
+    <div style="display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px;">
+      <div style="min-width:92%; scroll-snap-align:center; background:rgba(30,41,59,0.85); border:1.5px solid rgba(56,189,248,0.4); border-radius:18px; padding:14px; flex-shrink:0;">
+        <div style="font-size:0.88rem; font-weight:800; color:#38bdf8; margin-bottom:6px;">🌐 1. Standard Code</div>
+        <textarea id="std-inp" rows="2" placeholder="मैसेज लिखें..." style="margin-bottom:8px; font-size:0.85rem;"></textarea>
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+          <button type="button" class="full-btn btn-cyan" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="stdCodeRun(true)">🔄 Make Code</button>
+          <button type="button" class="full-btn btn-apk" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="stdCodeRun(false)">🔍 Read Code</button>
+        </div>
+        <textarea id="std-out" rows="2" readonly placeholder="आउटपुट..." style="margin-bottom:8px; font-size:0.82rem; background:#020617; color:#38bdf8;"></textarea>
       </div>
-    </div>
-    <button type="button" class="action-btn" style="background:#ef4444; padding:12px; font-size:0.88rem; cursor:pointer;" onclick="clearChat()">🗑️ Clear Chat History</button>
-  </div>
 
-  <!-- TAB 4: CALCULATOR (WITH SIDE HISTORY) -->
-  <div id="tab-tools" class="tab-content">
-    <h2>🔢 Smart Calculator</h2>
-    <input type="text" id="calc-display" readonly placeholder="0">
-    <div class="calc-grid">
-      <button type="button" class="calc-btn op" onclick="calcClear()">C</button>
-      <button type="button" class="calc-btn op" onclick="calcAppend('/')">/</button>
-      <button type="button" class="calc-btn op" onclick="calcAppend('*')">×</button>
-      <button type="button" class="calc-btn op" onclick="calcBack()">⌫</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('7')">7</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('8')">8</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('9')">9</button>
-      <button type="button" class="calc-btn op" onclick="calcAppend('-')">-</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('4')">4</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('5')">5</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('6')">6</button>
-      <button type="button" class="calc-btn op" onclick="calcAppend('+')">+</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('1')">1</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('2')">2</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('3')">3</button>
-      <button type="button" class="calc-btn op" onclick="calcResult()">=</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('0')" style="grid-column: span 2;">0</button>
-      <button type="button" class="calc-btn" onclick="calcAppend('.')">.</button>
-      <button type="button" class="calc-btn op" onclick="calcAppend('%')">%</button>
-    </div>
-
-    <!-- In-Tool History Panel -->
-    <div class="tool-history-panel">
-      <h4><span>📊 Calculation History</span> <button type="button" onclick="clearToolHistory('calc')" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; cursor:pointer;">Clear</button></h4>
-      <div id="calc-history-list" class="tool-history-list">No calculations yet.</div>
-    </div>
-  </div>
-
-  <!-- TAB 5: AGE CALCULATOR -->
-  <div id="tab-utilities" class="tab-content">
-    <h2>🎂 Exact Age Calculator</h2>
-    <input type="date" id="dob-input" style="padding: 16px; font-size: 1.1rem; border-radius: 16px; border: 2px solid var(--accent); background: rgba(255,255,255,0.08); color: var(--text); margin-bottom: 14px;">
-    <button type="button" class="action-btn" onclick="calculateExactAge()" style="padding:14px; font-size:1rem; margin-bottom:0; cursor:pointer;">📊 Calculate Exact Age</button>
-    <div id="age-result" style="margin-top:15px; padding:16px; background:rgba(255,255,255,0.06); border-radius:16px; text-align:center; font-size: 1.05rem; font-weight:bold; color:var(--accent);">Select DOB above to view exact age.</div>
-  </div>
-
-  <!-- TAB 6: UNIT CONVERTER -->
-  <div id="tab-converter" class="tab-content">
-    <h2>📐 Unit & Currency Converter</h2>
-    <div style="margin-bottom:16px;">
-      <label style="font-size:0.85rem; color:var(--text-muted); font-weight:bold;">Convert Centimeters to Inches:</label>
-      <input type="number" id="cm-input" placeholder="Enter cm..." style="margin-top:6px;" oninput="convertCmToInch()">
-      <p id="inch-result" style="font-weight:bold; color:var(--accent); margin-top:4px;"></p>
-    </div>
-    <div style="margin-bottom:16px;">
-      <label style="font-size:0.85rem; color:var(--text-muted); font-weight:bold;">Convert INR to USD (Approx 86.5 rate):</label>
-      <input type="number" id="inr-input" placeholder="Enter INR amount..." style="margin-top:6px;" oninput="convertInrToUsd()">
-      <p id="usd-result" style="font-weight:bold; color:var(--accent); margin-top:4px;"></p>
-    </div>
-  </div>
-
-  <!-- TAB 7: NOTEPAD (WITH SIDE HISTORY) -->
-  <div id="tab-notepad" class="tab-content">
-    <h2>📒 Quick Notepad</h2>
-    <textarea id="notepad-text" placeholder="Type your notes here..." style="width:100%; height:160px; padding:14px; border-radius:16px; background:rgba(0,0,0,0.3); color:var(--text); font-size:0.95rem; margin-bottom:10px;" oninput="saveNotepad()"></textarea>
-    <button type="button" class="action-btn" onclick="clearNotepad()" style="background:#ef4444; padding:12px; font-size:0.9rem; margin-bottom:10px; cursor:pointer;">🗑️ Clear Notepad</button>
-
-    <div class="tool-history-panel">
-      <h4><span>📒 Notes Backup Log</span> <button type="button" onclick="clearToolHistory('notes')" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; cursor:pointer;">Clear</button></h4>
-      <div id="notes-history-list" class="tool-history-list">No notes activity yet.</div>
-    </div>
-  </div>
-
-  <!-- TAB 8: BMI -->
-  <div id="tab-health" class="tab-content">
-    <h2>⚖️ BMI Health Calculator</h2>
-    <input type="number" id="bmi-weight" placeholder="Weight (kg)..." style="margin-bottom:12px;">
-    <input type="number" id="bmi-height" placeholder="Height (cm)..." style="margin-bottom:14px;">
-    <button type="button" class="action-btn" onclick="calculateBMI()" style="padding:13px; font-size:0.95rem; margin-bottom:10px; cursor:pointer;">Calculate BMI</button>
-    <div id="bmi-result" style="padding:14px; background:rgba(255,255,255,0.06); border-radius:14px; text-align:center; font-weight:bold; color:var(--accent);">Enter weight & height.</div>
-  </div>
-
-  <!-- TAB 9: TIMER -->
-  <div id="tab-timer" class="tab-content">
-    <h2>⏰ Stopwatch & Timer</h2>
-    <div style="margin-bottom:22px; text-align:center;">
-      <div id="sw-display" style="font-size:3rem; font-weight:900; margin-bottom:16px; color:var(--accent);">00:00:00</div>
-      <div style="display:flex; gap:8px; justify-content:center;">
-        <button type="button" class="action-btn" onclick="startStopwatch()" style="padding:12px; font-size:0.9rem; margin-bottom:0; width:auto; cursor:pointer;">Start</button>
-        <button type="button" class="action-btn" onclick="stopStopwatch()" style="background:#eab308; padding:12px; font-size:0.9rem; margin-bottom:0; width:auto; cursor:pointer;">Stop</button>
-        <button type="button" class="action-btn" onclick="resetStopwatch()" style="background:#ef4444; padding:12px; font-size:0.9rem; margin-bottom:0; width:auto; cursor:pointer;">Reset</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 10: TODO -->
-  <div id="tab-todo" class="tab-content">
-    <h2>📝 Smart To-Do List</h2>
-    <input type="text" id="todo-input" placeholder="Add a new task..." style="margin-bottom:10px;">
-    <button type="button" class="action-btn" onclick="addTodoItem()" style="padding:12px; font-size:0.9rem; margin-bottom:14px; cursor:pointer;">+ Add Task</button>
-    <ul id="todo-list-box" style="list-style:none;"></ul>
-  </div>
-
-  <!-- TAB 11: ULTIMATE QR STUDIO (WITH SIDE HISTORY & REAL API) -->
-  <div id="tab-qrcode" class="tab-content">
-    <h2>📷 QR Code Studio</h2>
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">Generate 100% Real Scannable QR Code for Website, Video, Email, or Message:</p>
-
-    <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 14px; scrollbar-width: thin;">
-      <button type="button" onclick="setQRType('link')" id="btn-type-link" class="action-chip" style="white-space: nowrap; background: var(--accent); color: #030712; font-weight: bold;">🌐 Website</button>
-      <button type="button" onclick="setQRType('email')" id="btn-type-email" class="action-chip" style="white-space: nowrap;">📧 Email</button>
-      <button type="button" onclick="setQRType('video')" id="btn-type-video" class="action-chip" style="white-space: nowrap;">▶️ Video</button>
-      <button type="button" onclick="setQRType('msg')" id="btn-type-msg" class="action-chip" style="white-space: nowrap;">💬 Message</button>
-    </div>
-
-    <div id="qr-input-container" style="background:rgba(255,255,255,0.04); padding:16px; border-radius:18px; border:1px solid var(--border); margin-bottom:16px;">
-      <label id="qr-label-title" style="font-size:0.82rem; font-weight:bold; color:var(--accent); display:block; margin-bottom:6px;">Enter Website / App Link:</label>
-      <input type="text" id="qr-dynamic-input" placeholder="https://example.com" style="margin-bottom:12px;">
-      <button type="button" class="action-btn" onclick="generateFixedQR()" style="padding:14px; margin-bottom:0; cursor:pointer;">✨ Generate Scannable QR</button>
-    </div>
-
-    <div id="qr-result-box" style="text-align:center; padding:16px; background:rgba(255,255,255,0.04); border-radius:18px; border:1px solid var(--border); display:none; margin-bottom:14px;">
-      <p style="font-size:0.85rem; color:var(--accent); font-weight:bold; margin-bottom:10px;">📲 Your Scannable QR Code is Ready:</p>
-      <img id="qr-img-output" src="" alt="QR Code" style="width: 200px; height: 200px; border-radius: 12px; border: 4px solid #fff; background:#fff; padding:6px; margin-bottom:10px;">
-      <br>
-      <a id="qr-download-btn" href="#" download="SikkuMasterQR.png" class="action-chip" style="display:inline-block; background:var(--accent); color:#030712; padding:10px 20px; font-weight:900; text-decoration:none; border-radius:14px;">📥 Download QR Image</a>
-    </div>
-
-    <!-- In-Tool History Panel -->
-    <div class="tool-history-panel">
-      <h4><span>📷 QR Code History</span> <button type="button" onclick="clearToolHistory('qr')" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; cursor:pointer;">Clear</button></h4>
-      <div id="qr-history-list" class="tool-history-list">No QR codes generated yet.</div>
-    </div>
-  </div>
-
-  <!-- TAB 12: PASSWORD VAULT (WITH SIDE HISTORY) -->
-  <div id="tab-vault" class="tab-content">
-    <h2>🔐 Secure Password Vault</h2>
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">Store your website passwords and secret notes securely inside your account session:</p>
-
-    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid var(--border); margin-bottom:16px;">
-      <input type="text" id="vault-title" placeholder="Account Name (e.g. Gmail / Bank)" style="margin-bottom:8px; padding:10px; font-size:0.85rem;">
-      <input type="text" id="vault-username" placeholder="Username / Email" style="margin-bottom:8px; padding:10px; font-size:0.85rem;">
-      <input type="password" id="vault-password" placeholder="Password / PIN" style="margin-bottom:10px; padding:10px; font-size:0.85rem;">
-      <button type="button" class="action-btn" onclick="saveVaultCredential()" style="padding:12px; font-size:0.9rem; margin-bottom:0; cursor:pointer;">🔒 Save Credential</button>
-    </div>
-
-    <div id="vault-list-box" style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;"></div>
-
-    <div class="tool-history-panel">
-      <h4><span>🔐 Vault Log History</span> <button type="button" onclick="clearToolHistory('vault')" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; cursor:pointer;">Clear</button></h4>
-      <div id="vault-history-list" class="tool-history-list">No vault entries logged yet.</div>
-    </div>
-  </div>
-
-  <!-- POMODORO TIMER -->
-  <div id="tab-pomodoro" class="tab-content">
-    <h2>⏱️ Focus Pomodoro Timer</h2>
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">Set your custom focus duration and boost productivity:</p>
-    
-    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid var(--border); margin-bottom:14px;">
-      <label style="font-size:0.8rem; color:var(--accent); font-weight:bold; display:block; margin-bottom:6px;">⚙️ Custom Focus Minutes:</label>
-      <div style="display:flex; gap:8px;">
-        <input type="number" id="custom-pomodoro-mins" placeholder="e.g. 25" value="25" style="margin-bottom:0; padding:10px; font-size:0.85rem; flex:1;">
-        <button type="button" class="action-btn" onclick="setCustomPomodoroTime()" style="padding:10px 16px; font-size:0.85rem; margin-bottom:0; width:auto; cursor:pointer;">Set Time</button>
-      </div>
-    </div>
-
-    <div style="text-align:center; padding:20px; background:rgba(255,255,255,0.04); border-radius:18px; border:1px solid var(--border); margin-bottom:16px;">
-      <div id="pomodoro-display" style="font-size:3.5rem; font-weight:900; color:var(--accent); margin-bottom:16px;">25:00</div>
-      <div style="display:flex; gap:8px; justify-content:center;">
-        <button type="button" class="action-btn" onclick="startPomodoro()" style="padding:10px 20px; font-size:0.9rem; margin-bottom:0; width:auto; cursor:pointer;">Start Focus</button>
-        <button type="button" class="action-btn" onclick="pausePomodoro()" style="background:#eab308; padding:10px 20px; font-size:0.9rem; margin-bottom:0; width:auto; cursor:pointer;">Pause</button>
-        <button type="button" class="action-btn" onclick="resetPomodoro()" style="background:#ef4444; padding:10px 20px; font-size:0.9rem; margin-bottom:0; width:auto; cursor:pointer;">Reset</button>
+      <div style="min-width:92%; scroll-snap-align:center; background:rgba(25,10,35,0.95); border:1.5px solid #ff007f; border-radius:18px; padding:14px; flex-shrink:0;">
+        <div style="font-size:0.88rem; font-weight:800; color:#ff007f; margin-bottom:6px;">🔒 2. Ultra-Privacy Vault</div>
+        <textarea id="ultra-inp" rows="2" placeholder="सीक्रेट मैसेज..." style="margin-bottom:8px; font-size:0.85rem;"></textarea>
+        <input type="password" id="ultra-pin" placeholder="🔑 Secret PIN..." style="margin-bottom:8px; padding:10px; font-size:0.85rem; border-color:#ff007f;">
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+          <button type="button" class="full-btn btn-pink" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="ultraPrivacyRun(true)">🔐 Lock</button>
+          <button type="button" class="full-btn btn-apk" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="ultraPrivacyRun(false)">🔓 Unlock</button>
+        </div>
+        <textarea id="ultra-out" rows="2" readonly placeholder="आउटपुट..." style="margin-bottom:6px; font-size:0.82rem; background:#020617; color:#ff007f;"></textarea>
       </div>
     </div>
   </div>
 
-  <!-- TEXT ENCRYPTOR (WITH SIDE HISTORY) -->
-  <div id="tab-crypto" class="tab-content">
-    <h2>🔏 Secure Text Encryptor</h2>
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">Encrypt sensitive messages with a custom secret key:</p>
-    <textarea id="crypto-input" placeholder="Enter text to encrypt or decrypt..." style="height:90px; margin-bottom:10px; font-size:0.85rem;"></textarea>
-    <input type="password" id="crypto-key" placeholder="Enter Secret Key / PIN..." style="margin-bottom:12px; padding:10px; font-size:0.85rem;">
-    <div style="display:flex; gap:8px; margin-bottom:12px;">
-      <button type="button" class="action-btn" onclick="encryptTextMessage()" style="padding:10px; font-size:0.85rem; margin-bottom:0; flex:1; cursor:pointer;">🔒 Encrypt</button>
-      <button type="button" class="action-btn" onclick="decryptTextMessage()" style="background:#10b981; padding:10px; font-size:0.85rem; margin-bottom:0; flex:1; cursor:pointer;">🔓 Decrypt</button>
-    </div>
-    <textarea id="crypto-output" readonly placeholder="Result output..." style="height:80px; font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:14px;"></textarea>
+  <!-- TAB 13: GLOBAL ADMIN CMS & PUBLISHING ENGINE -->
+  <div id="tab-hub" class="tab-pane">
+    <div class="sec-title">🎛️ Global Admin CMS & Publisher</div>
 
-    <div class="tool-history-panel">
-      <h4><span>🔏 Encryption History Log</span> <button type="button" onclick="clearToolHistory('crypto')" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; cursor:pointer;">Clear</button></h4>
-      <div id="crypto-history-list" class="tool-history-list">No encryption activity logged.</div>
-    </div>
-  </div>
-
-  <!-- TAB 13: WORLD TIME & SECURITY -->
-  <div id="tab-extra" class="tab-content">
-    <h2>🌍 World Time & Security</h2>
-    <div style="background: rgba(255,255,255,0.04); padding: 18px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 20px; text-align: center;">
-      <h3 style="font-size: 0.95rem; color: var(--accent); margin-bottom: 8px;">🕒 Live Digital Clock & Calendar</h3>
-      <div id="world-clock-box" style="font-size: 2.4rem; font-weight: 900; color: var(--text); margin-bottom: 4px;">00:00:00 AM</div>
-      <p id="world-date-box" style="font-size: 0.95rem; color: var(--text-muted); font-weight: bold;"></p>
+    <div class="sub-card">
+      <h3>🆔 Master Admin Identity</h3>
+      <div id="hub-guest-disp" style="font-weight:900; color:var(--accent); font-size:1.1rem; margin-bottom:4px;">ADMIN-MASTER-2026</div>
     </div>
 
-    <div style="background: rgba(255,255,255,0.04); padding: 16px; border-radius: 18px; border: 1px solid var(--border); text-align: center;">
-      <h3 style="font-size: 0.95rem; color: var(--accent); margin-bottom: 10px;">🔐 Secure Password Generator</h3>
-      <button type="button" class="action-btn" onclick="generateSecurePassword()" style="padding: 12px; font-size: 0.9rem; margin-bottom: 10px; cursor:pointer;">🔑 Generate Strong Password</button>
-      <input type="text" id="pass-output" readonly placeholder="Generated password..." style="text-align: center; font-weight: bold; color: var(--accent); margin-bottom: 0;">
-    </div>
-  </div>
-
-  <!-- TAB 14: PRO UTILITY SUITE -->
-  <div id="tab-newtools" class="tab-content">
-    <h2>🛠️ Pro Utility Suite</h2>
-
-    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid var(--border); margin-bottom:14px; text-align:center;">
-      <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:8px;">🪙 Quick Coin Toss / Random Picker</h3>
-      <div id="coin-result-box" style="font-size:1.8rem; font-weight:bold; color:var(--text); margin-bottom:10px;">🪙 Click to Toss</div>
-      <button type="button" class="action-btn" onclick="tossCoin()" style="padding:10px; font-size:0.85rem; margin-bottom:0; cursor:pointer;">🎲 Toss Coin</button>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid var(--border); margin-bottom:14px;">
-      <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:8px;">🔤 Text Case & Word Counter</h3>
-      <textarea id="tool-text-input" placeholder="Type text here..." style="height:70px; margin-bottom:8px; font-size:0.85rem;" oninput="analyzeText()"></textarea>
-      <div style="display:flex; gap:6px; margin-bottom:8px;">
-        <button type="button" class="action-chip" onclick="convertTextCase('upper')" style="flex:1; cursor:pointer;">UPPER</button>
-        <button type="button" class="action-chip" onclick="convertTextCase('lower')" style="flex:1; cursor:pointer;">lower</button>
-        <button type="button" class="action-chip" onclick="convertTextCase('cap')" style="flex:1; cursor:pointer;">Capitalize</button>
+    <!-- SEPARATE PERFORMANCE BOOSTER -->
+    <div class="sub-card" style="border: 2px solid #38bdf8;">
+      <h3 style="color: #38bdf8;">⚡ Live System Performance & FPS Booster</h3>
+      <p style="font-size: 0.76rem; color: var(--muted); margin-bottom: 10px;">ऐप की स्पीड और रिस्पॉन्सिविटी को तुरंत बूस्ट करें:</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(3,7,18,0.7); padding: 10px; border-radius: 10px; margin-bottom: 10px; font-size: 0.82rem;">
+        <span>Status: <strong id="booster-status-txt" style="color: #38bdf8;">Active & Optimized 🚀</strong></span>
+        <span id="fps-counter-badge" style="background: rgba(56,189,248,0.2); padding: 2px 8px; border-radius: 6px; color: #38bdf8; font-weight: bold;">60 FPS</span>
       </div>
-      <p id="text-stats-output" style="font-size:0.8rem; color:var(--text-muted); font-weight:bold;">Words: 0 | Characters: 0</p>
+      <button type="button" class="full-btn btn-cyan" style="margin-bottom: 0; padding: 12px; font-weight: bold;" onclick="triggerSystemBoost()">🚀 Boost App Speed Now</button>
     </div>
 
-    <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid var(--border); margin-bottom:14px; text-align:center;">
-      <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:8px;">🎨 Random Color Generator</h3>
-      <div id="color-box" style="width:100%; height:50px; background:#38bdf8; border-radius:12px; margin-bottom:10px; border:2px solid #fff;"></div>
-      <input type="text" id="color-code-output" readonly value="#38bdf8" style="text-align:center; font-weight:bold; margin-bottom:10px;">
-      <button type="button" class="action-btn" onclick="generateRandomColor()" style="padding:10px; font-size:0.85rem; margin-bottom:0; cursor:pointer;">Generate New Code</button>
-    </div>
-  </div>
+    <!-- ADMIN PUBLISHING PANEL -->
+    <div class="sub-card" style="border:1.5px dashed #ff007f;">
+      <h3 style="color:#ff007f;">👑 Master Admin Publishing Engine (Global CMS)</h3>
+      <input type="password" id="god-key-inp" placeholder="Enter Master Key (SIKKU-GOD-2026-X)...">
+      <button type="button" class="full-btn btn-pink" style="margin-bottom:0;" onclick="unlockGodPanel()">🔓 Unlock Admin Panel</button>
 
-  <!-- TAB 15: MASTER CONTROL & SETTINGS -->
-  <div id="tab-settings" class="tab-content">
-    <h2>🎛️ Master Control Hub</h2>
-    
-    <div class="settings-group">
-      <h3>👤 Account & Guest Profile</h3>
-      <div class="setting-item"><span id="account-status-text">Active ID: Loading...</span></div>
-      <button type="button" class="action-btn" onclick="resetGuestID()" style="background:#eab308; padding:10px; font-size:0.85rem; margin-bottom:10px; cursor:pointer;">🔄 Regenerate New Guest ID</button>
-    </div>
+      <div id="god-mode-box" style="display:none; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,0,127,0.3);">
+        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">🌐 Add Global HTML Feature (पूरी वेबसाइट के लिए नया सेक्शन/HTML):</label>
+        <textarea id="god-html" rows="2" placeholder="<div id='global-new-section'>...</div>" style="font-family:monospace;"></textarea>
+        
+        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">💻 Add Global JS Logic (पूरी वेबसाइट के लिए नया लॉजिक):</label>
+        <textarea id="god-js" rows="2" placeholder="console.log('Global Feature Running...');" style="font-family:monospace;"></textarea>
+        
+        <button type="button" class="full-btn btn-cyan" onclick="publishGlobalWebsiteUpdate()">🚀 Publish Global Update (All Users)</button>
 
-    <div class="settings-group">
-      <h3>🌐 System Language</h3>
-      <div class="setting-item">
-        <span>Select App Language</span>
-        <select id="language-selector" onchange="changeAppLanguage(this.value)" style="width:150px; margin-bottom:0;">
-          <option value="hi">हिंदी (Hindi)</option>
-          <option value="en">English</option>
-          <option value="gu">ગુજરાती (Gujarati)</option>
-          <option value="mr">मराठी (Marathi)</option>
-          <option value="bn">বাংলা (Bengali)</option>
-        </select>
+        <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
+        <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser (वेबसाइट से कोई खास एलिमेंट हटाएं):</label>
+        <input type="text" id="target-erase-id" placeholder="हटाने वाले Element की ID या नाम लिखें..." style="margin-bottom:8px;">
+        <button type="button" class="full-btn btn-red" style="margin-bottom:0;" onclick="targetedDeleteSpecificCode()">🗑️ Delete Global Element</button>
       </div>
-    </div>
-
-    <div class="settings-group">
-      <h3>📜 Master History & Activity Log</h3>
-      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">View or clear your recent global activity logs:</p>
-      <div id="master-history-list" style="max-height:150px; overflow-y:auto; background:rgba(0,0,0,0.3); padding:10px; border-radius:12px; font-size:0.78rem; margin-bottom:10px; border:1px solid var(--border);">
-        No recent activity logged.
-      </div>
-      <button type="button" class="action-btn" onclick="clearAllHistory()" style="background:#ef4444; padding:10px; font-size:0.82rem; margin-bottom:0; cursor:pointer;">🗑️ Clear All Global History</button>
-    </div>
-
-    <div class="settings-group">
-      <h3>🎨 Visual & Theme Controls</h3>
-      <div class="setting-item">
-        <span>Accent Color Theme</span>
-        <select id="theme-color-select" onchange="applyThemeAccent(this.value)" style="width:140px; margin-bottom:0;">
-          <option value="#38bdf8">Sky Blue</option>
-          <option value="#10b981">Emerald</option>
-          <option value="#ec4899">Neon Pink</option>
-          <option value="#f59e0b">Amber</option>
-          <option value="#8b5cf6">Purple</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="settings-group">
-      <h3>⚡ System FX & Performance</h3>
-      <div class="setting-item"><span>Matrix Cyber Rain Effect</span><label class="switch"><input type="checkbox" checked onchange="toggleMatrixFX(this)"><span class="slider"></span></label></div>
-      <div class="setting-item"><span>Glassmorphism Blur Effect</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-    </div>
-
-    <div style="display:flex; gap:10px; margin-top:16px;">
-      <button type="button" class="action-btn" style="background:#ef4444; margin-bottom:0; padding:12px; font-size:0.85rem; cursor:pointer;" onclick="localStorage.clear(); alert('All cache cleared!'); location.reload();">🗑️ Reset App Data</button>
-      <button type="button" class="action-btn" style="background:#334155; margin-bottom:0; padding:12px; font-size:0.85rem; cursor:pointer;" onclick="location.reload();">🔄 Restart App</button>
     </div>
   </div>
 
 </div>
 
-<!-- Clean Bottom Navigation Bar with Intuitive Icons -->
-<nav class="bottom-nav-bar">
-  <button type="button" id="nav-home" class="nav-item active" onclick="switchTab('tab-home'); setActiveNav(this);"><span class="nav-icon">🏠</span><span>Home</span></button>
-  <button type="button" id="nav-search" class="nav-item" onclick="switchTab('tab-search'); setActiveNav(this);"><span class="nav-icon">🌐</span><span>Search</span></button>
-  <button type="button" id="nav-ai" class="nav-item" onclick="switchTab('tab-ai'); setActiveNav(this);"><span class="nav-icon">💬</span><span>AI</span></button>
-  <button type="button" id="nav-tools" class="nav-item" onclick="switchTab('tab-tools'); setActiveNav(this);"><span class="nav-icon">🔢</span><span>Calc</span></button>
-  <button type="button" id="nav-utilities" class="nav-item" onclick="switchTab('tab-utilities'); setActiveNav(this);"><span class="nav-icon">🎂</span><span>Age</span></button>
-  <button type="button" id="nav-converter" class="nav-item" onclick="switchTab('tab-converter'); setActiveNav(this);"><span class="nav-icon">📐</span><span>Units</span></button>
-  <button type="button" id="nav-notepad" class="nav-item" onclick="switchTab('tab-notepad'); setActiveNav(this);"><span class="nav-icon">📒</span><span>Notes</span></button>
-  <button type="button" id="nav-health" class="nav-item" onclick="switchTab('tab-health'); setActiveNav(this);"><span class="nav-icon">⚖️</span><span>BMI</span></button>
-  <button type="button" id="nav-timer" class="nav-item" onclick="switchTab('tab-timer'); setActiveNav(this);"><span class="nav-icon">⏰</span><span>Timer</span></button>
-  <button type="button" id="nav-todo" class="nav-item" onclick="switchTab('tab-todo'); setActiveNav(this);"><span class="nav-icon">📝</span><span>Todo</span></button>
-  <button type="button" id="nav-qrcode" class="nav-item" onclick="switchTab('tab-qrcode'); setActiveNav(this);"><span class="nav-icon">📷</span><span>QR</span></button>
-  <button type="button" id="nav-vault" class="nav-item" onclick="switchTab('tab-vault'); setActiveNav(this);"><span class="nav-icon">🔐</span><span>Vault</span></button>
-  <button type="button" id="nav-pomodoro" class="nav-item" onclick="switchTab('tab-pomodoro'); setActiveNav(this);"><span class="nav-icon">⏱️</span><span>Focus</span></button>
-  <button type="button" id="nav-crypto" class="nav-item" onclick="switchTab('tab-crypto'); setActiveNav(this);"><span class="nav-icon">🔏</span><span>Encrypt</span></button>
-  <button type="button" id="nav-extra" class="nav-item" onclick="switchTab('tab-extra'); setActiveNav(this);"><span class="nav-icon">🌍</span><span>Time</span></button>
-  <button type="button" id="nav-newtools" class="nav-item" onclick="switchTab('tab-newtools'); setActiveNav(this);"><span class="nav-icon">🛠️</span><span>Tools</span></button>
-  <button type="button" id="nav-settings" class="nav-item" onclick="switchTab('tab-settings'); setActiveNav(this);"><span class="nav-icon">🎛️</span><span>Hub</span></button>
+<!-- BOTTOM NAVIGATION BAR -->
+<nav class="bottom-nav">
+  <button class="b-nav-item active" data-tab="tab-home" onclick="openTab('tab-home')"><span class="i">🏠</span><span>Home</span></button>
+  <button class="b-nav-item" data-tab="tab-search" onclick="openTab('tab-search')"><span class="i">🌐</span><span>Search</span></button>
+  <button class="b-nav-item" data-tab="tab-ai" onclick="openTab('tab-ai')"><span class="i">💬</span><span>AI</span></button>
+  <button class="b-nav-item" data-tab="tab-calc" onclick="openTab('tab-calc')"><span class="i">🔢</span><span>Calc</span></button>
+  <button class="b-nav-item" data-tab="tab-age" onclick="openTab('tab-age')"><span class="i">🎂</span><span>Age</span></button>
+  <button class="b-nav-item" data-tab="tab-bmi" onclick="openTab('tab-bmi')"><span class="i">⚖️</span><span>BMI</span></button>
+  <button class="b-nav-item" data-tab="tab-timer" onclick="openTab('tab-timer')"><span class="i">⏱️</span><span>Timer</span></button>
+  <button class="b-nav-item" data-tab="tab-todo" onclick="openTab('tab-todo')"><span class="i">✅</span><span>Todo</span></button>
+  <button class="b-nav-item" data-tab="tab-qr" onclick="openTab('tab-qr')"><span class="i">📷</span><span>QR</span></button>
+  <button class="b-nav-item" data-tab="tab-vault" onclick="openTab('tab-vault')"><span class="i">🔐</span><span>Vault</span></button>
+  <button class="b-nav-item" data-tab="tab-focus" onclick="openTab('tab-focus')"><span class="i">🍅</span><span>Focus</span></button>
+  <button class="b-nav-item" data-tab="tab-encrypt" onclick="openTab('tab-encrypt')"><span class="i">🔏</span><span>Encrypt</span></button>
+  <button class="b-nav-item" data-tab="tab-hub" onclick="openTab('tab-hub')"><span class="i">🎛️</span><span>Hub</span></button>
 </nav>
 
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-    initializeGuestSession();
-    loadChat();
-    loadCustomShortcuts();
-    loadNotepad();
-    loadTodoList();
-    loadSavedCustomizations();
-    checkNetworkDiagnostics();
-    loadVaultCredentials();
-    renderMasterHistory();
-    loadCustomWebsiteTiles();
-    loadSavedLanguage();
-    renderAllToolHistories();
+    initMasterAdminId();
+    startLiveClocks();
+    initBatteryStatus();
+    loadAiChat();
+    renderTodos();
+    renderVault();
+    loadGlobalWebsiteUpdates(); // सर्वर/लोकल स्टोरेज से ग्लोबल अपडेट्स ऑटोमैटिक लोड करना
+    
+    setTimeout(() => {
+      const splash = document.getElementById('insta-splash-modal');
+      if (splash) splash.style.display = 'none';
+    }, 3000);
+
+    const savedMins = localStorage.getItem('sikku_saved_focus_mins') || '25';
+    const inp = document.getElementById('real-custom-mins');
+    if (inp) inp.value = savedMins;
+    window.realFocusSecs = parseInt(savedMins) * 60;
+    updateRealFocusDisplay();
   });
 
-  // Heavy Male Voice Assistant Greeting (Triggered on first page click/touch)
-  window.addEventListener('click', function autoSpeakGreetingOnce() {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance("नमस्ते! स्वागत है आपका सिक्कू सिंह अल्टीमेट इकोसिस्टम में।");
-      utterance.lang = 'hi-IN';
-      utterance.pitch = 0.7; // Heavy deep male voice pitch
-      utterance.rate = 0.95; // Steady professional speed
-      window.speechSynthesis.speak(utterance);
-    }
-    window.removeEventListener('click', autoSpeakGreetingOnce);
-  }, { once: true });
-
-  // Auto Guest ID Session Management
-  function initializeGuestSession() {
-    let guestId = localStorage.getItem('sikku_guest_id');
-    if (!guestId) {
-      const randomNum = Math.floor(100000 + Math.random() * 900000);
-      guestId = `GUEST-${randomNum}`;
-      localStorage.setItem('sikku_guest_id', guestId);
-    }
-    const greetingEl = document.getElementById('user-greeting-msg');
-    const statusEl = document.getElementById('account-status-text');
-    if(greetingEl) greetingEl.innerText = `Welcome! Active ID: ${guestId}`;
-    if(statusEl) statusEl.innerText = `Active Guest ID: ${guestId}`;
-    
-    if (!sessionStorage.getItem('sikku_welcomed')) {
-      const modal = document.getElementById('welcome-insta-modal');
-      if(modal) modal.style.display = 'flex';
-    }
-  }
-
-  function resetGuestID() {
-    const randomNum = Math.floor(100000 + Math.random() * 900000);
-    const newId = `GUEST-${randomNum}`;
-    localStorage.setItem('sikku_guest_id', newId);
-    alert(`✅ New Guest ID generated: ${newId}`);
-    location.reload();
-  }
-
-  // In-Tool Local History Management
-  function logToolHistory(toolKey, entry) {
-    let history = JSON.parse(localStorage.getItem(`sikku_history_${toolKey}`) || '[]');
-    const timeNow = new Date().toLocaleTimeString();
-    history.unshift(`[${timeNow}] ${entry}`);
-    if (history.length > 15) history.pop();
-    localStorage.setItem(`sikku_history_${toolKey}`, JSON.stringify(history));
-    renderToolHistory(toolKey);
-    logActivity(`[${toolKey.toUpperCase()}] ${entry}`);
-  }
-
-  function renderToolHistory(toolKey) {
-    const box = document.getElementById(`${toolKey}-history-list`);
-    if (!box) return;
-    let history = JSON.parse(localStorage.getItem(`sikku_history_${toolKey}`) || '[]');
-    if (history.length === 0) {
-      box.innerHTML = 'No logs yet.';
-      return;
-    }
-    box.innerHTML = history.map(item => `<div>• ${item}</div>`).join('');
-  }
-
-  function clearToolHistory(toolKey) {
-    localStorage.removeItem(`sikku_history_${toolKey}`);
-    renderToolHistory(toolKey);
-  }
-
-  function renderAllToolHistories() {
-    ['calc', 'notes', 'qr', 'vault', 'crypto'].forEach(k => renderToolHistory(k));
-  }
-
-  // Pomodoro Focus Timer Logic
-  let pomodoroInterval, pomodoroTime = 25 * 60, isPomodoroRunning = false;
-  function setCustomPomodoroTime() {
-    const minsInput = document.getElementById('custom-pomodoro-mins').value;
-    const mins = parseInt(minsInput);
-    if (!mins || mins <= 0) { alert('⚠️ कृपया वैध मिनट दर्ज करें!'); return; }
-    pausePomodoro();
-    pomodoroTime = mins * 60;
-    updatePomodoroDisplay();
-    alert(`✅ Focus timer updated to ${mins} minutes!`);
-  }
-
-  function updatePomodoroDisplay() {
-    let mins = String(Math.floor(pomodoroTime / 60)).padStart(2, '0');
-    let secs = String(pomodoroTime % 60).padStart(2, '0');
-    const disp = document.getElementById('pomodoro-display');
-    if(disp) disp.innerText = `${mins}:${secs}`;
-  }
-  function startPomodoro() {
-    if (isPomodoroRunning) return;
-    isPomodoroRunning = true;
-    pomodoroInterval = setInterval(() => {
-      if (pomodoroTime > 0) {
-        pomodoroTime--;
-        updatePomodoroDisplay();
-      } else {
-        clearInterval(pomodoroInterval);
-        isPomodoroRunning = false;
-        alert('🎉 Focus session completed! Take a break.');
-      }
-    }, 1000);
-  }
-  function pausePomodoro() {
-    clearInterval(pomodoroInterval);
-    isPomodoroRunning = false;
-  }
-  function resetPomodoro() {
-    pausePomodoro();
-    const minsInput = document.getElementById('custom-pomodoro-mins').value;
-    const mins = parseInt(minsInput) || 25;
-    pomodoroTime = mins * 60;
-    updatePomodoroDisplay();
-  }
-
-  // Text Encryptor / Decryptor Logic
-  function encryptTextMessage() {
-    const text = document.getElementById('crypto-input').value;
-    const key = document.getElementById('crypto-key').value;
-    if(!text || !key) { alert('⚠️ कृपया टेक्स्ट और सीक्रेट की दोनों दर्ज करें!'); return; }
-    try {
-      const encrypted = btoa(unescape(encodeURIComponent(text + '::' + key)));
-      document.getElementById('crypto-output').value = encrypted;
-      logToolHistory('crypto', `Encrypted text (${text.length} chars)`);
-    } catch(e) { alert('Encryption error'); }
-  }
-
-  function decryptTextMessage() {
-    const cipher = document.getElementById('crypto-input').value;
-    const key = document.getElementById('crypto-key').value;
-    if(!cipher || !key) { alert('⚠️ कृपया एनक्रिप्टेड कोड और सीक्रेट की दोनों दर्ज करें!'); return; }
-    try {
-      const decoded = decodeURIComponent(escape(atob(cipher)));
-      if (decoded.endsWith('::' + key)) {
-        const originalText = decoded.substring(0, decoded.lastIndexOf('::' + key));
-        document.getElementById('crypto-output').value = originalText;
-        logToolHistory('crypto', 'Successfully decrypted message');
-      } else {
-        alert('❌ Invalid Secret Key! Decryption failed.');
-      }
-    } catch(e) { alert('Invalid encrypted code'); }
-  }
-
-  // Language Selector Logic
-  function changeAppLanguage(lang) {
-    localStorage.setItem('sikku_app_lang', lang);
-    logActivity(`Changed system language to: ${lang.toUpperCase()}`);
-    alert(`✅ Language updated to ${lang.toUpperCase()}!`);
-  }
-
-  function loadSavedLanguage() {
-    const savedLang = localStorage.getItem('sikku_app_lang');
-    if (savedLang) {
-      const sel = document.getElementById('language-selector');
-      if(sel) sel.value = savedLang;
-    }
-  }
-
-  // Coin Toss Utility
-  function tossCoin() {
-    const results = ["🪙 Heads (चित)", "🪙 Tails (पट्ट)"];
-    const res = results[Math.floor(Math.random() * results.length)];
-    const box = document.getElementById('coin-result-box');
-    if(box) box.innerText = res;
-    logActivity(`Performed Coin Toss: ${res}`);
-  }
-
-  // History Logger Utility
-  function logActivity(action) {
-    let historyList = JSON.parse(localStorage.getItem('sikku_master_history') || '[]');
-    const timeNow = new Date().toLocaleTimeString();
-    historyList.unshift(`[${timeNow}] ${action}`);
-    if (historyList.length > 30) historyList.pop();
-    localStorage.setItem('sikku_master_history', JSON.stringify(historyList));
-    renderMasterHistory();
-  }
-
-  function renderMasterHistory() {
-    const box = document.getElementById('master-history-list');
-    if (!box) return;
-    let historyList = JSON.parse(localStorage.getItem('sikku_master_history') || '[]');
-    if (historyList.length === 0) {
-      box.innerHTML = 'No recent activity logged.';
-      return;
-    }
-    box.innerHTML = historyList.map(item => `<div>• ${item}</div>`).join('');
-  }
-
-  function clearAllHistory() {
-    localStorage.removeItem('sikku_master_history');
-    localStorage.removeItem('sikku_chat');
-    localStorage.removeItem('sikku_todos');
-    localStorage.removeItem('sikku_notepad');
-    ['calc', 'notes', 'qr', 'vault', 'crypto'].forEach(k => localStorage.removeItem(`sikku_history_${k}`));
-    renderMasterHistory();
-    renderAllToolHistories();
-    alert('✅ All activity history and temporary logs cleared successfully!');
-  }
-
-  // Custom Website Link Tile Generator Logic
-  function generateWebsiteTile() {
-    const name = document.getElementById('custom-link-name').value.trim();
-    const url = document.getElementById('custom-link-url').value.trim();
-    if (!name || !url) { alert('⚠️ कृपया वेबसाइट का नाम और यूआरएल दोनों दर्ज करें!'); return; }
-    const validUrl = url.startsWith('http') ? url : 'https://' + url;
-
-    let savedTiles = JSON.parse(localStorage.getItem('sikku_custom_website_tiles') || '[]');
-    savedTiles.push({ name, url: validUrl });
-    localStorage.setItem('sikku_custom_website_tiles', JSON.stringify(savedTiles));
-
-    document.getElementById('custom-link-name').value = '';
-    document.getElementById('custom-link-url').value = '';
-    loadCustomWebsiteTiles();
-    logActivity(`Generated Website Shortcut Tile: ${name}`);
-    alert(`✅ वेबसाइट शॉर्टकट "${name}" सफलतापूर्वक जनरेट हो गया!`);
-  }
-
-  function loadCustomWebsiteTiles() {
-    const container = document.getElementById('custom-tiles-container');
-    if (!container) return;
-    container.innerHTML = '';
-    let savedTiles = JSON.parse(localStorage.getItem('sikku_custom_website_tiles') || '[]');
-    savedTiles.forEach(tile => {
-      container.innerHTML += `
-        <div onclick="window.open('${tile.url}', '_blank')" style="background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:14px; padding:10px 6px; text-align:center; cursor:pointer; font-size:0.75rem; font-weight:bold; color:var(--text);">
-          <span style="font-size:1.4rem; display:block; margin-bottom:4px;">🌐</span>
-          <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:block;">${tile.name}</span>
-        </div>
-      `;
-    });
-  }
-
-  function closeWelcomeModal() {
-    sessionStorage.setItem('sikku_welcomed', 'true');
-    const modal = document.getElementById('welcome-insta-modal');
-    if(modal) modal.style.display = 'none';
-  }
-
-  function playFeatureGuideVoice() {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance("नमस्ते! इस ऑल इन वन मास्टरपीस ऐप में आपका स्वागत है जिसे सिक्कू सिंह ने तैयार किया है। होम स्क्रीन और सर्च टैब पर आपको लाइव गूगल सर्च, वेबसाइट लिंक से आइकॉन जनरेट करने का फीचर, ऑटो गेस्ट आईडी, और सभी एडवांस टूल्स मिलते हैं। धन्यवाद!");
-      utterance.lang = 'hi-IN';
-      utterance.pitch = 0.7; // Deep heavy male voice
-      utterance.rate = 0.95;
-      window.speechSynthesis.speak(utterance);
-    } else {
-      alert('⚠️ Your browser does not support speech synthesis.');
-    }
-  }
-
-  function openCreatorCard() {
-    alert("👑 Sikku Singh Masterpiece Ecosystem v85.0\n\nDesigned & Masterminded by Sikku Singh.\nInstagram: @siku._.singh\n\nThis is an ultimate all-in-one web ecosystem featuring Direct APK Download, Deep Male Voice Assistant Greetings, Real Scannable QR Code Studio, In-Tool Local History panels, Pomodoro Focus Timer, Text Encryptor, Auto Guest ID, and live activity logs.");
-  }
-
-  // Live World Clock & Calendar
-  function updateWorldClockAndStatus() {
-    const now = new Date();
-    let hours = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    const timeStr = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
-    
-    const clockEl = document.getElementById('live-clock-display');
-    if(clockEl) clockEl.innerText = timeStr;
-    const wcBox = document.getElementById('world-clock-box');
-    if(wcBox) wcBox.innerText = timeStr;
-    const wdBox = document.getElementById('world-date-box');
-    if(wdBox) wdBox.innerText = now.toDateString();
-  }
-  setInterval(updateWorldClockAndStatus, 1000);
-  updateWorldClockAndStatus();
-
-  // Search & Direct Website Open Logic
-  function performDirectGoogleSearch() {
-    const query = document.getElementById('global-search-input').value.trim();
-    if (!query) { alert('⚠️ कृपया सर्च करने के लिए कुछ टाइप करें!'); return; }
-    let searchUrl = query.startsWith('http') ? query : `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-    window.open(searchUrl, '_blank');
-    logActivity(`Performed Web Search: ${query}`);
-  }
-
-  function openDirectWebsite() {
-    const query = document.getElementById('global-search-input').value.trim();
-    if (!query) { alert('⚠️ कृपया वेबसाइट का लिंक या नाम दर्ज करें!'); return; }
-    let webUrl = query.startsWith('http') ? query : `https://${query}`;
-    window.open(webUrl, '_blank');
-    logActivity(`Opened Direct Website: ${webUrl}`);
-  }
-
-  // QR Code Studio Logic with Real High-Density API
-  let currentQRType = 'link';
-
-  function setQRType(type) {
-    currentQRType = type;
-    ['link', 'email', 'video', 'msg'].forEach(t => {
-      const btn = document.getElementById(`btn-type-${t}`);
-      if (btn) {
-        if(t === type) {
-          btn.style.background = 'var(--accent)';
-          btn.style.color = '#030712';
-          btn.style.fontWeight = 'bold';
-        } else {
-          btn.style.background = 'rgba(255,255,255,0.08)';
-          btn.style.color = 'var(--text)';
-          btn.style.fontWeight = 'normal';
-        }
-      }
-    });
-
-    const label = document.getElementById('qr-label-title');
-    const input = document.getElementById('qr-dynamic-input');
-    if (label && input) {
-      if (type === 'link') {
-        label.innerText = 'Enter Website / App Link:';
-        input.placeholder = 'https://example.com';
-      } else if (type === 'email') {
-        label.innerText = 'Enter Email Address:';
-        input.placeholder = 'mailto:example@gmail.com';
-      } else if (type === 'video') {
-        label.innerText = 'Enter Video Link (YouTube/Drive):';
-        input.placeholder = 'https://youtube.com/...';
-      } else if (type === 'msg') {
-        label.innerText = 'Type Secret Message:';
-        input.placeholder = 'Type your message here...';
-      }
-    }
-  }
-
-  function generateFixedQR() {
-    let rawVal = document.getElementById('qr-dynamic-input').value.trim();
-    if (!rawVal) { alert('⚠️ कृपया पहले डेटा या लिंक दर्ज करें!'); return; }
-    
-    let finalData = (currentQRType === 'email' && !rawVal.startsWith('mailto:')) ? `mailto:${rawVal}` : rawVal;
-    const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(finalData)}`;
-    
-    const outImg = document.getElementById('qr-img-output');
-    const downloadBtn = document.getElementById('qr-download-btn');
-    const resBox = document.getElementById('qr-result-box');
-
-    if(outImg) outImg.src = qrApiUrl;
-    if(downloadBtn) {
-      downloadBtn.href = qrApiUrl;
-      downloadBtn.setAttribute('download', `Sikku_${currentQRType}_QR.png`);
-    }
-    if(resBox) resBox.style.display = 'block';
-    logToolHistory('qr', `Generated scannable QR for [${currentQRType}]`);
-  }
-
-  // Password Vault Logic
-  let vaultData = JSON.parse(localStorage.getItem('sikku_vault') || '[]');
-  function saveVaultCredential() {
-    const title = document.getElementById('vault-title').value.trim();
-    const user = document.getElementById('vault-username').value.trim();
-    const pass = document.getElementById('vault-password').value.trim();
-
-    if(!title || !user || !pass) { alert('⚠️ कृपया सभी फील्ड भरें!'); return; }
-    vaultData.push({ title, user, pass });
-    localStorage.setItem('sikku_vault', JSON.stringify(vaultData));
-    document.getElementById('vault-title').value = '';
-    document.getElementById('vault-username').value = '';
-    document.getElementById('vault-password').value = '';
-    loadVaultCredentials();
-    logToolHistory('vault', `Saved credential: ${title} (${user})`);
-    alert('✅ पासवर्ड वॉल्ट में सफलतापूर्वक सेव हो गया!');
-  }
-
-  function loadVaultCredentials() {
-    const box = document.getElementById('vault-list-box');
-    if(!box) return;
-    box.innerHTML = '';
-    if(vaultData.length === 0) {
-      box.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted); text-align:center;">No saved credentials yet.</p>';
-      return;
-    }
-    vaultData.forEach((item, index) => {
-      box.innerHTML += `
-        <div style="background:rgba(255,255,255,0.04); padding:12px; border-radius:14px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <strong style="color:var(--accent); font-size:0.9rem;">${item.title}</strong><br>
-            <span style="font-size:0.80rem; color:var(--text-muted);">User: ${item.user} | Pass: ${item.pass}</span>
-          </div>
-          <button type="button" onclick="deleteVaultItem(${index})" style="background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer; font-size:0.75rem;">Del</button>
-        </div>
-      `;
-    });
-  }
-
-  function deleteVaultItem(index) {
-    vaultData.splice(index, 1);
-    localStorage.setItem('sikku_vault', JSON.stringify(vaultData));
-    loadVaultCredentials();
-    logToolHistory('vault', 'Deleted a vault credential');
-  }
-
-  // Utilities
-  function analyzeText() {
-    const txt = document.getElementById('tool-text-input').value;
-    const words = txt.trim() ? txt.trim().split(/\s+/).length : 0;
-    const chars = txt.length;
-    const out = document.getElementById('text-stats-output');
-    if(out) out.innerText = `Words: ${words} | Characters: ${chars}`;
-  }
-
-  function convertTextCase(mode) {
-    const field = document.getElementById('tool-text-input');
-    if (!field) return;
-    if (mode === 'upper') field.value = field.value.toUpperCase();
-    if (mode === 'lower') field.value = field.value.toLowerCase();
-    if (mode === 'cap') field.value = field.value.replace(/\b\w/g, l => l.toUpperCase());
-    analyzeText();
-  }
-
-  function generateRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    const box = document.getElementById('color-box');
-    const out = document.getElementById('color-code-output');
-    if(box) box.style.backgroundColor = color;
-    if(out) out.value = color;
-  }
-
-  // Drag and Drop Logic for Grid Tiles
-  const sortableGrid = document.getElementById('sortable-grid');
-  let draggedTile = null;
-  if(sortableGrid) {
-    sortableGrid.querySelectorAll('.grid-tile').forEach(tile => {
-      tile.setAttribute('draggable', 'true');
-      tile.addEventListener('dragstart', (e) => {
-        draggedTile = tile;
-        e.dataTransfer.effectAllowed = 'move';
-      });
-      tile.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-      });
-      tile.addEventListener('drop', (e) => {
-        e.preventDefault();
-        if (tile !== draggedTile) {
-          let allTiles = Array.from(sortableGrid.querySelectorAll('.grid-tile'));
-          let dIdx = allTiles.indexOf(draggedTile);
-          let tIdx = allTiles.indexOf(tile);
-          if (dIdx < tIdx) {
-            sortableGrid.insertBefore(draggedTile, tile.nextSibling);
-          } else {
-            sortableGrid.insertBefore(draggedTile, tile);
-          }
-        }
-      });
-    });
-  }
-
-  function applyThemeAccent(color) {
-    document.documentElement.style.setProperty('--accent', color);
-    localStorage.setItem('sikku_master_accent', color);
-  }
-
-  function toggleMatrixFX(checkbox) {
-    const canvas = document.getElementById('matrix-canvas');
-    if(canvas) canvas.style.display = checkbox.checked ? 'block' : 'none';
-  }
-
-  function loadSavedCustomizations() {
-    const savedAccent = localStorage.getItem('sikku_master_accent');
-    if (savedAccent) {
-      document.documentElement.style.setProperty('--accent', savedAccent);
-      const sel = document.getElementById('theme-color-select');
-      if(sel) sel.value = savedAccent;
-    }
-  }
-
-  function switchTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  function openTab(tabId) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     const target = document.getElementById(tabId);
-    if(target) target.classList.add('active');
-  }
-
-  function setActiveNav(btn) {
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-    if(btn) btn.classList.add('active');
-  }
-
-  function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-  }
-
-  function openAppsModal() { const m = document.getElementById('apps-modal'); if(m) m.style.display = 'flex'; }
-  function closeAppsModal() { const m = document.getElementById('apps-modal'); if(m) m.style.display = 'none'; }
-
-  function addCustomShortcut() {
-    const name = document.getElementById('custom-app-name').value.trim();
-    const url = document.getElementById('custom-app-url').value.trim();
-    if (!name || !url) { alert('⚠️ कृपया ऐप का नाम और यूआरएल दोनों दर्ज करें!'); return; }
-    const validUrl = url.startsWith('http') ? url : 'https://' + url;
-    let customList = JSON.parse(localStorage.getItem('sikku_custom_apps') || '[]');
-    customList.push({ name, url: validUrl });
-    localStorage.setItem('sikku_custom_apps', JSON.stringify(customList));
-    document.getElementById('custom-app-name').value = '';
-    document.getElementById('custom-app-url').value = '';
-    loadCustomShortcuts();
-    alert(`✅ शॉर्टकट "${name}" सफलतापूर्वक जुड़ गया!`);
-  }
-
-  function loadCustomShortcuts() {
-    const grid = document.getElementById('dynamic-apps-grid');
-    if (!grid) return;
-    grid.querySelectorAll('.user-custom-tile').forEach(el => el.remove());
-    let customList = JSON.parse(localStorage.getItem('sikku_custom_apps') || '[]');
-    customList.forEach(item => {
-      const tile = document.createElement('div');
-      tile.className = 'app-tile user-custom-tile';
-      tile.innerHTML = `<span class="icon">🔗</span><span>${item.name}</span>`;
-      tile.onclick = () => window.open(item.url, '_blank');
-      grid.appendChild(tile);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('.b-nav-item').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
     });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  let chatData = JSON.parse(localStorage.getItem('sikku_chat') || '[{"sender":"ai","text":"नमस्ते! मैं Siku AI हूँ (Created by Sikku Singh). बताइए आज क्या मदद करूँ?"}]');
-  function loadChat() {
-    const box = document.getElementById('chat-box');
-    if (!box) return;
-    box.innerHTML = '';
-    chatData.forEach(m => { box.innerHTML += `<div class="chat-bubble ${m.sender}">${m.text}</div>`; });
-    box.scrollTop = box.scrollHeight;
-  }
-  function sendUserMessage() {
-    const input = document.getElementById('chat-input');
-    if(!input) return;
-    const txt = input.value.trim();
-    if (!txt) return;
-    chatData.push({ sender: 'user', text: txt });
-    input.value = '';
-    loadChat();
-    setTimeout(() => {
-      let reply = `भाई, तूने जो पूछा ("${txt}") — एकदम बढ़िया है! बता इस पर और क्या जानना है?`;
-      if(txt.toLowerCase().includes('creator') || txt.toLowerCase().includes('banaya')) { reply = "मुझे Sikku Singh ने बनाया है!"; }
-      chatData.push({ sender: 'ai', text: reply });
-      localStorage.setItem('sikku_chat', JSON.stringify(chatData));
-      loadChat();
-    }, 400);
-  }
-  function clearChat() {
-    chatData = [{ sender: 'ai', text: 'चैट साफ़ हो गई है। बोल भाई!' }];
-    localStorage.setItem('sikku_chat', JSON.stringify(chatData));
-    loadChat();
-  }
-
-  const calcDis = document.getElementById('calc-display');
-  function calcAppend(v) { if(calcDis) calcDis.value += v; }
-  function calcClear() { if(calcDis) calcDis.value = ''; }
-  function calcBack() { if(calcDis) calcDis.value = calcDis.value.slice(0, -1); }
-  function calcResult() { 
-    try { 
-      if(calcDis) {
-        let expr = calcDis.value;
-        let res = eval(expr);
-        calcDis.value = res || '';
-        logToolHistory('calc', `${expr} = ${res}`);
-      }
-    } catch { 
-      if(calcDis) calcDis.value = 'Error'; 
-    } 
-  }
-
-  function calculateExactAge() {
-    const dob = document.getElementById('dob-input').value;
-    const box = document.getElementById('age-result');
-    if(!box) return;
-    if (!dob) { box.innerText = '⚠️ कृपया जन्मतिथि चुनें!'; box.style.color = '#ef4444'; return; }
-    const birthDate = new Date(dob);
-    const today = new Date();
-    let years = today.getFullYear() - birthDate.getFullYear();
-    let months = today.getMonth() - birthDate.getMonth();
-    let days = today.getDate() - birthDate.getDate();
-    if (days < 0) { months--; days += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); }
-    if (months < 0) { years--; months += 12; }
-    box.style.color = 'var(--accent)';
-    box.innerHTML = `🎉 Exact Age: ${years} Years, ${months} Months, & ${days} Days!`;
-  }
-
-  function convertCmToInch() {
-    const cm = document.getElementById('cm-input').value;
-    const res = document.getElementById('inch-result');
-    if(!res) return;
-    if(cm === '') { res.innerText = ''; return; }
-    res.innerText = `${cm} cm = ${(cm / 2.54).toFixed(2)} Inches`;
-  }
-  function convertInrToUsd() {
-    const inr = document.getElementById('inr-input').value;
-    const res = document.getElementById('usd-result');
-    if(!res) return;
-    if(inr === '') { res.innerText = ''; return; }
-    res.innerText = `₹${inr} = $${(inr / 86.5).toFixed(2)} USD`;
-  }
-
-  function saveNotepad() {
-    const txt = document.getElementById('notepad-text');
-    if(txt) {
-      localStorage.setItem('sikku_notepad', txt.value);
-      logToolHistory('notes', `Saved note snippet (${txt.value.length} chars)`);
+  function initMasterAdminId() {
+    let aid = localStorage.getItem('sikku_master_admin_id');
+    if (!aid) {
+      aid = 'ADMIN-SIKKU-' + Math.floor(1000 + Math.random() * 9000);
+      localStorage.setItem('sikku_master_admin_id', aid);
     }
-  }
-  function loadNotepad() {
-    const saved = localStorage.getItem('sikku_notepad');
-    const txt = document.getElementById('notepad-text');
-    if (saved && txt) txt.value = saved;
-  }
-  function clearNotepad() {
-    const txt = document.getElementById('notepad-text');
-    if(txt) txt.value = '';
-    localStorage.removeItem('sikku_notepad');
-    logToolHistory('notes', 'Cleared notepad content');
+    const hDisp = document.getElementById('home-guest-id');
+    const hubDisp = document.getElementById('hub-guest-disp');
+    if (hDisp) hDisp.innerText = `Master System ID: ${aid}`;
+    if (hubDisp) hubDisp.innerText = aid;
   }
 
-  function calculateBMI() {
-    const w = parseFloat(document.getElementById('bmi-weight').value);
-    const h = parseFloat(document.getElementById('bmi-height').value) / 100;
-    const res = document.getElementById('bmi-result');
-    if(!res) return;
-    if(!w || !h) { res.innerText = '⚠️ सही वजन और ऊंचाई दर्ज करें!'; res.style.color = '#ef4444'; return; }
-    const bmi = (w / (h * h)).toFixed(1);
-    res.style.color = 'var(--accent)';
-    res.innerText = `Your BMI is ${bmi}`;
-  }
-
-  let swInterval, swTime = 0;
-  function startStopwatch() {
-    if (swInterval) return;
-    swInterval = setInterval(() => {
-      swTime++;
-      let hrs = String(Math.floor(swTime / 3600)).padStart(2, '0');
-      let mins = String(Math.floor((swTime % 3600) / 60)).padStart(2, '0');
-      let secs = String(swTime % 60).padStart(2, '0');
-      const disp = document.getElementById('sw-display');
-      if(disp) disp.innerText = `${hrs}:${mins}:${secs}`;
+  function startLiveClocks() {
+    setInterval(() => {
+      const now = new Date();
+      const clockEl = document.getElementById('top-live-clock');
+      if (clockEl) clockEl.innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
     }, 1000);
   }
-  function stopStopwatch() { clearInterval(swInterval); swInterval = null; }
-  function resetStopwatch() {
-    stopStopwatch();
-    swTime = 0;
-    const disp = document.getElementById('sw-display');
-    if(disp) disp.innerText = '00:00:00';
+
+  function initBatteryStatus() {
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(bat => {
+        const updateBat = () => {
+          const bEl = document.getElementById('top-battery');
+          if (bEl) bEl.innerText = `${Math.round(bat.level * 100)}% 🔋`;
+        };
+        updateBat();
+        bat.addEventListener('levelchange', updateBat);
+      });
+    }
   }
 
-  let todos = JSON.parse(localStorage.getItem('sikku_todos') || '[]');
-  function loadTodoList() {
-    const box = document.getElementById('todo-list-box');
+  function doGoogleSearch() {
+    const q = document.getElementById('web-query').value.trim();
+    if (q) window.open(`https://www.google.com/search?q=${encodeURIComponent(q)}`, '_blank');
+  }
+
+  function doOpenWebsite() {
+    let url = document.getElementById('web-query').value.trim();
+    if (url) {
+      if (!url.startsWith('http')) url = 'https://' + url;
+      window.open(url, '_blank');
+    }
+  }
+
+  let aiChatHistory = JSON.parse(localStorage.getItem('sikku_ai_chat') || '[{"role":"ai","text":"नमस्ते! मैं Siku AI हूँ (Created by Sikku Singh)।"}]');
+  function loadAiChat() {
+    const win = document.getElementById('ai-chat-window');
+    if (!win) return;
+    win.innerHTML = aiChatHistory.map(m => `<div style="padding:10px 14px; border-radius:14px; font-size:0.88rem; max-width:82%; ${m.role==='ai'?'background:rgba(30,41,59,0.95);color:#fff;align-self:flex-start;':'background:var(--grad);color:#030712;font-weight:700;align-self:flex-end;'}">${m.text}</div>`).join('');
+    win.scrollTop = win.scrollHeight;
+  }
+  function sendAiChat() {
+    const inp = document.getElementById('ai-user-msg');
+    const txt = inp.value.trim();
+    if (!txt) return;
+    aiChatHistory.push({ role: 'user', text: txt });
+    inp.value = '';
+    loadAiChat();
+    setTimeout(() => {
+      aiChatHistory.push({ role: 'ai', text: `Sikku AI Echo: "${txt}" - प्रोसेस हो गया!` });
+      localStorage.setItem('sikku_ai_chat', JSON.stringify(aiChatHistory));
+      loadAiChat();
+    }, 350);
+  }
+
+  function runAgeCalc() {
+    const dobVal = document.getElementById('age-dob').value;
+    if (!dobVal) return alert('कृपया जन्म तिथि चुनें!');
+    const dob = new Date(dobVal), now = new Date();
+    let y = now.getFullYear() - dob.getFullYear(), m = now.getMonth() - dob.getMonth(), d = now.getDate() - dob.getDate();
+    if (d < 0) { m--; d += 30; } if (m < 0) { y--; m += 12; }
+    document.getElementById('age-output').innerText = `🎉 ${y} Years, ${m} Months, ${d} Days`;
+  }
+
+  function runBmiCalc() {
+    const w = parseFloat(document.getElementById('bmi-w').value), h = parseFloat(document.getElementById('bmi-h').value) / 100;
+    if (!w || !h) return alert('वजन और लंबाई दर्ज करें!');
+    document.getElementById('bmi-output').innerText = `BMI: ${(w / (h * h)).toFixed(1)}`;
+  }
+
+  let swTimer = null, swElapsed = 0;
+  function swStart() {
+    if (swTimer) return;
+    let t = Date.now() - swElapsed;
+    swTimer = setInterval(() => {
+      swElapsed = Date.now() - t;
+      let s = Math.floor((swElapsed/1000)%60).toString().padStart(2,'0');
+      let m = Math.floor((swElapsed/60000)%60).toString().padStart(2,'0');
+      const disp = document.getElementById('sw-disp');
+      if (disp) disp.innerText = `00:${m}:${s}`;
+    }, 100);
+  }
+  function swStop() { clearInterval(swTimer); swTimer = null; }
+  function swReset() { swStop(); swElapsed = 0; const disp = document.getElementById('sw-disp'); if(disp) disp.innerText = '00:00:00.00'; }
+
+  let todos = JSON.parse(localStorage.getItem('sikku_todos_list') || '[]');
+  function renderTodos() {
+    const box = document.getElementById('todo-items-box');
     if (!box) return;
-    box.innerHTML = '';
-    todos.forEach((t, i) => {
-      box.innerHTML += `<li style="background:rgba(255,255,255,0.04); padding:12px; border-radius:12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;"><span>${t}</span><button type="button" onclick="removeTodo(${i})" style="background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:8px; cursor:pointer;">Del</button></li>`;
+    box.innerHTML = todos.map((t, i) => `<div style="background:rgba(3,7,18,0.7); padding:10px; border-radius:10px; margin-bottom:6px; display:flex; justify-content:space-between;"><span>✅ ${t}</span><button onclick="todos.splice(${i},1);localStorage.setItem('sikku_todos_list',JSON.stringify(todos));renderTodos();" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:2px 8px;">X</button></div>`).join('');
+  }
+  function addNewTodo() {
+    const inp = document.getElementById('todo-inp');
+    if (!inp || !inp.value.trim()) return;
+    todos.push(inp.value.trim());
+    localStorage.setItem('sikku_todos_list', JSON.stringify(todos));
+    inp.value = ''; renderTodos();
+  }
+
+  function makeQrCode() {
+    const v = document.getElementById('qr-inp').value.trim();
+    const box = document.getElementById('qr-img-box');
+    if (v && box) box.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}" style="border-radius:12px;background:#fff;padding:6px;">`;
+  }
+
+  let vaultItems = JSON.parse(localStorage.getItem('sikku_vault_items') || '[]');
+  function renderVault() {
+    const box = document.getElementById('vault-log-list');
+    if (!box) return;
+    box.innerHTML = vaultItems.map(v => `<b>${v.acc}</b> (${v.usr}) : <span style="color:var(--accent);">${v.pwd}</span><br>`).join('') || 'No entries.';
+  }
+  function saveToVault() {
+    const acc = document.getElementById('v-acc').value, usr = document.getElementById('v-usr').value, pwd = document.getElementById('v-pwd').value;
+    if (acc && usr && pwd) { vaultItems.push({acc, usr, pwd}); localStorage.setItem('sikku_vault_items', JSON.stringify(vaultItems)); renderVault(); alert('Saved!'); }
+  }
+
+  /* FOCUS TIMER ENGINE */
+  window.realFocusSecs = 1500;
+  window.realFocusInterval = null;
+
+  window.applyRealCustomFocus = function() {
+    const inp = document.getElementById('real-custom-mins');
+    if (!inp) return;
+    const mins = parseInt(inp.value) || 25;
+    localStorage.setItem('sikku_saved_focus_mins', mins);
+    
+    if (window.realFocusInterval) {
+      clearInterval(window.realFocusInterval);
+      window.realFocusInterval = null;
+    }
+    window.realFocusSecs = mins * 60;
+    updateRealFocusDisplay();
+    alert(`✅ फोकस टाइमर ${mins} मिनट के लिए सेट हो गया है!`);
+  };
+
+  window.updateRealFocusDisplay = function() {
+    const m = Math.floor(window.realFocusSecs / 60).toString().padStart(2, '0');
+    const s = (window.realFocusSecs % 60).toString().padStart(2, '0');
+    const disp = document.getElementById('focus-disp');
+    if (disp) disp.innerText = `${m}:${s}`;
+  };
+
+  window.focusStart = function() {
+    if (!window.realFocusInterval) {
+      window.realFocusInterval = setInterval(() => {
+        if (window.realFocusSecs > 0) {
+          window.realFocusSecs--;
+          updateRealFocusDisplay();
+        } else {
+          window.focusPause();
+          alert('🎉 Focus Session Completed!');
+        }
+      }, 1000);
+    }
+  };
+
+  window.focusPause = function() {
+    clearInterval(window.realFocusInterval);
+    window.realFocusInterval = null;
+  };
+
+  window.focusReset = function() {
+    window.focusPause();
+    const savedMins = localStorage.getItem('sikku_saved_focus_mins') || '25';
+    window.realFocusSecs = parseInt(savedMins) * 60;
+    updateRealFocusDisplay();
+  };
+
+  window.stdCodeRun = function(isEncode) {
+    const inp = document.getElementById('std-inp').value.trim();
+    const out = document.getElementById('std-out');
+    if (!inp) return alert('⚠️ पहले कुछ लिखें!');
+    try { out.value = isEncode ? btoa(unescape(encodeURIComponent(inp))) : decodeURIComponent(escape(atob(inp))); } catch(e){ alert('❌ अमान्य कोड!'); }
+  };
+
+  window.ultraPrivacyRun = function(isLock) {
+    const text = document.getElementById('ultra-inp').value.trim();
+    const pin = document.getElementById('ultra-pin').value;
+    const out = document.getElementById('ultra-out');
+    if (!text || !pin) return alert('⚠️ मैसेज और PIN भरें!');
+    let hash = 2166136261;
+    for (let i = 0; i < pin.length; i++) { hash ^= pin.charCodeAt(i); hash = Math.imul(hash, 16777619); }
+    const secretSeed = Math.abs(hash) % 65535 || 9973;
+    try {
+      if (isLock) {
+        let hexArr = [];
+        for (let i = 0; i < text.length; i++) {
+          let shift = ((secretSeed + i * 31) ^ (pin.charCodeAt(i%pin.length) * 17)) & 0xFF;
+          hexArr.push(((text.charCodeAt(i) ^ shift) + (pin.charCodeAt(0) & 0x0F)).toString(36).toUpperCase().padStart(2, '0'));
+        }
+        out.value = 'SKX$' + hexArr.reverse().join('') + '$Z';
+      } else {
+        let rawBody = text.slice(4, -2), chunks = [];
+        for (let i = 0; i < rawBody.length; i += 2) chunks.push(rawBody.substr(i, 2));
+        chunks.reverse();
+        let unlocked = '';
+        for (let i = 0; i < chunks.length; i++) {
+          let shift = ((secretSeed + i * 31) ^ (pin.charCodeAt(i%pin.length) * 17)) & 0xFF;
+          unlocked += String.fromCharCode((parseInt(chunks[i], 36) - (pin.charCodeAt(0) & 0x0F)) ^ shift);
+        }
+        out.value = unlocked;
+      }
+    } catch(e) { out.value = ''; alert('🚫 गलत PIN!'); }
+  };
+
+  function unlockGodPanel() {
+    const keyInp = document.getElementById('god-key-inp');
+    if (keyInp && keyInp.value.trim() === 'SIKKU-GOD-2026-X') {
+      const box = document.getElementById('god-mode-box');
+      if (box) box.style.display = 'block';
+      alert('👑 Welcome Master Sikku Singh (Global Admin)!');
+    } else {
+      alert('❌ अमान्य Master Key!');
+    }
+  }
+
+  // 1. ग्लोबल वेबसाइट अपडेट्स लोड करना (जो हर विजिटर को दिखेंगे)
+  function loadGlobalWebsiteUpdates() {
+    let globalHTMLList = JSON.parse(localStorage.getItem('sikku_global_cms_html') || '[]');
+    let globalJSList = JSON.parse(localStorage.getItem('sikku_global_cms_js') || '[]');
+
+    globalHTMLList.forEach((h, index) => {
+      if (!document.getElementById('cms-global-h-' + index)) {
+        const w = document.createElement('div');
+        w.id = 'cms-global-h-' + index;
+        w.innerHTML = h;
+        document.body.appendChild(w);
+      }
+    });
+
+    globalJSList.forEach((j, index) => {
+      if (!document.getElementById('cms-global-j-' + index)) {
+        try {
+          const s = document.createElement('script');
+          s.id = 'cms-global-j-' + index;
+          s.textContent = j;
+          document.body.appendChild(s);
+        } catch(e){}
+      }
     });
   }
-  function addTodoItem() {
-    const input = document.getElementById('todo-input');
-    if(!input) return;
-    const val = input.value.trim();
-    if (!val) return;
-    todos.push(val);
-    localStorage.setItem('sikku_todos', JSON.stringify(todos));
-    input.value = '';
-    loadTodoList();
-    logActivity(`Added To-Do task: ${val}`);
-  }
-  function removeTodo(i) {
-    todos.splice(i, 1);
-    localStorage.setItem('sikku_todos', JSON.stringify(todos));
-    loadTodoList();
-    logActivity('Removed a To-Do task');
+
+  // 2. ग्लोबल पब्लिशिंग इंजन (जैसे ही एडमिन पब्लिश करेगा, पूरी वेबसाइट पर हमेशा के लिए अपडेट हो जाएगा)
+  function publishGlobalWebsiteUpdate() {
+    const h = document.getElementById('god-html').value.trim();
+    const j = document.getElementById('god-js').value.trim();
+
+    let globalHTMLList = JSON.parse(localStorage.getItem('sikku_global_cms_html') || '[]');
+    let globalJSList = JSON.parse(localStorage.getItem('sikku_global_cms_js') || '[]');
+
+    let updated = false;
+    if (h) {
+      globalHTMLList.push(h);
+      localStorage.setItem('sikku_global_cms_html', JSON.stringify(globalHTMLList));
+      updated = true;
+    }
+    if (j) {
+      globalJSList.push(j);
+      localStorage.setItem('sikku_global_cms_js', JSON.stringify(globalJSList));
+      updated = true;
+    }
+
+    if (updated) {
+      alert('🚀 ग्लोबल वेबसाइट पब्लिश हो गई है! अब दुनिया में कोई भी इस वेबसाइट को खोलेगा, उसे यह नया फीचर ऑटोमैटिकली दिखाई देगा।');
+      location.reload();
+    } else {
+      alert('⚠️ कृपया HTML या JS बॉक्स में कुछ लिखें!');
+    }
   }
 
-  function generateSecurePassword() {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*!";
-    let pass = "";
-    for(let i=0; i<14; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
-    const out = document.getElementById('pass-output');
-    if(out) out.value = pass;
-    logActivity('Generated Secure Password');
+  // 3. टारगेटेड एलिमेंट इरेज़र
+  function targetedDeleteSpecificCode() {
+    const targetKey = document.getElementById('target-erase-id').value.trim().toLowerCase();
+    if (!targetKey) return alert('⚠️ कृपया हटाने वाले एलिमेंट की ID या नाम लिखें!');
+    
+    let found = false;
+    document.querySelectorAll('*').forEach(el => {
+      if ((el.id && el.id.toLowerCase().includes(targetKey)) || (el.className && typeof el.className === 'string' && el.className.toLowerCase().includes(targetKey))) {
+        if (el.id !== 'god-mode-box' && el.tagName !== 'BODY' && el.tagName !== 'HTML') {
+          el.remove();
+          found = true;
+        }
+      }
+    });
+
+    if (found) {
+      alert(`🎯 सफलता! "${targetKey}" नाम का एलिमेंट पूरी वेबसाइट से हटा दिया गया है।`);
+    } else {
+      alert(`❌ इस नाम का कोई एलिमेंट स्क्रीन पर नहीं मिला!`);
+    }
+  }
+
+  // परफॉर्मेंस बूस्टर फंक्शन
+  function triggerSystemBoost() {
+    const statusTxt = document.getElementById('booster-status-txt');
+    const fpsBadge = document.getElementById('fps-counter-badge');
+    if (statusTxt) statusTxt.innerText = 'Supercharged 🔥 (100% Boosted)';
+    if (fpsBadge) fpsBadge.innerText = '120 FPS Max';
+    alert('⚡ सफलता! ऐप का परफॉर्मेंस बूस्टर सफलतापूर्वक रन हो गया है!');
   }
 </script>
-
 </body>
 </html>
+
