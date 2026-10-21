@@ -435,10 +435,19 @@
           <!-- Tool toggles rendered dynamically -->
         </div>
 
-        <!-- TARGETED ELEMENT ERASER -->
-        <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser:</label>
-        <input type="text" id="target-erase-id" placeholder="Enter Element ID or name to remove..." style="margin-bottom:8px;">
-        <button type="button" class="full-btn btn-red" style="margin-bottom:0;" onclick="targetedDeleteSpecificCode()">🗑️ Delete Global Element</button>
+        <!-- 🔍 ADVANCED ELEMENT INSPECTOR & ERASER -->
+        <div style="background: rgba(3,7,18,0.9); border: 1.5px solid #38bdf8; border-radius: 14px; padding: 12px; margin-bottom: 14px;">
+          <h3 style="color: #38bdf8; margin-bottom: 6px; font-size: 0.95rem;">🔍 Element Inspector & ID Finder</h3>
+          <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">Type the name or text of the item to find its ID:</p>
+          <input type="text" id="inspector-search-key" placeholder="Type item name to search ID..." style="margin-bottom: 8px; font-size: 0.85rem;">
+          <button type="button" class="full-btn btn-cyan" style="margin-bottom: 8px; padding: 10px;" onclick="inspectElementId()">🔎 Find Element ID</button>
+          <div id="inspector-results-box" style="font-size: 0.8rem; color: #10b981; background: rgba(0,0,0,0.5); padding: 8px; border-radius: 8px; margin-bottom: 10px; max-height: 80px; overflow-y: auto;">Search results will appear here...</div>
+
+          <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser:</label>
+          <input type="text" id="target-erase-id" placeholder="Enter exact ID or name to remove..." style="margin-bottom:8px; font-size: 0.85rem;">
+          <button type="button" class="full-btn btn-red" style="margin-bottom:0; padding: 10px;" onclick="targetedDeleteSpecificCode()">🗑️ Delete Global Element</button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -849,6 +858,88 @@
     });
   }
 
+  // 🔍 ELEMENT INSPECTOR & ID FINDER FUNCTION
+  function inspectElementId() {
+    const searchInp = document.getElementById('inspector-search-key');
+    const resultsBox = document.getElementById('inspector-results-box');
+    const query = searchInp.value.trim().toLowerCase();
+    
+    if (!query) {
+      resultsBox.innerHTML = "⚠️ Please type a name to search!";
+      return;
+    }
+    
+    let matches = [];
+    document.querySelectorAll('*').forEach(el => {
+      const elId = el.id ? el.id : '';
+      const elText = el.innerText ? el.innerText.toLowerCase() : '';
+      const elClass = (el.className && typeof el.className === 'string') ? el.className.toLowerCase() : '';
+      
+      if (elId.toLowerCase().includes(query) || elText.includes(query) || elClass.includes(query)) {
+        if (elId && !el.closest('#tab-hub')) {
+          matches.push(`Found! ID: <b>${elId}</b> (Text: "${el.innerText.slice(0, 20)}...")`);
+        }
+      }
+    });
+    
+    if (matches.length > 0) {
+      resultsBox.innerHTML = matches.join('<br>');
+      // Automatically put the first found ID into the eraser input box for convenience
+      const firstMatchId = document.querySelectorAll('*');
+      for(let el of firstMatchId) {
+        if(el.id && el.id.toLowerCase().includes(query) && !el.closest('#tab-hub')) {
+          document.getElementById('target-erase-id').value = el.id;
+          break;
+        }
+      }
+    } else {
+      resultsBox.innerHTML = "❌ No matching ID found!";
+    }
+  }
+
+  // TARGETED ELEMENT ERASER (LIVE REMOVAL FUNCTION)
+  function targetedDeleteSpecificCode() {
+    const targetInp = document.getElementById('target-erase-id');
+    const targetKey = targetInp.value.trim();
+    
+    if (!targetKey) {
+      alert('⚠️ Please enter the element ID or name to remove!');
+      return;
+    }
+    
+    // Direct delete by ID if it exists
+    const targetEl = document.getElementById(targetKey);
+    if (targetEl && targetEl.id !== 'god-mode-box') {
+      targetEl.remove();
+      targetInp.value = '';
+      alert(`🎯 Success! Element with ID "${targetKey}" has been permanently removed.`);
+      return;
+    }
+    
+    // Fallback search removal
+    let found = false;
+    document.querySelectorAll('*').forEach(el => {
+      const elId = el.id ? el.id.toLowerCase() : '';
+      const elClass = (el.className && typeof el.className === 'string') ? el.className.toLowerCase() : '';
+      const elText = el.innerText ? el.innerText.toLowerCase() : '';
+      const keyLower = targetKey.toLowerCase();
+      
+      if (elId.includes(keyLower) || elClass.includes(keyLower) || elText.includes(keyLower)) {
+        if (el.id !== 'god-mode-box' && el.tagName !== 'BODY' && el.tagName !== 'HTML' && !el.closest('#tab-hub')) {
+          el.remove();
+          found = true;
+        }
+      }
+    });
+
+    if (found) {
+      targetInp.value = '';
+      alert(`🎯 Success! Elements matching "${targetKey}" have been permanently removed.`);
+    } else {
+      alert(`❌ No matching element found on the screen!`);
+    }
+  }
+
   // GLOBAL FIREBASE SYNC & AUTOMATIC CLEANUP
   function initGlobalFirebaseSync() {
     document.querySelectorAll('*').forEach(el => {
@@ -942,29 +1033,6 @@
     } else {
       alert('🚀 Update saved to local storage successfully!');
       location.reload();
-    }
-  }
-
-  function targetedDeleteSpecificCode() {
-    const targetInp = document.getElementById('target-erase-id');
-    const targetKey = targetInp.value.trim().toLowerCase();
-    if (!targetKey) return alert('⚠️ Please enter the element ID or name to remove!');
-    
-    let found = false;
-    document.querySelectorAll('*').forEach(el => {
-      if ((el.id && el.id.toLowerCase().includes(targetKey)) || (el.className && typeof el.className === 'string' && el.className.toLowerCase().includes(targetKey))) {
-        if (el.id !== 'god-mode-box' && el.tagName !== 'BODY' && el.tagName !== 'HTML') {
-          el.remove();
-          found = true;
-        }
-      }
-    });
-
-    if (found) {
-      targetInp.value = '';
-      alert(`🎯 Success! Element "${targetKey}" has been removed from the website.`);
-    } else {
-      alert(`❌ No element found with this name on the screen!`);
     }
   }
 
