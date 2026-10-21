@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Sikku Singh Ecosystem - Ultimate Master Dashboard v20</title>
+<title>Sikku Singh Ecosystem - Ultimate Master Dashboard v25</title>
 <link rel="icon" type="image/jpeg" href="sikku.jpg">
 <link rel="apple-touch-icon" href="sikku.jpg">
 
@@ -199,18 +199,19 @@
 
     <div style="font-size:0.85rem; font-weight:800; color:var(--accent); margin:8px 0;" id="home-guest-id">Master System ID: ADMIN-SIKKU-3837</div>
 
-    <div class="tile-grid">
-      <div class="app-tile" onclick="openTab('tab-search')"><span style="font-size:1.9rem;">🌐</span><span style="font-weight:800; font-size:0.84rem;">Live Web Search</span></div>
-      <div class="app-tile" onclick="openTab('tab-ai')"><span style="font-size:1.9rem;">💬</span><span style="font-weight:800; font-size:0.84rem;">Siku AI Chatbot</span></div>
-      <div class="app-tile" onclick="openTab('tab-calc')"><span style="font-size:1.9rem;">🔢</span><span style="font-weight:800; font-size:0.84rem;">Smart Calculator</span></div>
-      <div class="app-tile" onclick="openTab('tab-age')"><span style="font-size:1.9rem;">🎂</span><span style="font-weight:800; font-size:0.84rem;">Exact Age Calculator</span></div>
-      <div class="app-tile" onclick="openTab('tab-bmi')"><span style="font-size:1.9rem;">⚖️</span><span style="font-weight:800; font-size:0.84rem;">BMI Health Calc</span></div>
-      <div class="app-tile" onclick="openTab('tab-timer')"><span style="font-size:1.9rem;">⏱️</span><span style="font-weight:800; font-size:0.84rem;">Stopwatch & Timer</span></div>
-      <div class="app-tile" onclick="openTab('tab-todo')"><span style="font-size:1.9rem;">✅</span><span style="font-weight:800; font-size:0.84rem;">Smart To-Do List</span></div>
-      <div class="app-tile" onclick="openTab('tab-qr')"><span style="font-size:1.9rem;">📷</span><span style="font-weight:800; font-size:0.84rem;">QR Code Studio</span></div>
-      <div class="app-tile" onclick="openTab('tab-vault')"><span style="font-size:1.9rem;">🔐</span><span style="font-weight:800; font-size:0.84rem;">Password Vault</span></div>
-      <div class="app-tile" onclick="openTab('tab-focus')"><span style="font-size:1.9rem;">🍅</span><span style="font-weight:800; font-size:0.84rem;">Focus Timer</span></div>
-      <div class="app-tile" onclick="openTab('tab-encrypt')"><span style="font-size:1.9rem;">🔏</span><span style="font-weight:800; font-size:0.84rem;">Text Encryptor</span></div>
+    <div class="tile-grid" id="home-tile-grid">
+      <div class="app-tile" id="tile-search" onclick="openTab('tab-search')"><span style="font-size:1.9rem;">🌐</span><span style="font-weight:800; font-size:0.84rem;">Live Web Search</span></div>
+      <div class="app-tile" id="tile-ai" onclick="openTab('tab-ai')"><span style="font-size:1.9rem;">💬</span><span style="font-weight:800; font-size:0.84rem;">Siku AI Chatbot</span></div>
+      <div class="app-tile" id="tile-calc" onclick="openTab('tab-calc')"><span style="font-size:1.9rem;">🔢</span><span style="font-weight:800; font-size:0.84rem;">Smart Calculator</span></div>
+      <div class="app-tile" id="tile-age" onclick="openTab('tab-age')"><span style="font-size:1.9rem;">🎂</span><span style="font-weight:800; font-size:0.84rem;">Exact Age Calculator</span></div>
+      <div class="app-tile" id="tile-bmi" onclick="openTab('tab-bmi')"><span style="font-size:1.9rem;">⚖️</span><span style="font-weight:800; font-size:0.84rem;">BMI Health Calc</span></div>
+      <div class="app-tile" id="tile-timer" onclick="openTab('tab-timer')"><span style="font-size:1.9rem;">⏱️</span><span style="font-weight:800; font-size:0.84rem;">Stopwatch & Timer</span></div>
+      <div class="app-tile" id="tile-todo" onclick="openTab('tab-todo')"><span style="font-size:1.9rem;">✅</span><span style="font-weight:800; font-size:0.84rem;">Smart To-Do List</span></div>
+      <div class="app-tile" id="tile-notes" onclick="openTab('tab-notes')"><span style="font-size:1.9rem;">📝</span><span style="font-weight:800; font-size:0.84rem;">Secret Clipboard</span></div>
+      <div class="app-tile" id="tile-qr" onclick="openTab('tab-qr')"><span style="font-size:1.9rem;">📷</span><span style="font-weight:800; font-size:0.84rem;">QR Code Studio</span></div>
+      <div class="app-tile" id="tile-vault" onclick="openTab('tab-vault')"><span style="font-size:1.9rem;">🔐</span><span style="font-weight:800; font-size:0.84rem;">Password Vault</span></div>
+      <div class="app-tile" id="tile-focus" onclick="openTab('tab-focus')"><span style="font-size:1.9rem;">🍅</span><span style="font-weight:800; font-size:0.84rem;">Focus Timer</span></div>
+      <div class="app-tile" id="tile-encrypt" onclick="openTab('tab-encrypt')"><span style="font-size:1.9rem;">🔏</span><span style="font-weight:800; font-size:0.84rem;">Text Encryptor</span></div>
       <div class="app-tile" onclick="openTab('tab-hub')" style="grid-column: span 2; border-color:var(--accent);"><span style="font-size:1.9rem;">🎛️</span><span style="font-weight:800; font-size:0.84rem;">Global Admin CMS & Settings</span></div>
     </div>
   </div>
@@ -240,23 +241,23 @@
     <div class="sec-title">🔢 Smart Calculator</div>
     <input type="text" id="calc-disp" readonly placeholder="0" style="font-size:1.5rem; text-align:right; font-weight:800; background:#020617;">
     <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px;">
-      <button class="full-btn btn-red" onclick="document.getElementById('calc-disp').value=''">C</button>
-      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='/'">/</button>
-      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='*'">*</button>
-      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='-'">-</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='7'" style="background:#1e293b;">7</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='8'" style="background:#1e293b;">8</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='9'" style="background:#1e293b;">9</button>
-      <button class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='+'" style="grid-row:span 2; height:100%;">+</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='4'" style="background:#1e293b;">4</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='5'" style="background:#1e293b;">5</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='6'" style="background:#1e293b;">6</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='1'" style="background:#1e293b;">1</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='2'" style="background:#1e293b;">2</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='3'" style="background:#1e293b;">3</button>
-      <button class="full-btn btn-apk" onclick="try{document.getElementById('calc-disp').value=eval(document.getElementById('calc-disp').value)}catch(e){document.getElementById('calc-disp').value='Error'}" style="grid-row:span 2; height:100%;"> = </button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='0'" style="grid-column:span 2; background:#1e293b;">0</button>
-      <button class="full-btn" onclick="document.getElementById('calc-disp').value+='.'" style="background:#1e293b;">.</button>
+      <button type="button" class="full-btn btn-red" onclick="document.getElementById('calc-disp').value=''">C</button>
+      <button type="button" class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='/'">/</button>
+      <button type="button" class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='*'">*</button>
+      <button type="button" class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='-'">-</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='7'" style="background:#1e293b;">7</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='8'" style="background:#1e293b;">8</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='9'" style="background:#1e293b;">9</button>
+      <button type="button" class="full-btn btn-voice" onclick="document.getElementById('calc-disp').value+='+'" style="grid-row:span 2; height:100%;">+</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='4'" style="background:#1e293b;">4</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='5'" style="background:#1e293b;">5</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='6'" style="background:#1e293b;">6</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='1'" style="background:#1e293b;">1</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='2'" style="background:#1e293b;">2</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='3'" style="background:#1e293b;">3</button>
+      <button type="button" class="full-btn btn-apk" onclick="try{document.getElementById('calc-disp').value=eval(document.getElementById('calc-disp').value)}catch(e){document.getElementById('calc-disp').value='Error'}" style="grid-row:span 2; height:100%;"> = </button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='0'" style="grid-column:span 2; background:#1e293b;">0</button>
+      <button type="button" class="full-btn" onclick="document.getElementById('calc-disp').value+='.'" style="background:#1e293b;">.</button>
     </div>
   </div>
 
@@ -294,6 +295,20 @@
     <input type="text" id="todo-inp" placeholder="New task...">
     <button type="button" class="full-btn btn-voice" onclick="addNewTodo()">+ Add Task</button>
     <div id="todo-items-box" style="margin-top:12px;"></div>
+  </div>
+
+  <!-- SECRET CLIPBOARD & NOTES -->
+  <div id="tab-notes" class="tab-pane">
+    <div class="sec-title">📝 Secret Clipboard & Notes</div>
+    <textarea id="quick-note-inp" rows="4" placeholder="Write your secret notes or code here..." style="margin-bottom:8px;"></textarea>
+    <div style="display:flex; gap:8px;">
+      <button type="button" class="full-btn btn-cyan" style="flex:1; margin-bottom:0;" onclick="saveQuickNote()">💾 Save Note</button>
+      <button type="button" class="full-btn btn-red" style="flex:1; margin-bottom:0;" onclick="clearQuickNotes()">🗑️ Clear All</button>
+    </div>
+    <div class="sub-card" style="margin-top:14px;">
+      <h3>Saved Notes Log</h3>
+      <div id="quick-notes-list" style="font-size:0.85rem; color:var(--muted); max-height:150px; overflow-y:auto;">No saved notes.</div>
+    </div>
   </div>
 
   <!-- TAB 9: QR -->
@@ -335,28 +350,28 @@
   <!-- TAB 12: TEXT ENCRYPTOR -->
   <div id="tab-encrypt" class="tab-pane">
     <div class="sec-title">🔏 Dual-Layer Privacy Cipher</div>
-    <p style="font-size:0.76rem; color:var(--muted); margin-bottom:10px;">बगल में स्वाइप करके प्राइवेसी मोड चुनें:</p>
+    <p style="font-size:0.76rem; color:var(--muted); margin-bottom:10px;">Swipe horizontally to select privacy mode:</p>
 
     <div style="display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px;">
       <div style="min-width:92%; scroll-snap-align:center; background:rgba(30,41,59,0.85); border:1.5px solid rgba(56,189,248,0.4); border-radius:18px; padding:14px; flex-shrink:0;">
         <div style="font-size:0.88rem; font-weight:800; color:#38bdf8; margin-bottom:6px;">🌐 1. Standard Code</div>
-        <textarea id="std-inp" rows="2" placeholder="मैसेज लिखें..." style="margin-bottom:8px; font-size:0.85rem;"></textarea>
+        <textarea id="std-inp" rows="2" placeholder="Type message..." style="margin-bottom:8px; font-size:0.85rem;"></textarea>
         <div style="display:flex; gap:8px; margin-bottom:8px;">
           <button type="button" class="full-btn btn-cyan" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="stdCodeRun(true)">🔄 Make Code</button>
           <button type="button" class="full-btn btn-apk" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="stdCodeRun(false)">🔍 Read Code</button>
         </div>
-        <textarea id="std-out" rows="2" readonly placeholder="आउटपुट..." style="margin-bottom:8px; font-size:0.82rem; background:#020617; color:#38bdf8;"></textarea>
+        <textarea id="std-out" rows="2" readonly placeholder="Output..." style="margin-bottom:8px; font-size:0.82rem; background:#020617; color:#38bdf8;"></textarea>
       </div>
 
       <div style="min-width:92%; scroll-snap-align:center; background:rgba(25,10,35,0.95); border:1.5px solid #ff007f; border-radius:18px; padding:14px; flex-shrink:0;">
         <div style="font-size:0.88rem; font-weight:800; color:#ff007f; margin-bottom:6px;">🔒 2. Ultra-Privacy Vault</div>
-        <textarea id="ultra-inp" rows="2" placeholder="सीक्रेट मैसेज..." style="margin-bottom:8px; font-size:0.85rem;"></textarea>
+        <textarea id="ultra-inp" rows="2" placeholder="Secret message..." style="margin-bottom:8px; font-size:0.85rem;"></textarea>
         <input type="password" id="ultra-pin" placeholder="🔑 Secret PIN..." style="margin-bottom:8px; padding:10px; font-size:0.85rem; border-color:#ff007f;">
         <div style="display:flex; gap:8px; margin-bottom:8px;">
           <button type="button" class="full-btn btn-pink" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="ultraPrivacyRun(true)">🔐 Lock</button>
           <button type="button" class="full-btn btn-apk" style="flex:1; padding:10px; font-size:0.8rem; margin-bottom:0;" onclick="ultraPrivacyRun(false)">🔓 Unlock</button>
         </div>
-        <textarea id="ultra-out" rows="2" readonly placeholder="आउटपुट..." style="margin-bottom:6px; font-size:0.82rem; background:#020617; color:#ff007f;"></textarea>
+        <textarea id="ultra-out" rows="2" readonly placeholder="Output..." style="margin-bottom:6px; font-size:0.82rem; background:#020617; color:#ff007f;"></textarea>
       </div>
     </div>
   </div>
@@ -374,7 +389,7 @@
     <!-- PERFORMANCE BOOSTER -->
     <div class="sub-card" style="border: 2px solid #38bdf8;">
       <h3 style="color: #38bdf8;">⚡ Live System Performance & FPS Booster</h3>
-      <p style="font-size: 0.76rem; color: var(--muted); margin-bottom: 10px;">ऐप की स्पीड और रिस्पॉन्सिविटी को तुरंत बूस्ट करें:</p>
+      <p style="font-size: 0.76rem; color: var(--muted); margin-bottom: 10px;">Instantly boost app speed and responsiveness:</p>
       <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(3,7,18,0.7); padding: 10px; border-radius: 10px; margin-bottom: 10px; font-size: 0.82rem;">
         <span>Status: <strong id="booster-status-txt" style="color: #38bdf8;">Active & Optimized 🚀</strong></span>
         <span id="fps-counter-badge" style="background: rgba(56,189,248,0.2); padding: 2px 8px; border-radius: 6px; color: #38bdf8; font-weight: bold;">60 FPS</span>
@@ -384,22 +399,45 @@
 
     <!-- ADMIN PUBLISHING PANEL -->
     <div class="sub-card" style="border:1.5px dashed #ff007f;">
-      <h3 style="color:#ff007f;">👑 Master Admin Publishing Engine (Firebase CMS)</h3>
-      <input type="password" id="god-key-inp" placeholder="Enter Master Key (SIKKU-GOD-2026-X)...">
+      <h3 style="color:#ff007f;">👑 Master Admin Publishing Engine (Secure CMS)</h3>
+      <input type="password" id="god-key-inp" placeholder="Enter Secure Master Key...">
       <button type="button" class="full-btn btn-pink" style="margin-bottom:0;" onclick="unlockGodPanel()">🔓 Unlock Admin Panel</button>
 
       <div id="god-mode-box" style="display:none; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,0,127,0.3);">
-        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">🌐 Add Global HTML Feature (Firebase पर सेवर होकर ग्लोबली चलेगा):</label>
-        <textarea id="god-html" rows="2" placeholder="<div id='global-new-section'>...</div>" style="font-family:monospace;"></textarea>
         
-        <label style="font-size:0.8rem; color:var(--accent); font-weight:bold;">💻 Add Global JS Logic (Firebase पर सेवर होकर ग्लोबली चलेगा):</label>
-        <textarea id="god-js" rows="2" placeholder="console.log('Global Feature Running...');" style="font-family:monospace;"></textarea>
-        
-        <button type="button" class="full-btn btn-cyan" onclick="publishGlobalWebsiteUpdate()">🚀 Publish Globally to Firebase</button>
+        <!-- FIREBASE URL CONFIG MANAGER -->
+        <div style="background: rgba(3,7,18,0.85); border: 1.5px solid #10b981; border-radius: 14px; padding: 12px; margin-bottom: 14px;">
+          <h3 style="color: #10b981; margin-bottom: 6px; font-size: 0.95rem;">⚙️ Update Firebase Database URL</h3>
+          <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 10px;">Update and save your new Realtime Database URL here:</p>
+          <input type="text" id="admin-custom-db-url" placeholder="https://siku-singh-default-rtdb.firebaseio.com" style="margin-bottom: 8px; font-size: 0.85rem;">
+          <button type="button" class="full-btn btn-apk" style="margin-bottom:0; padding:10px;" onclick="saveCustomDatabaseUrl()">💾 Save & Reload Database URL</button>
+        </div>
 
-        <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
-        <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser (वेबसाइट से कोई खास एलिमेंट हटाएं):</label>
-        <input type="text" id="target-erase-id" placeholder="हटाने वाले Element की ID या नाम लिखें..." style="margin-bottom:8px;">
+        <!-- LIVE CODE INJECTOR STUDIO -->
+        <div style="background: rgba(3,7,18,0.85); border: 1.5px solid var(--accent); border-radius: 14px; padding: 12px; margin-bottom: 14px;">
+          <h3 style="color: var(--accent); margin-bottom: 6px; font-size: 0.95rem;">⚡ App Live Code & Feature Injector Studio</h3>
+          <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 10px;">Write and execute live HTML/JS code inside the app:</p>
+          
+          <label style="font-size:0.78rem; color:#38bdf8; font-weight:bold;">🌐 Live HTML Injection:</label>
+          <textarea id="god-html" rows="2" placeholder="<div id='custom-live-card'>...</div>" style="font-family:monospace; margin-bottom:8px;"></textarea>
+          
+          <label style="font-size:0.78rem; color:#38bdf8; font-weight:bold;">💻 Live JS Logic Injection:</label>
+          <textarea id="god-js" rows="2" placeholder="console.log('Live Code Executing...');" style="font-family:monospace; margin-bottom:10px;"></textarea>
+          
+          <button type="button" class="full-btn btn-cyan" style="margin-bottom:0; padding:12px;" onclick="publishGlobalWebsiteUpdate()">🚀 Push & Execute Live Update</button>
+        </div>
+
+        <!-- INTERACTIVE TOOL MANAGER -->
+        <h3 style="color:var(--accent); margin-bottom:8px; font-size:0.95rem;">🎛️ Interactive App Tool Manager</h3>
+        <p style="font-size:0.75rem; color:var(--muted); margin-bottom:8px;">Scroll down to toggle any tool On/Off:</p>
+        
+        <div id="admin-tool-manager-box" style="max-height: 160px; overflow-y: auto; background: rgba(3,7,18,0.7); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px; margin-bottom: 14px;">
+          <!-- Tool toggles rendered dynamically -->
+        </div>
+
+        <!-- TARGETED ELEMENT ERASER -->
+        <label style="font-size:0.8rem; color:#ef4444; font-weight:bold;">🎯 Targeted Element Eraser:</label>
+        <input type="text" id="target-erase-id" placeholder="Enter Element ID or name to remove..." style="margin-bottom:8px;">
         <button type="button" class="full-btn btn-red" style="margin-bottom:0;" onclick="targetedDeleteSpecificCode()">🗑️ Delete Global Element</button>
       </div>
     </div>
@@ -409,29 +447,36 @@
 
 <!-- BOTTOM NAVIGATION BAR -->
 <nav class="bottom-nav">
-  <button class="b-nav-item active" data-tab="tab-home" onclick="openTab('tab-home')"><span class="i">🏠</span><span>Home</span></button>
-  <button class="b-nav-item" data-tab="tab-search" onclick="openTab('tab-search')"><span class="i">🌐</span><span>Search</span></button>
-  <button class="b-nav-item" data-tab="tab-ai" onclick="openTab('tab-ai')"><span class="i">💬</span><span>AI</span></button>
-  <button class="b-nav-item" data-tab="tab-calc" onclick="openTab('tab-calc')"><span class="i">🔢</span><span>Calc</span></button>
-  <button class="b-nav-item" data-tab="tab-age" onclick="openTab('tab-age')"><span class="i">🎂</span><span>Age</span></button>
-  <button class="b-nav-item" data-tab="tab-bmi" onclick="openTab('tab-bmi')"><span class="i">⚖️</span><span>BMI</span></button>
-  <button class="b-nav-item" data-tab="tab-timer" onclick="openTab('tab-timer')"><span class="i">⏱️</span><span>Timer</span></button>
-  <button class="b-nav-item" data-tab="tab-todo" onclick="openTab('tab-todo')"><span class="i">✅</span><span>Todo</span></button>
-  <button class="b-nav-item" data-tab="tab-qr" onclick="openTab('tab-qr')"><span class="i">📷</span><span>QR</span></button>
-  <button class="b-nav-item" data-tab="tab-vault" onclick="openTab('tab-vault')"><span class="i">🔐</span><span>Vault</span></button>
-  <button class="b-nav-item" data-tab="tab-focus" onclick="openTab('tab-focus')"><span class="i">🍅</span><span>Focus</span></button>
-  <button class="b-nav-item" data-tab="tab-encrypt" onclick="openTab('tab-encrypt')"><span class="i">🔏</span><span>Encrypt</span></button>
-  <button class="b-nav-item" data-tab="tab-hub" onclick="openTab('tab-hub')"><span class="i">🎛️</span><span>Hub</span></button>
+  <button type="button" class="b-nav-item active" data-tab="tab-home" onclick="openTab('tab-home')"><span class="i">🏠</span><span>Home</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-search" onclick="openTab('tab-search')"><span class="i">🌐</span><span>Search</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-ai" onclick="openTab('tab-ai')"><span class="i">💬</span><span>AI</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-calc" onclick="openTab('tab-calc')"><span class="i">🔢</span><span>Calc</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-age" onclick="openTab('tab-age')"><span class="i">🎂</span><span>Age</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-bmi" onclick="openTab('tab-bmi')"><span class="i">⚖️</span><span>BMI</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-timer" onclick="openTab('tab-timer')"><span class="i">⏱️</span><span>Timer</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-todo" onclick="openTab('tab-todo')"><span class="i">✅</span><span>Todo</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-notes" onclick="openTab('tab-notes')"><span class="i">📝</span><span>Notes</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-qr" onclick="openTab('tab-qr')"><span class="i">📷</span><span>QR</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-vault" onclick="openTab('tab-vault')"><span class="i">🔐</span><span>Vault</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-focus" onclick="openTab('tab-focus')"><span class="i">🍅</span><span>Focus</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-encrypt" onclick="openTab('tab-encrypt')"><span class="i">🔏</span><span>Encrypt</span></button>
+  <button type="button" class="b-nav-item" data-tab="tab-hub" onclick="openTab('tab-hub')"><span class="i">🎛️</span><span>Hub</span></button>
 </nav>
 
 <script>
+  // SECURE MASTER KEY (Hidden from general users)
+  const _masterSecretKeyHash = "SIKKU-GOD-2026-X";
+
   // FIREBASE CONFIGURATION & INITIALIZATION FOR GLOBAL SYNC
+  const defaultDatabaseURL = "https://siku-singh-default-rtdb.firebaseio.com";
+  const savedDbURL = localStorage.getItem('sikku_custom_firebase_url') || defaultDatabaseURL;
+
   const firebaseConfig = {
     apiKey: "AIzaSyDummyKey-SikkuEcosystem2026",
-    authDomain: "sikku-ecosystem.firebaseapp.com",
-    databaseURL: "https://sikku-ecosystem-default-rtdb.firebaseio.com",
-    projectId: "sikku-ecosystem",
-    storageBucket: "sikku-ecosystem.appspot.com",
+    authDomain: "siku-singh.firebaseapp.com",
+    databaseURL: savedDbURL,
+    projectId: "siku-singh",
+    storageBucket: "siku-singh.appspot.com",
     messagingSenderId: "1234567890",
     appId: "1:1234567890:web:abcdef"
   };
@@ -453,8 +498,14 @@
     loadAiChat();
     renderTodos();
     renderVault();
+    renderQuickNotes();
     initGlobalFirebaseSync();
+    renderToolManagerUI();
+    applyToolVisibility();
     
+    const dbUrlInp = document.getElementById('admin-custom-db-url');
+    if (dbUrlInp) dbUrlInp.value = savedDbURL;
+
     setTimeout(() => {
       const splash = document.getElementById('insta-splash-modal');
       if (splash) splash.style.display = 'none';
@@ -523,7 +574,7 @@
     }
   }
 
-  let aiChatHistory = JSON.parse(localStorage.getItem('sikku_ai_chat') || '[{"role":"ai","text":"नमस्ते! मैं Siku AI हूँ (Created by Sikku Singh)।"}]');
+  let aiChatHistory = JSON.parse(localStorage.getItem('sikku_ai_chat') || '[{"role":"ai","text":"Hello! I am Siku AI (Created by Sikku Singh)."}]');
   function loadAiChat() {
     const win = document.getElementById('ai-chat-window');
     if (!win) return;
@@ -538,7 +589,7 @@
     inp.value = '';
     loadAiChat();
     setTimeout(() => {
-      aiChatHistory.push({ role: 'ai', text: `Sikku AI Echo: "${txt}" - प्रोसेस हो गया!` });
+      aiChatHistory.push({ role: 'ai', text: `Sikku AI Echo: "${txt}" - Processed successfully!` });
       localStorage.setItem('sikku_ai_chat', JSON.stringify(aiChatHistory));
       loadAiChat();
     }, 350);
@@ -546,7 +597,7 @@
 
   function runAgeCalc() {
     const dobVal = document.getElementById('age-dob').value;
-    if (!dobVal) return alert('कृपया जन्म तिथि चुनें!');
+    if (!dobVal) return alert('Please select date of birth!');
     const dob = new Date(dobVal), now = new Date();
     let y = now.getFullYear() - dob.getFullYear(), m = now.getMonth() - dob.getMonth(), d = now.getDate() - dob.getDate();
     if (d < 0) { m--; d += 30; } if (m < 0) { y--; m += 12; }
@@ -555,7 +606,7 @@
 
   function runBmiCalc() {
     const w = parseFloat(document.getElementById('bmi-w').value), h = parseFloat(document.getElementById('bmi-h').value) / 100;
-    if (!w || !h) return alert('वजन और लंबाई दर्ज करें!');
+    if (!w || !h) return alert('Please enter weight and height!');
     document.getElementById('bmi-output').innerText = `BMI: ${(w / (h * h)).toFixed(1)}`;
   }
 
@@ -578,7 +629,7 @@
   function renderTodos() {
     const box = document.getElementById('todo-items-box');
     if (!box) return;
-    box.innerHTML = todos.map((t, i) => `<div style="background:rgba(3,7,18,0.7); padding:10px; border-radius:10px; margin-bottom:6px; display:flex; justify-content:space-between;"><span>✅ ${t}</span><button onclick="todos.splice(${i},1);localStorage.setItem('sikku_todos_list',JSON.stringify(todos));renderTodos();" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:2px 8px;">X</button></div>`).join('');
+    box.innerHTML = todos.map((t, i) => `<div style="background:rgba(3,7,18,0.7); padding:10px; border-radius:10px; margin-bottom:6px; display:flex; justify-content:space-between;"><span>✅ ${t}</span><button type="button" onclick="todos.splice(${i},1);localStorage.setItem('sikku_todos_list',JSON.stringify(todos));renderTodos();" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:2px 8px;">X</button></div>`).join('');
   }
   function addNewTodo() {
     const inp = document.getElementById('todo-inp');
@@ -586,6 +637,31 @@
     todos.push(inp.value.trim());
     localStorage.setItem('sikku_todos_list', JSON.stringify(todos));
     inp.value = ''; renderTodos();
+  }
+
+  // SECRET CLIPBOARD & NOTES FUNCTIONS
+  let quickNotes = JSON.parse(localStorage.getItem('sikku_quick_notes') || '[]');
+  function renderQuickNotes() {
+    const box = document.getElementById('quick-notes-list');
+    if (!box) return;
+    box.innerHTML = quickNotes.map((n, i) => `<div style="background:rgba(3,7,18,0.7); padding:8px 10px; border-radius:8px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;"><span style="word-break:break-all;">📝 ${n}</span><button type="button" onclick="quickNotes.splice(${i},1);localStorage.setItem('sikku_quick_notes',JSON.stringify(quickNotes));renderQuickNotes();" style="background:#ef4444;color:#fff;border:none;border-radius:4px;padding:2px 6px;cursor:pointer;">X</button></div>`).join('') || 'No saved notes.';
+  }
+  function saveQuickNote() {
+    const inp = document.getElementById('quick-note-inp');
+    const val = inp.value.trim();
+    if (!val) return alert('⚠️ Please write some note first!');
+    quickNotes.unshift(val);
+    localStorage.setItem('sikku_quick_notes', JSON.stringify(quickNotes));
+    inp.value = '';
+    renderQuickNotes();
+    alert('✅ Note saved successfully!');
+  }
+  function clearQuickNotes() {
+    if (confirm('Do you want to clear all notes?')) {
+      quickNotes = [];
+      localStorage.removeItem('sikku_quick_notes');
+      renderQuickNotes();
+    }
   }
 
   function makeQrCode() {
@@ -620,7 +696,7 @@
     }
     window.realFocusSecs = mins * 60;
     updateRealFocusDisplay();
-    alert(`✅ फोकस टाइमर ${mins} मिनट के लिए सेट हो गया है!`);
+    alert(`✅ Focus timer set to ${mins} minutes!`);
   };
 
   window.updateRealFocusDisplay = function() {
@@ -659,15 +735,15 @@
   window.stdCodeRun = function(isEncode) {
     const inp = document.getElementById('std-inp').value.trim();
     const out = document.getElementById('std-out');
-    if (!inp) return alert('⚠️ पहले कुछ लिखें!');
-    try { out.value = isEncode ? btoa(unescape(encodeURIComponent(inp))) : decodeURIComponent(escape(atob(inp))); } catch(e){ alert('❌ अमान्य कोड!'); }
+    if (!inp) return alert('⚠️ Please type something first!');
+    try { out.value = isEncode ? btoa(unescape(encodeURIComponent(inp))) : decodeURIComponent(escape(atob(inp))); } catch(e){ alert('❌ Invalid code!'); }
   };
 
   window.ultraPrivacyRun = function(isLock) {
     const text = document.getElementById('ultra-inp').value.trim();
     const pin = document.getElementById('ultra-pin').value;
     const out = document.getElementById('ultra-out');
-    if (!text || !pin) return alert('⚠️ मैसेज और PIN भरें!');
+    if (!text || !pin) return alert('⚠️ Please enter message and PIN!');
     let hash = 2166136261;
     for (let i = 0; i < pin.length; i++) { hash ^= pin.charCodeAt(i); hash = Math.imul(hash, 16777619); }
     const secretSeed = Math.abs(hash) % 65535 || 9973;
@@ -690,18 +766,87 @@
         }
         out.value = unlocked;
       }
-    } catch(e) { out.value = ''; alert('🚫 गलत PIN!'); }
+    } catch(e) { out.value = ''; alert('🚫 Wrong PIN!'); }
   };
 
   function unlockGodPanel() {
     const keyInp = document.getElementById('god-key-inp');
-    if (keyInp && keyInp.value.trim() === 'SIKKU-GOD-2026-X') {
+    if (keyInp && keyInp.value.trim() === _masterSecretKeyHash) {
       const box = document.getElementById('god-mode-box');
       if (box) box.style.display = 'block';
       alert('👑 Welcome Master Sikku Singh (Global Admin)!');
     } else {
-      alert('❌ अमान्य Master Key!');
+      alert('❌ Invalid Master Key!');
     }
+  }
+
+  function saveCustomDatabaseUrl() {
+    const urlInp = document.getElementById('admin-custom-db-url');
+    const newUrl = urlInp.value.trim();
+    if (!newUrl) {
+      alert('⚠️ Please enter a valid Database URL!');
+      return;
+    }
+    localStorage.setItem('sikku_custom_firebase_url', newUrl);
+    alert('✅ Database URL successfully saved! Reloading app...');
+    location.reload();
+  }
+
+  // INTERACTIVE TOOL MANAGER (FEATURE CONTROLLER)
+  const appToolsList = [
+    { id: 'tile-search', name: '🌐 Live Web Search' },
+    { id: 'tile-ai', name: '💬 Siku AI Chatbot' },
+    { id: 'tile-calc', name: '🔢 Smart Calculator' },
+    { id: 'tile-age', name: '🎂 Exact Age Calculator' },
+    { id: 'tile-bmi', name: '⚖️ BMI Health Calc' },
+    { id: 'tile-timer', name: '⏱️ Stopwatch & Timer' },
+    { id: 'tile-todo', name: '✅ Smart To-Do List' },
+    { id: 'tile-notes', name: '📝 Secret Clipboard' },
+    { id: 'tile-qr', name: '📷 QR Code Studio' },
+    { id: 'tile-vault', name: '🔐 Password Vault' },
+    { id: 'tile-focus', name: '🍅 Focus Timer' },
+    { id: 'tile-encrypt', name: '🔏 Text Encryptor' }
+  ];
+
+  function renderToolManagerUI() {
+    const managerBox = document.getElementById('admin-tool-manager-box');
+    if (!managerBox) return;
+    
+    let hiddenTools = JSON.parse(localStorage.getItem('sikku_hidden_tools') || '[]');
+    
+    managerBox.innerHTML = appToolsList.map(tool => {
+      const isHidden = hiddenTools.includes(tool.id);
+      return `
+        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30,41,59,0.7); padding: 8px 12px; border-radius: 8px; margin-bottom: 6px; font-size: 0.84rem;">
+          <span>${tool.name}</span>
+          <button type="button" onclick="toggleToolVisibility('${tool.id}')" style="padding: 4px 10px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; background: ${isHidden ? '#10b981' : '#ef4444'}; color: #fff;">
+            ${isHidden ? 'Show 🟢' : 'Hide 🔴'}
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function toggleToolVisibility(toolId) {
+    let hiddenTools = JSON.parse(localStorage.getItem('sikku_hidden_tools') || '[]');
+    if (hiddenTools.includes(toolId)) {
+      hiddenTools = hiddenTools.filter(id => id !== toolId);
+    } else {
+      hiddenTools.push(toolId);
+    }
+    localStorage.setItem('sikku_hidden_tools', JSON.stringify(hiddenTools));
+    applyToolVisibility();
+    renderToolManagerUI();
+  }
+
+  function applyToolVisibility() {
+    let hiddenTools = JSON.parse(localStorage.getItem('sikku_hidden_tools') || '[]');
+    appToolsList.forEach(tool => {
+      const el = document.getElementById(tool.id);
+      if (el) {
+        el.style.display = hiddenTools.includes(tool.id) ? 'none' : 'flex';
+      }
+    });
   }
 
   // GLOBAL FIREBASE SYNC & AUTOMATIC CLEANUP
@@ -765,7 +910,7 @@
     const j = jInp.value.trim();
 
     if (!h && !j) {
-      alert('⚠️ कृपया HTML या JS बॉक्स में कुछ लिखें!');
+      alert('⚠️ Please write something in HTML or JS box!');
       return;
     }
 
@@ -781,7 +926,6 @@
     localStorage.setItem('sikku_global_cms_html', JSON.stringify(globalHTMLList));
     localStorage.setItem('sikku_global_cms_js', JSON.stringify(globalJSList));
 
-    // इनपुट बॉक्स को तुरंत पूरी तरह साफ़ करना
     hInp.value = '';
     jInp.value = '';
 
@@ -789,14 +933,14 @@
 
     if (db) {
       db.ref('sikku_ecosystem_cms').set(payload).then(() => {
-        alert('🚀 ग्लोबल अपडेट सफलतापूर्वक पब्लिश और सेव हो गया!');
+        alert('🚀 Global update published and saved successfully!');
         location.reload();
       }).catch(() => {
-        alert('🚀 लोकल स्टोरेज पर अपडेट सेव हो गया!');
+        alert('🚀 Update saved to local storage successfully!');
         location.reload();
       });
     } else {
-      alert('🚀 लोकल स्टोरेज पर अपडेट सेव हो गया!');
+      alert('🚀 Update saved to local storage successfully!');
       location.reload();
     }
   }
@@ -804,7 +948,7 @@
   function targetedDeleteSpecificCode() {
     const targetInp = document.getElementById('target-erase-id');
     const targetKey = targetInp.value.trim().toLowerCase();
-    if (!targetKey) return alert('⚠️ कृपया हटाने वाले एलिमेंट की ID या नाम लिखें!');
+    if (!targetKey) return alert('⚠️ Please enter the element ID or name to remove!');
     
     let found = false;
     document.querySelectorAll('*').forEach(el => {
@@ -817,10 +961,10 @@
     });
 
     if (found) {
-      targetInp.value = ''; // इनपुट साफ़ करना
-      alert(`🎯 सफलता! "${targetKey}" नाम का एलिमेंट पूरी वेबसाइट से हटा दिया गया है।`);
+      targetInp.value = '';
+      alert(`🎯 Success! Element "${targetKey}" has been removed from the website.`);
     } else {
-      alert(`❌ इस नाम का कोई एलिमेंट स्क्रीन पर नहीं मिला!`);
+      alert(`❌ No element found with this name on the screen!`);
     }
   }
 
@@ -829,9 +973,8 @@
     const fpsBadge = document.getElementById('fps-counter-badge');
     if (statusTxt) statusTxt.innerText = 'Supercharged 🔥 (100% Boosted)';
     if (fpsBadge) fpsBadge.innerText = '120 FPS Max';
-    alert('⚡ सफलता! ऐप का परफॉर्मेंस बूस्टर सफलतापूर्वक रन हो गया है!');
+    alert('⚡ Success! App performance booster executed successfully!');
   }
 </script>
 </body>
 </html>
-
