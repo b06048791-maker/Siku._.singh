@@ -427,14 +427,6 @@
           <button type="button" class="full-btn btn-cyan" style="margin-bottom:0; padding:12px;" onclick="publishGlobalWebsiteUpdate()">🚀 Push & Execute Live Update</button>
         </div>
 
-        <!-- INTERACTIVE TOOL MANAGER -->
-        <h3 style="color:var(--accent); margin-bottom:8px; font-size:0.95rem;">🎛️ Interactive App Tool Manager</h3>
-        <p style="font-size:0.75rem; color:var(--muted); margin-bottom:8px;">Scroll down to toggle any tool On/Off:</p>
-        
-        <div id="admin-tool-manager-box" style="max-height: 160px; overflow-y: auto; background: rgba(3,7,18,0.7); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px; margin-bottom: 14px;">
-          <!-- Tool toggles rendered dynamically -->
-        </div>
-
         <!-- 🔍 ADVANCED ELEMENT INSPECTOR & ERASER -->
         <div style="background: rgba(3,7,18,0.9); border: 1.5px solid #38bdf8; border-radius: 14px; padding: 12px; margin-bottom: 14px;">
           <h3 style="color: #38bdf8; margin-bottom: 6px; font-size: 0.95rem;">🔍 Element Inspector & ID Finder</h3>
@@ -509,8 +501,6 @@
     renderVault();
     renderQuickNotes();
     initGlobalFirebaseSync();
-    renderToolManagerUI();
-    applyToolVisibility();
     
     const dbUrlInp = document.getElementById('admin-custom-db-url');
     if (dbUrlInp) dbUrlInp.value = savedDbURL;
@@ -801,63 +791,6 @@
     location.reload();
   }
 
-  // INTERACTIVE TOOL MANAGER (FEATURE CONTROLLER)
-  const appToolsList = [
-    { id: 'tile-search', name: '🌐 Live Web Search' },
-    { id: 'tile-ai', name: '💬 Siku AI Chatbot' },
-    { id: 'tile-calc', name: '🔢 Smart Calculator' },
-    { id: 'tile-age', name: '🎂 Exact Age Calculator' },
-    { id: 'tile-bmi', name: '⚖️ BMI Health Calc' },
-    { id: 'tile-timer', name: '⏱️ Stopwatch & Timer' },
-    { id: 'tile-todo', name: '✅ Smart To-Do List' },
-    { id: 'tile-notes', name: '📝 Secret Clipboard' },
-    { id: 'tile-qr', name: '📷 QR Code Studio' },
-    { id: 'tile-vault', name: '🔐 Password Vault' },
-    { id: 'tile-focus', name: '🍅 Focus Timer' },
-    { id: 'tile-encrypt', name: '🔏 Text Encryptor' }
-  ];
-
-  function renderToolManagerUI() {
-    const managerBox = document.getElementById('admin-tool-manager-box');
-    if (!managerBox) return;
-    
-    let hiddenTools = JSON.parse(localStorage.getItem('sikku_hidden_tools') || '[]');
-    
-    managerBox.innerHTML = appToolsList.map(tool => {
-      const isHidden = hiddenTools.includes(tool.id);
-      return `
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30,41,59,0.7); padding: 8px 12px; border-radius: 8px; margin-bottom: 6px; font-size: 0.84rem;">
-          <span>${tool.name}</span>
-          <button type="button" onclick="toggleToolVisibility('${tool.id}')" style="padding: 4px 10px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; background: ${isHidden ? '#10b981' : '#ef4444'}; color: #fff;">
-            ${isHidden ? 'Show 🟢' : 'Hide 🔴'}
-          </button>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function toggleToolVisibility(toolId) {
-    let hiddenTools = JSON.parse(localStorage.getItem('sikku_hidden_tools') || '[]');
-    if (hiddenTools.includes(toolId)) {
-      hiddenTools = hiddenTools.filter(id => id !== toolId);
-    } else {
-      hiddenTools.push(toolId);
-    }
-    localStorage.setItem('sikku_hidden_tools', JSON.stringify(hiddenTools));
-    applyToolVisibility();
-    renderToolManagerUI();
-  }
-
-  function applyToolVisibility() {
-    let hiddenTools = JSON.parse(localStorage.getItem('sikku_hidden_tools') || '[]');
-    appToolsList.forEach(tool => {
-      const el = document.getElementById(tool.id);
-      if (el) {
-        el.style.display = hiddenTools.includes(tool.id) ? 'none' : 'flex';
-      }
-    });
-  }
-
   // 🔍 ELEMENT INSPECTOR & ID FINDER FUNCTION
   function inspectElementId() {
     const searchInp = document.getElementById('inspector-search-key');
@@ -884,7 +817,6 @@
     
     if (matches.length > 0) {
       resultsBox.innerHTML = matches.join('<br>');
-      // Automatically put the first found ID into the eraser input box for convenience
       const firstMatchId = document.querySelectorAll('*');
       for(let el of firstMatchId) {
         if(el.id && el.id.toLowerCase().includes(query) && !el.closest('#tab-hub')) {
@@ -907,7 +839,6 @@
       return;
     }
     
-    // Direct delete by ID if it exists
     const targetEl = document.getElementById(targetKey);
     if (targetEl && targetEl.id !== 'god-mode-box') {
       targetEl.remove();
@@ -916,7 +847,6 @@
       return;
     }
     
-    // Fallback search removal
     let found = false;
     document.querySelectorAll('*').forEach(el => {
       const elId = el.id ? el.id.toLowerCase() : '';
