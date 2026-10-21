@@ -482,7 +482,7 @@ body.is-master #hub-tile-admin{display:flex}
 <div class="card-title">🔒 Master Admin — Restricted Access</div>
 <div style="border:1.5px dashed var(--pink);border-radius:18px;padding:16px;background:rgba(255,0,127,0.04);">
 <div style="font-size:.88rem;font-weight:800;color:var(--pink);margin-bottom:10px;">👑 Sirf Master Sikku Singh Ke Liye</div>
-<p style="font-size:.72rem;color:var(--text-muted);margin-bottom:8px;">Ye panel sirf master admin ke email se login hone par dikhega.</p>
+<p style="font-size:.72rem;color:var(--text-muted);margin-bottom:8px;">Is panel ko unlock karne ke liye Master Key daalein.</p>
 <input type="password" id="master-key-input" class="ui-input" placeholder="Enter Secure Master Key" autocomplete="new-password" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter') unlockMasterAdminPanel()">
 <button type="button" class="ui-btn pink" onclick="unlockMasterAdminPanel()">🔓 Unlock Admin Panel</button>
 </div>
@@ -603,7 +603,7 @@ body.is-master #hub-tile-admin{display:flex}
 
 <script>
 /* ============================================================
-   EMAILJS CONFIG — आपकी दी हुई keys
+   EMAILJS CONFIG
    ============================================================ */
 const EMAILJS_SERVICE_ID = 'service_7tvdpi5';
 const EMAILJS_TEMPLATE_ID = 'template_v66c74n';
@@ -622,10 +622,10 @@ const DEFAULT_MASTER_KEY_CODES = [83,105,107,107,117,83,105,110,103,104,64,50,48
 /* ============================================================
    TOAST & SPLASH
    ============================================================ */
-function showNotice(msg){
+function showNotice(msg, duration=3200){
   const t=document.getElementById('custom-toast');if(!t)return;
   t.innerText=msg;t.classList.add('show');clearTimeout(window._toastTimer);
-  window._toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+  window._toastTimer=setTimeout(()=>t.classList.remove('show'), duration);
 }
 function dismissSplash(){
   const s=document.getElementById('insta-splash');
@@ -725,14 +725,24 @@ async function requestOtp(){
   const code=generate6DigitOtp();
   storeOtp(email,code);
 
+  // Bahut saare variables bhej rahe hain taaki EmailJS template mein jo bhi ho, kaam kare
+  const templateParams = {
+    to_email: email,
+    email: email,
+    reply_to: email,
+    to_name: name,
+    name: name,
+    otp_code: code,
+    otp: code,
+    passcode: code,
+    message: "Your OTP is: " + code,
+    time: "15 minutes",
+    company_name: "Sikku Singh Dashboard"
+  };
+
   try{
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      to_email: email,
-      to_name: name,
-      otp_code: code,
-      message: code
-    });
-    showNotice("📩 OTP sent to your email!");
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+    showNotice("📩 OTP sent to your email! (Check spam too)");
     document.getElementById('login-step-1').style.display='none';
     document.getElementById('login-step-2').style.display='block';
     document.getElementById('otp-email-display').innerText=email;
@@ -741,7 +751,14 @@ async function requestOtp(){
     startOtpCooldown(30);
   }catch(err){
     console.error('EmailJS error:',err);
-    showNotice("❌ OTP send failed. Check email or try later.");
+    // FALLBACK: Agar EmailJS fail ho jaye (error aaye), toh screen par OTP dikha do
+    showNotice("⚠️ Email fail! FALLBACK OTP: " + code, 20000);
+    document.getElementById('login-step-1').style.display='none';
+    document.getElementById('login-step-2').style.display='block';
+    document.getElementById('otp-email-display').innerText=email + " (Fallback Mode)";
+    document.getElementById('otp-code-input').value='';
+    document.getElementById('otp-code-input').focus();
+    startOtpCooldown(30);
   }finally{
     if(btn){btn.disabled=false;btn.innerText='📩 Send OTP to Email';}
   }
@@ -761,7 +778,7 @@ function startOtpCooldown(sec){
 }
 
 async function resendOtp(){
-  const email=document.getElementById('otp-email-display').innerText.trim().toLowerCase();
+  const email=document.getElementById('otp-email-display').innerText.trim().toLowerCase().replace(' (Fallback Mode)','');
   const name=document.getElementById('login-name').value.trim();
   if(!email){showNotice("No email stored, restart.");return;}
   const el=document.getElementById('otp-cooldown');
@@ -769,18 +786,23 @@ async function resendOtp(){
 
   const code=generate6DigitOtp();
   storeOtp(email,code);
+  
+  const templateParams = {
+    to_email: email, email: email, reply_to: email,
+    to_name: name, name: name,
+    otp_code: code, otp: code, passcode: code,
+    message: "Your OTP is: " + code,
+    time: "15 minutes", company_name: "Sikku Singh Dashboard"
+  };
+
   try{
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      to_email: email,
-      to_name: name,
-      otp_code: code,
-      message: code
-    });
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
     showNotice("📩 New OTP sent!");
     startOtpCooldown(30);
   }catch(err){
     console.error(err);
-    showNotice("❌ Resend failed. Try again.");
+    showNotice("⚠️ Resend failed! FALLBACK OTP: " + code, 20000);
+    startOtpCooldown(30);
   }
 }
 
@@ -792,7 +814,7 @@ function backToStep1(){
 
 function verifyOtpCode(){
   const name=document.getElementById('login-name').value.trim();
-  const email=document.getElementById('otp-email-display').innerText.trim().toLowerCase();
+  const email=document.getElementById('otp-email-display').innerText.trim().toLowerCase().replace(' (Fallback Mode)','');
   const entered=document.getElementById('otp-code-input').value.trim();
   if(!entered||entered.length!==6||!/^\d{6}$/.test(entered)){showNotice("Enter 6-digit OTP!");return;}
 
@@ -886,18 +908,17 @@ function updateUserUI(){
   });
   document.getElementById('header-handle').textContent=currentUser.email;
 
+  // HAR USER KO MASTER PANEL DIKHEGA (Key daal kar unlock karna hoga)
+  const hubTile=document.getElementById('hub-tile-admin');
+  if(hubTile)hubTile.style.display='flex';
+  const navHub=document.getElementById('nav-hub-btn');
+  if(navHub)navHub.style.display='flex';
+
+  // Master tag sirf master email par
   if(currentUser.isMaster||isMasterEmail(currentUser.email)){
     document.body.classList.add('is-master');
-    const hubTile=document.getElementById('hub-tile-admin');
-    if(hubTile)hubTile.style.display='flex';
-    const navHub=document.getElementById('nav-hub-btn');
-    if(navHub)navHub.style.display='flex';
   }else{
     document.body.classList.remove('is-master');
-    const hubTile=document.getElementById('hub-tile-admin');
-    if(hubTile)hubTile.style.display='none';
-    const navHub=document.getElementById('nav-hub-btn');
-    if(navHub)navHub.style.display='none';
   }
 }
 
@@ -1022,12 +1043,6 @@ function initFirebaseSync(){
    TABS
    ============================================================ */
 function switchTab(tabId){
-  if(tabId==='hub'){
-    if(!currentUser||(!currentUser.isMaster&&!isMasterEmail(currentUser.email))){
-      showNotice("🔒 Restricted: Sirf Master Admin ke liye!");
-      return;
-    }
-  }
   document.querySelectorAll('.tab-card').forEach(el=>el.classList.remove('active'));
   const t=document.getElementById('tab-'+tabId);
   if(t)t.classList.add('active');
@@ -1608,10 +1623,6 @@ function getStoredMasterKey(){
 function verifyMasterSecret(s){return s===getStoredMasterKey();}
 
 function unlockMasterAdminPanel(){
-  if(!currentUser||(!currentUser.isMaster&&!isMasterEmail(currentUser.email))){
-    showNotice("🔒 Sirf Master Admin access kar sakta hai!");
-    return;
-  }
   const k=document.getElementById('master-key-input');if(!k)return;
   if(verifyMasterSecret(k.value.trim())){
     document.getElementById('admin-gate-card').style.display='none';
