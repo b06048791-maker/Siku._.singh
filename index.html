@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Sikku Singh - Ultimate Dashboard v18</title>
+<title>Sikku Singh - Ultimate Dashboard v20</title>
 <link rel="icon" type="image/jpeg" href="sikku.jpg">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -200,7 +200,7 @@ input:checked+.slider:before{-webkit-transform:translateX(22px);-ms-transform:tr
 <div class="splash-box">
 <img src="sikku.jpg" alt="Sikku Singh" class="splash-avatar" onerror="this.src='https://placehold.co/120x120/0f172a/00f2fe?text=%F0%9F%91%91'">
 <div class="splash-handle">@siku._.singh</div>
-<p style="font-size:.78rem;color:#94A3B8;margin-top:4px;">Ultimate Dashboard v18 Loading...</p>
+<p style="font-size:.78rem;color:#94A3B8;margin-top:4px;">Ultimate Dashboard v20 Loading...</p>
 <a href="https://www.instagram.com/siku._.singh" target="_blank" rel="noopener" class="splash-btn">📸 Open Instagram Profile</a>
 </div>
 </div>
@@ -421,7 +421,6 @@ input:checked+.slider:before{-webkit-transform:translateX(22px);-ms-transform:tr
 </div>
 <div id="prime-theme-lock-msg" style="font-size:.7rem;color:#ef4444;text-align:right;display:none;">Only for Prime Members</div>
 <hr style="border-color:rgba(255,255,255,0.08); margin:16px 0;">
-<!-- HELP CENTER -->
 <div style="background:rgba(255,0,127,0.05);border:1.5px solid var(--pink);border-radius:14px;padding:14px;margin-bottom:16px;">
 <div style="font-size:.95rem;font-weight:800;color:var(--pink);margin-bottom:6px;">🆘 Help Center</div>
 <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:12px;">Payment, refund, account, bug — koi bhi problem ho, yahan se request bhejo. Admin jaldi reply karega.</div>
@@ -621,12 +620,23 @@ input:checked+.slider:before{-webkit-transform:translateX(22px);-ms-transform:tr
 <div id="tab-encrypt" class="tab-card">
 <div class="ui-card">
 <div class="card-title">🔐 Text Message Encryptor <span style="font-size:.65rem;color:#fbbf24;font-weight:700;margin-left:auto;">AES-256</span></div>
+
+<div style="background:rgba(167,139,250,0.1);border:1.5px solid #a78bfa;border-radius:12px;padding:12px;margin-bottom:14px;">
+<div style="font-size:.82rem;font-weight:800;color:#a78bfa;margin-bottom:6px;">📥 Received a Locked Code?</div>
+<div style="font-size:.7rem;color:var(--text-muted);line-height:1.5;margin-bottom:10px;">
+Upar <b style="color:#e2e8f0;">"Your Message"</b> box me shared code paste karo → password daalo → 🔓 Decrypt dabao → message dikhega.
+</div>
+<button type="button" onclick="pasteFromClipboard()" class="ui-btn" style="background:linear-gradient(135deg,#a78bfa,#7928ca);color:#fff;padding:11px;font-size:.82rem;font-weight:800;">
+📋 Paste Code from Clipboard
+</button>
+</div>
+
 <div style="background:rgba(0,242,254,0.08);border:1px solid rgba(0,242,254,0.3);border-radius:10px;padding:10px;margin-bottom:12px;font-size:.72rem;color:var(--text-muted);line-height:1.6;">
 <strong style="color:var(--cyan);">📌 Ye NORMAL message encrypt karta hai — code nahi banata</strong><br>
 1️⃣ Message likho → 2️⃣ Password daalo → 3️⃣ Encrypt karo
 </div>
 <label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">💬 Your Message (normal text):</label>
-<textarea id="cipher-in" class="ui-input" rows="4" placeholder="Yahan apna message likho... e.g. Hello Sikku, kaise ho?"></textarea>
+<textarea id="cipher-in" class="ui-input" rows="4" placeholder="Yahan apna message likho... ya received code paste karo..."></textarea>
 <label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">🔑 Password (min 6 chars):</label>
 <input type="password" id="cipher-password" class="ui-input" placeholder="Secret password...">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
@@ -915,7 +925,7 @@ const EMAILJS_TEMPLATE_ID='template_v66c74n';
 const EMAILJS_PUBLIC_KEY='VmNuFx5dKwN8ZSqG-';
 const FIREBASE_DB_URL='https://siku-singh-default-rtdb.firebaseio.com';
 const APP_DOWNLOAD_URL='https://www.instagram.com/siku._.singh';
-const APP_NAME='Sikku Singh Dashboard v18';
+const APP_NAME='Sikku Singh Dashboard v20';
 const MASTER_EMAILS=['sikusingh7091@gmail.com'];
 const DEFAULT_MASTER_KEY_CODES=[83,105,107,107,117,83,105,110,103,104,64,50,48,48,53];
 const THEME_PRESETS={cyan:{primary:'#00F2FE',border:'rgba(0,242,254,0.28)'},pink:{primary:'#FF007F',border:'rgba(255,0,127,0.35)'},gold:{primary:'#fbbf24',border:'rgba(251,191,36,0.4)'},green:{primary:'#10b981',border:'rgba(16,185,129,0.35)'},purple:{primary:'#a78bfa',border:'rgba(167,139,250,0.35)'},orange:{primary:'#f97316',border:'rgba(249,115,22,0.35)'}};
@@ -1110,35 +1120,24 @@ function onHelpCategoryChange(){
   const payFields=document.getElementById('help-payment-fields');
   if(payFields)payFields.style.display=(cat==='payment'||cat==='refund')?'block':'none';
 }
-
 function showFaq(){
   const faq=[
-    '❔ QUICK FAQ',
-    '',
+    '❔ QUICK FAQ','',
     'Q: Payment kar diya par Prime activate nahi hua?',
-    'A: Help Center → Payment → UTR daal ke send karo. Admin 5-10 min me activate kar dega.',
-    '',
+    'A: Help Center → Payment → UTR daal ke send karo. Admin 5-10 min me activate kar dega.','',
     'Q: Refund kaise milega?',
-    'A: Help Center → Refund Request → UTR + reason likho.',
-    '',
+    'A: Help Center → Refund Request → UTR + reason likho.','',
     'Q: Password bhool gaya?',
-    'A: Help Center → Account Recovery → registered email daalo.',
-    '',
+    'A: Help Center → Account Recovery → registered email daalo.','',
     'Q: App crash ho rahi hai?',
-    'A: Help Center → Report a Bug → phone model + kya kiya likho.',
-    '',
+    'A: Help Center → Report a Bug → phone model + kya kiya likho.','',
     'Q: AI call kaam nahi kar raha?',
-    'A: Chrome/Edge use karo. Mic permission "Allow" karo.',
-    '',
+    'A: Chrome/Edge use karo. Mic permission "Allow" karo.','',
     'Q: Prime me kya milta hai?',
-    'A: Golden theme, HD images, Prime badge, priority support.',
-    '',
-    'Q: AI se help kaise lu?',
-    'A: AI tab me sawaal pucho, ya 📞 Call karke baat karo.'
+    'A: Golden theme, HD images, Prime badge, priority support.'
   ];
   alert(faq.join('\n'));
 }
-
 async function submitHelpRequest(){
   const cat=document.getElementById('help-category').value;
   const name=document.getElementById('help-name').value.trim();
@@ -1146,15 +1145,12 @@ async function submitHelpRequest(){
   const utrEl=document.getElementById('help-utr');
   const utr=utrEl?utrEl.value.trim():'';
   const msg=document.getElementById('help-message').value.trim();
-
   if(!cat)return showNotice('Category choose karo');
   if(!name||name.length<2)return showNotice('Valid name daalo');
   if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return showNotice('Valid email daalo');
   if((cat==='payment'||cat==='refund')&&(!utr||utr.length<10))return showNotice('UTR / Transaction ID daalo (min 10 digits)');
   if(!msg||msg.length<10)return showNotice('Message kam se kam 10 characters ka likho');
-
   const req={category:cat,name:name,email:email,utr:utr,message:msg,userId:currentUser?currentUser.id:'guest',time:Date.now(),status:'pending'};
-
   if(databaseInstance){
     try{
       await databaseInstance.ref('help_requests/'+Date.now()+'_'+Math.random().toString(36).slice(2,6)).set(req);
@@ -1220,7 +1216,7 @@ function applyAiPersonality(){
   showNotice('🧠 AI personality: '+sel.toUpperCase());
 }
 
-/* ========== AI SYSTEM PROMPT (Enhanced) ========== */
+/* ========== AI SYSTEM PROMPT ========== */
 function buildSystemPrompt(){
   const base=`You are "Siku AI" — a chill, warm, natural Indian friend inside Sikku Singh's dashboard app.
 
@@ -1234,57 +1230,50 @@ PERSONALITY:
 - Reply in the EXACT SAME language the user used
 - Be honest — if you don't know something, say so clearly
 
-APP KNOWLEDGE (IMPORTANT - use this when user asks):
-App Name: Sikku Singh Dashboard
+APP KNOWLEDGE:
+App: Sikku Singh Dashboard
 Creator: Sikku Singh (@siku._.singh)
-Premium: ₹50 one-time, UPI ID: sikusingh@upi (Sameer Kumar)
-Prime Features: Golden theme, HD 1024x1024 images, Prime badge, priority AI, 2x faster support, all future updates free
-Free tier: 512x512 images, standard AI speed, no golden theme
+Premium: ₹50 one-time, UPI: sikusingh@upi (Sameer Kumar)
+Prime: Golden theme, HD 1024x1024 images, Prime badge, priority AI, future updates free
+Free: 512x512 images, standard AI speed, no golden theme
 
-HOW TO HELP USERS:
-- Prime lena hai: "Prime membership ₹50 one-time hai. Prime tab kholo, UPI se pay karo, phir Help Center se UTR daal do."
-- Payment ho gaya par Prime nahi mila: "Settings → Help Center → Payment category → UTR daal ke bhejo. Admin 5-10 min me activate karega."
-- Refund chahiye: "Settings → Help Center → Refund Request → UTR + reason likho."
+HOW TO HELP:
+- Prime lena: "Prime tab kholo, UPI se pay karo, phir Help Center se UTR daal do."
+- Payment ho gaya par Prime nahi: "Settings → Help Center → Payment → UTR daal ke bhejo."
+- Refund: "Settings → Help Center → Refund Request → UTR + reason."
 - Account issue: "Settings → Help Center → Account Recovery."
-- Bug report: "Settings → Help Center → Report a Bug → phone model + kya hua likho."
-- AI call nahi chal raha: "Chrome/Edge use karo. Mic permission 'Allow' karo. Headphones use karo toh best."
-- Features kaise use kare: Guide them step by step
-- Encryption kya hai: "AES-256 encryption hai. Message + password se encrypt hota hai. Share karne ke liye code + password dono dena hoga."
+- Bug: "Settings → Help Center → Report a Bug."
+- AI call issue: "Chrome use karo. Mic permission Allow karo. Headphones best."
+- Encryption: "AES-256. Message + password → encrypt → share code + password."
+- Locked message share: "Code tab → Locked Items → Share button → WhatsApp/anywhere. Receiver Encryptor tab me paste karke password daale."
 
-APP FEATURES (quick reference):
-- 📞 AI Call: Voice conversation
-- 🤖 AI Chat: Text + image gen (/image prompt)
-- 💻 Code Generator: AI se code + lock
-- 🌐 Web Search: Google/YouTube/Wiki
-- 🔢 Calculator, 🎂 Age, ⚖️ BMI
-- ⏱️ Stopwatch, 🍅 Focus Timer
-- ✅ To-Do, 📝 Notes, 🔐 Password Vault
-- 🏁 QR Code, 🛡️ Text Encryptor
-- 🧰 Tools (unit convert, random, password)
-- 🔥 Gallery (free images + wallpapers)
+APP FEATURES:
+- 📞 AI Call (voice), 🤖 AI Chat, /image for gen
+- 💻 Code Gen + 🔐 Encryptor with Lock & Share
+- 🌐 Search, 🔢 Calc, 🎂 Age, ⚖️ BMI, ⏱️ Timer, 🍅 Focus
+- ✅ Todo, 📝 Notes, 🔐 Vault, 🏁 QR, 🛡️ Encrypt
+- 🧰 Tools, 🔥 Gallery
 
 STRICT RULES:
-1. Reply in EXACT same language as user (Hindi/English/Hinglish)
-2. NO markdown like **bold** or #headers — plain text only
+1. Reply in EXACT same language as user
+2. NO markdown (**bold**, #headers) — plain text only
 3. Natural conversational tone
-4. 2-4 sentences usually, more if explaining
-5. If user asks something you don't know: "Mujhe yeh pura confirm nahi hai, but aap Settings → Help Center se admin se puch sakte ho"
-6. NEVER make up facts about payments, refunds, or account issues
+4. 2-4 sentences usually
+5. If unsure: "Mujhe pura confirm nahi hai, Settings → Help Center se pucho"
+6. NEVER make up payment/refund/account facts
 7. NEVER promise refunds — only admin can process
-8. If user is frustrated, be patient and kind
-9. You can help with ANY topic (not just app) — you're smart
-10. Keep voice replies SHORT — 1-2 sentences for call mode (natural conversation)`;
+8. Be patient if frustrated
+9. Help with ANY topic — you're smart
+10. Voice replies SHORT — 1-2 sentences for call mode`;
 
   const modes={
-    funny:' Extra: You are extra funny — crack jokes, use funny emojis, make user laugh without being mean.',
-    romantic:' Extra: You are sweet and romantic — cute emojis, compliments, soft tone.',
-    serious:' Extra: You are professional and serious — to-the-point factual replies, minimal emojis.',
-    motivational:' Extra: You are a motivational coach — pump up the user, give josh, use 🔥💪 emojis.'
+    funny:' Extra: extra funny — jokes, funny emojis, make user laugh.',
+    romantic:' Extra: sweet and romantic — cute emojis, compliments, soft tone.',
+    serious:' Extra: professional — to-the-point, minimal emojis.',
+    motivational:' Extra: motivational coach — pump up, josh, 🔥💪.'
   };
-  const mode=gGet('ai_personality','default');
-  return base+(modes[mode]||'');
+  return base+(modes[gGet('ai_personality','default')]||'');
 }
-
 function updateSystemPrompt(){
   const sys=buildSystemPrompt();
   if(aiChatHistory.length===0||aiChatHistory[0].role!=='system')aiChatHistory=[{role:'system',content:sys}].concat(aiChatHistory);
@@ -1310,15 +1299,15 @@ async function handleBgFileUpload(e){
     let dataUrl=await compressImageFile(f,1200,0.72);let tries=0;
     while(dataUrl.length>700000&&tries<3){dataUrl=await compressImageFile(f,900-tries*200,0.6);tries++;}
     gSet('bg_image',dataUrl);__remoteBg=dataUrl;applyBackgroundImage();updateBgPreview();
-    if(databaseInstance)pushGlobalConfig('background',dataUrl);else showNotice('⚠️ Firebase offline — local only');
-  }catch(err){showNotice('❌ Image process fail: '+err.message);}
+    if(databaseInstance)pushGlobalConfig('background',dataUrl);else showNotice('⚠️ Firebase offline');
+  }catch(err){showNotice('❌ Image fail: '+err.message);}
   e.target.value='';
 }
 function applyBgFromUrl(){
   const url=document.getElementById('bg-url-input').value.trim();
   if(!url||!/^https?:\/\//.test(url)){showNotice('Valid image URL daalo!');return;}
   gSet('bg_image',url);__remoteBg=url;applyBackgroundImage();updateBgPreview();
-  if(databaseInstance)pushGlobalConfig('background',url);else showNotice('⚠️ Firebase offline — local only');
+  if(databaseInstance)pushGlobalConfig('background',url);else showNotice('⚠️ Firebase offline');
 }
 function removeBackgroundImage(){
   if(!confirm('Global background remove?'))return;
@@ -1405,7 +1394,7 @@ function resolveHelpRequest(key){
 function approvePrime(userId){
   if(!databaseInstance)return;
   if(!confirm('Approve Prime for this user?'))return;
-  databaseInstance.ref('users/'+userId+'/isPrime').set(true).then(()=>{databaseInstance.ref('prime_requests/'+userId).remove();showNotice('✅ User approved for Prime!');}).catch(e=>showNotice('Error: '+e.message));
+  databaseInstance.ref('users/'+userId+'/isPrime').set(true).then(()=>{databaseInstance.ref('prime_requests/'+userId).remove();showNotice('✅ User approved!');}).catch(e=>showNotice('Error: '+e.message));
 }
 function toArray(v){if(!v)return [];if(Array.isArray(v))return v.filter(Boolean);if(typeof v==='object')return Object.keys(v).sort((a,b)=>a-b).map(k=>v[k]).filter(Boolean);return [];}
 function applyGlobalRemoteConfig(data){
@@ -1505,7 +1494,7 @@ function appendAiMessage(role,text){
 function renderAiHistoryToUi(){
   const box=aiChatWindow();if(!box)return;box.innerHTML='';
   const visible=aiChatHistory.filter(m=>m.role!=='system');
-  if(visible.length===0){appendAiMessage('ai',getGreetingText()+' '+(currentUser?currentUser.name.split(' ')[0]:'')+'! Main Siku AI hoon — tumhara chill dost. Kuch bhi pucho. 😊\n\nImage banane ke liye <b>/image your prompt</b> likho.');return;}
+  if(visible.length===0){appendAiMessage('ai',getGreetingText()+' '+(currentUser?currentUser.name.split(' ')[0]:'')+'! Main Siku AI hoon — tumhara chill dost. Kuch bhi pucho. 😊\n\nImage ke liye <b>/image prompt</b> likho.');return;}
   visible.forEach(m=>{appendAiMessage(m.role==='user'?'user':'ai',m.content);});
 }
 function refreshChatUi(){renderAiHistoryToUi();}
@@ -1567,7 +1556,7 @@ async function sendAiChatMessage(){
   const box=aiChatWindow();
   if(userText.toLowerCase().startsWith('/image ')){
     const prompt=userText.substring(7).trim();
-    if(!prompt){appendAiMessage('ai','Kripya prompt likhiye. Example: `/image a beautiful sunset`');aiBusy=false;if(sendBtn)sendBtn.disabled=false;setAiStatus('🟢 Online','#10b981');return;}
+    if(!prompt){appendAiMessage('ai','Prompt likhiye. Example: `/image a beautiful sunset`');aiBusy=false;if(sendBtn)sendBtn.disabled=false;setAiStatus('🟢 Online','#10b981');return;}
     const typing=document.createElement('div');typing.className='ai-bubble-ai';typing.innerHTML='<span class="dot-anim">🎨 Image generate ho rahi hai... (10-15s)</span>';
     if(box){box.appendChild(typing);box.scrollTop=box.scrollHeight;}
     const width=currentUser.isPrime?1024:512;
@@ -1578,7 +1567,7 @@ async function sendAiChatMessage(){
       const aiHtml=`🎨 Yeh rahi aapki image:<br><br><img src="${imgUrl}" style="max-width:100%; border-radius:10px; border:2px solid var(--cyan);" alt="${prompt}"><br><a href="${imgUrl}" target="_blank" style="color:var(--cyan); font-size:0.8rem; text-decoration:underline; margin-top:8px; display:inline-block;">⬇️ Full size download</a>`;
       appendAiMessage('ai',aiHtml);aiChatHistory.push({role:'assistant',content:'[Generated Image] '+prompt});persistAiHistory();playNotifSound();speakReply('Yeh rahi aapki image.');
     };
-    img.onerror=function(){typing.remove();appendAiMessage('ai','❌ Maaf kijiye, image generate nahi ho payi. Thodi der baad try karein.');aiChatHistory.push({role:'assistant',content:'[Image generation failed]'});persistAiHistory();};
+    img.onerror=function(){typing.remove();appendAiMessage('ai','❌ Image generate nahi ho payi. Thodi der baad try karein.');aiChatHistory.push({role:'assistant',content:'[Image generation failed]'});persistAiHistory();};
     img.src=imgUrl;
     aiBusy=false;if(sendBtn)sendBtn.disabled=false;setAiStatus('🟢 Online','#10b981');return;
   }
@@ -1613,28 +1602,24 @@ document.addEventListener('change',function(e){
   if(e.target&&e.target.id==='ai-voice-toggle'){voiceRepliesEnabled=e.target.checked;if(!voiceRepliesEnabled&&window.speechSynthesis){try{window.speechSynthesis.cancel();}catch(err){}}}
 });
 
-/* ========== AI CALL v3 (FULLY FIXED) ========== */
+/* ========== AI CALL ========== */
 let callActive=false;
 let callRecognition=null;
 let callSpeaking=false;
 let callMuted=false;
 let callProcessing=false;
 let callRestartTimer=null;
-let callUserSpokenRecently=false;
-
 function stopCallRecognition(){
   clearTimeout(callRestartTimer);
   if(callRecognition){try{callRecognition.abort();}catch(e){}callRecognition=null;}
   setCallWaveform(false);
 }
-
 function scheduleListening(delay){
   clearTimeout(callRestartTimer);
   callRestartTimer=setTimeout(function(){
     if(callActive&&!callMuted&&!callSpeaking&&!callProcessing)startCallListening();
   },delay||500);
 }
-
 function addCallBubble(role,text){
   const box=document.getElementById('call-transcript');if(!box)return;
   const div=document.createElement('div');div.className=role==='user'?'call-bubble-user':'call-bubble-ai';
@@ -1643,13 +1628,12 @@ function addCallBubble(role,text){
 function setCallStatus(text){const el=document.getElementById('call-status');if(el)el.textContent=text;}
 function setCallWaveform(active){const el=document.getElementById('call-waveform');if(el)el.classList.toggle('active',active);}
 function setCallAvatarSpeaking(on){const el=document.getElementById('call-avatar');if(el)el.classList.toggle('speaking',on);}
-
 async function startAiCall(){
   if(callActive)return;
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){showNotice('Voice call browser me supported nahi. Chrome/Edge use karo.');return;}
   if(!window.speechSynthesis){showNotice('Speech output supported nahi.');return;}
-  callActive=true;callMuted=false;callSpeaking=false;callProcessing=false;callUserSpokenRecently=false;
+  callActive=true;callMuted=false;callSpeaking=false;callProcessing=false;
   const screen=document.getElementById('ai-call-screen');if(screen)screen.classList.add('show');
   document.body.style.overflow='hidden';
   const av=document.getElementById('call-avatar');
@@ -1665,7 +1649,6 @@ async function startAiCall(){
   await callSpeak(greeting);
   if(callActive&&!callMuted)scheduleListening(700);
 }
-
 function callSpeak(text){
   return new Promise(function(resolve){
     if(!window.speechSynthesis||!callActive){resolve();return;}
@@ -1687,7 +1670,6 @@ function callSpeak(text){
     window.speechSynthesis.speak(u);
   });
 }
-
 function startCallListening(){
   if(!callActive||callMuted||callSpeaking||callProcessing)return;
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -1706,10 +1688,8 @@ function startCallListening(){
       stopCallRecognition();
       setCallWaveform(false);
       if(!text||text.length<2){scheduleListening(400);return;}
-      // filter common self-echo artifacts
       const lower=text.toLowerCase();
-      if(lower==='the'||lower==='a'||lower==='the the'||lower==='you'||lower==='to'){scheduleListening(500);return;}
-      callUserSpokenRecently=true;
+      if(lower==='the'||lower==='a'||lower==='you'||lower==='to'){scheduleListening(500);return;}
       addCallBubble('user',text);
       aiChatHistory.push({role:'user',content:text});
       setCallStatus('🟡 Soch raha hoon...');
@@ -1727,7 +1707,6 @@ function startCallListening(){
       persistAiHistory();
       addCallBubble('ai',reply);
       await callSpeak(reply);
-      callUserSpokenRecently=false;
       if(callActive&&!callMuted)scheduleListening(700);
     };
     rec.onerror=function(e){
@@ -1742,7 +1721,6 @@ function startCallListening(){
     rec.start();
   }catch(e){console.warn('Call listen error',e);scheduleListening(1000);}
 }
-
 function toggleCallMute(){
   if(!callActive)return;
   const btn=document.getElementById('call-mute-btn');
@@ -1754,9 +1732,8 @@ function toggleCallMute(){
     stopCallRecognition();setCallStatus('🔇 Muted');setCallWaveform(false);
   }
 }
-
 function endAiCall(){
-  callActive=false;callSpeaking=false;callMuted=false;callProcessing=false;callUserSpokenRecently=false;
+  callActive=false;callSpeaking=false;callMuted=false;callProcessing=false;
   stopCallRecognition();
   try{window.speechSynthesis.cancel();}catch(e){}
   const screen=document.getElementById('ai-call-screen');if(screen)screen.classList.remove('show');
@@ -1771,7 +1748,6 @@ let recordedChunks=[];
 let voiceRecordTimer=null;
 let voiceRecordSeconds=0;
 let currentVoiceBlobUrl=null;
-
 async function toggleVoiceRecord(){
   if(mediaRecorder&&mediaRecorder.state==='recording'){stopVoiceRecord();return;}
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){showNotice('Voice recording not supported');return;}
@@ -1839,9 +1815,9 @@ function sendVoiceMessage(){
   aiChatHistory.push({role:'user',content:'[Voice message]'});persistAiHistory();
   setTimeout(function(){
     const aiDiv=document.createElement('div');aiDiv.className='ai-bubble-ai';
-    aiDiv.innerHTML='<b style="color:var(--cyan);">Siku AI: </b>🎤 Voice message mil gaya! Main sun nahi sakta directly, but 📞 Call karo toh main jawab dunga.';
+    aiDiv.innerHTML='<b style="color:var(--cyan);">Siku AI: </b>🎤 Voice message mil gaya! Main sun nahi sakta directly, but 📞 Call karo toh jawab dunga.';
     box.appendChild(aiDiv);box.scrollTop=box.scrollHeight;
-    aiChatHistory.push({role:'assistant',content:'Voice message received. Please use Call button for voice conversation.'});persistAiHistory();
+    aiChatHistory.push({role:'assistant',content:'Voice message received. Use Call for voice conversation.'});persistAiHistory();
   },600);
   cancelVoicePreview();
   showNotice('✅ Voice message sent');
@@ -1903,6 +1879,7 @@ async function generateProtectedCode(){
 }
 function copyRawCode(){if(!pendingGeneratedCode)return;navigator.clipboard.writeText(pendingGeneratedCode.code).then(function(){showNotice('📋 Copied!');}).catch(function(){});}
 function downloadRawCode(){if(!pendingGeneratedCode)return;const blob=new Blob([pendingGeneratedCode.code],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='sikku-'+pendingGeneratedCode.lang+'-'+Date.now()+'.txt';a.click();setTimeout(function(){URL.revokeObjectURL(url);},3000);showNotice('⬇️ Downloaded');}
+
 async function lockAndSaveCode(){
   if(!pendingGeneratedCode){showNotice('Generate code first.');return;}
   const p=document.getElementById('code-lock-password').value;const p2=document.getElementById('code-lock-password-confirm').value;
@@ -1913,16 +1890,77 @@ async function lockAndSaveCode(){
     savedCodes.unshift(entry);uSet('saved_codes',savedCodes);renderSavedCodes();
     document.getElementById('code-password-setup').style.display='none';document.getElementById('code-lock-password').value='';document.getElementById('code-lock-password-confirm').value='';document.getElementById('code-output-area').innerHTML='';pendingGeneratedCode=null;
     showNotice('🔒 Locked & saved!');
+    setTimeout(function(){
+      if(confirm('🔒 Locked & saved!\n\nKya abhi share karna chahte ho?')){
+        shareLockedCode(entry.id);
+      }
+    },400);
   }catch(e){showNotice('Encryption failed: '+e.message);}
 }
+
 function renderSavedCodes(){
   const el=document.getElementById('saved-codes-list');if(!el)return;
   if(!savedCodes.length){el.innerHTML='<div style="text-align:center;color:var(--text-muted);font-size:.8rem;">No saved items yet.</div>';return;}
   el.innerHTML='<div style="font-size:.85rem;font-weight:800;color:var(--cyan);margin-bottom:10px;">🔐 Locked Items ('+savedCodes.length+')</div>'+
     savedCodes.map(function(c){
-      return '<div style="background:rgba(5,1,15,0.7);border:1px solid rgba(255,0,127,0.25);border-radius:12px;padding:12px;margin-bottom:10px;position:relative;"><span class="locked-code-badge">🔒 LOCKED</span><div class="locked-code-preview">'+escapeHtml(c.prompt.substring(0,80))+' ('+c.lang+')</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px;"><span style="font-size:.7rem;color:var(--text-muted);">'+new Date(c.createdAt).toLocaleString()+'</span><div style="display:flex;gap:6px;"><button type="button" onclick="unlockSavedCode(\''+c.id+'\')" style="background:var(--accent-grad);color:#03151e;border:none;border-radius:8px;padding:6px 12px;font-size:.74rem;font-weight:800;cursor:pointer;">🔓 Unlock</button><button type="button" onclick="deleteSavedCode(\''+c.id+'\')" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:.74rem;cursor:pointer;">🗑️</button></div></div></div>';
+      return '<div style="background:rgba(5,1,15,0.7);border:1px solid rgba(255,0,127,0.25);border-radius:12px;padding:12px;margin-bottom:10px;position:relative;">'
+        +'<span class="locked-code-badge">🔒 LOCKED</span>'
+        +'<div class="locked-code-preview">'+escapeHtml(c.prompt.substring(0,80))+' ('+c.lang+')</div>'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:6px;flex-wrap:wrap;">'
+        +'<span style="font-size:.7rem;color:var(--text-muted);">'+new Date(c.createdAt).toLocaleString()+'</span>'
+        +'<div style="display:flex;gap:6px;flex-wrap:wrap;">'
+        +'<button type="button" onclick="shareLockedCode(\''+c.id+'\')" style="background:linear-gradient(135deg,#a78bfa,#7928ca);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:.72rem;font-weight:800;cursor:pointer;">📤 Share</button>'
+        +'<button type="button" onclick="unlockSavedCode(\''+c.id+'\')" style="background:var(--accent-grad);color:#03151e;border:none;border-radius:8px;padding:6px 12px;font-size:.74rem;font-weight:800;cursor:pointer;">🔓 Unlock</button>'
+        +'<button type="button" onclick="deleteSavedCode(\''+c.id+'\')" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:.74rem;cursor:pointer;">🗑️</button>'
+        +'</div></div></div>';
     }).join('');
 }
+
+async function shareLockedCode(id){
+  const entry=savedCodes.find(c=>c.id===id);
+  if(!entry){showNotice('Item not found');return;}
+  const payload=entry.salt+':'+entry.iv+':'+entry.cipherText;
+  const appUrl=window.__APP_DOWNLOAD_URL||APP_DOWNLOAD_URL;
+  // Hosted URL check - no local 127.0.0.1
+  const isHosted=(location.protocol==='https:'||(location.protocol==='http:'&&location.hostname!=='127.0.0.1'&&location.hostname!=='localhost'));
+  const appBase=isHosted?location.origin+location.pathname:APP_DOWNLOAD_URL;
+  const deepLink=appBase+'#d='+encodeURIComponent(payload);
+  const shareText=
+    '🔐 LOCKED MESSAGE — Sikku Singh Dashboard\n'
+    +'━━━━━━━━━━━━━━━━━━━━━━\n\n'
+    +'📦 Encrypted Code (copy this):\n'
+    +payload+'\n\n'
+    +'🔓 HOW TO OPEN:\n'
+    +'1. Open Sikku Singh Dashboard app\n'
+    +'2. Go to "Encryptor" tab\n'
+    +'3. Paste the code above\n'
+    +'4. Enter the password (I will send separately)\n'
+    +'5. Tap 🔓 Decrypt\n\n'
+    +'📱 Get the app: '+APP_DOWNLOAD_URL+'\n\n'
+    +'🔗 Or tap this link to auto-load:\n'+deepLink+'\n\n'
+    +'⚠️ Password is NOT included — I will share it separately for security.';
+  if(navigator.share){
+    try{
+      await navigator.share({title:'🔐 Locked Secure Message',text:shareText});
+      showNotice('📤 Shared!');
+      return;
+    }catch(e){}
+  }
+  try{
+    await navigator.clipboard.writeText(shareText);
+    showNotice('📋 Copied! WhatsApp/Gmail me paste karo.');
+  }catch(e){
+    const overlay=document.createElement('div');
+    overlay.className='modal-overlay show';
+    overlay.style.zIndex='99999';
+    overlay.innerHTML='<div class="modal-box" style="max-width:560px;">'
+      +'<div class="modal-header"><span>📤 Share Text</span><button class="modal-close-btn" onclick="this.closest(\'.modal-overlay\').remove()">✕</button></div>'
+      +'<div class="modal-body"><textarea readonly style="width:100%;height:300px;background:rgba(5,1,15,0.75);border:1.5px solid var(--cyan);border-radius:12px;padding:12px;color:#e2e8f0;font-size:.72rem;font-family:monospace;">'+escapeHtml(shareText)+'</textarea></div></div>';
+    overlay.onclick=function(e){if(e.target===overlay)overlay.remove();};
+    document.body.appendChild(overlay);
+  }
+}
+
 let __unlockedCodeText='';
 async function unlockSavedCode(id){
   const entry=savedCodes.find(c=>c.id===id);if(!entry)return;
@@ -1940,12 +1978,45 @@ function deleteSavedCode(id){if(!confirm('Delete this?'))return;savedCodes=saved
 
 /* ========== ENCRYPTOR TAB ========== */
 async function runStandardCipher(isEncode){
-  const t=document.getElementById('cipher-in').value.trim();const p=document.getElementById('cipher-password').value;const out=document.getElementById('cipher-out');
-  if(!t){showNotice('Enter text!');return;}if(!p||p.length<6){showNotice('Password min 6 chars!');return;}
-  if(isEncode){try{const encrypted=await encryptCodeWithPassword(t,p);out.value=encrypted.salt+':'+encrypted.iv+':'+encrypted.cipherText;showNotice('🔒 Encrypted!');}catch(e){showNotice('Failed: '+e.message);}}
-  else{try{const parts=t.split(':');if(parts.length!==3){showNotice('❌ Invalid format!');return;}const plain=await decryptCodeWithPassword(parts[2],p,parts[0],parts[1]);out.value=plain;showNotice('🔓 Decrypted!');}catch(e){showNotice('❌ Wrong password!');}}
+  const t=document.getElementById('cipher-in').value.trim();
+  const p=document.getElementById('cipher-password').value;
+  const out=document.getElementById('cipher-out');
+  if(!t){showNotice('Enter text!');return;}
+  if(!p||p.length<6){showNotice('Password min 6 chars!');return;}
+  if(isEncode){
+    try{
+      const encrypted=await encryptCodeWithPassword(t,p);
+      out.value=encrypted.salt+':'+encrypted.iv+':'+encrypted.cipherText;
+      showNotice('🔒 Encrypted! Ab Copy/Share karo.');
+    }catch(e){showNotice('Failed: '+e.message);}
+  }else{
+    try{
+      let payload=t;
+      const match=t.match(/([A-Za-z0-9+/=]{20,}):([A-Za-z0-9+/=]{10,}):([A-Za-z0-9+/=]{20,})/);
+      if(match)payload=match[1]+':'+match[2]+':'+match[3];
+      const parts=payload.split(':');
+      if(parts.length!==3){showNotice('❌ Invalid format! Paste the encrypted code.');return;}
+      const plain=await decryptCodeWithPassword(parts[2],p,parts[0],parts[1]);
+      out.value=plain;
+      showNotice('🔓 Decrypted! Message niche.');
+    }catch(e){showNotice('❌ Wrong password or corrupted code!');}
+  }
 }
 function copyCipherOutput(){const out=document.getElementById('cipher-out');if(!out||!out.value.trim()){showNotice('⚠️ Pehle encrypt/decrypt karo!');return;}navigator.clipboard.writeText(out.value).then(function(){showNotice('📋 Copied!');}).catch(function(){showNotice('Copy failed');});}
+async function pasteFromClipboard(){
+  try{
+    const text=await navigator.clipboard.readText();
+    if(!text||!text.trim()){showNotice('Clipboard empty hai');return;}
+    const box=document.getElementById('cipher-in');
+    if(box){
+      box.value=text.trim();
+      showNotice('📋 Pasted! Ab password daal ke 🔓 Decrypt dabao.');
+      box.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }catch(e){
+    showNotice('⚠️ Clipboard access denied. Manually long-press paste karo.');
+  }
+}
 async function shareCipherOutput(){
   const out=document.getElementById('cipher-out');if(!out||!out.value.trim()){showNotice('⚠️ Pehle encrypt/decrypt karo!');return;}
   const isEncrypted=out.value.indexOf(':')!==-1;let shareText;
@@ -2165,6 +2236,23 @@ function initAppAfterLogin(){
   const sToggle=document.getElementById('setting-sound-toggle');if(sToggle)sToggle.checked=gGet('notif_sound',true);
   safeCall(applyCachedTheme,'theme');
   if(gGet('auto_open_ai',false)){setTimeout(function(){switchTab('ai');},1500);}
+  setTimeout(function(){
+    const hash=window.location.hash;
+    if(hash&&hash.indexOf('#d=')===0){
+      try{
+        const payload=decodeURIComponent(hash.substring(3));
+        switchTab('encrypt');
+        setTimeout(function(){
+          const inp=document.getElementById('cipher-in');
+          if(inp){
+            inp.value=payload;
+            inp.scrollIntoView({behavior:'smooth',block:'center'});
+            showNotice('🔐 Code loaded! Password daalo aur 🔓 Decrypt dabao.');
+          }
+        },400);
+      }catch(e){}
+    }
+  },600);
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(ch){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];});}
 window.addEventListener('DOMContentLoaded',function(){
