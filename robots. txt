@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /support
+Disallow: /admin
+
+Sitemap: https://b06048791-maker.github.io/sitemap.xml
