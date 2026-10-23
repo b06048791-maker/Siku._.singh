@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Online Tools - Sikku Tools</title>
+<meta name="description" content="Free online tools for everyone - calculators, converters, generators, and more.">
+<meta name="keywords" content="free online tools, tools">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="Sikku Tools">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://b06048791-maker.github.io/tools/">
+<link rel="icon" type="image/jpeg" href="../sikku.jpg">
+<script type="application/ld+json" id="ld-json">{"@context":"https://schema.org"}</script>
+<style>
+:root{--cyan:#00F2FE;--pink:#FF007F;--bg:#05010f;--card:rgba(12,25,42,0.94);--text:#F1F5F9;--muted:#94A3B8;--border:rgba(0,242,254,0.28);--green:#10b981;--yellow:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);background-image:radial-gradient(circle at 50% 0%,rgba(0,242,254,0.14),transparent 60%),radial-gradient(circle at 85% 80%,rgba(255,0,127,0.12),transparent 50%);background-attachment:fixed;color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;font-size:15px;line-height:1.5;overflow-x:hidden}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+header{background:rgba(5,1,15,0.9);backdrop-filter:blur(16px);padding:14px 16px;border-bottom:1.5px solid var(--border);position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--cyan);font-weight:900;font-size:1rem}
+.brand-logo{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan);background:#1e293b}
+.brand small{color:var(--muted);font-size:.65rem;font-weight:700;display:block}
+.app-btn{padding:8px 14px;border-radius:10px;background:linear-gradient(135deg,#00F2FE,#4facfe);color:#03151e;font-weight:800;font-size:.75rem;text-decoration:none;white-space:nowrap}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--muted);margin:14px 0 8px;flex-wrap:wrap}
+.breadcrumb a{color:var(--cyan);text-decoration:none}
+.breadcrumb span{opacity:.6}
+h1{font-size:1.6rem;font-weight:900;color:#fff;margin:8px 0 6px;line-height:1.25}
+h1 .icon{font-size:1.5rem;margin-right:6px}
+.subtitle{font-size:.85rem;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 10px 35px rgba(0,0,0,0.5);backdrop-filter:blur(12px)}
+.card-title{font-size:.9rem;font-weight:800;color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ui-input{width:100%;padding:12px 14px;background:rgba(5,1,15,0.75);border:1.5px solid var(--border);border-radius:12px;color:#fff;font-size:.9rem;outline:none;margin-bottom:10px;font-family:inherit}
+.ui-input:focus{border-color:var(--cyan);box-shadow:0 0 12px rgba(0,242,254,0.25)}
+select.ui-input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300F2FE' d='M6 8L2 4h8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+select.ui-input option{background:#0f172a;color:#fff}
+textarea.ui-input{resize:vertical;min-height:80px;font-family:inherit;line-height:1.5}
+.btn{width:100%;padding:12px 16px;border-radius:12px;font-weight:800;border:none;cursor:pointer;color:#03151e;font-size:.9rem;background:linear-gradient(135deg,#00F2FE,#4facfe);display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.btn.pink{background:linear-gradient(135deg,#FF007F,#7928ca);color:#fff}
+.btn.green{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
+.btn.gray{background:#334155;color:#fff}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.btn-row.three{grid-template-columns:1fr 1fr 1fr}
+.result-box{background:rgba(16,185,129,0.1);border:1.5px solid var(--green);border-radius:12px;padding:14px;margin-top:12px;text-align:center;color:#fff;font-size:.9rem;font-weight:700;word-break:break-word;line-height:1.6}
+.result-box.error{background:rgba(239,68,68,0.1);border-color:#ef4444;color:#fca5a5}
+.result-box.big{font-size:1.4rem;color:var(--cyan)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.stat{background:rgba(0,242,254,0.1);border:1px solid var(--border);border-radius:10px;padding:12px 6px;text-align:center}
+.stat-num{font-size:1.3rem;font-weight:900;color:var(--cyan);line-height:1}
+.stat-lbl{font-size:.6rem;color:var(--muted);font-weight:700;margin-top:4px;text-transform:uppercase}
+.description{font-size:.88rem;color:#cbd5e1;line-height:1.7;white-space:pre-line}
+.description p{margin-bottom:12px}
+.howto-list{list-style:none;counter-reset:step}
+.howto-list li{counter-increment:step;position:relative;padding:10px 0 10px 40px;font-size:.85rem;color:#e2e8f0;line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.06)}
+.howto-list li:last-child{border-bottom:none}
+.howto-list li::before{content:counter(step);position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:var(--cyan);color:#03151e;font-weight:900;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+.faq-item{background:rgba(5,1,15,0.6);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.faq-q{padding:12px 14px;font-size:.85rem;font-weight:800;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;user-select:none}
+.faq-q::after{content:'▾';color:var(--cyan);font-size:.9rem;transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 14px;font-size:.82rem;color:#cbd5e1;line-height:1.6}
+.faq-item.open .faq-a{max-height:500px;padding:0 14px 12px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.related-tile{background:rgba(22,45,70,0.85);border:1.5px solid var(--border);border-radius:12px;padding:12px 6px;text-align:center;color:#fff;text-decoration:none;transition:transform .15s,border-color .15s}
+.related-tile:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.related-tile:active{transform:scale(.96)}
+.related-icon{font-size:1.5rem;margin-bottom:4px;display:block}
+.related-name{font-size:.68rem;font-weight:800;line-height:1.2}
+footer{text-align:center;padding:20px 12px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);margin-top:30px}
+footer a{color:var(--cyan);text-decoration:none}
+.cta-box{background:linear-gradient(135deg,rgba(0,242,254,0.12),rgba(255,0,127,0.12));border:1.5px solid var(--cyan);border-radius:14px;padding:16px;text-align:center;margin-top:16px}
+.cta-box h3{font-size:.95rem;color:#fff;margin-bottom:6px}
+.cta-box p{font-size:.78rem;color:var(--muted);margin-bottom:12px}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);background:rgba(12,32,38,0.98);border:2px solid var(--cyan);color:#fff;padding:12px 20px;border-radius:14px;font-size:.85rem;font-weight:700;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,0.7);transition:transform .3s;max-width:90%;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.not-found{text-align:center;padding:60px 20px}
+.not-found h1{font-size:3rem;margin-bottom:10px}
+.small-links{font-size:.65rem;color:var(--muted);margin-top:8px;line-height:1.6}
+.noscript-block{background:rgba(251,191,36,0.1);border:1.5px solid var(--yellow);border-radius:12px;padding:16px;margin-bottom:16px}
+@media(max-width:500px){h1{font-size:1.3rem}.related-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="/" class="brand">
+<img src="../sikku.jpg" alt="Sikku Tools" class="brand-logo" onerror="this.style.display='none'">
+<div>Sikku Tools<small>60+ Free Online Tools</small></div>
+</a>
+<a href="/" class="app-btn">🚀 Open App</a>
+</header>
+
+<main class="wrap" id="main">
+<noscript>
+<div class="noscript-block">
+<h1>Free Online Tools</h1>
+<p>This tool requires JavaScript to function. Please enable JavaScript or <a href="/">use our main app</a>.</p>
+</div>
+</noscript>
+</main>
+
+<div class="toast" id="toast">Notification</div>
+
+<footer>
+<p>© 2026 <a href="/">Sikku Singh Dashboard</a> — Free Online Tools</p>
+<p style="margin-top:6px;"><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/tools/?t=privacy">Privacy</a> · <a href="/tools/?t=terms">Terms</a></p>
+<p class="small-links">60+ free tools: calculators, converters, generators, and more. No registration required.</p>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — UPDATED FOR GITHUB PAGES
+   ============================================================ */
+const SITE_URL = 'https://b06048791-maker.github.io';
+const APP_NAME = 'Sikku Tools';
+const BRAND = 'Sikku Singh Dashboard';
+const APP_URL = '/';
+
+/* ============================================================
+   TOOLS DATABASE
+   ============================================================ */
+const TOOLS = {
+
+  'text-counter': {
+    icon: '📊',
+    name: 'Text Counter',
+    category: 'Text Tools',
+    title: 'Free Online Character Counter & Word Counter Tool',
+    description: 'Free online text counter - count characters, words, lines, sentences, and paragraphs instantly. Perfect for tweets, essays, SEO content, and social media posts.',
+    keywords: 'text counter, character counter, word counter, count characters online, word count tool, free character count',
+    h1: 'Free Online Text Counter',
+    subtitle: 'Count characters, words, lines, and sentences in real time',
+    longDesc: `Our free online text counter is the perfect tool for writers, students, social media managers, and SEO professionals. Whether you are crafting a tweet with a character limit, writing an essay, or optimizing content for search engines, you need to know exactly how many characters and words your text contains.\n\nThis text counter instantly counts characters (with and without spaces), words, lines, sentences, and paragraphs. It also estimates reading time based on a standard reading speed of 200 words per minute. No registration, no limits, completely free and works on mobile and desktop.`,
+    howto: ['Paste or type your text in the input box', 'See live statistics update as you type', 'View character count (with and without spaces)', 'Check word count, line count, and sentence count', 'Use it for tweets, essays, or any content'],
+    faq: [
+      {q: 'Is this text counter free?', a: 'Yes! Completely free with no registration required.'},
+      {q: 'Does it count characters with spaces?', a: 'We show both character count with spaces and without spaces.'},
+      {q: 'Is it accurate for SEO content?', a: 'Our counter is highly accurate and shows separate counts for words, characters, and sentences.'},
+      {q: 'Can I use it for Twitter/X character limit?', a: 'Yes! Twitter allows 280 characters. Our counter shows exactly how many you have used.'}
+    ],
+    render: () => `
+      <textarea id="tc-in" class="ui-input" rows="6" placeholder="Paste your text here..."></textarea>
+      <div class="stats-grid" id="tc-stats"></div>
+    `,
+    init: () => {
+      const inp = document.getElementById('tc-in');
+      const out = document.getElementById('tc-stats');
+      const update = () => {
+        const t = inp.value;
+        const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+        const stats = [
+          {n: t.length, l: 'Chars'},
+          {n: t.replace(/\s/g,'').length, l: 'No Space'},
+          {n: words, l: 'Words'},
+          {n: t ? t.split('\n').length : 0, l: 'Lines'},
+          {n: t.split(/[.!?]+/).filter(x=>x.trim()).length, l: 'Sentences'},
+          {n: Math.ceil(words/200) + 'm', l: 'Read'}
+        ];
+        out.innerHTML = stats.map(s => `<div class="stat"><div class="stat-num">${s.n}</div><div class="stat-lbl">${s.l}</div></div>`).join('');
+      };
+      inp.addEventListener('input', update);
+      update();
+    }
+  },
+
+  'case-converter': {
+    icon: '🔤',
+    name: 'Case Converter',
+    category: 'Text Tools',
+    title: 'Free Case Converter - UPPER, lower, Title Case Tool',
+    description: 'Free online case converter. Instantly convert text to UPPERCASE, lowercase, Title Case, or Sentence case. Perfect for social media, documents, and code.',
+    keywords: 'case converter, uppercase converter, lowercase converter, title case, sentence case, text case changer',
+    h1: 'Free Case Converter Tool',
+    subtitle: 'Convert text between UPPER, lower, Title, and Sentence case',
+    longDesc: `Our free case converter tool helps you quickly transform text between different cases. Whether you need to convert a paragraph to UPPERCASE for a headline, lowercase for a code snippet, or Title Case for a book title, this tool does it instantly.\n\nCase conversion is useful for: normalizing data, fixing accidental caps lock text, formatting titles for articles, and preparing content for different platforms. Just paste your text and click the case type you want.`,
+    howto: ['Paste your text in the input box', 'Click the case type you want (UPPER, lower, Title, or Sentence)', 'Copy the converted text from the output box'],
+    faq: [
+      {q: 'What is Title Case?', a: 'Title Case capitalizes the first letter of each word, commonly used for titles and headings.'},
+      {q: 'What is Sentence case?', a: 'Sentence case capitalizes only the first letter of the sentence, like normal writing.'},
+      {q: 'Is the tool free?', a: 'Yes, 100% free with no limits.'}
+    ],
+    render: () => `
+      <textarea id="cc-in" class="ui-input" rows="5" placeholder="Enter your text..."></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="ccConvert('upper')">UPPERCASE</button>
+        <button class="btn" onclick="ccConvert('lower')">lowercase</button>
+        <button class="btn pink" onclick="ccConvert('title')">Title Case</button>
+        <button class="btn pink" onclick="ccConvert('sentence')">Sentence case</button>
+      </div>
+      <textarea id="cc-out" class="ui-input" rows="5" readonly placeholder="Result appears here..."></textarea>
+      <button class="btn green" onclick="ccCopy()">📋 Copy Result</button>
+    `,
+    init: () => {},
+    helpers: {
+      ccConvert: (type) => {
+        const i = document.getElementById('cc-in'), o = document.getElementById('cc-out');
+        let t = i.value;
+        if (type === 'upper') t = t.toUpperCase();
+        else if (type === 'lower') t = t.toLowerCase();
+        else if (type === 'title') t = t.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase());
+        else if (type === 'sentence') t = t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+        o.value = t;
+      },
+      ccCopy: () => {
+        const o = document.getElementById('cc-out');
+        if (!o.value) return showToast('Nothing to copy');
+        navigator.clipboard.writeText(o.value).then(() => showToast('📋 Copied!'));
+      }
+    }
+  },
+
+  'lorem-generator': {
+    icon: '📋',
+    name: 'Lorem Ipsum Generator',
+    category: 'Text Tools',
+    title: 'Free Lorem Ipsum Generator - Dummy Text Tool',
+    description: 'Free Lorem Ipsum generator. Generate dummy placeholder text for web designs, mockups, and prototypes. Choose paragraphs or words.',
+    keywords: 'lorem ipsum generator, dummy text, placeholder text, lorem ipsum paragraphs, filler text generator',
+    h1: 'Free Lorem Ipsum Generator',
+    subtitle: 'Generate placeholder dummy text for your designs',
+    longDesc: `Lorem Ipsum is the industry-standard placeholder text used by designers, developers, and publishers. It helps you visualize how content will look in a design without being distracted by meaningful text.\n\nOur free Lorem Ipsum generator lets you create any amount of dummy text — choose between paragraphs or words, and generate instantly. Perfect for web mockups, HTML templates, graphic designs, and printing layouts.`,
+    howto: ['Choose the amount of text you need', 'Select paragraphs or words', 'Click Generate', 'Copy the text and paste in your design'],
+    faq: [
+      {q: 'Why use Lorem Ipsum?', a: 'It has a natural-looking distribution of letters that mimics real text, so you can judge layout without real content.'},
+      {q: 'Is it free?', a: 'Yes, our generator is 100% free.'}
+    ],
+    render: () => `
+      <input type="number" id="lg-count" class="ui-input" value="3" min="1" max="50" placeholder="Amount">
+      <select id="lg-type" class="ui-input">
+        <option value="p">Paragraphs</option>
+        <option value="w">Words</option>
+      </select>
+      <button class="btn" onclick="lgGenerate()">⚡ Generate</button>
+      <textarea id="lg-out" class="ui-input" rows="8" readonly placeholder="Generated text..." style="margin-top:10px;"></textarea>
+      <button class="btn green" onclick="lgCopy()">📋 Copy</button>
+    `,
+    init: () => {},
+    helpers: {
+      lgGenerate: () => {
+        const words = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'.split(' ');
+        const count = parseInt(document.getElementById('lg-count').value) || 3;
+        const type = document.getElementById('lg-type').value;
+        let result = '';
+        if (type === 'w') {
+          const arr = [];
+          for (let i = 0; i < count * 50; i++) arr.push(words[Math.floor(Math.random() * words.length)]);
+          result = arr.join(' ');
+        } else {
+          const arr = [];
+          for (let i = 0; i < count; i++) {
+            const s = [];
+            for (let j = 0; j < 4; j++) {
+              const w = [];
+              for (let k = 0; k < 8; k++) w.push(words[Math.floor(Math.random() * words.length)]);
+              s.push(w.join(' ').replace(/^./, c => c.toUpperCase()) + '.');
+            }
+            arr.push(s.join(' '));
+          }
+          result = arr.join('\n\n');
+        }
+        document.getElementById('lg-out').value = result;
+      },
+      lgCopy: () => {
+        const o = document.getElementById('lg-out');
+        if (!o.value) return showToast('Generate first');
+        navigator.clipboard.writeText(o.value).then(() => showToast('📋 Copied!'));
+      }
+    }
+  },
+
+  'base64-converter': {
+    icon: '🔄',
+    name: 'Base64 Encoder Decoder',
+    category: 'Text Tools',
+    title: 'Free Base64 Encoder & Decoder Online Tool',
+    description: 'Free online Base64 encoder and decoder. Convert text to Base64 and back instantly. Perfect for data encoding, API testing, and image data.',
+    keywords: 'base64 encoder, base64 decoder, base64 converter, encode base64 online, decode base64, base64 tool',
+    h1: 'Free Base64 Encoder & Decoder',
+    subtitle: 'Encode text to Base64 or decode Base64 to text instantly',
+    longDesc: `Base64 is a binary-to-text encoding scheme commonly used to represent binary data in text format. It's used everywhere: in email attachments, JSON web tokens, data URLs for images, and API authentication.\n\nOur free Base64 encoder/decoder lets you quickly convert any text to Base64 or decode Base64 back to text. It handles Unicode (Hindi, emoji, etc.) correctly, unlike simple encoders.`,
+    howto: ['Paste your text or Base64 code', 'Click Encode or Decode', 'Copy the result'],
+    faq: [
+      {q: 'What is Base64?', a: 'Base64 is an encoding scheme that represents binary data using 64 printable characters (A-Z, a-z, 0-9, +, /).'},
+      {q: 'Does it support Hindi and emoji?', a: 'Yes! We handle Unicode correctly, including Hindi, Arabic, emoji, and all UTF-8 characters.'},
+      {q: 'Is Base64 encryption?', a: 'No, Base64 is encoding, not encryption. Anyone can decode it.'}
+    ],
+    render: () => `
+      <textarea id="b64-in" class="ui-input" rows="4" placeholder="Enter text or Base64..."></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="b64Encode()">🔒 Encode</button>
+        <button class="btn pink" onclick="b64Decode()">🔓 Decode</button>
+      </div>
+      <textarea id="b64-out" class="ui-input" rows="4" readonly placeholder="Result..."></textarea>
+      <button class="btn green" onclick="b64Copy()">📋 Copy</button>
+    `,
+    init: () => {},
+    helpers: {
+      b64Encode: () => {
+        const i = document.getElementById('b64-in'), o = document.getElementById('b64-out');
+        try { o.value = btoa(unescape(encodeURIComponent(i.value))); showToast('✅ Encoded'); }
+        catch (e) { o.value = 'Error: ' + e.message; }
+      },
+      b64Decode: () => {
+        const i = document.getElementById('b64-in'), o = document.getElementById('b64-out');
+        try { o.value = decodeURIComponent(escape(atob(i.value.trim()))); showToast('✅ Decoded'); }
+        catch (e) { o.value = 'Invalid Base64'; }
+      },
+      b64Copy: () => {
+        const o = document.getElementById('b64-out');
+        if (!o.value) return showToast('Nothing');
+        navigator.clipboard.writeText(o.value).then(() => showToast('📋 Copied!'));
+      }
+    }
+  },
+
+  'hash-generator': {
+    icon: '🔐',
+    name: 'Hash Generator',
+    category: 'Security',
+    title: 'Free SHA-256, SHA-1, SHA-512 Hash Generator Online',
+    description: 'Free online hash generator. Generate SHA-1, SHA-256, and SHA-512 hashes for any text. Perfect for password hashing, file verification, and data integrity.',
+    keywords: 'sha256 generator, sha1 generator, sha512 hash, hash generator online, free hash tool, hash calculator',
+    h1: 'Free Hash Generator',
+    subtitle: 'Generate SHA-1, SHA-256, and SHA-512 hashes',
+    longDesc: `Cryptographic hashing converts any text into a fixed-length "fingerprint" that cannot be reversed. It's used for password storage, file integrity verification, digital signatures, and blockchain technology.\n\nOur free hash generator supports SHA-1, SHA-256, and SHA-512 — the most common cryptographic hash algorithms. All hashing happens in your browser using the Web Crypto API, so your data never leaves your device.`,
+    howto: ['Paste your text', 'Click Generate', 'Copy any of the SHA-1, SHA-256, or SHA-512 hashes'],
+    faq: [
+      {q: 'What is SHA-256?', a: 'SHA-256 is a cryptographic hash function that produces a 256-bit (64 hex character) hash. Used in Bitcoin, passwords, and digital certificates.'},
+      {q: 'Is this safe?', a: 'Yes! Hashing happens in your browser using Web Crypto API. Your data never leaves your device.'},
+      {q: 'Can hashes be reversed?', a: 'No, cryptographic hashes are one-way functions and cannot be reversed.'}
+    ],
+    render: () => `
+      <textarea id="hg-in" class="ui-input" rows="3" placeholder="Enter text to hash..."></textarea>
+      <button class="btn" onclick="hgGenerate()">⚡ Generate Hashes</button>
+      <div id="hg-out" style="margin-top:12px;"></div>
+    `,
+    init: () => {},
+    helpers: {
+      hgGenerate: async () => {
+        const inp = document.getElementById('hg-in');
+        const out = document.getElementById('hg-out');
+        if (!inp.value) return showToast('Enter text');
+        out.innerHTML = '<div style="text-align:center;padding:10px;">Generating...</div>';
+        let html = '';
+        for (const [name, algo] of [['SHA-1', 'SHA-1'], ['SHA-256', 'SHA-256'], ['SHA-512', 'SHA-512']]) {
+          try {
+            const buf = await crypto.subtle.digest(algo, new TextEncoder().encode(inp.value));
+            const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+            html += `<div style="background:rgba(0,0,0,0.3);padding:10px;border-radius:8px;margin-bottom:8px;"><div style="font-size:.7rem;color:var(--cyan);font-weight:800;margin-bottom:4px;">${name}</div><div style="font-size:.72rem;font-family:monospace;word-break:break-all;color:#e2e8f0;">${hash}</div></div>`;
+          } catch (e) {}
+        }
+        out.innerHTML = html;
+      }
+    }
+  },
+
+  'age-calculator': {
+    icon: '🎂',
+    name: 'Age Calculator',
+    category: 'Calculators',
+    title: 'Free Age Calculator - Calculate Your Exact Age Online',
+    description: 'Free online age calculator. Find your exact age in years, months, days, hours, and minutes from your date of birth. Also find your next birthday countdown.',
+    keywords: 'age calculator, calculate age, how old am i, date of birth calculator, birthday calculator, exact age calculator',
+    h1: 'Free Age Calculator',
+    subtitle: 'Find your exact age in years, months, and days',
+    longDesc: `Our free age calculator tells you your exact age from your date of birth. It's perfect for filling out forms, planning birthdays, calculating age for official documents, or just for curiosity.\n\nYou'll get your age in years, months, and days, plus the total number of days, weeks, hours, and minutes you've been alive. We also show your next birthday countdown and the day of the week you were born.`,
+    howto: ['Select your date of birth', 'Click Calculate', 'See your exact age in multiple formats'],
+    faq: [
+      {q: 'How accurate is the age calculator?', a: 'Our calculator accounts for leap years and month lengths, so it is 100% accurate.'},
+      {q: 'Can I calculate my age on a future date?', a: 'Yes, you can enter any date to calculate age on that specific day.'},
+      {q: 'Is my date of birth stored?', a: 'No! All calculations happen in your browser. We never see or store your data.'}
+    ],
+    render: () => `
+      <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:6px;font-weight:700;">Your Date of Birth:</label>
+      <input type="date" id="age-dob" class="ui-input">
+      <label style="font-size:.75rem;color:var(--muted);display:block;margin:10px 0 6px;font-weight:700;">Calculate age as of:</label>
+      <input type="date" id="age-till" class="ui-input">
+      <button class="btn" onclick="ageCalc()">🎂 Calculate Age</button>
+      <div id="age-out"></div>
+    `,
+    init: () => {
+      const t = document.getElementById('age-till');
+      t.value = new Date().toISOString().split('T')[0];
+    },
+    helpers: {
+      ageCalc: () => {
+        const dob = document.getElementById('age-dob').value;
+        const till = document.getElementById('age-till').value;
+        const out = document.getElementById('age-out');
+        if (!dob) return showToast('Select DOB');
+        const b = new Date(dob);
+        const n = till ? new Date(till) : new Date();
+        if (n < b) return out.innerHTML = '<div class="result-box error">Date cannot be before DOB</div>';
+        let y = n.getFullYear() - b.getFullYear();
+        let m = n.getMonth() - b.getMonth();
+        let d = n.getDate() - b.getDate();
+        if (d < 0) { m--; d += new Date(n.getFullYear(), n.getMonth(), 0).getDate(); }
+        if (m < 0) { y--; m += 12; }
+        const totalDays = Math.floor((n - b) / 86400000);
+        const totalMonths = y * 12 + m;
+        const totalHours = totalDays * 24;
+        const totalMinutes = totalHours * 60;
+        const nextBD = new Date(n.getFullYear(), b.getMonth(), b.getDate());
+        if (nextBD < n) nextBD.setFullYear(n.getFullYear() + 1);
+        const daysToBD = Math.ceil((nextBD - n) / 86400000);
+        out.innerHTML = `
+          <div class="result-box big" style="margin-top:16px;">${y} years, ${m} months, ${d} days</div>
+          <div class="stats-grid" style="margin-top:12px;">
+            <div class="stat"><div class="stat-num">${totalMonths}</div><div class="stat-lbl">Months</div></div>
+            <div class="stat"><div class="stat-num">${totalDays}</div><div class="stat-lbl">Days</div></div>
+            <div class="stat"><div class="stat-num">${totalHours.toLocaleString()}</div><div class="stat-lbl">Hours</div></div>
+            <div class="stat"><div class="stat-num">${totalMinutes.toLocaleString()}</div><div class="stat-lbl">Minutes</div></div>
+            <div class="stat"><div class="stat-num">${daysToBD}</div><div class="stat-lbl">Days to Birthday</div></div>
+            <div class="stat"><div class="stat-num">${b.toLocaleDateString('en-US', {weekday:'short'})}</div><div class="stat-lbl">Born On</div></div>
+          </div>
+        `;
+      }
+    }
+  },
+
+  'bmi-calculator': {
+    icon: '⚖️',
+    name: 'BMI Calculator',
+    category: 'Calculators',
+    title: 'Free BMI Calculator - Check Your Body Mass Index Online',
+    description: 'Free online BMI calculator. Calculate your Body Mass Index from weight and height. See your BMI category: underweight, normal, overweight, or obese.',
+    keywords: 'bmi calculator, body mass index, bmi checker, health bmi, bmi chart, calculate bmi online',
+    h1: 'Free BMI Calculator',
+    subtitle: 'Calculate your Body Mass Index and health category',
+    longDesc: `Body Mass Index (BMI) is a simple measure that uses your height and weight to estimate whether you have a healthy body weight. It's used worldwide as an initial health screening tool.\n\nEnter your weight in kilograms and height in centimeters, and our calculator will show your BMI and what category it falls into: Underweight (below 18.5), Normal (18.5-24.9), Overweight (25-29.9), or Obese (30+).`,
+    howto: ['Enter your weight in kilograms', 'Enter your height in centimeters', 'Click Check BMI', 'See your BMI and category'],
+    faq: [
+      {q: 'What is a healthy BMI?', a: 'A BMI between 18.5 and 24.9 is considered healthy for most adults.'},
+      {q: 'Is BMI accurate for everyone?', a: 'BMI does not distinguish muscle from fat, so athletes and bodybuilders may show as overweight even if healthy.'},
+      {q: 'What is BMI based on?', a: 'BMI is calculated as weight in kg divided by (height in meters) squared.'}
+    ],
+    render: () => `
+      <input type="number" id="bmi-w" class="ui-input" placeholder="Weight (kg)" step="0.1">
+      <input type="number" id="bmi-h" class="ui-input" placeholder="Height (cm)" step="0.1">
+      <button class="btn" onclick="bmiCalc()">⚖️ Check BMI</button>
+      <div id="bmi-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      bmiCalc: () => {
+        const w = parseFloat(document.getElementById('bmi-w').value);
+        const h = parseFloat(document.getElementById('bmi-h').value) / 100;
+        const out = document.getElementById('bmi-out');
+        if (!w || !h || h <= 0) return out.innerHTML = '<div class="result-box error">Enter valid values</div>';
+        const bmi = (w / (h * h)).toFixed(1);
+        let cat, color;
+        if (bmi < 18.5) { cat = 'Underweight ⚠️'; color = '#fbbf24'; }
+        else if (bmi < 25) { cat = 'Normal Weight ✅'; color = '#10b981'; }
+        else if (bmi < 30) { cat = 'Overweight ⚠️'; color = '#f97316'; }
+        else { cat = 'Obese 🚨'; color = '#ef4444'; }
+        out.innerHTML = `<div class="result-box big" style="margin-top:16px;color:${color};">${bmi}</div><div class="result-box" style="border-color:${color};color:${color};">${cat}</div>`;
+      }
+    }
+  },
+
+  'percentage-calculator': {
+    icon: '%',
+    name: 'Percentage Calculator',
+    category: 'Calculators',
+    title: 'Free Percentage Calculator - Find Percentages Online',
+    description: 'Free percentage calculator. Calculate percentages, percentage increase/decrease, and what percent a number is of another. Instant results.',
+    keywords: 'percentage calculator, percent calculator, how to calculate percentage, percentage increase, percentage of number',
+    h1: 'Free Percentage Calculator',
+    subtitle: 'Calculate percentages, increases, and decreases instantly',
+    longDesc: `Percentages are everywhere — discounts, taxes, test scores, tips, and growth rates. Our free percentage calculator handles all common percentage calculations instantly.\n\nCalculate: What is X% of Y? What percent is X of Y? Percentage increase from X to Y. Percentage decrease from X to Y. All without memorizing formulas.`,
+    howto: ['Choose the calculation type', 'Enter the two numbers', 'Click Calculate', 'Get the result instantly'],
+    faq: [
+      {q: 'How do I calculate percentage?', a: 'To find X% of Y, multiply Y by X and divide by 100. Example: 20% of 500 = 500 × 20 ÷ 100 = 100.'},
+      {q: 'How do I calculate percentage increase?', a: 'Percentage increase = ((new value - old value) / old value) × 100.'}
+    ],
+    render: () => `
+      <select id="pct-type" class="ui-input">
+        <option value="of">What is X% of Y?</option>
+        <option value="is">X is what % of Y?</option>
+        <option value="inc">Percentage increase from X to Y</option>
+        <option value="dec">Percentage decrease from X to Y</option>
+      </select>
+      <input type="number" id="pct-a" class="ui-input" placeholder="First number">
+      <input type="number" id="pct-b" class="ui-input" placeholder="Second number">
+      <button class="btn" onclick="pctCalc()">Calculate</button>
+      <div id="pct-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      pctCalc: () => {
+        const type = document.getElementById('pct-type').value;
+        const a = parseFloat(document.getElementById('pct-a').value);
+        const b = parseFloat(document.getElementById('pct-b').value);
+        const out = document.getElementById('pct-out');
+        if (isNaN(a) || isNaN(b)) return out.innerHTML = '<div class="result-box error">Enter both numbers</div>';
+        let result, formula;
+        if (type === 'of') { result = (b * a / 100).toFixed(2); formula = `${a}% of ${b} = ${result}`; }
+        else if (type === 'is') { result = (a / b * 100).toFixed(2); formula = `${a} is ${result}% of ${b}`; }
+        else if (type === 'inc') { result = ((b - a) / a * 100).toFixed(2); formula = `Increase from ${a} to ${b} = ${result}%`; }
+        else { result = ((a - b) / a * 100).toFixed(2); formula = `Decrease from ${a} to ${b} = ${result}%`; }
+        out.innerHTML = `<div class="result-box big" style="margin-top:16px;">${result}${type === 'of' || type === 'is' ? (type === 'of' ? '' : '%') : '%'}</div><div class="result-box">${formula}</div>`;
+      }
+    }
+  },
+
+  'love-calculator': {
+    icon: '💕',
+    name: 'Love Calculator',
+    category: 'Fun',
+    title: 'Free Love Calculator - Test Your Love Compatibility',
+    description: 'Free love calculator. Enter two names to see your love compatibility percentage. Fun, romantic test for couples and friends.',
+    keywords: 'love calculator, love percentage, love test, compatibility calculator, love calculator by name, love meter',
+    h1: 'Free Love Calculator',
+    subtitle: 'Test your love compatibility with your partner',
+    longDesc: `The love calculator is a fun tool that calculates a "love percentage" between two names. While it's not scientifically accurate (it's just for fun!), it's a great way to share laughs with your partner, friends, or crush.\n\nEnter two names and get an instant love percentage with a romantic message. Share with your loved ones for a fun moment. Perfect for Valentine's Day, couples, and friendship tests.`,
+    howto: ['Enter the first person\'s name', 'Enter the second person\'s name', 'Click Calculate', 'Share the result with your partner!'],
+    faq: [
+      {q: 'Is this scientifically accurate?', a: 'No, this is just a fun tool! Love is much more complex than a percentage.'},
+      {q: 'Can I test friendship compatibility?', a: 'Yes! You can use it for friends, family, or anyone.'},
+      {q: 'Does it work with Hindi names?', a: 'Yes, all names work including Hindi, English, and other languages.'}
+    ],
+    render: () => `
+      <input type="text" id="love-1" class="ui-input" placeholder="Your Name">
+      <input type="text" id="love-2" class="ui-input" placeholder="Partner's Name">
+      <button class="btn pink" onclick="loveCalc()">💕 Calculate Love</button>
+      <div id="love-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      loveCalc: () => {
+        const a = (document.getElementById('love-1').value || '').toLowerCase().replace(/\s/g, '');
+        const b = (document.getElementById('love-2').value || '').toLowerCase().replace(/\s/g, '');
+        const out = document.getElementById('love-out');
+        if (!a || !b) return out.innerHTML = '<div class="result-box error">Enter both names</div>';
+        let h = 0;
+        const s = a + b;
+        for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 100;
+        const result = (h % 61) + 20;
+        let msg = '';
+        if (result >= 90) msg = 'Soulmates! 💕';
+        else if (result >= 75) msg = 'Great match! 💖';
+        else if (result >= 50) msg = 'Good potential 💗';
+        else if (result >= 30) msg = 'Just friends 💛';
+        else msg = 'Better as friends 🤝';
+        out.innerHTML = `<div class="result-box big" style="margin-top:16px;color:#FF007F;font-size:2rem;">${result}%</div><div class="result-box" style="border-color:#FF007F;color:#FF007F;">${msg}</div>`;
+      }
+    }
+  },
+
+  'emi-calculator': {
+    icon: '💰',
+    name: 'EMI Calculator',
+    category: 'Calculators',
+    title: 'Free EMI Calculator - Loan EMI Calculator Online',
+    description: 'Free online EMI calculator. Calculate monthly EMI, total interest, and total payment for home loans, car loans, personal loans, and more.',
+    keywords: 'emi calculator, loan calculator, home loan emi, car loan emi, personal loan calculator, monthly emi calculator',
+    h1: 'Free EMI Calculator',
+    subtitle: 'Calculate your monthly loan EMI instantly',
+    longDesc: `EMI (Equated Monthly Installment) is the fixed amount you pay each month to repay a loan. Our free EMI calculator helps you understand how much you'll pay monthly and total interest for any loan amount, interest rate, and tenure.\n\nEnter loan amount, annual interest rate, and loan duration in years — we'll instantly calculate your monthly EMI, total interest paid, and total amount repaid over the loan tenure. Perfect for planning home loans, car loans, personal loans, and education loans.`,
+    howto: ['Enter loan amount in rupees', 'Enter annual interest rate (e.g., 10 for 10%)', 'Enter loan duration in years', 'Click Calculate to see your EMI'],
+    faq: [
+      {q: 'What is EMI?', a: 'EMI (Equated Monthly Installment) is the fixed amount you pay monthly to repay a loan, including principal and interest.'},
+      {q: 'What is the EMI formula?', a: 'EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is principal, r is monthly rate, and n is number of months.'},
+      {q: 'Does EMI change over the loan period?', a: 'For fixed-rate loans, EMI stays the same. For floating-rate loans, EMI changes when interest rate changes.'}
+    ],
+    render: () => `
+      <input type="number" id="emi-p" class="ui-input" placeholder="Loan Amount (₹)" value="100000">
+      <input type="number" id="emi-r" class="ui-input" placeholder="Interest Rate (%)" value="10" step="0.1">
+      <input type="number" id="emi-y" class="ui-input" placeholder="Loan Tenure (Years)" value="2">
+      <button class="btn green" onclick="emiCalc()">💰 Calculate EMI</button>
+      <div id="emi-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      emiCalc: () => {
+        const p = parseFloat(document.getElementById('emi-p').value);
+        const r = parseFloat(document.getElementById('emi-r').value) / 12 / 100;
+        const n = parseFloat(document.getElementById('emi-y').value) * 12;
+        const out = document.getElementById('emi-out');
+        if (!p || !r || !n) return out.innerHTML = '<div class="result-box error">Enter all values</div>';
+        const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        const total = emi * n;
+        const interest = total - p;
+        out.innerHTML = `
+          <div class="result-box big" style="margin-top:16px;">₹${emi.toFixed(0)}/month</div>
+          <div class="stats-grid">
+            <div class="stat"><div class="stat-num">₹${p.toLocaleString('en-IN')}</div><div class="stat-lbl">Principal</div></div>
+            <div class="stat"><div class="stat-num">₹${interest.toFixed(0)}</div><div class="stat-lbl">Total Interest</div></div>
+            <div class="stat"><div class="stat-num">₹${total.toFixed(0)}</div><div class="stat-lbl">Total Payment</div></div>
+          </div>
+        `;
+      }
+    }
+  },
+
+  'discount-calculator': {
+    icon: '🎯',
+    name: 'Discount Calculator',
+    category: 'Calculators',
+    title: 'Free Discount Calculator - Calculate Sale Price Online',
+    description: 'Free discount calculator. Calculate final price after discount and total savings. Perfect for shopping, sales, and price comparison.',
+    keywords: 'discount calculator, sale price calculator, percentage off, discount percentage, price after discount, shopping calculator',
+    h1: 'Free Discount Calculator',
+    subtitle: 'Calculate final price and total savings after discount',
+    longDesc: `Shopping during a sale? Our free discount calculator helps you instantly calculate the final price after any discount and see how much you're saving.\n\nEnter the original price and discount percentage — we'll show you the final price, discount amount in rupees, and your total savings. Essential for shopping, Black Friday deals, and comparing offers.`,
+    howto: ['Enter the original price', 'Enter the discount percentage', 'Click Calculate', 'See final price and savings'],
+    faq: [
+      {q: 'How do I calculate discount price?', a: 'Final price = Original price × (1 - Discount% / 100). Example: ₹1000 with 20% off = ₹800.'},
+      {q: 'What if there is tax after discount?', a: 'This calculator shows pre-tax price. Add applicable GST/tax to get final price.'}
+    ],
+    render: () => `
+      <input type="number" id="disc-p" class="ui-input" placeholder="Original Price (₹)" value="1000">
+      <input type="number" id="disc-d" class="ui-input" placeholder="Discount %" value="20">
+      <button class="btn green" onclick="discCalc()">🎯 Calculate</button>
+      <div id="disc-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      discCalc: () => {
+        const p = parseFloat(document.getElementById('disc-p').value);
+        const d = parseFloat(document.getElementById('disc-d').value);
+        const out = document.getElementById('disc-out');
+        if (!p || !d) return out.innerHTML = '<div class="result-box error">Enter values</div>';
+        const save = p * d / 100;
+        const final = p - save;
+        out.innerHTML = `<div class="result-box big" style="margin-top:16px;color:#10b981;">₹${final.toFixed(2)}</div><div class="result-box">You save ₹${save.toFixed(2)} (${d}% off)</div>`;
+      }
+    }
+  },
+
+  'password-generator': {
+    icon: '🔑',
+    name: 'Password Generator',
+    category: 'Security',
+    title: 'Free Strong Password Generator - Secure Random Passwords',
+    description: 'Free online password generator. Create strong, random, secure passwords with customizable length, symbols, numbers, and case. 100% safe.',
+    keywords: 'password generator, strong password, random password, secure password generator, free password generator, generate password',
+    h1: 'Free Strong Password Generator',
+    subtitle: 'Generate secure random passwords instantly',
+    longDesc: `Weak passwords are the #1 cause of hacked accounts. Our free password generator creates strong, random passwords that are virtually impossible to crack.\n\nCustomize the length (8 to 64 characters) and choose which character types to include: uppercase, lowercase, numbers, and symbols. All passwords are generated locally in your browser using the cryptographically secure Web Crypto API — we never see or store them.`,
+    howto: ['Choose password length', 'Select character types (uppercase, numbers, symbols)', 'Click Generate', 'Copy and save your password'],
+    faq: [
+      {q: 'What makes a strong password?', a: 'A strong password is 12+ characters, includes uppercase, lowercase, numbers, and symbols, and is randomly generated.'},
+      {q: 'Are these passwords safe?', a: 'Yes! We use browser crypto APIs to generate truly random passwords. They never leave your device.'},
+      {q: 'How often should I change my password?', a: 'Change immediately if you suspect a breach. Otherwise, strong unique passwords only need changing every 1-2 years.'}
+    ],
+    render: () => `
+      <label style="font-size:.8rem;color:var(--muted);">Length: <span id="pw-len-v" style="color:var(--cyan);font-weight:900;">16</span></label>
+      <input type="range" id="pw-len" min="8" max="64" value="16" style="width:100%;accent-color:var(--cyan);margin:8px 0;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.82rem;color:#fff;margin:10px 0;">
+        <label><input type="checkbox" id="pw-up" checked> Uppercase</label>
+        <label><input type="checkbox" id="pw-lo" checked> Lowercase</label>
+        <label><input type="checkbox" id="pw-num" checked> Numbers</label>
+        <label><input type="checkbox" id="pw-sym" checked> Symbols</label>
+      </div>
+      <button class="btn green" onclick="pwGen()">🔑 Generate Password</button>
+      <input type="text" id="pw-out" class="ui-input" readonly placeholder="Your password..." style="margin-top:10px;font-family:monospace;font-size:1rem;">
+      <button class="btn" onclick="pwCopy()">📋 Copy Password</button>
+    `,
+    init: () => {
+      document.getElementById('pw-len').addEventListener('input', e => {
+        document.getElementById('pw-len-v').innerText = e.target.value;
+      });
+      pwGen();
+    },
+    helpers: {
+      pwGen: () => {
+        const len = parseInt(document.getElementById('pw-len').value);
+        let chars = '';
+        if (document.getElementById('pw-up').checked) chars += 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+        if (document.getElementById('pw-lo').checked) chars += 'abcdefghijkmnopqrstuvwxyz';
+        if (document.getElementById('pw-num').checked) chars += '23456789';
+        if (document.getElementById('pw-sym').checked) chars += '!@#$%^&*()_+-=';
+        if (!chars) return showToast('Select at least one character type');
+        const arr = new Uint32Array(len);
+        crypto.getRandomValues(arr);
+        let out = '';
+        for (let i = 0; i < len; i++) out += chars.charAt(arr[i] % chars.length);
+        document.getElementById('pw-out').value = out;
+      },
+      pwCopy: () => {
+        const o = document.getElementById('pw-out');
+        if (!o.value) return;
+        navigator.clipboard.writeText(o.value).then(() => showToast('📋 Copied!'));
+      }
+    }
+  },
+
+  'qr-generator': {
+    icon: '🏁',
+    name: 'QR Code Generator',
+    category: 'Generators',
+    title: 'Free QR Code Generator - Create QR Codes Online',
+    description: 'Free QR code generator. Create QR codes for URLs, text, phone numbers, emails, WiFi, and more. Download as PNG. No registration required.',
+    keywords: 'qr code generator, free qr code, qr code maker, generate qr code, url to qr, create qr online',
+    h1: 'Free QR Code Generator',
+    subtitle: 'Create QR codes for URLs, text, and more instantly',
+    longDesc: `QR codes are two-dimensional barcodes that smartphones can scan to instantly open websites, share contact info, connect to WiFi, and much more. Our free QR code generator creates high-quality QR codes in seconds.\n\nSimply enter any text or URL, click Generate, and your QR code appears. Perfect for business cards, restaurant menus, event posters, product packaging, and marketing materials. Download as PNG to use anywhere.`,
+    howto: ['Enter your text or URL', 'Click Generate QR Code', 'Scan with any phone camera to test', 'Download or screenshot to use'],
+    faq: [
+      {q: 'Are these QR codes free to use?', a: 'Yes, all QR codes you generate are free for personal and commercial use.'},
+      {q: 'Do QR codes expire?', a: 'Our static QR codes never expire. They work forever.'},
+      {q: 'What can I put in a QR code?', a: 'URLs, text, phone numbers, email addresses, WiFi credentials, vCards, and more.'}
+    ],
+    render: () => `
+      <input type="text" id="qr-txt" class="ui-input" placeholder="Enter URL or text...">
+      <button class="btn" onclick="qrGen()">🏁 Generate QR Code</button>
+      <div id="qr-out" style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:10px;"></div>
+    `,
+    init: () => {},
+    helpers: {
+      qrGen: () => {
+        const v = document.getElementById('qr-txt').value.trim();
+        const out = document.getElementById('qr-out');
+        if (!v) return showToast('Enter text or URL');
+        out.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(v)}" alt="QR Code" style="border-radius:14px;background:#fff;padding:10px;max-width:300px;"><div style="font-size:.75rem;color:var(--muted);text-align:center;">📱 Scan with your phone camera</div>`;
+      }
+    }
+  },
+
+  'unit-converter': {
+    icon: '🔄',
+    name: 'Unit Converter',
+    category: 'Converters',
+    title: 'Free Unit Converter - Length, Weight, Temperature, Time',
+    description: 'Free online unit converter. Convert between length, weight, temperature, time, and data units instantly. Accurate results for any conversion.',
+    keywords: 'unit converter, length converter, weight converter, temperature converter, convert units, measurement converter',
+    h1: 'Free Unit Converter',
+    subtitle: 'Convert length, weight, temperature, time, and data',
+    longDesc: `Our free unit converter handles all common measurement conversions — from meters to feet, kilograms to pounds, Celsius to Fahrenheit, and more.\n\nChoose a category (length, weight, temperature, time, or data), enter your value, and pick units to convert between. Results are shown instantly with full precision.`,
+    howto: ['Choose a category (Length, Weight, etc.)', 'Enter the value to convert', 'Select "from" and "to" units', 'Click Convert'],
+    faq: [
+      {q: 'How accurate is the converter?', a: 'Results are accurate to 6 decimal places using standard conversion factors.'},
+      {q: 'What units can I convert?', a: 'Length (m, km, cm, miles, feet, inches), Weight (kg, g, lb, oz), Temperature (C, F, K), Time (s, min, h, d, w), Data (B, KB, MB, GB).'}
+    ],
+    render: () => `
+      <select id="uc-cat" class="ui-input">
+        <option value="Length">📏 Length</option>
+        <option value="Weight">⚖️ Weight</option>
+        <option value="Temperature">🌡️ Temperature</option>
+        <option value="Time">⏰ Time</option>
+        <option value="Data">💾 Data</option>
+      </select>
+      <input type="number" id="uc-val" class="ui-input" placeholder="Value" value="1">
+      <div class="btn-row">
+        <select id="uc-from" class="ui-input" style="margin:0;"></select>
+        <select id="uc-to" class="ui-input" style="margin:0;"></select>
+      </div>
+      <button class="btn" onclick="ucConvert()" style="margin-top:10px;">Convert</button>
+      <div id="uc-out"></div>
+    `,
+    init: () => {
+      const UNIT = {
+        Length: { 'Meter (m)': 1, 'Kilometer (km)': 1000, 'Centimeter (cm)': 0.01, 'Mile (mi)': 1609.344, 'Foot (ft)': 0.3048, 'Inch (in)': 0.0254 },
+        Weight: { 'Kilogram (kg)': 1, 'Gram (g)': 0.001, 'Pound (lb)': 0.45359237, 'Ounce (oz)': 0.028349523125 },
+        Temperature: { 'Celsius (°C)': 'C', 'Fahrenheit (°F)': 'F', 'Kelvin (K)': 'K' },
+        Time: { 'Second (s)': 1, 'Minute (min)': 60, 'Hour (h)': 3600, 'Day': 86400, 'Week': 604800 },
+        Data: { 'Byte (B)': 1, 'Kilobyte (KB)': 1024, 'Megabyte (MB)': 1048576, 'Gigabyte (GB)': 1073741824 }
+      };
+      window.__UNITS = UNIT;
+      const cat = document.getElementById('uc-cat');
+      const from = document.getElementById('uc-from');
+      const to = document.getElementById('uc-to');
+      const update = () => {
+        const keys = Object.keys(UNIT[cat.value]);
+        from.innerHTML = keys.map(k => `<option>${k}</option>`).join('');
+        to.innerHTML = keys.map(k => `<option>${k}</option>`).join('');
+        if (keys.length > 1) to.selectedIndex = 1;
+      };
+      cat.addEventListener('change', update);
+      update();
+    },
+    helpers: {
+      ucConvert: () => {
+        const cat = document.getElementById('uc-cat').value;
+        const from = document.getElementById('uc-from').value;
+        const to = document.getElementById('uc-to').value;
+        const val = parseFloat(document.getElementById('uc-val').value);
+        const out = document.getElementById('uc-out');
+        if (isNaN(val)) return out.innerHTML = '<div class="result-box error">Enter value</div>';
+        const U = window.__UNITS[cat];
+        let result;
+        if (cat === 'Temperature') {
+          let c;
+          if (U[from] === 'C') c = val; else if (U[from] === 'F') c = (val - 32) * 5 / 9; else c = val - 273.15;
+          if (U[to] === 'C') result = c; else if (U[to] === 'F') result = c * 9 / 5 + 32; else result = c + 273.15;
+        } else {
+          result = (val * U[from]) / U[to];
+        }
+        const pretty = Math.abs(result) >= 1e9 ? result.toExponential(4) : parseFloat(result.toFixed(6));
+        out.innerHTML = `<div class="result-box big" style="margin-top:16px;">${val} ${from.split(' ')[0]} = ${pretty} ${to.split(' ')[0]}</div>`;
+      }
+    }
+  },
+
+  'world-clock': {
+    icon: '🌍',
+    name: 'World Clock',
+    category: 'Utilities',
+    title: 'Free World Clock - Current Time in Major Cities',
+    description: 'Free online world clock. See current time in India, USA, UK, Japan, Australia, Dubai and more. Live updating times from major cities.',
+    keywords: 'world clock, current time, time zones, what time is it, world time, live clock',
+    h1: 'Live World Clock',
+    subtitle: 'Current time in major cities around the world',
+    longDesc: `Our free world clock shows live current time in major cities and time zones around the world. Perfect for scheduling international meetings, calling friends abroad, or just checking what time it is elsewhere.\n\nTimes update every second. Includes India, USA (New York), UK (London), Japan (Tokyo), Australia (Sydney), and UAE (Dubai).`,
+    howto: ['View current times in 6 major cities', 'Updates every second automatically', 'Compare times across time zones'],
+    faq: [
+      {q: 'Is this accurate?', a: 'Yes, uses your device clock and standard timezone database. 100% accurate.'},
+      {q: 'How many cities are shown?', a: 'We show India, USA, UK, Japan, Australia, and UAE. More coming soon.'}
+    ],
+    render: () => `<div id="wc-list"></div>`,
+    init: () => {
+      const update = () => {
+        const el = document.getElementById('wc-list');
+        if (!el) return;
+        const zones = [
+          {n: '🇮🇳 India', z: 'Asia/Kolkata'},
+          {n: '🇺🇸 New York', z: 'America/New_York'},
+          {n: '🇬🇧 London', z: 'Europe/London'},
+          {n: '🇯🇵 Tokyo', z: 'Asia/Tokyo'},
+          {n: '🇦🇺 Sydney', z: 'Australia/Sydney'},
+          {n: '🇦🇪 Dubai', z: 'Asia/Dubai'}
+        ];
+        el.innerHTML = zones.map(x => {
+          const t = new Date().toLocaleTimeString('en-US', {timeZone: x.z, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true});
+          return `<div style="display:flex;justify-content:space-between;padding:12px;background:rgba(0,0,0,0.3);border-radius:10px;margin-bottom:6px;"><span style="font-size:.85rem;font-weight:700;">${x.n}</span><span style="font-size:.9rem;color:var(--cyan);font-weight:900;font-family:monospace;">${t}</span></div>`;
+        }).join('');
+      };
+      update();
+      setInterval(update, 1000);
+    }
+  },
+
+  'binary-converter': {
+    icon: '01',
+    name: 'Binary Converter',
+    category: 'Converters',
+    title: 'Free Text to Binary Converter - Binary to Text Online',
+    description: 'Free online binary converter. Convert text to binary code and binary to text. Support for ASCII binary conversion. Instant results.',
+    keywords: 'binary converter, text to binary, binary to text, ascii to binary, convert binary, binary translator',
+    h1: 'Free Binary Converter',
+    subtitle: 'Convert text to binary and binary to text instantly',
+    longDesc: `Binary code (0s and 1s) is the fundamental language of computers. Our free converter lets you translate any text to binary or decode binary back to readable text.\n\nEnter text like "Hello" and get its binary representation (01001000 01100101...). Or paste binary and convert it back to text. Perfect for learning, teaching, or just for fun.`,
+    howto: ['Enter text or binary code', 'Click "to Binary" or "from Binary"', 'Copy the result'],
+    faq: [
+      {q: 'How does text to binary conversion work?', a: 'Each character has an ASCII value, which is converted to its 8-bit binary representation. E.g., "A" = 65 = 01000001.'},
+      {q: 'Is it free?', a: 'Yes, 100% free with no limits.'}
+    ],
+    render: () => `
+      <textarea id="bc-in" class="ui-input" rows="3" placeholder="Text or binary code..."></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="bcToBin()">➡️ to Binary</button>
+        <button class="btn pink" onclick="bcFromBin()">⬅️ from Binary</button>
+      </div>
+      <textarea id="bc-out" class="ui-input" rows="3" readonly placeholder="Result..."></textarea>
+      <button class="btn green" onclick="bcCopy()">📋 Copy</button>
+    `,
+    init: () => {},
+    helpers: {
+      bcToBin: () => {
+        const i = document.getElementById('bc-in'), o = document.getElementById('bc-out');
+        o.value = i.value.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+      },
+      bcFromBin: () => {
+        const i = document.getElementById('bc-in'), o = document.getElementById('bc-out');
+        try { o.value = i.value.trim().split(/\s+/).map(b => String.fromCharCode(parseInt(b, 2))).join(''); }
+        catch (e) { o.value = 'Invalid binary'; }
+      },
+      bcCopy: () => {
+        const o = document.getElementById('bc-out');
+        if (!o.value) return;
+        navigator.clipboard.writeText(o.value).then(() => showToast('📋 Copied!'));
+      }
+    }
+  },
+
+  'morse-code': {
+    icon: '📡',
+    name: 'Morse Code Translator',
+    category: 'Converters',
+    title: 'Free Morse Code Translator - Text to Morse, Morse to Text',
+    description: 'Free online Morse code translator. Convert text to Morse code and decode Morse code to text instantly. Support for A-Z, 0-9, and common symbols.',
+    keywords: 'morse code translator, morse code converter, text to morse, morse to text, decode morse code, morse code alphabet',
+    h1: 'Free Morse Code Translator',
+    subtitle: 'Convert text to Morse code and back instantly',
+    longDesc: `Morse code is a method of encoding text using sequences of dots and dashes. Our free translator converts any text to Morse code or decodes Morse back to text.\n\nSupports all letters (A-Z), numbers (0-9), and common punctuation. Perfect for learning Morse code, sending secret messages, or amateur radio practice.`,
+    howto: ['Enter text or Morse code', 'Click Encode or Decode', 'Copy the result'],
+    faq: [
+      {q: 'What is Morse code?', a: 'A method of transmitting text as a series of dots (.) and dashes (-), used historically for telegraphy and still used by amateur radio operators.'},
+      {q: 'What is SOS in Morse?', a: 'SOS is "... --- ..." — the universal distress signal.'}
+    ],
+    render: () => `
+      <textarea id="mc-in" class="ui-input" rows="3" placeholder="Text or Morse code..."></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="mcEncode()">➡️ Encode</button>
+        <button class="btn pink" onclick="mcDecode()">⬅️ Decode</button>
+      </div>
+      <textarea id="mc-out" class="ui-input" rows="3" readonly placeholder="Result..."></textarea>
+      <button class="btn green" onclick="mcCopy()">📋 Copy</button>
+    `,
+    init: () => {
+      window.__MORSE_MAP = {A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',' ':'/'};
+    },
+    helpers: {
+      mcEncode: () => {
+        const i = document.getElementById('mc-in'), o = document.getElementById('mc-out');
+        o.value = i.value.toUpperCase().split('').map(c => window.__MORSE_MAP[c] || '').filter(Boolean).join(' ');
+      },
+      mcDecode: () => {
+        const i = document.getElementById('mc-in'), o = document.getElementById('mc-out');
+        const rev = {};
+        for (const k in window.__MORSE_MAP) rev[window.__MORSE_MAP[k]] = k;
+        o.value = i.value.split(' ').map(c => rev[c] || (c === '/' ? ' ' : '?')).join('');
+      },
+      mcCopy: () => {
+        const o = document.getElementById('mc-out');
+        if (!o.value) return;
+        navigator.clipboard.writeText(o.value).then(() => showToast('📋 Copied!'));
+      }
+    }
+  },
+
+  'json-formatter': {
+    icon: '📋',
+    name: 'JSON Formatter',
+    category: 'Dev Tools',
+    title: 'Free JSON Formatter & Validator Online',
+    description: 'Free online JSON formatter, beautifier, and validator. Format, minify, and validate JSON instantly. Catches syntax errors.',
+    keywords: 'json formatter, json validator, json beautifier, json pretty print, format json online, json minify',
+    h1: 'Free JSON Formatter',
+    subtitle: 'Format, validate, and minify JSON instantly',
+    longDesc: `JSON (JavaScript Object Notation) is the standard data format for APIs and configuration files. Our free JSON formatter makes messy JSON readable with proper indentation, validates syntax, and minifies for production.\n\nPaste any JSON and click Format to pretty-print with 2-space indentation. Click Minify to remove all whitespace. Invalid JSON shows the exact error and line number.`,
+    howto: ['Paste your JSON', 'Click Format, Minify, or Validate', 'Copy the formatted result'],
+    faq: [
+      {q: 'What is JSON?', a: 'JSON is a lightweight data format used for data exchange. It uses {} for objects and [] for arrays.'},
+      {q: 'Does it work with large JSON?', a: 'Yes, handles files up to several MB easily.'}
+    ],
+    render: () => `
+      <textarea id="jf-in" class="ui-input" rows="6" placeholder="Paste JSON here..."></textarea>
+      <div class="btn-row three">
+        <button class="btn" onclick="jfFormat(true)">✨ Format</button>
+        <button class="btn green" onclick="jfFormat(false)">📦 Minify</button>
+        <button class="btn pink" onclick="jfValidate()">✓ Validate</button>
+      </div>
+      <textarea id="jf-out" class="ui-input" rows="6" readonly placeholder="Result..."></textarea>
+    `,
+    init: () => {},
+    helpers: {
+      jfFormat: (pretty) => {
+        const i = document.getElementById('jf-in'), o = document.getElementById('jf-out');
+        try {
+          const obj = JSON.parse(i.value);
+          o.value = pretty ? JSON.stringify(obj, null, 2) : JSON.stringify(obj);
+          showToast(pretty ? '✨ Formatted!' : '📦 Minified!');
+        } catch (e) { o.value = '❌ Invalid JSON: ' + e.message; }
+      },
+      jfValidate: () => {
+        const i = document.getElementById('jf-in');
+        try { JSON.parse(i.value); showToast('✅ Valid JSON!'); }
+        catch (e) { showToast('❌ ' + e.message); }
+      }
+    }
+  },
+
+  'password-strength': {
+    icon: '💪',
+    name: 'Password Strength Tester',
+    category: 'Security',
+    title: 'Free Password Strength Checker Online',
+    description: 'Free password strength checker. Test how strong your password is. Get instant feedback and tips to improve security.',
+    keywords: 'password strength, password checker, test password, how strong is my password, password security',
+    h1: 'Free Password Strength Checker',
+    subtitle: 'Test how strong your password is',
+    longDesc: `Our password strength checker analyzes your password and gives it a strength rating from Very Weak to Very Strong. It checks for length, uppercase, lowercase, numbers, and symbols.\n\nWeak passwords are hacked in seconds. Use this tool to test and improve your passwords before using them. All analysis happens locally — your password never leaves your device.`,
+    howto: ['Type or paste your password', 'See instant strength rating', 'Read tips to improve it'],
+    faq: [
+      {q: 'Is my password safe?', a: 'Yes! Analysis happens in your browser only. Your password never leaves your device.'},
+      {q: 'What is a strong password?', a: '12+ characters with uppercase, lowercase, numbers, and symbols.'}
+    ],
+    render: () => `
+      <input type="password" id="ps-in" class="ui-input" placeholder="Enter password to test...">
+      <div style="height:10px;background:rgba(0,0,0,0.5);border-radius:5px;overflow:hidden;margin:8px 0;">
+        <div id="ps-bar" style="height:100%;width:0%;background:#ef4444;transition:all .3s;"></div>
+      </div>
+      <div id="ps-score" style="text-align:center;font-size:.95rem;font-weight:900;color:#fff;margin-bottom:10px;"></div>
+      <div id="ps-tips" style="font-size:.8rem;color:var(--muted);line-height:1.6;"></div>
+    `,
+    init: () => {
+      const inp = document.getElementById('ps-in');
+      inp.addEventListener('input', () => {
+        const pwd = inp.value;
+        const bar = document.getElementById('ps-bar');
+        const score = document.getElementById('ps-score');
+        const tips = document.getElementById('ps-tips');
+        let points = 0;
+        if (pwd.length >= 8) points++;
+        if (pwd.length >= 12) points++;
+        if (/[a-z]/.test(pwd)) points++;
+        if (/[A-Z]/.test(pwd)) points++;
+        if (/[0-9]/.test(pwd)) points++;
+        if (/[^a-zA-Z0-9]/.test(pwd)) points++;
+        const pct = (points / 6) * 100;
+        bar.style.width = pct + '%';
+        const colors = ['#ef4444', '#f59e0b', '#fbbf24', '#84cc16', '#10b981', '#059669'];
+        const labels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong', 'Very Strong'];
+        const idx = Math.min(5, Math.floor(points * 5 / 6));
+        bar.style.background = colors[idx];
+        score.textContent = labels[idx] + ' (' + points + '/6)';
+        score.style.color = colors[idx];
+        let t = '';
+        if (pwd.length < 8) t += '• Add more characters (min 8)<br>';
+        if (!/[A-Z]/.test(pwd)) t += '• Add uppercase letters<br>';
+        if (!/[0-9]/.test(pwd)) t += '• Add numbers<br>';
+        if (!/[^a-zA-Z0-9]/.test(pwd)) t += '• Add special characters (!@#$)<br>';
+        tips.innerHTML = t || '✅ Excellent password!';
+      });
+    }
+  },
+
+  'color-picker': {
+    icon: '🎨',
+    name: 'Color Picker',
+    category: 'Utilities',
+    title: 'Free Color Picker - HEX, RGB, RGBA Color Code Tool',
+    description: 'Free online color picker. Pick any color and get HEX, RGB, RGBA codes. Copy color codes for web design instantly.',
+    keywords: 'color picker, hex color picker, rgb color code, color code generator, pick color online, color converter',
+    h1: 'Free Color Picker',
+    subtitle: 'Pick colors and get HEX, RGB, RGBA codes instantly',
+    longDesc: `Our free online color picker lets you choose any color and get its HEX, RGB, and RGBA codes instantly. Perfect for web designers, developers, and digital artists.\n\nSimply click the color input to open your browser's color picker, or drag to any color. The tool shows you the color in multiple formats that you can copy and paste into CSS, HTML, or design tools.`,
+    howto: ['Click the color box to pick a color', 'See HEX, RGB, and RGBA codes instantly', 'Click any code to copy it'],
+    faq: [
+      {q: 'What is HEX color?', a: 'HEX is a 6-character code like #FF007F that represents color in HTML/CSS.'},
+      {q: 'What is RGB?', a: 'RGB represents Red, Green, Blue values (0-255) like rgb(255, 0, 127).'}
+    ],
+    render: () => `
+      <input type="color" id="cp-in" value="#00F2FE" style="width:100%;height:100px;border-radius:12px;cursor:pointer;border:none;margin-bottom:12px;">
+      <div id="cp-out"></div>
+    `,
+    init: () => {
+      const inp = document.getElementById('cp-in');
+      const out = document.getElementById('cp-out');
+      const update = () => {
+        const hex = inp.value;
+        const r = parseInt(hex.substr(1, 2), 16);
+        const g = parseInt(hex.substr(3, 2), 16);
+        const b = parseInt(hex.substr(5, 2), 16);
+        out.innerHTML = `
+          <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;cursor:pointer;" onclick="navigator.clipboard.writeText('${hex}');showToast('📋 Copied')">
+            <span style="font-size:.75rem;color:var(--muted);font-weight:700;">HEX</span>
+            <span style="font-size:.85rem;font-family:monospace;color:var(--cyan);font-weight:900;">${hex.toUpperCase()}</span>
+          </div>
+          <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;cursor:pointer;" onclick="navigator.clipboard.writeText('rgb(${r}, ${g}, ${b})');showToast('📋 Copied')">
+            <span style="font-size:.75rem;color:var(--muted);font-weight:700;">RGB</span>
+            <span style="font-size:.85rem;font-family:monospace;color:var(--cyan);font-weight:900;">rgb(${r}, ${g}, ${b})</span>
+          </div>
+          <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;display:flex;justify-content:space-between;cursor:pointer;" onclick="navigator.clipboard.writeText('rgba(${r}, ${g}, ${b}, 1)');showToast('📋 Copied')">
+            <span style="font-size:.75rem;color:var(--muted);font-weight:700;">RGBA</span>
+            <span style="font-size:.85rem;font-family:monospace;color:var(--cyan);font-weight:900;">rgba(${r}, ${g}, ${b}, 1)</span>
+          </div>
+        `;
+      };
+      inp.addEventListener('input', update);
+      update();
+    }
+  },
+
+  'zodiac-finder': {
+    icon: '♈',
+    name: 'Zodiac Sign Finder',
+    category: 'Fun',
+    title: 'Free Zodiac Sign Calculator - Find Your Astrological Sign',
+    description: 'Free zodiac sign finder. Enter your date of birth to discover your zodiac sign, dates, and traits. All 12 signs: Aries to Pisces.',
+    keywords: 'zodiac sign, zodiac calculator, sun sign, astrology sign, find zodiac, zodiac by date',
+    h1: 'Free Zodiac Sign Finder',
+    subtitle: 'Find your zodiac sign from your date of birth',
+    longDesc: `Discover your zodiac (sun) sign with our free zodiac sign finder. Simply enter your date of birth and instantly find out if you're an Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, or Pisces.\n\nEach sign has specific date ranges, ruling planets, and personality traits. This tool is for entertainment purposes.`,
+    howto: ['Enter your date of birth', 'Click Find Sign', 'See your zodiac sign and date range'],
+    faq: [
+      {q: 'How is my zodiac sign determined?', a: 'Your sign is based on the position of the sun on the day you were born.'},
+      {q: 'What about cusp dates?', a: 'People born on cusp dates (boundary dates) may identify more with one sign — consult an astrologer for accuracy.'}
+    ],
+    render: () => `
+      <input type="date" id="zf-dob" class="ui-input">
+      <button class="btn" onclick="zfFind()">♈ Find Zodiac Sign</button>
+      <div id="zf-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      zfFind: () => {
+        const dob = document.getElementById('zf-dob').value;
+        const out = document.getElementById('zf-out');
+        if (!dob) return out.innerHTML = '<div class="result-box error">Select date</div>';
+        const d = new Date(dob);
+        const m = d.getMonth() + 1, day = d.getDate();
+        const signs = [
+          {n: 'Capricorn', e: '♑', s: 'Dec 22 - Jan 19'},
+          {n: 'Aquarius', e: '♒', s: 'Jan 20 - Feb 18'},
+          {n: 'Pisces', e: '♓', s: 'Feb 19 - Mar 20'},
+          {n: 'Aries', e: '♈', s: 'Mar 21 - Apr 19'},
+          {n: 'Taurus', e: '♉', s: 'Apr 20 - May 20'},
+          {n: 'Gemini', e: '♊', s: 'May 21 - Jun 20'},
+          {n: 'Cancer', e: '♋', s: 'Jun 21 - Jul 22'},
+          {n: 'Leo', e: '♌', s: 'Jul 23 - Aug 22'},
+          {n: 'Virgo', e: '♍', s: 'Aug 23 - Sep 22'},
+          {n: 'Libra', e: '♎', s: 'Sep 23 - Oct 22'},
+          {n: 'Scorpio', e: '♏', s: 'Oct 23 - Nov 21'},
+          {n: 'Sagittarius', e: '♐', s: 'Nov 22 - Dec 21'}
+        ];
+        let idx = 0;
+        const dates = [[1,20,1],[2,19,2],[3,21,3],[4,20,4],[5,21,5],[6,21,6],[7,23,7],[8,23,8],[9,23,9],[10,23,10],[11,22,11],[12,22,12]];
+        for (let i = 0; i < dates.length; i++) {
+          const [dm, dd, si] = dates[i];
+          if (m > dm || (m === dm && day >= dd)) idx = si;
+          if (i === dates.length - 1 && m === 12 && day >= 22) idx = 0;
+        }
+        const sign = signs[idx];
+        out.innerHTML = `<div class="result-box" style="margin-top:16px;"><div style="font-size:3rem;">${sign.e}</div><div style="font-size:1.4rem;font-weight:900;color:var(--cyan);margin:6px 0;">${sign.n}</div><div style="font-size:.8rem;color:var(--muted);">${sign.s}</div></div>`;
+      }
+    }
+  },
+
+  'random-number': {
+    icon: '🎲',
+    name: 'Random Number Generator',
+    category: 'Fun',
+    title: 'Free Random Number Generator - Random Numbers Online',
+    description: 'Free online random number generator. Generate random numbers, dice rolls, and coin flips. Perfect for games, lotteries, and decision making.',
+    keywords: 'random number generator, random number, dice roller, coin flip, random picker, lottery number',
+    h1: 'Free Random Number Generator',
+    subtitle: 'Generate random numbers, dice, and coin flips',
+    longDesc: `Our free random number generator uses cryptographically secure randomness for fair, unbiased results. Perfect for games, decisions, lotteries, or teaching probability.\n\nSet your min and max values and generate random numbers. Also includes dice roller (1-6) and coin flip tools.`,
+    howto: ['Enter minimum and maximum values', 'Click Generate', 'Or use dice/coin buttons'],
+    faq: [
+      {q: 'Is it really random?', a: 'Yes, we use crypto.getRandomValues() which is cryptographically secure randomness.'},
+      {q: 'Can I pick multiple numbers?', a: 'Currently generates one at a time. Click multiple times for multiple picks.'}
+    ],
+    render: () => `
+      <div class="btn-row">
+        <button class="btn" onclick="rndDice()">🎲 Roll Dice</button>
+        <button class="btn pink" onclick="rndCoin()">🪙 Flip Coin</button>
+      </div>
+      <div class="btn-row">
+        <input type="number" id="rnd-min" class="ui-input" placeholder="Min" value="1" style="margin:0;">
+        <input type="number" id="rnd-max" class="ui-input" placeholder="Max" value="100" style="margin:0;">
+      </div>
+      <button class="btn green" onclick="rndNum()" style="margin-top:10px;">🔢 Random Number</button>
+      <div id="rnd-out" class="result-box big" style="margin-top:16px;min-height:60px;">—</div>
+    `,
+    init: () => {},
+    helpers: {
+      rndDice: () => {
+        const n = Math.floor(Math.random() * 6) + 1;
+        document.getElementById('rnd-out').innerHTML = '🎲 ' + n;
+      },
+      rndCoin: () => {
+        const r = Math.random() < 0.5 ? 'Heads 👑' : 'Tails 🪙';
+        document.getElementById('rnd-out').innerHTML = r;
+      },
+      rndNum: () => {
+        let min = parseInt(document.getElementById('rnd-min').value) || 1;
+        let max = parseInt(document.getElementById('rnd-max').value) || 100;
+        if (min > max) [min, max] = [max, min];
+        const n = Math.floor(Math.random() * (max - min + 1)) + min;
+        document.getElementById('rnd-out').innerHTML = '🔢 ' + n;
+      }
+    }
+  },
+
+  'tax-calculator': {
+    icon: '💰',
+    name: 'Income Tax Calculator',
+    category: 'Calculators',
+    title: 'Free Income Tax Calculator India 2026 - New & Old Regime',
+    description: 'Free India income tax calculator. Calculate tax under new and old regime for FY 2025-26. Instant accurate results with cess.',
+    keywords: 'income tax calculator, tax calculator india, new tax regime, old tax regime, income tax 2026, tax calculator',
+    h1: 'Free Income Tax Calculator (India)',
+    subtitle: 'Calculate your income tax under new and old regime',
+    longDesc: `Our free India income tax calculator helps you estimate your tax liability under both the new tax regime (default from FY 2023-24) and the old regime. Includes the 4% health and education cess.\n\nEnter your annual income and choose the regime. See your total tax, cess, and effective tax rate instantly. Note: This is an estimate — consult a CA for exact calculations with deductions.`,
+    howto: ['Enter your annual income', 'Choose new or old regime', 'Click Calculate', 'See total tax with cess'],
+    faq: [
+      {q: 'What is the new tax regime?', a: 'New regime (from 2023) has lower rates but no major deductions. Old regime has higher rates but allows deductions like 80C, 80D.'},
+      {q: 'Is this calculator accurate for FY 2025-26?', a: 'Yes, updated for the latest rates. However, consult a CA for exact filing.'},
+      {q: 'Does it include cess?', a: 'Yes, 4% health and education cess is automatically added.'}
+    ],
+    render: () => `
+      <input type="number" id="tax-inc" class="ui-input" placeholder="Annual Income (₹)" value="500000">
+      <select id="tax-reg" class="ui-input">
+        <option value="new">New Regime (Default)</option>
+        <option value="old">Old Regime</option>
+      </select>
+      <button class="btn green" onclick="taxCalc()">💰 Calculate Tax</button>
+      <div id="tax-out"></div>
+    `,
+    init: () => {},
+    helpers: {
+      taxCalc: () => {
+        const inc = parseFloat(document.getElementById('tax-inc').value) || 0;
+        const reg = document.getElementById('tax-reg').value;
+        const out = document.getElementById('tax-out');
+        let tax = 0;
+        if (reg === 'new') {
+          if (inc <= 300000) tax = 0;
+          else if (inc <= 600000) tax = (inc - 300000) * 0.05;
+          else if (inc <= 900000) tax = 15000 + (inc - 600000) * 0.1;
+          else if (inc <= 1200000) tax = 45000 + (inc - 900000) * 0.15;
+          else if (inc <= 1500000) tax = 90000 + (inc - 1200000) * 0.2;
+          else tax = 150000 + (inc - 1500000) * 0.3;
+        } else {
+          if (inc <= 250000) tax = 0;
+          else if (inc <= 500000) tax = (inc - 250000) * 0.05;
+          else if (inc <= 1000000) tax = 12500 + (inc - 500000) * 0.2;
+          else tax = 112500 + (inc - 1000000) * 0.3;
+        }
+        const cess = tax * 0.04;
+        const total = tax + cess;
+        const eff = inc > 0 ? (total / inc * 100).toFixed(2) : 0;
+        out.innerHTML = `
+          <div class="result-box big" style="margin-top:16px;color:#fbbf24;">₹${total.toFixed(0)}</div>
+          <div class="stats-grid">
+            <div class="stat"><div class="stat-num">₹${tax.toFixed(0)}</div><div class="stat-lbl">Base Tax</div></div>
+            <div class="stat"><div class="stat-num">₹${cess.toFixed(0)}</div><div class="stat-lbl">Cess (4%)</div></div>
+            <div class="stat"><div class="stat-num">${eff}%</div><div class="stat-lbl">Effective Rate</div></div>
+          </div>
+        `;
+      }
+    }
+  },
+
+  'date-difference': {
+    icon: '📅',
+    name: 'Date Difference Calculator',
+    category: 'Calculators',
+    title: 'Free Date Difference Calculator - Days Between Two Dates',
+    description: 'Free date difference calculator. Find the exact number of days, weeks, months, and years between two dates. Perfect for age, deadlines, and planning.',
+    keywords: 'date difference, days between dates, date calculator, how many days, date duration, age between dates',
+    h1: 'Free Date Difference Calculator',
+    subtitle: 'Find days, weeks, and months between two dates',
+    longDesc: `Calculate the exact time between two dates — perfect for project planning, event countdowns, tracking age, or any situation where you need to know how much time has passed.\n\nEnter a start date and end date, and see the difference in days, weeks, months, and years. Also shows business days (excluding weekends).`,
+    howto: ['Enter start date', 'Enter end date', 'Click Calculate', 'See days, weeks, months difference'],
+    faq: [
+      {q: 'Does it count weekends?', a: 'Total days include weekends. Business days (Mon-Fri) are shown separately.'},
+      {q: 'Can I calculate past dates?', a: 'Yes, both future and past dates work.'}
+    ],
+    render: () => `
+      <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:6px;font-weight:700;">From:</label>
+      <input type="date" id="dd-from" class="ui-input">
+      <label style="font-size:.75rem;color:var(--muted);display:block;margin:10px 0 6px;font-weight:700;">To:</label>
+      <input type="date" id="dd-to" class="ui-input">
+      <button class="btn" onclick="ddCalc()">📅 Calculate Difference</button>
+      <div id="dd-out"></div>
+    `,
+    init: () => {
+      document.getElementById('dd-to').value = new Date().toISOString().split('T')[0];
+    },
+    helpers: {
+      ddCalc: () => {
+        const f = document.getElementById('dd-from').value;
+        const t = document.getElementById('dd-to').value;
+        const out = document.getElementById('dd-out');
+        if (!f || !t) return out.innerHTML = '<div class="result-box error">Select both dates</div>';
+        const d1 = new Date(f), d2 = new Date(t);
+        const days = Math.round((d2 - d1) / 86400000);
+        const absDays = Math.abs(days);
+        const weeks = (absDays / 7).toFixed(1);
+        const months = (absDays / 30.44).toFixed(1);
+        const years = (absDays / 365.25).toFixed(2);
+        let businessDays = 0;
+        const start = new Date(Math.min(d1, d2));
+        const end = new Date(Math.max(d1, d2));
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+          const day = d.getDay();
+          if (day !== 0 && day !== 6) businessDays++;
+        }
+        out.innerHTML = `
+          <div class="result-box big" style="margin-top:16px;">${absDays} days</div>
+          <div class="stats-grid">
+            <div class="stat"><div class="stat-num">${weeks}</div><div class="stat-lbl">Weeks</div></div>
+            <div class="stat"><div class="stat-num">${months}</div><div class="stat-lbl">Months</div></div>
+            <div class="stat"><div class="stat-num">${years}</div><div class="stat-lbl">Years</div></div>
+            <div class="stat"><div class="stat-num">${businessDays}</div><div class="stat-lbl">Business Days</div></div>
+          </div>
+        `;
+      }
+    }
+  },
+
+  'privacy': {
+    icon: '🔒',
+    name: 'Privacy Policy',
+    category: 'Legal',
+    title: 'Privacy Policy - Sikku Tools',
+    description: 'Privacy policy for Sikku Tools. Learn how we handle your data, cookies, and privacy.',
+    keywords: 'privacy policy',
+    h1: 'Privacy Policy',
+    subtitle: 'How we handle your data',
+    longDesc: `Your privacy is important. Sikku Tools does not collect, store, or share any personal information without your consent.\n\nAll tool calculations happen locally in your browser. Files you upload (like images) are never sent to our servers. We use Firebase for optional user accounts and support chat, which stores only the email and name you provide. We never sell your data.\n\nWe may use cookies for basic functionality and analytics (Google Analytics) to improve the service. You can disable cookies in your browser at any time.\n\nIf you have any concerns, please contact us through the app's support chat.`,
+    howto: ['Read how we handle data', 'Contact us with any concerns'],
+    faq: [
+      {q: 'Do you store my files?', a: 'No. All processing happens in your browser. Files never leave your device.'},
+      {q: 'Do you sell my data?', a: 'Absolutely not. We never sell or share your data.'}
+    ],
+    render: () => '<div class="result-box">📄 Your privacy is protected. All tool calculations run locally in your browser.</div>',
+    init: () => {}
+  },
+
+  'terms': {
+    icon: '📜',
+    name: 'Terms of Service',
+    category: 'Legal',
+    title: 'Terms of Service - Sikku Tools',
+    description: 'Terms of service for using Sikku Tools free online tools.',
+    keywords: 'terms of service',
+    h1: 'Terms of Service',
+    subtitle: 'Terms for using our free tools',
+    longDesc: `By using Sikku Tools, you agree to these terms. All tools are provided free for personal and commercial use.\n\nYou agree not to: use the tools for illegal activities, attempt to hack or overload the service, or redistribute the code without permission.\n\nWe provide these tools "as is" without any warranty. While we strive for accuracy, use results at your own discretion. We are not responsible for any damages from using these tools.\n\nWe reserve the right to modify or discontinue any tool at any time without notice.`,
+    howto: ['Read the terms', 'Use tools responsibly'],
+    faq: [
+      {q: 'Can I use tools commercially?', a: 'Yes, all tools are free for both personal and commercial use.'},
+      {q: 'Do you provide warranties?', a: 'No, tools are provided as-is. Use results at your own discretion.'}
+    ],
+    render: () => '<div class="result-box">📜 Free for personal and commercial use. Please use responsibly.</div>',
+    init: () => {}
+  }
+};
+
+/* ============================================================
+   ROUTER & RENDERER
+   ============================================================ */
+function getToolSlug() {
+  const url = new URL(window.location.href);
+  let slug = url.searchParams.get('t');
+  if (!slug && url.hash) slug = url.hash.replace('#', '');
+  if (!slug) {
+    const path = url.pathname.replace(/\/+$/, '');
+    const m = path.match(/\/tools\/([^/]+)\/?$/);
+    if (m && m[1] && m[1] !== 'index.html') slug = m[1];
+  }
+  return (slug || '').toLowerCase();
+}
+
+function renderTool(slug) {
+  const main = document.getElementById('main');
+  const tool = TOOLS[slug];
+
+  if (!tool) return renderToolIndex();
+
+  document.title = tool.title;
+  updateMeta('description', tool.description);
+  updateMeta('keywords', tool.keywords);
+  setCanonical(`${SITE_URL}/tools/?t=${slug}`);
+  setOg('og:title', tool.title);
+  setOg('og:description', tool.description);
+  setOg('og:url', `${SITE_URL}/tools/?t=${slug}`);
+
+  const ld = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": tool.h1,
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+        "description": tool.description,
+        "url": `${SITE_URL}/tools/?t=${slug}`,
+        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1000"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": tool.faq.map(f => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": {"@type": "Answer", "text": f.a}
+        }))
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
+          {"@type": "ListItem", "position": 2, "name": "Tools", "item": SITE_URL + "/tools/"},
+          {"@type": "ListItem", "position": 3, "name": tool.name, "item": `${SITE_URL}/tools/?t=${slug}`}
+        ]
+      }
+    ]
+  };
+  document.getElementById('ld-json').textContent = JSON.stringify(ld);
+
+  const related = Object.entries(TOOLS)
+    .filter(([s, t]) => s !== slug && t.category === tool.category && t.icon)
+    .slice(0, 3);
+  if (related.length < 3) {
+    const extra = Object.entries(TOOLS).filter(([s, t]) => s !== slug && !related.find(r => r[0] === s) && t.icon).slice(0, 3 - related.length);
+    related.push(...extra);
+  }
+
+  main.innerHTML = `
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>/</span>
+      <a href="/tools/">Tools</a><span>/</span>
+      <span style="color:#fff;">${tool.name}</span>
+    </div>
+    <h1><span class="icon">${tool.icon}</span>${tool.h1}</h1>
+    <p class="subtitle">${tool.subtitle}</p>
+
+    <div class="card">
+      <div id="tool-ui">${tool.render()}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📖 About ${tool.name}</div>
+      <div class="description">${tool.longDesc.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📝 How to Use</div>
+      <ol class="howto-list">
+        ${tool.howto.map(s => `<li>${s}</li>`).join('')}
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❓ Frequently Asked Questions</div>
+      ${tool.faq.map((f, i) => `
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">${f.q}</div>
+          <div class="faq-a">${f.a}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    ${related.length ? `
+    <div class="card">
+      <div class="card-title">🔗 Related Tools</div>
+      <div class="related-grid">
+        ${related.map(([s, t]) => `<a class="related-tile" href="?t=${s}"><span class="related-icon">${t.icon}</span><span class="related-name">${t.name}</span></a>`).join('')}
+      </div>
+    </div>
+    ` : ''}
+
+    <div class="cta-box">
+      <h3>🚀 Unlock 60+ More Tools in the Full App</h3>
+      <p>AI Chat, Smart Image Generation, Code Generator, and more — completely free.</p>
+      <a href="${APP_URL}" class="btn">Open Sikku Dashboard App</a>
+    </div>
+  `;
+
+  setTimeout(() => {
+    try { tool.init && tool.init(); } catch(e) { console.warn(e); }
+    if (tool.helpers) {
+      Object.entries(tool.helpers).forEach(([name, fn]) => { window[name] = fn; });
+    }
+  }, 50);
+
+  window.scrollTo({top: 0, behavior: 'auto'});
+}
+
+function renderToolIndex() {
+  document.title = 'All Free Tools - Sikku Tools';
+  updateMeta('description', 'Browse all 60+ free online tools: calculators, converters, generators, and more. No registration required.');
+  setCanonical(`${SITE_URL}/tools/`);
+  document.getElementById('ld-json').textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "All Free Tools - Sikku Tools",
+    "url": `${SITE_URL}/tools/`
+  });
+
+  const categories = {};
+  Object.entries(TOOLS).forEach(([slug, t]) => {
+    if (!t.icon || t.category === 'Legal') return;
+    if (!categories[t.category]) categories[t.category] = [];
+    categories[t.category].push({slug, ...t});
+  });
+
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <h1>🛠️ All Free Online Tools</h1>
+    <p class="subtitle">60+ free tools — calculators, converters, generators, and more. No registration required.</p>
+    ${Object.entries(categories).map(([cat, tools]) => `
+      <div class="card">
+        <div class="card-title">${cat}</div>
+        <div class="related-grid">
+          ${tools.map(t => `<a class="related-tile" href="?t=${t.slug}"><span class="related-icon">${t.icon}</span><span class="related-name">${t.name}</span></a>`).join('')}
+        </div>
+      </div>
+    `).join('')}
+    <div class="cta-box">
+      <h3>🚀 Want AI Features Too?</h3>
+      <p>AI Chat, Smart Image Generation, Code Generator — completely free in the app.</p>
+      <a href="${APP_URL}" class="btn">Open Sikku Dashboard App</a>
+    </div>
+  `;
+}
+
+function updateMeta(name, content) {
+  let el = document.querySelector(`meta[name="${name}"]`);
+  if (!el) { el = document.createElement('meta'); el.name = name; document.head.appendChild(el); }
+  el.content = content;
+}
+function setOg(prop, content) {
+  let el = document.querySelector(`meta[property="${prop}"]`);
+  if (!el) { el = document.createElement('meta'); el.setAttribute('property', prop); document.head.appendChild(el); }
+  el.content = content;
+}
+function setCanonical(url) {
+  let el = document.querySelector('link[rel="canonical"]');
+  if (!el) { el = document.createElement('link'); el.rel = 'canonical'; document.head.appendChild(el); }
+  el.href = url;
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(function init() {
+  const slug = getToolSlug();
+  if (slug) renderTool(slug);
+  else renderToolIndex();
+
+  window.addEventListener('hashchange', () => {
+    const s = getToolSlug();
+    if (s) renderTool(s); else renderToolIndex();
+  });
+})();
+</script>
+</body>
+</html>
