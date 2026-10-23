@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://b06048791-maker.github.io/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Tools Index -->
+  <url>
+    <loc>https://b06048791-maker.github.io/tools/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- ========== TEXT TOOLS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=text-counter</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=case-converter</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=lorem-generator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=base64-converter</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- ========== SECURITY TOOLS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=hash-generator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=password-generator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=password-strength</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- ========== CALCULATORS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=age-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=bmi-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=percentage-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=emi-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=discount-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=tax-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=date-difference</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- ========== GENERATORS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=qr-generator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- ========== CONVERTERS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=unit-converter</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=binary-converter</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=morse-code</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ========== DEV TOOLS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=json-formatter</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- ========== UTILITIES ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=color-picker</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=world-clock</loc><lastmod>2026-10-23</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+
+  <!-- ========== FUN TOOLS ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=love-calculator</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=zodiac-finder</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=random-number</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- ========== LEGAL ========== -->
+  <url><loc>https://b06048791-maker.github.io/tools/?t=privacy</loc><lastmod>2026-10-23</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://b06048791-maker.github.io/tools/?t=terms</loc><lastmod>2026-10-23</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+</urlset>
