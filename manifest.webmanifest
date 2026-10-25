@@ -1,1 +1,30 @@
-{"name":"Sikku AI","short_name":"Sikku AI","start_url":"./index.html","scope":"./","display":"standalone","background_color":"#05010f","theme_color":"#050810","lang":"hi","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "id": "/Siku._.singh/",
+  "name": "Sikku AI",
+  "short_name": "Sikku AI",
+  "description": "Sikku AI: Smart AI chat, QR Generator, Password Generator, Calculator, Notes aur 50+ free tools ek hi app mein.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait",
+  "dir": "ltr",
+  "lang": "hi",
+  "background_color": "#05010f",
+  "theme_color": "#050810",
+  "categories": ["utilities", "productivity", "tools"],
+  "prefer_related_applications": false,
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "screenshots": [
+    {"src": "screenshot-mobile.png", "sizes": "540x960", "type": "image/png", "form_factor": "narrow", "label": "Sikku AI home"},
+    {"src": "screenshot-wide.png", "sizes": "1280x720", "type": "image/png", "form_factor": "wide", "label": "Sikku AI home"}
+  ],
+  "shortcuts": [
+    {"name": "QR Generator", "short_name": "QR", "url": "./index.html", "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}]}
+  ]
+}
