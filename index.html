@@ -9,6 +9,12 @@
 <title>Sikku Singh — Sikku AI • Private companion & smart tools</title>
 <meta name="description" content="Sikku AI: फ्री स्मार्ट टूल्स, AI चैट, QR Generator, Password Generator, Calculator और बहुत कुछ एक ही जगह।">
 <link rel="canonical" href="https://b06048791-maker.github.io/Siku._.singh/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="googlebot" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:title" content="Sikku AI — Private companion &amp; smart tools"><meta property="og:description" content="फ्री स्मार्ट टूल्स, AI चैट, QR Generator, Password Generator, Calculator और बहुत कुछ।"><meta property="og:url" content="https://b06048791-maker.github.io/Siku._.singh/">
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Sikku AI","url":"https://b06048791-maker.github.io/Siku._.singh/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web, Android","inLanguage":"hi","description":"फ्री स्मार्ट टूल्स, AI चैट, QR Generator, Password Generator, Calculator और बहुत कुछ एक ही जगह।","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='60' fill='%230c1220'/%3E%3Ccircle cx='60' cy='60' r='52' fill='none' stroke='%2322d3ee' stroke-width='3'/%3E%3Ctext x='60' y='76' text-anchor='middle' font-family='Arial' font-size='56' font-weight='700' fill='%23f8fafc'%3ES%3C/text%3E%3C/svg%3E">
 <!-- tailwind CDN removed in v35: unused classes, it slowed every DOM update -->
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -459,6 +465,7 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <button onclick="openUserModal()" style="background:rgba(0,242,254,0.2);border:1px solid var(--cyan);color:var(--cyan);border-radius:10px;padding:8px 10px;font-size:.72rem;font-weight:800;cursor:pointer;">👤</button>
 </div>
 <button type="button" class="ui-btn call-big" onclick="startAiCall()" style="margin-bottom:10px;">📞 Call Sikku AI</button>
+
 <div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;"><button type="button" onclick="openEarn()" style="padding:7px 16px;border-radius:999px;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000;font-weight:900;font-size:.78rem;cursor:pointer;">🪙 Coin kamao</button><button type="button" onclick="switchTab('ctools')" style="padding:7px 16px;border-radius:999px;border:none;background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;font-weight:900;font-size:.78rem;cursor:pointer;">🧰 Coin Tools</button></div>
 <div style="border:1.5px solid rgba(255,0,127,0.35);border-radius:14px;padding:12px 14px;background:rgba(255,0,127,0.05);margin-bottom:14px;">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
@@ -793,6 +800,11 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <!-- SETTINGS -->
 <div id="tab-settings" class="tab-card">
 <div class="ui-card">
+<div class="admin-only" style="border:1.5px solid #10b981;border-radius:16px;padding:14px;background:rgba(16,185,129,0.06);margin-bottom:16px;">
+<div style="font-size:.95rem;font-weight:800;color:#10b981;margin-bottom:6px;">📲 App Download Link</div>
+<div style="font-size:.72rem;color:var(--text-muted);margin-bottom:8px;">यहाँ जो लिंक डालेंगे, Home स्क्रीन का "App Download Karo" बटन सभी users के लिए वही खोलेगा।</div>
+<input type="url" id="dl-url-set" class="ui-input" placeholder="https://example.com/sikku-ai.apk">
+<div style="display:flex;gap:8px;"><button type="button" class="ui-btn green" style="flex:1" onclick="saveAppDownloadUrl('dl-url-set')">💾 Save लिंक</button><button type="button" class="ui-btn" style="flex:1;background:#334155;color:#fff" onclick="downloadOfficialApk()">🔗 Test</button><button type="button" class="ui-btn" style="flex:1;background:#334155;color:#fff" onclick="resetAppDownloadUrl()">↩️ Reset</button></div></div>
 <div class="card-title">⚙️ Settings</div>
 <div class="setting-row"><div><div class="setting-label">🔊 AI Voice Replies</div><div class="setting-desc">Speak AI responses.</div></div><label class="switch"><input type="checkbox" id="setting-voice-toggle" onchange="toggleSettingVoice(this.checked)"><span class="slider"></span></label></div>
 <div style="background:rgba(34,211,238,0.05);border:1.5px solid rgba(34,211,238,0.3);border-radius:12px;padding:12px;margin:12px 0;">
@@ -1598,7 +1610,11 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <div id="audit-profile" class="audit-profile"><div class="empty-state">किसी user को चुनकर पूरी activity profile देखें।</div></div>
 </div>
 
-<div class="admin-tab-panel" id="apanel-appctl"><div style="border:1.5px solid var(--cyan);border-radius:16px;padding:14px;background:rgba(0,242,254,0.04);margin-bottom:16px;">
+<div class="admin-tab-panel" id="apanel-appctl"><div style="border:1.5px solid #10b981;border-radius:16px;padding:14px;background:rgba(16,185,129,0.06);margin-bottom:16px;">
+<div style="font-size:.95rem;font-weight:800;color:#10b981;margin-bottom:6px;">📲 App Download Link</div>
+<div style="font-size:.72rem;color:var(--text-muted);margin-bottom:8px;">यहाँ जो लिंक डालेंगे, Home स्क्रीन का "App Download Karo" बटन सभी users के लिए वही खोलेगा।</div>
+<input type="url" id="dl-url-adm" class="ui-input" placeholder="https://example.com/sikku-ai.apk">
+<div style="display:flex;gap:8px;"><button type="button" class="ui-btn green" style="flex:1" onclick="saveAppDownloadUrl('dl-url-adm')">💾 Save लिंक</button><button type="button" class="ui-btn" style="flex:1;background:#334155;color:#fff" onclick="downloadOfficialApk()">🔗 Test</button><button type="button" class="ui-btn" style="flex:1;background:#334155;color:#fff" onclick="resetAppDownloadUrl()">↩️ Reset</button></div></div><div style="border:1.5px solid var(--cyan);border-radius:16px;padding:14px;background:rgba(0,242,254,0.04);margin-bottom:16px;">
 <div style="font-size:.95rem;font-weight:800;color:var(--cyan);margin-bottom:6px;">🎛️ App Control</div>
 <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:10px;">Save karne par sab users par lagu hota hai (Firebase se).</div>
 <label style="font-size:.8rem;display:flex;gap:8px;align-items:center;margin:6px 0;"><input type="checkbox" id="ac-live"> 📹 Live Random Video chalu</label>
@@ -1829,7 +1845,7 @@ select.lang-sel option{background:#0f172a;color:#fff}
 const EMAILJS_SERVICE_ID='service_7tvdpi5',EMAILJS_TEMPLATE_ID='template_v66c74n',EMAILJS_PUBLIC_KEY='VmNuFx5dKwN8ZSqG-';
 const FIREBASE_DB_URL='https://siku-singh-default-rtdb.firebaseio.com',APP_DOWNLOAD_URL='https://www.instagram.com/siku._.singh';
 const APP_NAME='Sikku AI & Sikku Crush AI v30.0',MASTER_EMAILS=['sikusingh7091@gmail.com'];
-const DEFAULT_MASTER_KEY_CODES=[83,105,107,107,117,83,105,110,103,104,64,50,48,50,54];
+const DEFAULT_MASTER_HASH='e0c378a1cb6cb9096e4616f8b7285eefbc8de6bf01f25ce395199f3c3ab1b7cd',DEFAULT_COMPANION_HASH='1af8ddca1fb8fcfa94869e4cfd7f77c934362eea91e2e8ebb7711939f28f24bf';
 const THEME_PRESETS={cyan:{primary:'#00F2FE',border:'rgba(0,242,254,0.28)'},pink:{primary:'#FF007F',border:'rgba(255,0,127,0.35)'},gold:{primary:'#fbbf24',border:'rgba(251,191,36,0.4)'},green:{primary:'#10b981',border:'rgba(16,185,129,0.35)'},purple:{primary:'#a78bfa',border:'rgba(167,139,250,0.35)'},orange:{primary:'#f97316',border:'rgba(249,115,22,0.35)'},red:{primary:'#ef4444',border:'rgba(239,68,68,0.35)'},teal:{primary:'#14b8a6',border:'rgba(20,184,166,0.35)'},indigo:{primary:'#6366f1',border:'rgba(99,102,241,0.35)'},rose:{primary:'#f43f5e',border:'rgba(244,63,94,0.35)'},amber:{primary:'#f59e0b',border:'rgba(245,158,11,0.35)'},slate:{primary:'#64748b',border:'rgba(100,116,139,0.35)'}};
 
 let EMAILJS_READY=false;
@@ -2021,7 +2037,7 @@ async function unlockCompanionMode(){
   if(btn){btn.disabled=true;btn.textContent='कुंजी जाँची जा रही है…';}
   try{
     if(!companionKeyHash&&databaseInstance){const snap=await databaseInstance.ref('global/companion_key_hash').once('value');companionKeyHash=snap.val()||'';if(companionKeyHash)gSet('companion_key_hash',companionKeyHash);}
-    if(!companionKeyHash)throw new Error('MASTER_SETUP');
+    if(!companionKeyHash)companionKeyHash=DEFAULT_COMPANION_HASH;
     const hash=await hashSecretV27(key);if(hash!==companionKeyHash)throw new Error('WRONG_KEY');
     isCompanionMode=true;sessionStorage.setItem('sikku_companion_active','1');companionChatHistory=uGet('companion_chat',[]);if(!Array.isArray(companionChatHistory))companionChatHistory=[];
     document.getElementById('admin-gate-card').style.display='none';document.getElementById('admin-unlocked-box').style.display='none';document.getElementById('companion-unlocked-box').style.display='block';
@@ -2035,7 +2051,14 @@ function sendCompanionQuick(text){const i=document.getElementById('companion-msg
 function clearCompanionChat(){if(!companionChatHistory.length){renderCompanionChat();return;}if(!confirm('पत्नी मोड की चैट साफ़ करें?'))return;companionChatHistory=[];uSet('companion_chat',[]);renderCompanionChat();}
 function exportCompanionChat(){if(!companionChatHistory.length){showNotice('चैट अभी खाली है');return;}const text=companionChatHistory.map(m=>(m.role==='user'?'आप':'Sikku AI')+': '+m.content).join('\n\n');downloadTextV27('siku-care-chat-'+Date.now()+'.txt',text);}
 function generateCompanionKey(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%';const bytes=new Uint32Array(18);crypto.getRandomValues(bytes);let key='CARE-';for(let i=0;i<18;i++)key+=chars[bytes[i]%chars.length];document.getElementById('new-companion-key').value=key;document.getElementById('new-companion-key-confirm').value=key;showNotice('Strong key तैयार है—Save करके अलग सुरक्षित जगह रखें',5000);}
-async function hashSecretV27(text){if(!window.crypto||!crypto.subtle)throw new Error('CRYPTO_UNAVAILABLE');const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+function sha256Js(s){const m=Array.from(new TextEncoder().encode(s)),K=[],H=[];let p=2,c=0;while(c<64){let ok=1;for(let d=2;d*d<=p;d++)if(p%d===0){ok=0;break}if(ok){if(c<8)H[c]=(Math.pow(p,.5)%1)*4294967296|0;K[c]=(Math.pow(p,1/3)%1)*4294967296|0;c++}p++}
+const l=m.length*8;m.push(128);while(m.length%64!==56)m.push(0);for(let i=7;i>=0;i--)m.push(i>3?0:(l>>>(i*8))&255);
+const rr=(x,n)=>(x>>>n)|(x<<(32-n));for(let o=0;o<m.length;o+=64){const w=[];for(let i=0;i<16;i++)w[i]=(m[o+i*4]<<24)|(m[o+i*4+1]<<16)|(m[o+i*4+2]<<8)|m[o+i*4+3];
+for(let i=16;i<64;i++){const s0=rr(w[i-15],7)^rr(w[i-15],18)^(w[i-15]>>>3),s1=rr(w[i-2],17)^rr(w[i-2],19)^(w[i-2]>>>10);w[i]=(w[i-16]+s0+w[i-7]+s1)|0}
+let [a,b,c2,d,e,f,g,hh]=H;for(let i=0;i<64;i++){const S1=rr(e,6)^rr(e,11)^rr(e,25),ch=(e&f)^(~e&g),t1=(hh+S1+ch+K[i]+w[i])|0,S0=rr(a,2)^rr(a,13)^rr(a,22),mj=(a&b)^(a&c2)^(b&c2),t2=(S0+mj)|0;hh=g;g=f;f=e;e=(d+t1)|0;d=c2;c2=b;b=a;a=(t1+t2)|0}
+H[0]=(H[0]+a)|0;H[1]=(H[1]+b)|0;H[2]=(H[2]+c2)|0;H[3]=(H[3]+d)|0;H[4]=(H[4]+e)|0;H[5]=(H[5]+f)|0;H[6]=(H[6]+g)|0;H[7]=(H[7]+hh)|0}
+return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('')}
+async function hashSecretV27(text){if(!window.crypto||!crypto.subtle)return sha256Js(text);const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 async function saveCompanionKey(){const a=document.getElementById('new-companion-key'),b=document.getElementById('new-companion-key-confirm'),status=document.getElementById('companion-key-status');const key=a.value.trim();if(key.length<8){showNotice('कुंजी कम से कम 8 अक्षर की हो');return;}if(key!==b.value.trim()){showNotice('दोनों कुंजियाँ मेल नहीं खातीं');return;}const btn=document.getElementById('save-companion-key-btn');if(btn)btn.disabled=true;try{const hash=await hashSecretV27(key);let synced=false;if(databaseInstance){await databaseInstance.ref('global/companion_key_hash').set(hash);synced=true;}companionKeyHash=hash;gSet('companion_key_hash',hash);a.value='';b.value='';if(status)status.textContent=synced?'✅ कुंजी सेव और Firebase पर sync है। अब यह दूसरे डिवाइस पर भी काम करेगी।':'✅ कुंजी इसी ब्राउज़र में सेव है। Firebase connect होने पर दोबारा Save करें।';recordGuardEvent('update','Companion key updated',synced?'Hash saved and synced.':'Hash saved locally; cloud sync unavailable.');showNotice(synced?'🔐 Key saved & synced':'🔐 Key saved locally');}catch(e){showNotice('Key save failed: '+e.message);if(status)status.textContent='❌ Save/sync नहीं हुआ। HTTPS और Firebase connection जाँचें।';}finally{if(btn)btn.disabled=false;}}
 function toggleCompanionSetting(key,val){companionProfile[key]=val;saveCompanionProfile(false);}
 async function saveCompanionProfile(notify=true){const wife=document.getElementById('companion-wife-name'),husband=document.getElementById('companion-husband-name'),tone=document.getElementById('companion-tone'),custom=document.getElementById('companion-custom-prompt'),rate=document.getElementById('companion-voice-rate'),enabled=document.getElementById('companion-enabled'),call=document.getElementById('companion-call-enabled');if(wife)companionProfile.wifeName=wife.value.trim();if(husband)companionProfile.husbandName=husband.value.trim();if(tone)companionProfile.tone=tone.value;if(custom)companionProfile.customPrompt=custom.value.trim();if(rate)companionProfile.voiceRate=parseFloat(rate.value)||.95;if(enabled)companionProfile.enabled=enabled.checked;if(call)companionProfile.callEnabled=call.checked;gSet('companion_profile',companionProfile);let synced=false;try{if(databaseInstance){await databaseInstance.ref('global/companion').set(companionProfile);synced=true;}if(notify)showNotice(synced?'💾 Personality saved & synced':'💾 Personality saved locally');recordGuardEvent('update','Companion personality saved',synced?'Profile synced to Firebase.':'Profile saved in this browser.');}catch(e){if(notify)showNotice('Local save हुआ, cloud sync failed');recordGuardEvent('error','Companion profile sync failed',e.message||'Firebase error');}renderCompanionSettings();}
@@ -2428,16 +2451,17 @@ function renderAdminPrimeRequests(reqs){const el=document.getElementById('admin-
 function renderAdminHelpRequests(reqs){const el=document.getElementById('admin-help-requests');if(!el)return;const keys=Object.keys(reqs).sort((a,b)=>(reqs[b].time||0)-(reqs[a].time||0));if(keys.length===0){el.innerHTML='No pending.';return;}const catEmoji={payment:'💳',refund:'💰',account:'🔐',bug:'🐛',feature:'💡',other:'❓'};el.innerHTML=keys.slice(0,15).map(k=>{const r=reqs[k];const em=catEmoji[r.category]||'❓';return '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:8px;gap:8px;"><div style="flex:1;min-width:0;"><div style="font-size:.75rem;"><b>'+em+' '+(r.category||'').toUpperCase()+'</b></div><div style="font-size:.7rem;color:var(--text-muted);">'+escapeHtml(r.name||'')+' • '+escapeHtml(r.email||'')+'</div>'+(r.utr?'<div style="font-size:.7rem;color:#fbbf24;">UTR: '+escapeHtml(r.utr)+'</div>':'')+'<div style="font-size:.72rem;color:#fff;margin-top:3px;word-break:break-word;">'+escapeHtml((r.message||'').substring(0,140))+'</div></div><button onclick="resolveHelpRequest(\''+k+'\')" style="background:#10b981;color:#fff;border:none;padding:4px 8px;border-radius:6px;font-size:0.65rem;cursor:pointer;flex-shrink:0;">Done</button></div>';}).join('');}
 function resolveHelpRequest(key){if(!databaseInstance)return;if(!confirm('Mark resolved?'))return;databaseInstance.ref('help_requests/'+key).remove().then(()=>showNotice('✅ Resolved'));}
 function approvePrime(userId){if(!databaseInstance)return;if(!confirm('Approve Prime?'))return;databaseInstance.ref('users/'+userId+'/isPrime').set(true).then(()=>{databaseInstance.ref('prime_requests/'+userId).remove();showNotice('✅ Approved');logAction('success','Approved prime: '+userId);}).catch(e=>showNotice('Error: '+e.message));}
-function applyGlobalRemoteConfig(data){data=data||{};applyRemoteCompanionConfig(data);if(Object.prototype.hasOwnProperty.call(data,'background')){__remoteBg=(typeof data.background==='string')?data.background:'';if(__remoteBg)gSet('bg_image',__remoteBg);applyBackgroundImage();}if(typeof data.accent==='string'&&/^#[0-9a-fA-F]{6}$/.test(data.accent)){__remoteAccent=data.accent;gSet('accent',data.accent);applyAccent(data.accent);}if(typeof data.announcement==='string')showRemoteAnnouncement(data.announcement);if(typeof data.appDownloadUrl==='string'&&data.appDownloadUrl.trim())window.__APP_DOWNLOAD_URL=data.appDownloadUrl.trim();if(typeof data.quote==='string'&&data.quote.trim()){const el=document.getElementById('daily-quote-text');if(el)el.innerText='"'+data.quote.trim()+'"';}if(typeof data.ai_prompt==='string'&&data.ai_prompt.trim()){__globalAiPrompt=data.ai_prompt;const promptEl=document.getElementById('admin-system-prompt');if(promptEl)promptEl.value=__globalAiPrompt;}}
+function applyGlobalRemoteConfig(data){data=data||{};applyRemoteCompanionConfig(data);if(Object.prototype.hasOwnProperty.call(data,'background')){__remoteBg=(typeof data.background==='string')?data.background:'';if(__remoteBg)gSet('bg_image',__remoteBg);applyBackgroundImage();}if(typeof data.accent==='string'&&/^#[0-9a-fA-F]{6}$/.test(data.accent)){__remoteAccent=data.accent;gSet('accent',data.accent);applyAccent(data.accent);}if(typeof data.announcement==='string')showRemoteAnnouncement(data.announcement);if(typeof data.appDownloadUrl==='string'){const _u=data.appDownloadUrl.trim();window.__APP_DOWNLOAD_URL=_u;try{if(_u)localStorage.setItem('sk_app_dl_url',_u);else localStorage.removeItem('sk_app_dl_url');}catch(e){}if(typeof fillDlInputs==='function')fillDlInputs();}if(typeof data.quote==='string'&&data.quote.trim()){const el=document.getElementById('daily-quote-text');if(el)el.innerText='"'+data.quote.trim()+'"';}if(typeof data.ai_prompt==='string'&&data.ai_prompt.trim()){__globalAiPrompt=data.ai_prompt;const promptEl=document.getElementById('admin-system-prompt');if(promptEl)promptEl.value=__globalAiPrompt;}}
 function showRemoteAnnouncement(text){const b=document.getElementById('remote-announcement');if(!text){if(b)b.classList.remove('show');return;}const t=document.getElementById('remote-announcement-text');if(t)t.textContent='📢 '+text;if(b)b.classList.add('show');}
 function pushGlobalConfig(key,value){if(!databaseInstance){showNotice('⚠️ Firebase offline');return;}databaseInstance.ref('global/'+key).set(value).then(()=>showNotice('🚀 Pushed LIVE!')).catch(e=>showNotice('Failed: '+e.message));}
 
 /* ADMIN MASTER */
-function getStoredMasterKey(){const custom=gGet('master_key',null);if(custom&&custom.length>=6)return custom;return String.fromCharCode.apply(null,DEFAULT_MASTER_KEY_CODES);}
-function verifyMasterSecret(s){return s===getStoredMasterKey();}
-function unlockMasterAdminPanel(){const k=document.getElementById('master-key-input');if(!k)return;if(verifyMasterSecret(k.value.trim())){isCompanionMode=false;sessionStorage.removeItem('sikku_companion_active');document.getElementById('companion-unlocked-box').style.display='none';document.getElementById('admin-gate-card').style.display='none';document.getElementById('admin-unlocked-box').style.display='block';k.value='';renderCompanionSettings();renderBgSamples();updateBgPreview();showNotice('👑 Welcome Master!');logAction('success','Admin unlocked');setTimeout(()=>{loadAnalytics();loadAdminSupportChats();},600);}else showNotice('❌ Wrong key!');}
-function lockMasterAdminPanel(){document.getElementById('admin-unlocked-box').style.display='none';document.getElementById('companion-unlocked-box').style.display='none';document.getElementById('admin-gate-card').style.display='block';isCompanionMode=false;sessionStorage.removeItem('sikku_companion_active');recordGuardEvent('update','Master panel locked','Admin controls hidden until the next unlock.');showNotice('🔒 Master panel locked');}
-function changeMasterKey(){const inp=document.getElementById('new-master-key');if(!inp||inp.value.length<6){showNotice('Min 6');return;}gSet('master_key',inp.value);inp.value='';showNotice('🔑 Updated!');logAction('warn','Master key changed');}
+function getStoredMasterKey(){const custom=gGet('master_key',null);return(custom&&custom.length>=6&&gGet('master_key_v',null)==='2005')?custom:null;}
+async function verifyMasterSecret(s){const c=getStoredMasterKey();if(c!==null)return s===c;return (await hashSecretV27(s))===DEFAULT_MASTER_HASH;}
+async function seedCompanionDefaultKey(){try{if(gGet('companion_seed',null)==='kiran1')return;companionKeyHash=DEFAULT_COMPANION_HASH;gSet('companion_key_hash',DEFAULT_COMPANION_HASH);if(databaseInstance)await databaseInstance.ref('global/companion_key_hash').set(DEFAULT_COMPANION_HASH);gSet('companion_seed','kiran1');}catch(e){}}
+async function unlockMasterAdminPanel(){const k=document.getElementById('master-key-input');if(!k)return;let ok=false;try{ok=await verifyMasterSecret(k.value.trim());}catch(e){ok=false;}if(ok){document.body.classList.add('admin-open');seedCompanionDefaultKey();fillDlInputs();isCompanionMode=false;sessionStorage.removeItem('sikku_companion_active');document.getElementById('companion-unlocked-box').style.display='none';document.getElementById('admin-gate-card').style.display='none';document.getElementById('admin-unlocked-box').style.display='block';k.value='';renderCompanionSettings();renderBgSamples();updateBgPreview();showNotice('👑 Welcome Master!');logAction('success','Admin unlocked');setTimeout(()=>{loadAnalytics();loadAdminSupportChats();},600);}else showNotice('❌ Wrong key!');}
+function lockMasterAdminPanel(){document.body.classList.remove('admin-open');document.getElementById('admin-unlocked-box').style.display='none';document.getElementById('companion-unlocked-box').style.display='none';document.getElementById('admin-gate-card').style.display='block';isCompanionMode=false;sessionStorage.removeItem('sikku_companion_active');recordGuardEvent('update','Master panel locked','Admin controls hidden until the next unlock.');showNotice('🔒 Master panel locked');}
+function changeMasterKey(){const inp=document.getElementById('new-master-key');if(!inp||inp.value.length<6){showNotice('Min 6');return;}gSet('master_key',inp.value);gSet('master_key_v','2005');inp.value='';showNotice('🔑 Updated!');logAction('warn','Master key changed');}
 function pushGlobalQuote(){const inp=document.getElementById('global-quote-input');const q=inp?inp.value.trim():'';if(!q){showNotice('Quote?');return;}const el=document.getElementById('daily-quote-text');if(el)el.innerText='"'+q+'"';if(databaseInstance)pushGlobalConfig('quote',q);if(inp)inp.value='';}
 function broadcastAnnouncement(){const inp=document.getElementById('broadcast-msg-input');const text=inp?inp.value.trim():'';if(!text){showNotice('Message?');return;}showRemoteAnnouncement(text);if(databaseInstance)pushGlobalConfig('announcement',text);if(inp)inp.value='';}
 
@@ -2739,7 +2763,13 @@ document.addEventListener('keydown',e=>{if(!gGet('keyboard_shortcuts',true))retu
 function startClockAndBattery(){const upd=()=>{const el=document.getElementById('live-clock');if(el)el.innerText=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});};upd();setInterval(upd,1000);if('getBattery' in navigator){navigator.getBattery().then(b=>{const u=()=>{const el=document.getElementById('battery-status');if(el)el.innerText=Math.round(b.level*100)+'% 🔋';};u();b.addEventListener('levelchange',u);}).catch(()=>{});}}
 
 /* APK/QUOTES */
-function downloadOfficialApk(){const url=window.__APP_DOWNLOAD_URL||APP_DOWNLOAD_URL;showNotice('Opening...');setTimeout(()=>window.open(url,'_blank','noopener'),500);}
+function getAppDlUrl(){let s='';try{s=localStorage.getItem('sk_app_dl_url')||'';}catch(e){}return window.__APP_DOWNLOAD_URL||s||APP_DOWNLOAD_URL;}
+function skDirectUrl(u){var m=/drive\.google\.com\/file\/d\/([^\/?#]+)/.exec(u)||/drive\.google\.com\/open\?id=([^&#]+)/.exec(u);return m?'https://drive.google.com/uc?export=download&id='+m[1]:u;}
+function skDirectDownload(u){u=skDirectUrl(u);try{var a=document.createElement('a');a.href=u;a.setAttribute('download','');a.rel='noopener';a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){a.remove()},1000);}catch(e){location.href=u;}}
+function downloadOfficialApk(){const url=getAppDlUrl();showNotice('⬇️ Download शुरू हो रहा है...');skDirectDownload(url);}
+function fillDlInputs(){['dl-url-set','dl-url-adm'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=getAppDlUrl();});}
+function saveAppDownloadUrl(id){if(!(document.body.classList.contains('admin-open')||document.body.classList.contains('is-master'))){showNotice('🔒 पहले Admin में Master Key से unlock करें');return;}const e=document.getElementById(id);const v=e?e.value.trim():'';if(!/^https?:\/\/\S+$/i.test(v)){showNotice('https:// से शुरू होने वाला सही लिंक डालें');return;}window.__APP_DOWNLOAD_URL=v;try{localStorage.setItem('sk_app_dl_url',v);}catch(x){}fillDlInputs();if(databaseInstance)pushGlobalConfig('appDownloadUrl',v);else showNotice('✅ Saved (Firebase offline — सिर्फ इस डिवाइस पर)');try{logAction('success','App download link updated');}catch(x){}}
+function resetAppDownloadUrl(){if(!(document.body.classList.contains('admin-open')||document.body.classList.contains('is-master'))){showNotice('🔒 पहले unlock करें');return;}window.__APP_DOWNLOAD_URL='';try{localStorage.removeItem('sk_app_dl_url');}catch(x){}if(databaseInstance)pushGlobalConfig('appDownloadUrl','');fillDlInputs();showNotice('↩️ Default लिंक पर लौटे');}
 const QUOTES=['Success is the sum of small efforts repeated daily.','Dream big, start small, act now. 🚀','The future belongs to those who believe in their dreams.','Discipline beats motivation.','Apna time aayega! 💪','Har din ek naya mauka hai.','Jo mehnat karta hai, wahi badshah. 👑'];
 function updateDailyQuote(){const el=document.getElementById('daily-quote-text');if(el)el.innerText='"'+QUOTES[Math.floor(Math.random()*QUOTES.length)]+'"';}
 
@@ -3894,6 +3924,11 @@ document.addEventListener('DOMContentLoaded',apply);if(document.body)apply();
 
 <!-- ===== SIKKU v33: compact bottom bar (Home/AI/Prime/Settings + More menu) — original buttons kept, only re-organised ===== -->
 <style>
+.admin-only{display:none}body.admin-open .admin-only,body.is-master .admin-only{display:block}
+#home-dl-btn{display:block}
+#v33-panel{height:82vh;max-height:82vh;overflow:hidden}
+#v33-title{font-size:1rem;font-weight:900;color:var(--cyan,#00F2FE);margin-bottom:8px}
+#v33-grid{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;align-content:start;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
 .bottom-nav{justify-content:space-around!important;overflow:visible!important}
 .bottom-nav .nav-btn:not([data-tab="home"]):not([data-tab="ai"]):not([data-tab="settings"]):not([data-tab="hub"]):not(#v33-more){display:none!important}
 .bottom-nav .nav-btn[data-tab="home"]{order:1}#v33-more{order:2}.bottom-nav .nav-btn[data-tab="ai"]{order:3}.bottom-nav .nav-btn[data-tab="settings"]{order:4}.bottom-nav .nav-btn[data-tab="hub"]{order:5}
@@ -3922,12 +3957,12 @@ var MAIN={home:1,ai:1,settings:1,hub:1};
 function mkMore(){
   var nav=document.querySelector('.bottom-nav');if(!nav||$('v33-more'))return;
   var b=document.createElement('button');b.type='button';b.id='v33-more';b.className='nav-btn';
-  b.innerHTML='<span class="icon">☰</span><span>More</span>';b.onclick=openSheet;nav.appendChild(b);
+  b.innerHTML='<span class="icon">🧰</span><span>Tools</span>';b.onclick=openSheet;nav.appendChild(b);
 }
 function mkSheet(){
   if($('v33-sheet'))return;
   var s=document.createElement('div');s.id='v33-sheet';
-  s.innerHTML='<div id="v33-panel"><div id="v33-head"><input id="v33-q" placeholder="🔍 Kuch bhi dhundho (Notes, Timer, Vault…)"><button id="v33-x" type="button">✕</button></div><div id="v33-grid"></div></div>';
+  s.innerHTML='<div id="v33-panel"><div id="v33-title">🧰 All Tools</div><div id="v33-head"><input id="v33-q" placeholder="🔍 Kuch bhi dhundho (Notes, Timer, Vault…)"><button id="v33-x" type="button">✕</button></div><div id="v33-grid"></div></div>';
   document.body.appendChild(s);
   s.addEventListener('click',function(e){if(e.target===s)closeSheet()});
   $('v33-x').onclick=closeSheet;
@@ -4781,5 +4816,39 @@ applyTheme();renderWal();applyLang();
 })();
 </script>
 
+<script>document.addEventListener('DOMContentLoaded',function(){try{fillDlInputs();}catch(e){}});</script>
+<style>
+#home-dl-card{display:flex;align-items:center;gap:12px;padding:14px;margin-bottom:12px;border:2px solid #10b981;border-radius:16px;background:linear-gradient(135deg,rgba(16,185,129,.22),rgba(0,242,254,.10));cursor:pointer;color:#fff}
+#home-dl-card .pi{font-size:2rem}#home-dl-card b{display:block;color:#34d399;font-size:1rem;font-weight:900}#home-dl-card small{color:#cbd5e1;font-size:.72rem}
+#home-dl-card .go{margin-left:auto;background:#10b981;color:#022c1e;font-weight:900;border-radius:10px;padding:9px 12px;font-size:.8rem;white-space:nowrap}
+#home-dl-card:active{transform:scale(.98)}
+</style>
+<script>
+(function(){
+var dp=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;});
+window.addEventListener('appinstalled',function(){dp=null;try{showNotice('✅ App install ho gaya!')}catch(x){}});
+function customUrl(){var s='';try{s=localStorage.getItem('sk_app_dl_url')||''}catch(e){}return window.__APP_DOWNLOAD_URL||s}
+function guide(){
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  var m=ios?'iPhone: Safari में Share ⬆️ दबाएँ → "Add to Home Screen"':'Android: Browser के ⋮ मेनू में "Install app" / "Add to Home screen" दबाएँ';
+  try{showNotice(m,7000)}catch(e){alert(m)}
+}
+window.homeAppDownload=function(){
+  var u=customUrl();
+  if(u){try{showNotice('⬇️ Download शुरू हो रहा है...')}catch(e){}skDirectDownload(u);return}
+  if(dp){dp.prompt();dp.userChoice.finally(function(){dp=null});return}
+  if(window.matchMedia&&matchMedia('(display-mode: standalone)').matches){try{showNotice('App पहले से install है ✅')}catch(e){}return}
+  guide();
+};
+function mount(){
+  var h=document.getElementById('tab-home');if(!h||document.getElementById('home-dl-card'))return;
+  var d=document.createElement('div');d.id='home-dl-card';
+  d.innerHTML='<span class="pi">📲</span><div><b>App Download करें</b></div><span class="go">Download</span>';
+  d.onclick=window.homeAppDownload;h.insertBefore(d,h.firstChild);
+}
+mount();document.addEventListener('DOMContentLoaded',mount);setInterval(mount,2000);
+})();
+</script>
 </body>
 </html>
