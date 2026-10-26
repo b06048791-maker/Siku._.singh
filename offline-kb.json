@@ -1,0 +1,481 @@
+[
+{
+"k": [
+"prime",
+"premium",
+"upi pay",
+"utr"
+],
+"a": "Prime ₹50 one-time hai. Prime tab me UPI se pay karo, phir Support me UTR number daalo. 👑"
+},
+{
+"k": [
+"ai call",
+"call sikku",
+"voice call",
+"bolkar baat"
+],
+"a": "📞 Home par 'Call Sikku AI' dabao, mic permission Allow karo aur bolo. Mic na chale to neeche type karke bhi bhej sakte ho. AI ke jawab ke liye internet chahiye."
+},
+{
+"k": [
+"offline",
+"internet nahi",
+"bina internet",
+"net nahi"
+],
+"a": "📴 Offline me Calculator, QR, Notes, Todo, Timer, BMI jaise tools chalte hain. AI chat, call aur video call ke liye internet chahiye. Settings me Offline Mode se data save kar sakte ho."
+},
+{
+"k": [
+"language badal",
+"bhasha badal",
+"change language",
+"भाषा बदल"
+],
+"a": "⚙️ Settings > Language me bhasha chuno. Poori site us bhasha me badal jati hai (internet chahiye)."
+},
+{
+"k": [
+"backup",
+"settings export",
+"settings import"
+],
+"a": "💾 Settings > Backup me Export se settings file save karo aur Import se wapas lao."
+},
+{
+"k": [
+"strong password",
+"password kaise",
+"password tips"
+],
+"a": "Strong password: 12+ akshar, bade-chhote letter, number aur symbol mix karo, har site ka alag rakho. Tools me Password Generator use karo. 🔐"
+},
+{
+"k": [
+"otp share",
+"otp kisi ko",
+"upi fraud",
+"online fraud",
+"scam",
+"dhokha"
+],
+"a": "⚠️ OTP, PIN ya UPI PIN kisi ko mat batao, bank kabhi nahi maangta. Anjaan link/QR scan karke 'paisa receive' nahi hota. Fraud ho to turant 1930 par call karo ya cybercrime.gov.in par complaint karo."
+},
+{
+"k": [
+"wifi slow",
+"internet slow",
+"net slow",
+"wifi nahi chal"
+],
+"a": "Wi-Fi slow ho to router restart karo, router ke paas aao, extra devices disconnect karo aur 5GHz band try karo. Phir bhi slow ho to provider se baat karo. 📶"
+},
+{
+"k": [
+"battery jaldi",
+"battery drain",
+"battery bachao",
+"battery khatam"
+],
+"a": "Battery bachane ke liye brightness kam rakho, unused apps band karo, battery saver on karo, location/Bluetooth tabhi on karo jab zaroorat ho. 🔋"
+},
+{
+"k": [
+"phone slow",
+"phone hang",
+"mobile hang",
+"mobile slow"
+],
+"a": "Phone hang ho to restart karo, unused apps hatao, cache clear karo, storage 15-20% khali rakho aur system update check karo. 📱"
+},
+{
+"k": [
+"storage full",
+"memory full",
+"jagah nahi",
+"storage bhar"
+],
+"a": "Storage khali karne ke liye bade videos/photos backup karke hatao, WhatsApp media saaf karo aur Settings > Storage se cache clear karo. 💾"
+},
+{
+"k": [
+"screenshot kaise",
+"screenshot lena"
+],
+"a": "Zyada tar Android phones me Power + Volume Down ek saath dabao. 📸"
+},
+{
+"k": [
+"hotspot kaise",
+"hotspot on"
+],
+"a": "Settings > Network/Connections > Hotspot & tethering me Mobile hotspot on karo aur password set karo."
+},
+{
+"k": [
+"cache clear",
+"cache saaf"
+],
+"a": "Settings > Apps > (app chuno) > Storage > Clear cache. Isse data nahi jata."
+},
+{
+"k": [
+"study tips",
+"padhai kaise",
+"exam preparation",
+"padhai me man",
+"exam ki taiyari"
+],
+"a": "📚 Study tips: roz fixed time par padho, 25 min padho + 5 min break (Pomodoro), notes khud banao, purane sawal hal karo aur 7 ghante ki neend lo."
+},
+{
+"k": [
+"motivation",
+"motivate",
+"himmat",
+"hausla",
+"inspire"
+],
+"a": "Chhote kadam roz chalo. Perfect shuruaat ka intezaar mat karo — aaj ka ek chhota kaam kal ki badi jeet banta hai. 💪"
+},
+{
+"k": [
+"stress",
+"tension",
+"udaas",
+"anxiety ho",
+"ghabrahat"
+],
+"a": "Gehri saans lo (4 sec andar, 6 sec bahar), thoda tehlo, kisi apne se baat karo. Agar yeh bahut din se bana hai to kisi counsellor ya doctor se zaroor milo. 🤍"
+},
+{
+"k": [
+"neend nahi",
+"nind nahi",
+"sleep tips",
+"achhi neend"
+],
+"a": "Achhi neend ke liye roz same time par sooyo, sone se 1 ghanta pehle screen band karo, chai/coffee shaam ke baad kam lo aur kamra andhera-thanda rakho. 😴"
+},
+{
+"k": [
+"paani kitna",
+"water intake",
+"kitna paani"
+],
+"a": "Aam taur par roz 2-3 litre paani theek rehta hai; garmi ya kasrat me zyada. Koi bimari ho to doctor ki salah lo. 💧"
+},
+{
+"k": [
+"workout",
+"exercise",
+"fitness tips",
+"vyayam"
+],
+"a": "Hafte me 4-5 din 30 min chalna/jogging/yoga se shuru karo, warm-up zaroor karo aur dheere dheere badhao. Chot ho to doctor se pucho. 🏃"
+},
+{
+"k": [
+"bmi kya",
+"bmi kaise",
+"bmi nikal",
+"body mass"
+],
+"a": "BMI = weight(kg) ÷ height(m)². WHO ke hisab se 18.5-24.9 normal. Tools me BMI calculator bhi hai. ⚖️"
+},
+{
+"k": [
+"percentage kaise",
+"percent nikal",
+"percentage formula"
+],
+"a": "Percentage = (hissa ÷ kul) × 100. Jaise 45 ka 200 me = 45/200×100 = 22.5%."
+},
+{
+"k": [
+"simple interest",
+"sudh byaj",
+"byaj formula"
+],
+"a": "Simple Interest = (P × R × T) ÷ 100, jahan P mool dhan, R dar % aur T saal."
+},
+{
+"k": [
+"compound interest",
+"chakravridhi",
+"compound formula"
+],
+"a": "Compound amount A = P(1 + R/100)^T (saalana). Interest = A − P."
+},
+{
+"k": [
+"area of circle",
+"circle ka area",
+"vritt ka kshetrafal"
+],
+"a": "Circle ka area = π × r², parivesh = 2πr (π ≈ 3.14159)."
+},
+{
+"k": [
+"area formula",
+"kshetrafal",
+"rectangle ka area",
+"triangle ka area"
+],
+"a": "Rectangle = lambai × chaudai, Triangle = ½ × aadhar × oonchai, Square = side², Circle = πr²."
+},
+{
+"k": [
+"speed formula",
+"speed distance",
+"speed time"
+],
+"a": "Speed = Doori ÷ Samay. Doori = Speed × Samay. Samay = Doori ÷ Speed. 1 km/h = 5/18 m/s."
+},
+{
+"k": [
+"lakh crore",
+"crore kitne",
+"1 lakh",
+"1 crore"
+],
+"a": "1 lakh = 1,00,000. 1 crore = 1,00,00,000 = 100 lakh. 1 arab = 100 crore."
+},
+{
+"k": [
+"india ki rajdhani",
+"capital of india",
+"bharat ki rajdhani"
+],
+"a": "Bharat ki rajdhani New Delhi hai. 🇮🇳"
+},
+{
+"k": [
+"gujarat ki rajdhani",
+"capital of gujarat"
+],
+"a": "Gujarat ki rajdhani Gandhinagar hai."
+},
+{
+"k": [
+"kitne state",
+"how many states",
+"kitne rajya"
+],
+"a": "Bharat me 28 rajya aur 8 kendra shasit pradesh hain."
+},
+{
+"k": [
+"rashtriya pakshi",
+"national bird"
+],
+"a": "Bharat ka rashtriya pakshi mor (Peacock) hai. 🦚"
+},
+{
+"k": [
+"rashtriya pashu",
+"national animal"
+],
+"a": "Bharat ka rashtriya pashu Bengal Tiger (baagh) hai. 🐅"
+},
+{
+"k": [
+"rashtriya phool",
+"national flower"
+],
+"a": "Bharat ka rashtriya phool kamal (Lotus) hai. 🪷"
+},
+{
+"k": [
+"independence day",
+"swatantrata diwas",
+"15 august"
+],
+"a": "Swatantrata Diwas 15 August hai — Bharat 1947 me azad hua. 🇮🇳"
+},
+{
+"k": [
+"republic day",
+"gantantra diwas",
+"26 january"
+],
+"a": "Gantantra Diwas 26 January ko manaya jata hai — 1950 me Samvidhan lagu hua."
+},
+{
+"k": [
+"kitne grah",
+"how many planets",
+"solar system"
+],
+"a": "Saur mandal me 8 grah hain: Budh, Shukra, Prithvi, Mangal, Brihaspati, Shani, Arun, Varun. 🪐"
+},
+{
+"k": [
+"speed of light",
+"prakash ki gati"
+],
+"a": "Prakash ki gati ≈ 3 × 10⁸ m/s (299,792,458 m/s)."
+},
+{
+"k": [
+"boiling point",
+"paani kab ubalta"
+],
+"a": "Paani samudra tal par 100°C par ubalta hai aur 0°C par jamta hai."
+},
+{
+"k": [
+"kitni haddiyan",
+"bones in body",
+"haddi kitni"
+],
+"a": "Vayask insaan ke sharir me 206 haddiyan hoti hain."
+},
+{
+"k": [
+"photosynthesis",
+"prakash sanshleshan"
+],
+"a": "Paudhe dhoop, paani aur CO₂ se glucose banate hain aur oxygen chhodte hain: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂. 🌱"
+},
+{
+"k": [
+"python kya hai",
+"python seekhna",
+"learn python"
+],
+"a": "Python ek aasan programming language hai. Shuruaat: variables, if/else, loops, functions, phir chhote project (calculator, to-do) banao. 🐍"
+},
+{
+"k": [
+"html kya hai",
+"html css",
+"website kaise banate"
+],
+"a": "HTML page ka dhancha banata hai, CSS design deta hai aur JavaScript interaction. Teeno seekh kar apni website bana sakte ho. 🌐"
+},
+{
+"k": [
+"git kya hai",
+"github kya hai"
+],
+"a": "Git code ke versions track karne ka tool hai aur GitHub us code ko online rakhne/share karne ki jagah."
+},
+{
+"k": [
+"qr code kya",
+"qr kaise",
+"qr banao"
+],
+"a": "QR code ek 2D barcode hai jo link/text store karta hai. Tools me QR Generator se banao aur camera se scan karo."
+},
+{
+"k": [
+"resume kaise",
+"cv tips",
+"resume tips"
+],
+"a": "Resume 1 page rakho: naam/contact, short summary, skills, projects/experience (numbers ke saath), education. Spelling zaroor check karo. 📄"
+},
+{
+"k": [
+"interview tips",
+"interview ki taiyari"
+],
+"a": "Interview me company ke bare me padho, 'apne bare me batao' ka 1 min jawab taiyar rakho, sach bolo aur sawal khud bhi pucho. 🤝"
+},
+{
+"k": [
+"chai kaise",
+"tea recipe",
+"chai banane"
+],
+"a": "Chai: 1 cup paani ubalo, adrak/elaichi daalo, 1 chammach patti, 1 cup doodh, cheeni swad anusar, 3-4 min ubalo aur chhan lo. ☕"
+},
+{
+"k": [
+"chawal kaise",
+"rice recipe",
+"chawal banane"
+],
+"a": "Chawal: 1 cup chawal ko dho lo, 2 cup paani aur namak ke saath dhak kar dheemi aanch par 15-18 min pakao (chawal ki kism par nirbhar)."
+},
+{
+"k": [
+"time management",
+"samay prabandhan",
+"time kaise bachaye"
+],
+"a": "Roz ke 3 sabse zaroori kaam subah likho, ek samay me ek kaam karo, phone notifications band rakho aur kaam ke beech chhote break lo. ⏱️"
+},
+{
+"k": [
+"paise bachao",
+"saving tips",
+"budget kaise",
+"bachat kaise"
+],
+"a": "50-30-20 niyam: kamai ka 50% zaroorat, 30% shauk, 20% bachat. Salary aate hi bachat alag kar do. 💰"
+},
+{
+"k": [
+"emergency number",
+"police number",
+"ambulance number",
+"helpline number"
+],
+"a": "🇮🇳 Emergency: 112 (sabhi ke liye). Police 100, Fire 101, Ambulance 102/108, Women helpline 181, Childline 1098, Cyber crime 1930."
+},
+{
+"k": [
+"jal gaya",
+"burn first aid",
+"aag se jala"
+],
+"a": "Jale hue hisse par 10-20 min saaf bahta thanda (barf nahi) paani daalo. Toothpaste/ghee/makkhan mat lagao. Bada ya chehre/haath ka jalna ho to turant doctor ke paas jao. 🚑"
+},
+{
+"k": [
+"bukhar",
+"fever ho"
+],
+"a": "Bukhar me aaram karo, paani/ORS lo, halka khana khao. 3 din se zyada, bahut tez bukhar, saans ki dikkat ya bachche/budhe me ho to turant doctor se milo. 🌡️"
+},
+{
+"k": [
+"tum kaun",
+"who are you",
+"aap kaun",
+"tumhara naam",
+"your name"
+],
+"a": "Main Sikku AI hoon — chat, tools aur madad ke liye. 😊"
+},
+{
+"k": [
+"thank you",
+"shukriya",
+"dhanyavad",
+"thanks"
+],
+"a": "Aapka swagat hai! Aur kuch madad chahiye to batao. 🙏"
+},
+{
+"k": [
+"bye bye",
+"alvida",
+"good night",
+"shubh ratri"
+],
+"a": "Alvida! Dhyan rakhna, phir milenge. 🌙"
+},
+{
+"k": [
+"good morning",
+"suprabhat",
+"shubh prabhat"
+],
+"a": "Good morning! ☀️ Aapka din shandar ho."
+}
+]
