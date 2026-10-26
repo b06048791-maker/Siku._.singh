@@ -4,6 +4,8 @@
 <script>(function(){var o=window.setInterval;window.setInterval=function(f,d){if(typeof f==='function'&&d>=1100&&d<=5000){var g=f;f=function(){if(document.hidden)return;return g.apply(this,arguments)}}var a=Array.prototype.slice.call(arguments,2);return o.apply(window,[f,d].concat(a))}})();</script>
 
 <meta charset="UTF-8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8641821521954282"
+     crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050810">
 <title>Sikku Singh — Sikku AI • Private companion & smart tools</title>
@@ -369,6 +371,15 @@ select.lang-sel option{background:#0f172a;color:#fff}
 #random-call-screen{position:fixed;inset:0;z-index:100003;background:#050810;color:#f1f5f9;display:none;flex-direction:column}#random-call-screen.show{display:flex}.random-call-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid #1a2540;background:#0c1220;gap:8px}.random-call-title{font-weight:900}.random-call-status{font-size:.7rem;color:#22d3ee}.random-video-stage{position:relative;flex:1;min-height:0;background:#02040a;overflow:hidden}#random-remote-video{width:100%;height:100%;object-fit:cover}#random-local-video{position:absolute;right:14px;top:14px;width:112px;aspect-ratio:3/4;object-fit:cover;border-radius:10px;border:1px solid #22d3ee;background:#0c1220;box-shadow:0 8px 30px rgba(0,0,0,.45)}.random-waiting{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:28px;pointer-events:none}.random-waiting.hidden{display:none}.random-waiting-inner{max-width:330px}.random-waiting h2{font-size:1.25rem;margin:14px 0 8px}.random-waiting p{color:#94a3b8;font-size:.78rem;line-height:1.65}.random-call-controls{display:flex;justify-content:center;gap:10px;padding:14px 10px calc(14px + env(safe-area-inset-bottom));background:#0c1220;border-top:1px solid #1a2540}.random-control{min-width:58px;min-height:52px;padding:8px;border:1px solid #1a2540;border-radius:10px;background:#111a2b;color:#f1f5f9;font-size:.67rem;font-weight:800;cursor:pointer}.random-control span{display:block;font-size:1.2rem;margin-bottom:3px}.random-control.skip{background:#22d3ee;color:#03151e;border-color:#22d3ee}.random-control.end{background:#7f1d1d;border-color:#f87171}.random-consent{max-width:420px;margin:auto}.random-consent p{font-size:.78rem;line-height:1.7;color:#94a3b8;margin:10px 0 16px}.video-progress{width:100%;height:5px;background:#111a2b;border-radius:5px;overflow:hidden;margin:10px 0}.video-progress i{display:block;height:100%;width:0;background:#22d3ee;transition:width .2s}
 @media(min-width:800px){.random-call-controls{padding-bottom:18px}#random-local-video{width:180px}.main-container{max-width:680px}.audit-user-list{grid-template-columns:1fr 1fr;max-height:320px}}
 </style>
+<style>
+.home-sec{font-size:.85rem;font-weight:900;color:var(--cyan);margin:6px 4px 12px;letter-spacing:.3px}
+textarea.ui-input{min-height:110px;resize:vertical;font-family:inherit}
+.nt-out{margin-top:10px;font-size:.82rem;line-height:1.5;word-break:break-word}
+.nt-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:2px}
+.nt-st{display:inline-flex;flex-direction:column;min-width:30%;margin:3px;padding:8px;border-radius:10px;background:rgba(0,242,254,.08);text-align:center}
+.nt-st b{color:var(--cyan);font-size:1.1rem}.nt-st span{font-size:.65rem;color:var(--text-muted)}
+.home-tool{display:block}
+</style>
 <script src="qrcode.min.js" defer onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';document.head.appendChild(s)"></script>
 <script>window.__SKP={price:50,upi:"sikusingh@upi",plan:"Premium"};function SKP_P(){return window.__SKP.price}</script>
 </head>
@@ -476,6 +487,508 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <div id="daily-quote-text" style="font-size:.85rem;font-style:italic;color:#e2e8f0;line-height:1.4;">Loading...</div>
 </div>
 </div>
+<div class="home-sec">🧰 सभी टूल्स — नीचे स्क्रॉल करें</div>
+<div id="tab-freetools" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🆓 Free Mega Tools <span style="margin-left:auto;font-size:.62rem;color:#10b981;font-weight:800;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:8px;">40 FREE</span></div>
+<div class="search-tools-bar"><input type="text" id="free-tools-search" class="ui-input" placeholder="Search tools..." oninput="filterFreeTools(this.value)"></div>
+<div class="freetools-grid" id="free-tools-grid">
+<div class="tile" data-name="text count counter" onclick="openFreeTool('textcounter')"><div class="tile-icon">📊</div><div class="tile-title">Text Count</div></div>
+<div class="tile" data-name="case convert upper lower" onclick="openFreeTool('caseconv')"><div class="tile-icon">🔤</div><div class="tile-title">Case</div></div>
+<div class="tile" data-name="lorem ipsum generate" onclick="openFreeTool('lorem')"><div class="tile-icon">📋</div><div class="tile-title">Lorem</div></div>
+<div class="tile" data-name="hash sha md5" onclick="openFreeTool('hash')"><div class="tile-icon">🔐</div><div class="tile-title">Hash</div></div>
+<div class="tile" data-name="color picker rgb hex" onclick="openFreeTool('colorpicker')"><div class="tile-icon">🎨</div><div class="tile-title">Color</div></div>
+<div class="tile" data-name="gradient css" onclick="openFreeTool('gradient')"><div class="tile-icon">🌈</div><div class="tile-title">Gradient</div></div>
+<div class="tile" data-name="text speech tts voice" onclick="openFreeTool('tts')"><div class="tile-icon">🗣️</div><div class="tile-title">TTS</div></div>
+<div class="tile" data-name="url short link" onclick="openFreeTool('urlshort')"><div class="tile-icon">🔗</div><div class="tile-title">URL Short</div></div>
+<div class="tile" data-name="image compress photo" onclick="openFreeTool('imgcompress')"><div class="tile-icon">🖼️</div><div class="tile-title">Img Comp</div></div>
+<div class="tile" data-name="world clock time zone" onclick="openFreeTool('worldclock')"><div class="tile-icon">🌍</div><div class="tile-title">World Clock</div></div>
+<div class="tile" data-name="currency exchange rate" onclick="openFreeTool('currency')"><div class="tile-icon">💱</div><div class="tile-title">Currency</div></div>
+<div class="tile" data-name="habit tracker daily" onclick="openFreeTool('habit')"><div class="tile-icon">🎯</div><div class="tile-title">Habit</div></div>
+<div class="tile" data-name="expense money tracker" onclick="openFreeTool('expense')"><div class="tile-icon">📈</div><div class="tile-title">Expense</div></div>
+<div class="tile" data-name="decision random choice" onclick="openFreeTool('decision')"><div class="tile-icon">🎲</div><div class="tile-title">Decision</div></div>
+<div class="tile" data-name="markdown editor preview" onclick="openFreeTool('markdown')"><div class="tile-icon">📝</div><div class="tile-title">Markdown</div></div>
+<div class="tile" data-name="base64 encode decode" onclick="openFreeTool('base64')"><div class="tile-icon">🔄</div><div class="tile-title">Base64</div></div>
+<div class="tile" data-name="timestamp unix time" onclick="openFreeTool('timestamp')"><div class="tile-icon">⏰</div><div class="tile-title">Timestamp</div></div>
+<div class="tile" data-name="morse code translator" onclick="openFreeTool('morse')"><div class="tile-icon">📡</div><div class="tile-title">Morse</div></div>
+<div class="tile" data-name="roman numeral converter" onclick="openFreeTool('roman')"><div class="tile-icon">Ⅻ</div><div class="tile-title">Roman</div></div>
+<div class="tile" data-name="word unscrambler anagram" onclick="openFreeTool('unscramble')"><div class="tile-icon">🔀</div><div class="tile-title">Unscramble</div></div>
+<div class="tile" data-name="random password generator strong" onclick="openFreeTool('pwdgen')"><div class="tile-icon">🔑</div><div class="tile-title">Pwd Gen</div></div>
+<div class="tile" data-name="emoji picker search" onclick="openFreeTool('emoji')"><div class="tile-icon">😀</div><div class="tile-title">Emoji</div></div>
+<div class="tile" data-name="ascii art text banner" onclick="openFreeTool('ascii')"><div class="tile-icon">🎨</div><div class="tile-title">ASCII Art</div></div>
+<div class="tile" data-name="url parser query params" onclick="openFreeTool('urlparse')"><div class="tile-icon">🔍</div><div class="tile-title">URL Parse</div></div>
+<div class="tile" data-name="uuid generator v4" onclick="openFreeTool('uuid')"><div class="tile-icon">🆔</div><div class="tile-title">UUID</div></div>
+<div class="tile" data-name="number to words convert" onclick="openFreeTool('numwords')"><div class="tile-icon">🔢</div><div class="tile-title">Num→Words</div></div>
+<div class="tile" data-name="percentage calculator" onclick="openFreeTool('percent')"><div class="tile-icon">%</div><div class="tile-title">Percent</div></div>
+<div class="tile" data-name="tip split bill" onclick="openFreeTool('tip')"><div class="tile-icon">💵</div><div class="tile-title">Tip Split</div></div>
+<div class="tile" data-name="date difference duration" onclick="openFreeTool('datediff')"><div class="tile-icon">📅</div><div class="tile-title">Date Diff</div></div>
+<div class="tile" data-name="text statistics analyze" onclick="openFreeTool('textstats')"><div class="tile-icon">📈</div><div class="tile-title">Text Stats</div></div>
+<div class="tile" data-name="rot13 cipher caesar" onclick="openFreeTool('rot13')"><div class="tile-icon">🔐</div><div class="tile-title">ROT13</div></div>
+<div class="tile" data-name="hex binary ascii convert" onclick="openFreeTool('hex')"><div class="tile-icon">⬡</div><div class="tile-title">Hex Conv</div></div>
+<div class="tile" data-name="duplicate remover text" onclick="openFreeTool('dedup')"><div class="tile-icon">🧹</div><div class="tile-title">Dedup</div></div>
+<div class="tile" data-name="lucky wheel spin fortune" onclick="openFreeTool('luckyspin')"><div class="tile-icon">🍀</div><div class="tile-title">Lucky Spin</div></div>
+<div class="tile" data-name="bmi calorie health" onclick="openFreeTool('bmi2')"><div class="tile-icon">💪</div><div class="tile-title">Health</div></div>
+<div class="tile" data-name="reverse text backwards" onclick="openFreeTool('reverse')"><div class="tile-icon">🔄</div><div class="tile-title">Reverse</div></div>
+<div class="tile" data-name="palindrome check word" onclick="openFreeTool('palindrome')"><div class="tile-icon">🔁</div><div class="tile-title">Palindrome</div></div>
+<div class="tile" data-name="fancy text stylish fonts" onclick="openFreeTool('fancy')"><div class="tile-icon">✨</div><div class="tile-title">Fancy Text</div></div>
+<div class="tile" data-name="slug url seo" onclick="openFreeTool('slug')"><div class="tile-icon">🔗</div><div class="tile-title">Slug</div></div>
+<div class="tile" data-name="word frequency analyze" onclick="openFreeTool('freq')"><div class="tile-icon">📶</div><div class="tile-title">Word Freq</div></div>
+</div>
+</div>
+</div>
+
+<div id="tab-genx" class="home-tool">
+<div class="ui-card">
+<div class="card-title">⚡ Gen X Tools <span style="margin-left:auto;font-size:.6rem;color:#10b981;font-weight:800;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:8px;">30 NEW</span></div>
+<div class="tool-cat-header">🔐 Security & Text</div>
+<div class="freetools-grid">
+<div class="tile" onclick="openGenTool('pwdstrength')"><div class="tile-icon">💪</div><div class="tile-title">Pwd Strength</div></div>
+<div class="tile" onclick="openGenTool('jsonfmt')"><div class="tile-icon">📋</div><div class="tile-title">JSON</div></div>
+<div class="tile" onclick="openGenTool('urlenc')"><div class="tile-icon">🔗</div><div class="tile-title">URL Enc</div></div>
+<div class="tile" onclick="openGenTool('regex')"><div class="tile-icon">🔍</div><div class="tile-title">Regex</div></div>
+<div class="tile" onclick="openGenTool('diff')"><div class="tile-icon">🔀</div><div class="tile-title">Diff</div></div>
+<div class="tile" onclick="openGenTool('binary')"><div class="tile-icon">01</div><div class="tile-title">Binary</div></div>
+</div>
+<div class="tool-cat-header">❤️ Fun & Random</div>
+<div class="freetools-grid">
+<div class="tile" onclick="openGenTool('love')"><div class="tile-icon">💕</div><div class="tile-title">Love %</div></div>
+<div class="tile" onclick="openGenTool('lucky')"><div class="tile-icon">🍀</div><div class="tile-title">Lucky No.</div></div>
+<div class="tile" onclick="openGenTool('wheel')"><div class="tile-icon">🎡</div><div class="tile-title">Spin Wheel</div></div>
+<div class="tile" onclick="openGenTool('randomname')"><div class="tile-icon">👥</div><div class="tile-title">Name Pick</div></div>
+<div class="tile" onclick="openGenTool('truthdare')"><div class="tile-icon">🎭</div><div class="tile-title">Truth/Dare</div></div>
+<div class="tile" onclick="openGenTool('zodiac')"><div class="tile-icon">♈</div><div class="tile-title">Zodiac</div></div>
+</div>
+<div class="tool-cat-header">🏥 Health & Life</div>
+<div class="freetools-grid">
+<div class="tile" onclick="openGenTool('bmr')"><div class="tile-icon">🔥</div><div class="tile-title">BMR</div></div>
+<div class="tile" onclick="openGenTool('water')"><div class="tile-icon">💧</div><div class="tile-title">Water</div></div>
+<div class="tile" onclick="openGenTool('mood')"><div class="tile-icon">😊</div><div class="tile-title">Mood</div></div>
+<div class="tile" onclick="openGenTool('journal')"><div class="tile-icon">📔</div><div class="tile-title">Journal</div></div>
+<div class="tile" onclick="openGenTool('tax')"><div class="tile-icon">💰</div><div class="tile-title">Tax</div></div>
+<div class="tile" onclick="openGenTool('fuel')"><div class="tile-icon">⛽</div><div class="tile-title">Fuel</div></div>
+</div>
+<div class="tool-cat-header">🎨 Creative</div>
+<div class="freetools-grid">
+<div class="tile" onclick="openGenTool('draw')"><div class="tile-icon">🖌️</div><div class="tile-title">Drawing</div></div>
+<div class="tile" onclick="openGenTool('signature')"><div class="tile-icon">✍️</div><div class="tile-title">Signature</div></div>
+<div class="tile" onclick="openGenTool('emojiart')"><div class="tile-icon">😍</div><div class="tile-title">Emoji Art</div></div>
+<div class="tile" onclick="openGenTool('nameart')"><div class="tile-icon">🎨</div><div class="tile-title">Name Art</div></div>
+<div class="tile" onclick="openGenTool('storygen')"><div class="tile-icon">📖</div><div class="tile-title">Story Gen</div></div>
+<div class="tile" onclick="openGenTool('quoteimg')"><div class="tile-icon">💬</div><div class="tile-title">Quote Img</div></div>
+</div>
+<div class="tool-cat-header">💼 Productivity</div>
+<div class="freetools-grid">
+<div class="tile" onclick="openGenTool('pomodoro')"><div class="tile-icon">🍅</div><div class="tile-title">Pomodoro</div></div>
+<div class="tile" onclick="openGenTool('kanban')"><div class="tile-icon">📋</div><div class="tile-title">Kanban</div></div>
+<div class="tile" onclick="openGenTool('countdown')"><div class="tile-icon">⏳</div><div class="tile-title">Countdown</div></div>
+<div class="tile" onclick="openGenTool('habit2')"><div class="tile-icon">📆</div><div class="tile-title">Habit Grid</div></div>
+<div class="tile" onclick="openGenTool('stopwatch2')"><div class="tile-icon">⏱️</div><div class="tile-title">Stopwatch</div></div>
+<div class="tile" onclick="openGenTool('notes2')"><div class="tile-icon">📝</div><div class="tile-title">Sticky</div></div>
+</div>
+</div>
+</div>
+
+<div id="tab-code" class="home-tool">
+<div class="ui-card">
+<div class="card-title">💻 Code + Encryptor</div>
+<div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(5,1,15,0.6);padding:6px;border-radius:12px;">
+<button type="button" id="mode-btn-code" class="ui-btn" style="flex:1;padding:8px;font-size:.8rem;background:var(--accent-grad);color:#03151e;" onclick="setCodeMode('code')">🔧 Code</button>
+<button type="button" id="mode-btn-text" class="ui-btn" style="flex:1;padding:8px;font-size:.8rem;background:transparent;color:var(--text-muted);border:1px solid var(--border-color);" onclick="setCodeMode('text')">🔐 Encrypt</button>
+</div>
+<p id="code-mode-hint" style="font-size:.75rem;color:var(--text-muted);margin-bottom:12px;"><strong style="color:var(--cyan);">📌 Code Mode:</strong> Natural language me bolo.</p>
+<textarea id="code-prompt-input" class="ui-input" rows="3" placeholder="e.g. Ek calculator banao..."></textarea>
+<select id="code-lang" class="ui-input">
+<option value="html">HTML + CSS + JS</option>
+<option value="python">Python</option>
+<option value="javascript">JavaScript</option>
+<option value="java">Java</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+</select>
+<button type="button" class="ui-btn" onclick="generateProtectedCode()" id="code-gen-btn">⚡ Generate</button>
+<div id="code-password-setup" style="display:none;margin-top:14px;border:1.5px solid var(--pink);border-radius:14px;padding:14px;background:rgba(255,0,127,0.05);">
+<div style="font-size:.82rem;font-weight:800;color:var(--pink);margin-bottom:8px;">🔐 Lock with Password</div>
+<input type="password" id="code-lock-password" class="ui-input" placeholder="Password (min 6)">
+<input type="password" id="code-lock-password-confirm" class="ui-input" placeholder="Confirm">
+<button type="button" class="ui-btn pink" onclick="lockAndSaveCode()">🔒 Lock &amp; Save</button>
+</div>
+<div id="code-output-area" style="margin-top:14px;"></div>
+<div id="saved-codes-list" style="margin-top:18px;"></div>
+</div>
+</div>
+
+<div id="tab-search" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🌐 Web Search</div>
+<input type="text" id="web-search-input" class="ui-input" placeholder="Search..." onkeydown="if(event.key==='Enter') executeWebSearch('google')">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<button type="button" class="ui-btn" onclick="executeWebSearch('google')">🔍 Google</button>
+<button type="button" class="ui-btn pink" onclick="executeWebSearch('youtube')">▶️ YouTube</button>
+<button type="button" class="ui-btn green" onclick="executeWebSearch('wiki')">📚 Wiki</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="executeWebSearch('insta')">📸 Insta</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="executeWebSearch('chatgpt')">💡 AI Chat</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="executeWebSearch('bing')">🔷 Bing</button>
+</div>
+</div>
+</div>
+
+<div id="tab-calc" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🔢 Calculator</div>
+<input type="text" id="calc-display" class="ui-input" readonly value="0" style="text-align:right;font-size:1.5rem;font-weight:900;color:var(--cyan);">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+<button type="button" class="ui-btn pink" onclick="calcAction('C')">C</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('/')">÷</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('*')">×</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#ff007f;" onclick="calcAction('DEL')">⌫</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('7')">7</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('8')">8</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('9')">9</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('-')">−</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('4')">4</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('5')">5</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('6')">6</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('+')">+</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('1')">1</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('2')">2</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('3')">3</button>
+<button type="button" class="ui-btn green" style="grid-row:span 2;" onclick="calcAction('=')">=</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;grid-column:span 2;" onclick="calcAction('0')">0</button>
+<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('.')">.</button>
+</div>
+</div>
+</div>
+
+<div id="tab-age" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🎂 Age Calculator</div>
+<label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px;">Select DOB:</label>
+<input type="date" id="dob-input" class="ui-input">
+<button type="button" class="ui-btn" onclick="calculateExactAge()">Calculate</button>
+<div id="age-result-box" style="margin-top:14px;text-align:center;font-weight:800;color:var(--cyan);font-size:.95rem;"></div>
+</div>
+</div>
+
+<div id="tab-bmi" class="home-tool">
+<div class="ui-card">
+<div class="card-title">⚖️ BMI Calculator</div>
+<input type="number" id="bmi-weight" class="ui-input" placeholder="Weight (kg)">
+<input type="number" id="bmi-height" class="ui-input" placeholder="Height (cm)">
+<button type="button" class="ui-btn" onclick="calculateBmiScore()">Check BMI</button>
+<div id="bmi-result-box" style="margin-top:14px;text-align:center;font-weight:800;color:var(--cyan);font-size:.95rem;"></div>
+</div>
+</div>
+
+<div id="tab-timer" class="home-tool">
+<div class="ui-card" style="text-align:center;">
+<div class="card-title">⏱️ Customizable Timer</div>
+<div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(5,1,15,0.6);padding:6px;border-radius:12px;">
+<button type="button" id="timer-mode-sw" class="ui-btn" style="flex:1;padding:8px;font-size:.72rem;background:var(--accent-grad);color:#03151e;" onclick="setTimerMode('stopwatch')">⏱️ Stopwatch</button>
+<button type="button" id="timer-mode-cd" class="ui-btn" style="flex:1;padding:8px;font-size:.72rem;background:transparent;color:var(--text-muted);border:1px solid var(--border-color);" onclick="setTimerMode('countdown')">⏳ Countdown</button>
+</div>
+<div id="sw-section">
+<div id="stopwatch-display" style="font-size:2.6rem;font-weight:900;color:var(--cyan);margin:20px 0;font-family:monospace;">00:00:00</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">
+<button type="button" class="ui-btn green" onclick="startStopwatch()">Start</button>
+<button type="button" class="ui-btn pink" onclick="stopStopwatch()">Pause</button>
+<button type="button" class="ui-btn" style="background:#334155;color:#fff;" onclick="resetStopwatch()">Reset</button>
+</div>
+<button type="button" class="ui-btn" style="background:rgba(167,139,250,0.15);border:1px solid #a78bfa;color:#a78bfa;padding:10px;font-size:.78rem;margin-bottom:10px;" onclick="addLap()">🏁 Add Lap</button>
+<div id="laps-list" style="max-height:180px;overflow-y:auto;"></div>
+</div>
+<div id="cd-section" style="display:none;">
+<div id="countdown-display" style="font-size:2.6rem;font-weight:900;color:var(--pink);margin:20px 0;font-family:monospace;">00:05:00</div>
+<div style="display:flex;gap:6px;margin-bottom:10px;">
+<input type="number" id="cd-hours" class="ui-input" placeholder="HH" value="0" min="0" max="23" style="margin-bottom:0;text-align:center;font-size:1rem;" oninput="updateCountdownDisplay()">
+<span style="color:var(--cyan);font-weight:900;align-self:center;">:</span>
+<input type="number" id="cd-mins" class="ui-input" placeholder="MM" value="5" min="0" max="59" style="margin-bottom:0;text-align:center;font-size:1rem;" oninput="updateCountdownDisplay()">
+<span style="color:var(--cyan);font-weight:900;align-self:center;">:</span>
+<input type="number" id="cd-secs" class="ui-input" placeholder="SS" value="0" min="0" max="59" style="margin-bottom:0;text-align:center;font-size:1rem;" oninput="updateCountdownDisplay()">
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;">
+<button onclick="setPresetTime(1,0)" style="background:rgba(0,242,254,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">1 min</button>
+<button onclick="setPresetTime(5,0)" style="background:rgba(0,242,254,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">5 min</button>
+<button onclick="setPresetTime(10,0)" style="background:rgba(0,242,254,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">10 min</button>
+<button onclick="setPresetTime(25,0)" style="background:rgba(251,191,36,0.15);border:1px solid #fbbf24;color:#fbbf24;border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">25 min</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+<button type="button" class="ui-btn green" onclick="startCountdown()">▶️ Start</button>
+<button type="button" class="ui-btn pink" onclick="pauseCountdown()">⏸️ Pause</button>
+<button type="button" class="ui-btn" style="background:#334155;color:#fff;" onclick="resetCountdown()">🔄 Reset</button>
+</div>
+<div id="cd-status" style="margin-top:12px;font-size:.78rem;color:var(--text-muted);font-weight:700;"></div>
+</div>
+</div>
+</div>
+
+<div id="tab-todo" class="home-tool">
+<div class="ui-card">
+<div class="card-title">✅ Tasks</div>
+<div style="display:flex;gap:8px;margin-bottom:12px;">
+<input type="text" id="todo-input-field" class="ui-input" style="margin-bottom:0;" placeholder="New task..." onkeydown="if(event.key==='Enter') addNewTodoTask()">
+<button type="button" class="ui-btn" style="width:auto;padding:0 18px;" onclick="addNewTodoTask()">Add</button>
+</div>
+<div id="todo-tasks-container"></div>
+</div>
+</div>
+
+<div id="tab-notes" class="home-tool">
+<div class="ui-card">
+<div class="card-title">📝 Notes</div>
+<textarea id="quick-note-field" class="ui-input" rows="4" placeholder="Private notes..."></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+<button type="button" class="ui-btn" onclick="savePrivateNote()">💾 Save</button>
+<button type="button" class="ui-btn pink" onclick="clearAllPrivateNotes()">🗑️ Clear</button>
+</div>
+<div id="private-notes-log"></div>
+</div>
+</div>
+
+<div id="tab-qr" class="home-tool">
+<div class="ui-card" style="text-align:center;">
+<div class="card-title">🏁 QR Generator</div>
+<div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(5,1,15,0.6);padding:6px;border-radius:12px;">
+<button type="button" id="qr-mode-text" class="ui-btn" style="flex:1;padding:8px;font-size:.78rem;background:var(--accent-grad);color:#03151e;" onclick="setQrMode('text')">📝 Text/URL</button>
+<button type="button" id="qr-mode-file" class="ui-btn" style="flex:1;padding:8px;font-size:.78rem;background:transparent;color:var(--text-muted);border:1px solid var(--border-color);" onclick="setQrMode('file')">📁 File/Photo</button>
+</div>
+<div id="qr-text-section">
+<input type="text" id="qr-text-input" class="ui-input" placeholder="Enter URL or text...">
+<button type="button" class="ui-btn" onclick="generateQrCodeImage()">Generate QR</button>
+</div>
+<div id="qr-file-section" style="display:none;">
+<input type="file" id="qr-file-input" style="display:none" onchange="handleQrFileUpload(event)" accept="image/*,.pdf,.doc,.docx,.txt">
+<button type="button" class="ui-btn green" onclick="document.getElementById('qr-file-input').click()">📁 Select File</button>
+<div style="font-size:.7rem;color:var(--text-muted);margin-top:6px;">Photo/PDF/Doc — QR me info ban jayega</div>
+<div id="qr-file-info" style="margin-top:10px;font-size:.75rem;color:#fff;"></div>
+</div>
+<div id="qr-output-box" style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:10px;"></div>
+</div>
+</div>
+
+<div id="tab-vault" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🔐 Vault</div>
+<input type="text" id="vault-sec" class="ui-input" placeholder="Platform">
+<input type="text" id="vault-usr" class="ui-input" placeholder="Username">
+<input type="password" id="vault-pwd" class="ui-input" placeholder="Password">
+<button type="button" class="ui-btn" onclick="saveVaultCredential()">🔒 Save</button>
+<div id="vault-log-box" style="margin-top:14px;"></div>
+</div>
+</div>
+
+<div id="tab-focus" class="home-tool">
+<div class="ui-card" style="text-align:center;">
+<div class="card-title">🍅 Pomodoro</div>
+<div id="focus-timer-display" style="font-size:2.8rem;font-weight:900;color:var(--pink);margin:16px 0;font-family:monospace;">25:00</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+<button type="button" class="ui-btn green" onclick="startFocusSession()">Start</button>
+<button type="button" class="ui-btn pink" onclick="pauseFocusSession()">Pause</button>
+<button type="button" class="ui-btn" style="background:#334155;color:#fff;" onclick="resetFocusSession()">Reset</button>
+</div>
+</div>
+</div>
+
+<div id="tab-encrypt" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🔐 Text Encryptor</div>
+<div class="encrypt-mode-tabs">
+<button type="button" id="enc-mode-aes" class="encrypt-mode-btn active" onclick="setEncryptMode('aes')">🔒 AES</button>
+<button type="button" id="enc-mode-normal" class="encrypt-mode-btn" onclick="setEncryptMode('normal')">⚡ Normal</button>
+<button type="button" id="enc-mode-link" class="encrypt-mode-btn" onclick="setEncryptMode('link')">🔗 Link</button>
+</div>
+<div id="enc-aes-section">
+<label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">💬 Message:</label>
+<textarea id="cipher-in" class="ui-input" rows="4" placeholder="Message ya received code paste karo..."></textarea>
+<label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">🔑 Password (min 6):</label>
+<input type="password" id="cipher-password" class="ui-input" placeholder="Password...">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+<button type="button" class="ui-btn" onclick="runStandardCipher(true)">🔒 Encrypt</button>
+<button type="button" class="ui-btn pink" onclick="runStandardCipher(false)">🔓 Decrypt</button>
+</div>
+<label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">📤 Output:</label>
+<textarea id="cipher-out" class="ui-input" rows="4" readonly placeholder="Result..."></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<button type="button" class="ui-btn green" onclick="copyCipherOutput()">📋 Copy</button>
+<button type="button" class="ui-btn purple" onclick="shareCipherOutput()">📤 Share</button>
+</div>
+</div>
+<div id="enc-normal-section" style="display:none;">
+<div style="background:rgba(16,185,129,0.1);border:1.5px solid #10b981;border-radius:10px;padding:10px;margin-bottom:12px;font-size:.72rem;color:#10b981;">⚡ Simple encoding — Base64 + XOR.</div>
+<textarea id="normal-in" class="ui-input" rows="4" placeholder="Message likho..."></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+<button type="button" class="ui-btn" onclick="runNormalCipher(true)">🔒 Encode</button>
+<button type="button" class="ui-btn pink" onclick="runNormalCipher(false)">🔓 Decode</button>
+</div>
+<textarea id="normal-out" class="ui-input" rows="4" readonly placeholder="Result..."></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<button type="button" class="ui-btn green" onclick="copyNormalOut()">📋 Copy</button>
+<button type="button" class="ui-btn purple" onclick="shareNormalCode()">📤 Share</button>
+</div>
+</div>
+<div id="enc-link-section" style="display:none;">
+<div style="background:rgba(167,139,250,0.1);border:1.5px solid #a78bfa;border-radius:10px;padding:10px;margin-bottom:12px;font-size:.72rem;color:#a78bfa;">🔗 Short link me convert karo.</div>
+<textarea id="link-msg-in" class="ui-input" rows="3" placeholder="Secret message..."></textarea>
+<input type="password" id="link-pw" class="ui-input" placeholder="Password (optional)">
+<button type="button" class="ui-btn purple" onclick="generateShareLink()">🔗 Generate Link</button>
+<div id="link-output" style="margin-top:12px;"></div>
+</div>
+</div>
+</div>
+
+<div id="tab-tools" class="home-tool">
+<div class="ui-card">
+<div class="card-title">🔄 Unit Converter</div>
+<select id="conv-category" class="ui-input" onchange="updateConverterUnits()">
+<option value="Length">📏 Length</option>
+<option value="Weight">⚖️ Weight</option>
+<option value="Temperature">🌡️ Temperature</option>
+<option value="Time">⏰ Time</option>
+<option value="Data">💾 Data</option>
+</select>
+<input type="number" id="conv-value" class="ui-input" placeholder="Value" value="1">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<select id="conv-from" class="ui-input"></select>
+<select id="conv-to" class="ui-input"></select>
+</div>
+<button type="button" class="ui-btn" onclick="convertUnit()">Convert</button>
+<div id="conv-result" style="margin-top:12px;text-align:center;font-weight:800;color:var(--cyan);font-size:1rem;"></div>
+</div>
+<div class="ui-card">
+<div class="card-title">🎲 Random</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+<button type="button" class="ui-btn" onclick="rollDice()">🎲 Dice</button>
+<button type="button" class="ui-btn pink" onclick="flipCoin()">🪙 Coin</button>
+</div>
+<div id="random-result" style="text-align:center;font-size:1.6rem;font-weight:900;color:var(--cyan);min-height:40px;margin-bottom:12px;"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<input type="number" id="rnd-min" class="ui-input" placeholder="Min" value="1">
+<input type="number" id="rnd-max" class="ui-input" placeholder="Max" value="100">
+</div>
+<button type="button" class="ui-btn green" onclick="generateRandomNumber()">🔢 Random Number</button>
+</div>
+<div class="ui-card">
+<div class="card-title">🔑 Password Gen</div>
+<label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px;">Length: <span id="pwd-len-view">16</span></label>
+<input type="range" id="pwd-len" min="6" max="40" value="16" style="width:100%;accent-color:var(--cyan);margin-bottom:12px;" oninput="document.getElementById('pwd-len-view').innerText=this.value">
+<input type="text" id="pwd-output" class="ui-input" readonly placeholder="Password...">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<button type="button" class="ui-btn" onclick="generatePassword()">⚡ Generate</button>
+<button type="button" class="ui-btn green" onclick="copyGeneratedPassword()">📋 Copy</button>
+</div>
+<button type="button" class="ui-btn" style="margin-top:8px;background:linear-gradient(135deg,#a78bfa,#7928ca);color:#fff;" onclick="saveGeneratedPasswordToVault()">💾 Save to Vault</button>
+</div>
+<div class="ui-card">
+<div class="card-title">💰 EMI</div>
+<input type="number" id="emi-principal" class="ui-input" placeholder="Loan (₹)" value="100000">
+<input type="number" id="emi-rate" class="ui-input" placeholder="Rate (%)" value="10">
+<input type="number" id="emi-years" class="ui-input" placeholder="Years" value="2">
+<button type="button" class="ui-btn" onclick="calcEMI()">Calculate</button>
+<div id="emi-result" style="margin-top:14px;text-align:center;color:var(--cyan);font-weight:800;font-size:.9rem;"></div>
+</div>
+<div class="ui-card">
+<div class="card-title">🎯 Discount</div>
+<input type="number" id="disc-price" class="ui-input" placeholder="Price (₹)" value="1000">
+<input type="number" id="disc-percent" class="ui-input" placeholder="Discount %" value="20">
+<button type="button" class="ui-btn green" onclick="calcDiscount()">Calculate</button>
+<div id="disc-result" style="margin-top:14px;text-align:center;color:var(--cyan);font-weight:800;font-size:.9rem;"></div>
+</div>
+</div>
+<div class="ui-card"><div class="card-title">✨ More Tools</div><div class="freetools-grid" id="home-v34-grid"></div></div>
+<div class="home-sec" style="margin-top:18px">🆕 नए टूल्स</div>
+<div class="ui-card home-tool" id="tab-nt-pdfread"><div class="card-title">📖 PDF Reader</div><input type="file" id="nt-pr-f" accept="application/pdf" class="ui-input" onchange="NT.pdfRead(this.files[0])"><div id="nt-pr-info" style="font-size:.75rem;color:var(--text-muted)"></div><div id="nt-pr-out" style="max-height:70vh;overflow:auto;margin-top:8px"></div></div>
+<div class="ui-card home-tool" id="tab-nt-pdfconv"><div class="card-title">🔁 PDF Converter</div><input type="file" id="nt-pc-f" multiple accept="application/pdf,image/*" class="ui-input"><div style="font-size:.72rem;color:var(--text-muted);margin-bottom:8px">Images चुनें → PDF बनेगी • PDF चुनें → Text (.txt) निकलेगा</div><button type="button" class="ui-btn " onclick="NT.pdfConv()">⚡ Convert</button><div id="nt-pc-out" class="nt-out"></div></div>
+<div class="ui-card home-tool" id="tab-nt-video"><div class="card-title">⬇️ Social Media Video Downloader</div><input id="nt-v-u" class="ui-input" placeholder="Video link पेस्ट करें (Instagram / Facebook / TikTok / X)"><button type="button" class="ui-btn " onclick="NT.vid()">⬇️ Download</button><div id="nt-v-o" class="nt-out"></div></div>
+<div class="ui-card home-tool" id="tab-nt-bgrem"><div class="card-title">🪄 Image Background Remover</div><input type="file" id="nt-bg-f" accept="image/*" class="ui-input"><label style="font-size:.75rem;color:var(--text-muted)">Tolerance: <span id="nt-bg-tv">40</span></label><input type="range" id="nt-bg-t" min="5" max="120" value="40" style="width:100%;accent-color:var(--cyan);margin-bottom:10px" oninput="$('nt-bg-tv').textContent=this.value"><button type="button" class="ui-btn " onclick="NT.bg()">🪄 Background हटाएँ</button><canvas id="nt-bg-c" style="display:none;width:100%;margin-top:10px;border-radius:12px;background:repeating-conic-gradient(#334155 0 25%,#1e293b 0 50%) 0 0/20px 20px"></canvas><div id="nt-bg-d" style="display:none"><button type="button" class="ui-btn green" onclick="NT.bgDl()">⬇️ PNG Download</button></div><div style="font-size:.68rem;color:var(--text-muted);margin-top:6px">सादे/एक-रंग के background पर सबसे अच्छा चलता है।</div></div>
+<div class="ui-card home-tool" id="tab-nt-plag"><div class="card-title">🕵️ Plagiarism Checker</div><textarea id="nt-pl-t" class="ui-input" placeholder="आपका टेक्स्ट"></textarea><textarea id="nt-pl-s" class="ui-input" placeholder="तुलना के लिए स्रोत टेक्स्ट (वैकल्पिक)"></textarea><button type="button" class="ui-btn " onclick="NT.plag()">🔍 Check</button><div id="nt-pl-o" class="nt-out"></div></div>
+<div class="ui-card home-tool" id="tab-nt-ytthumb"><div class="card-title">🖼️ YouTube Thumbnail Downloader</div><input id="nt-y-u" class="ui-input" placeholder="YouTube video link"><button type="button" class="ui-btn " onclick="NT.yt()">🖼️ Thumbnail लाएँ</button><div id="nt-y-o" class="nt-out"></div></div>
+<div class="ui-card home-tool" id="tab-nt-tts"><div class="card-title">🔊 Text-to-Speech Converter</div><textarea id="nt-tts-t" class="ui-input" placeholder="बोलने के लिए टेक्स्ट लिखें"></textarea><select id="nt-tts-v" class="ui-input"></select><label style="font-size:.75rem;color:var(--text-muted)">Speed</label><input type="range" id="nt-tts-r" min=".5" max="1.8" step=".1" value="1" style="width:100%;accent-color:var(--cyan);margin-bottom:10px"><div class="nt-row"><button type="button" class="ui-btn " onclick="NT.tts()">▶️ Speak</button><button type="button" class="ui-btn pink" onclick="speechSynthesis.cancel()">⏹ Stop</button></div></div>
+<div class="ui-card home-tool" id="tab-nt-hashtag"><div class="card-title">#️⃣ Hashtag Generator</div><input id="nt-h-i" class="ui-input" placeholder="Keywords (comma से अलग करें) जैसे: travel, food"><button type="button" class="ui-btn " onclick="NT.tag()">⚡ Generate</button><textarea id="nt-h-o" class="ui-input" style="margin-top:10px" readonly></textarea><button type="button" class="ui-btn green" style="margin-top:8px" onclick="NT.cp('nt-h-o',this)">📋 Copy</button></div>
+<div class="ui-card home-tool" id="tab-nt-domain"><div class="card-title">🌐 Domain Availability Checker</div><input id="nt-d-i" class="ui-input" placeholder="जैसे: sikkuai"><button type="button" class="ui-btn " onclick="NT.dom()">🔎 Check</button><div id="nt-d-o" class="nt-out"></div></div>
+<div class="ui-card home-tool" id="tab-nt-json2xml"><div class="card-title">🧾 JSON to XML Converter</div><textarea id="nt-j-i" class="ui-input" placeholder='{"name":"Sikku","tags":["a","b"]}'></textarea><button type="button" class="ui-btn " onclick="NT.j2x()">🔄 Convert</button><textarea id="nt-j-o" class="ui-input" style="margin-top:10px" readonly></textarea><button type="button" class="ui-btn green" style="margin-top:8px" onclick="NT.cp('nt-j-o',this)">📋 Copy</button></div>
+<div class="ui-card home-tool" id="tab-nt-currency"><div class="card-title">💱 Currency Converter</div><input type="number" id="nt-c-a" class="ui-input" value="1"><div class="nt-row"><select id="nt-c-f" class="ui-input"></select><select id="nt-c-t" class="ui-input"></select></div><button type="button" class="ui-btn " onclick="NT.cur()">💱 Convert</button><div id="nt-c-o" class="nt-out"></div></div>
+<div class="ui-card home-tool" id="tab-nt-strlen"><div class="card-title">📏 String Length Calculator</div><textarea id="nt-s-i" class="ui-input" placeholder="टेक्स्ट लिखें…" oninput="NT.len()"></textarea><div id="nt-s-o"></div></div>
+<div class="ui-card home-tool" id="tab-nt-lorem"><div class="card-title">📃 Lorem Ipsum Generator</div><div class="nt-row"><input type="number" id="nt-l-n" class="ui-input" value="3" min="1"><select id="nt-l-u" class="ui-input"><option value="p">Paragraphs</option><option value="w">Words</option></select></div><button type="button" class="ui-btn " onclick="NT.lor()">⚡ Generate</button><textarea id="nt-l-o" class="ui-input" style="margin-top:10px" readonly></textarea><button type="button" class="ui-btn green" style="margin-top:8px" onclick="NT.cp('nt-l-o',this)">📋 Copy</button></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};window.$=window.$||$;
+function ld(s){return new Promise(function(r,j){if(document.querySelector('script[src="'+s+'"]'))return r();var e=document.createElement('script');e.src=s;e.onload=r;e.onerror=j;document.head.appendChild(e)})}
+function pdfLib(){return ld('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js').then(function(){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';return pdfjsLib})}
+function dl(b,n){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},4000)}
+function img(f){return new Promise(function(r,j){var i=new Image();i.onload=function(){r(i)};i.onerror=j;i.src=URL.createObjectURL(f)})}
+window.NT={
+cp:function(id,b){var e=$(id);navigator.clipboard.writeText(e.value||e.innerText).then(function(){var o=b.textContent;b.textContent='✅ Copied';setTimeout(function(){b.textContent=o},1200)})},
+pdfRead:async function(f){var o=$('nt-pr-out');if(!f)return;o.textContent='लोड हो रहा है…';try{var L=await pdfLib(),d=await L.getDocument({data:await f.arrayBuffer()}).promise,n=Math.min(d.numPages,50);o.innerHTML='';$('nt-pr-info').textContent=f.name+' • '+d.numPages+' pages'+(d.numPages>50?' (पहले 50 दिख रहे हैं)':'');for(var p=1;p<=n;p++){var pg=await d.getPage(p),vp=pg.getViewport({scale:1.4}),c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;c.style.cssText='width:100%;display:block;margin-bottom:8px;border-radius:8px;background:#fff';o.appendChild(c);await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise}}catch(e){o.textContent='PDF नहीं खुली: '+e.message}},
+pdfConv:async function(){var fs=[].slice.call($('nt-pc-f').files),o=$('nt-pc-out');if(!fs.length){o.textContent='पहले फ़ाइल चुनें';return}o.textContent='चल रहा है…';try{if(fs[0].type==='application/pdf'){var L=await pdfLib(),d=await L.getDocument({data:await fs[0].arrayBuffer()}).promise,t='';for(var p=1;p<=d.numPages;p++){var c=await(await d.getPage(p)).getTextContent();t+='--- Page '+p+' ---\n'+c.items.map(function(i){return i.str}).join(' ')+'\n\n'}dl(new Blob([t],{type:'text/plain'}),'converted.txt');o.textContent='✅ Text फ़ाइल डाउनलोड हो गई'}else{await ld('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');var pdf=new window.jspdf.jsPDF({unit:'pt',format:'a4'}),W=595,H=842;for(var i=0;i<fs.length;i++){var im=await img(fs[i]),r=Math.min(W/im.width,H/im.height),w=im.width*r,h=im.height*r,cv=document.createElement('canvas');cv.width=im.width;cv.height=im.height;cv.getContext('2d').drawImage(im,0,0);if(i)pdf.addPage();pdf.addImage(cv.toDataURL('image/jpeg',.9),'JPEG',(W-w)/2,(H-h)/2,w,h)}pdf.save('images.pdf');o.textContent='✅ PDF बन गई ('+fs.length+' images)'}}catch(e){o.textContent='Error: '+e.message}},
+vid:async function(){var u=$('nt-v-u').value.trim(),o=$('nt-v-o');if(!/^https?:\/\//i.test(u)){o.textContent='सही लिंक डालें (https://…)';return}var P=[['Instagram',/instagram/i],['Facebook',/facebook|fb\.watch/i],['TikTok',/tiktok/i],['X/Twitter',/twitter|x\.com/i],['YouTube',/youtu/i]],pf=(P.filter(function(a){return a[1].test(u)})[0]||['Unknown'])[0];if(!window.SK_DL_API){o.innerHTML='⚠️ '+pf+' लिंक पहचाना गया, लेकिन वीडियो निकालने के लिए server (backend API) चाहिए — browser सीधे इन साइट्स से वीडियो नहीं ले सकता।<br><small>अपनी API का URL <code>window.SK_DL_API</code> में सेट करें (यह <code>?url=</code> लेकर JSON <code>{"url":"…"}</code> लौटाए)।</small>';return}o.textContent='खोज रहा है…';try{var j=await(await fetch(window.SK_DL_API+'?url='+encodeURIComponent(u))).json();o.innerHTML=j.url?'<a class="chip" target="_blank" rel="noopener" href="'+j.url+'">⬇️ Video खोलें / Save करें</a>':'वीडियो नहीं मिला'}catch(e){o.textContent='API error: '+e.message}},
+bg:async function(){var f=$('nt-bg-f').files[0];if(!f)return;var im=await img(f),s=Math.min(1,1600/Math.max(im.width,im.height)),c=$('nt-bg-c'),x=c.getContext('2d'),w=c.width=Math.round(im.width*s),h=c.height=Math.round(im.height*s);x.drawImage(im,0,0,w,h);var d=x.getImageData(0,0,w,h),a=d.data,tol=+$('nt-bg-t').value,k=[0,(w-1)*4,(h-1)*w*4,(h*w-1)*4],bg=[0,1,2].map(function(i){return k.reduce(function(t,o){return t+a[o+i]},0)/4});function near(o){var r=a[o]-bg[0],g=a[o+1]-bg[1],b=a[o+2]-bg[2];return Math.sqrt(r*r+g*g+b*b)<=tol}var seen=new Uint8Array(w*h),st=[];for(var i=0;i<w;i++)st.push(i,(h-1)*w+i);for(var j=0;j<h;j++)st.push(j*w,j*w+w-1);while(st.length){var p=st.pop();if(seen[p])continue;seen[p]=1;var o=p*4;if(!near(o))continue;a[o+3]=0;var px=p%w;if(px>0)st.push(p-1);if(px<w-1)st.push(p+1);if(p>=w)st.push(p-w);if(p<w*(h-1))st.push(p+w)}x.putImageData(d,0,0);c.style.display='block';$('nt-bg-d').style.display='block'},
+bgDl:function(){$('nt-bg-c').toBlob(function(b){dl(b,'no-background.png')})},
+plag:function(){var t=$('nt-pl-t').value.trim(),s=$('nt-pl-s').value.trim(),o=$('nt-pl-o');if(!t){o.textContent='टेक्स्ट डालें';return}var W=function(x){return x.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu,'').split(/\s+/).filter(Boolean)},sh=function(w){var r=[];for(var i=0;i<=w.length-3;i++)r.push(w.slice(i,i+3).join(' '));return r},SS=s?new Set(sh(W(s))):null,se=t.split(/(?<=[.!?।])\s+/).filter(function(x){return x.split(/\s+/).length>=5}),h='';if(SS){var tw=sh(W(t)),m=tw.filter(function(g){return SS.has(g)}).length,p=tw.length?Math.round(m*100/tw.length):0;h+='<b>समानता: '+p+'%</b> '+(p>40?'🔴 ज़्यादा':p>15?'🟠 कुछ':'🟢 कम')+'<br><br>'}else h+='<span style="color:#fbbf24">स्रोत टेक्स्ट नहीं दिया — हर वाक्य के 🔎 से Google पर exact search करें।</span><br><br>';o.innerHTML=h+se.map(function(x){var hit=SS&&sh(W(x)).some(function(g){return SS.has(g)});return '<div style="margin-bottom:6px">'+(SS?(hit?'🔴 ':'🟢 '):'')+x.replace(/</g,'&lt;')+' <a target="_blank" rel="noopener" style="color:var(--cyan)" href="https://www.google.com/search?q='+encodeURIComponent('"'+x+'"')+'">🔎</a></div>'}).join('')},
+yt:function(){var u=$('nt-y-u').value.trim(),m=u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/|live\/)([\w-]{11})/)||(/^[\w-]{11}$/.test(u)?[0,u]:null),o=$('nt-y-o');if(!m){o.textContent='सही YouTube लिंक डालें';return}var id=m[1],q=[['maxresdefault','Max 1280×720'],['sddefault','SD 640×480'],['hqdefault','HQ 480×360'],['mqdefault','MQ 320×180']];o.innerHTML='<img src="https://img.youtube.com/vi/'+id+'/maxresdefault.jpg" onerror="this.onerror=null;this.src=\'https://img.youtube.com/vi/'+id+'/hqdefault.jpg\'" style="width:100%;border-radius:12px;margin-bottom:8px">'+q.map(function(a){return '<a class="chip" style="display:inline-block;margin:3px;text-decoration:none" target="_blank" rel="noopener" href="https://img.youtube.com/vi/'+id+'/'+a[0]+'.jpg">⬇️ '+a[1]+'</a>'}).join('')+'<div style="font-size:.7rem;color:var(--text-muted)">खुलने पर image को Save करें।</div>'},
+tts:function(){if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance($('nt-tts-t').value),v=speechSynthesis.getVoices()[+$('nt-tts-v').value];if(v){u.voice=v;u.lang=v.lang}u.rate=+$('nt-tts-r').value;speechSynthesis.speak(u)},
+tag:function(){var w=$('nt-h-i').value.toLowerCase().split(/[,\n]+/).map(function(x){return x.replace(/[^\p{L}\p{N}]/gu,'')}).filter(Boolean),sf=['','viral','trending','reels','india','love','explore','daily','official','vibes','life','fyp',String(new Date().getFullYear())],out=[];w.forEach(function(a){sf.forEach(function(s){out.push('#'+a+s)})});for(var i=0;i<w.length;i++)for(var j=0;j<w.length;j++)if(i!==j)out.push('#'+w[i]+w[j]);$('nt-h-o').value=Array.from(new Set(out)).slice(0,30).join(' ')},
+dom:async function(){var n=$('nt-d-i').value.trim().toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').split(/[\/.]/)[0].replace(/[^a-z0-9-]/g,''),o=$('nt-d-o');if(!n){o.textContent='डोमेन नाम डालें';return}o.textContent='जाँच हो रही है…';var t=['com','in','net','org','co','io','app','xyz'],r=await Promise.all(t.map(function(x){return fetch('https://cloudflare-dns.com/dns-query?name='+n+'.'+x+'&type=NS',{headers:{accept:'application/dns-json'}}).then(function(r){return r.json()}).then(function(j){return j.Status===3?'✅':'❌'}).catch(function(){return '⚠️'})}));o.innerHTML=t.map(function(x,i){return '<div>'+r[i]+' '+n+'.'+x+'</div>'}).join('')+'<div style="margin-top:8px;font-size:.7rem;color:var(--text-muted)">✅ संभवतः उपलब्ध • ❌ registered • ⚠️ जाँच नहीं हो सकी। खरीदने से पहले registrar पर पक्का करें।</div>'},
+j2x:function(){var o=$('nt-j-o');try{var d=JSON.parse($('nt-j-i').value),e=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')},tn=function(k){k=String(k).replace(/[^\w.-]/g,'_');return /^[A-Za-z_]/.test(k)?k:'_'+k};function c(k,v,n){var p=' '.repeat(n);if(Array.isArray(v))return v.map(function(x){return c(k,x,n)}).join('\n');if(v&&typeof v==='object')return p+'<'+tn(k)+'>\n'+Object.keys(v).map(function(q){return c(q,v[q],n+2)}).join('\n')+'\n'+p+'</'+tn(k)+'>';return p+'<'+tn(k)+'>'+(v===null?'':e(v))+'</'+tn(k)+'>'}o.value='<?xml version="1.0" encoding="UTF-8"?>\n'+c('root',d,0)}catch(x){o.value='❌ Invalid JSON: '+x.message}},
+cur:async function(){var a=+$('nt-c-a').value,f=$('nt-c-f').value,t=$('nt-c-t').value,o=$('nt-c-o');o.textContent='…';try{var j=await(await fetch('https://open.er-api.com/v6/latest/'+f)).json(),r=j.rates[t];o.innerHTML='<b style="font-size:1.1rem">'+a+' '+f+' = '+(a*r).toLocaleString(undefined,{maximumFractionDigits:4})+' '+t+'</b><br><span style="font-size:.7rem;color:var(--text-muted)">1 '+f+' = '+r+' '+t+'</span>'}catch(e){o.textContent='रेट नहीं मिले — इंटरनेट जाँचें'}},
+len:function(){var t=$('nt-s-i').value;$('nt-s-o').innerHTML=[['Characters',Array.from(t).length],['बिना space',t.replace(/\s/g,'').length],['Words',(t.trim().match(/\S+/g)||[]).length],['Lines',t?t.split('\n').length:0],['Sentences',(t.match(/[^.!?।]+[.!?।]*/g)||[]).filter(function(x){return x.trim()}).length],['Bytes (UTF-8)',new TextEncoder().encode(t).length]].map(function(a){return '<div class="nt-st"><b>'+a[1]+'</b><span>'+a[0]+'</span></div>'}).join('')},
+lor:function(){var W='lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum'.split(' '),u=$('nt-l-u').value,n=Math.min(u==='w'?1000:50,Math.max(1,+$('nt-l-n').value||3)),r=function(m){return Math.floor(Math.random()*m)};if(u==='w'){var a=[];for(var i=0;i<n;i++)a.push(W[i%W.length]);$('nt-l-o').value=a.join(' ');return}function sen(){var a=[];for(var i=0,l=8+r(10);i<l;i++)a.push(W[r(W.length)]);var s=a.join(' ');return s[0].toUpperCase()+s.slice(1)+'.'}var ps=[];for(var p=0;p<n;p++){var q=[];for(var k=0,m=3+r(3);k<m;k++)q.push(sen());ps.push(q.join(' '))}ps[0]='Lorem ipsum dolor sit amet, consectetur adipiscing elit. '+ps[0];$('nt-l-o').value=ps.join('\n\n')}
+};
+var cs='INR USD EUR GBP AED AUD CAD SGD JPY CNY SAR PKR BDT NPR LKR CHF NZD ZAR MYR THB'.split(' ');['nt-c-f','nt-c-t'].forEach(function(id,i){$(id).innerHTML=cs.map(function(c){return '<option>'+c+'</option>'}).join('');$(id).value=i?'USD':'INR'});
+if(window.speechSynthesis){var sv=$('nt-tts-v');function fv(){var v=speechSynthesis.getVoices();if(!v.length)return;sv.innerHTML=v.map(function(x,i){return '<option value="'+i+'">'+x.name+' ('+x.lang+')</option>'}).join('');var h=v.findIndex(function(x){return /^hi/i.test(x.lang)});if(h>-1)sv.value=h}fv();speechSynthesis.onvoiceschanged=fv}
+NT.len();
+(function f(){if(!window.V34)return setTimeout(f,500);var g=$('home-v34-grid');if(!g||g.dataset.d)return;g.dataset.d=1;g.innerHTML=V34.list('').map(function(t){return '<div class="tile" onclick="V34.open(\''+t.id+'\')"><div class="tile-icon">'+t.icon+'</div><div class="tile-title">'+t.name+(t.prime?' 👑':'')+'</div></div>'}).join('')})();
+})();
+</script>
+<style>
+.nta-lock{position:absolute;inset:0;border-radius:22px;background:rgba(5,1,15,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:#fbbf24;cursor:pointer;z-index:5}
+.nta-lock small{display:block;font-size:.65rem;color:#94a3b8;margin-top:4px}
+.nta-b{margin-left:auto;font-size:.62rem;padding:3px 8px;border-radius:8px;background:rgba(251,191,36,.15);color:#fbbf24;font-weight:800}
+.tile[data-nb]{position:relative}.tile[data-nb]::after{content:attr(data-nb);position:absolute;top:2px;right:4px;font-size:.6rem;color:#fbbf24;font-weight:900}
+.nta-row{display:grid;grid-template-columns:1fr 104px 64px;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.78rem}
+.nta-row select,.nta-row input{padding:6px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:.78rem;width:100%}
+</style>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},K='sk_toolcfg',CFG={},R=[],byId={},sub=0,
+DEF={'n:bgrem':{m:'coin',c:5},'n:pdfconv':{m:'coin',c:2},'n:plag':{m:'coin',c:3},'n:video':{m:'prime',c:0}};
+try{CFG=JSON.parse(localStorage.getItem(K)||'{}')||{}}catch(e){}
+function cu(){return typeof currentUser!=='undefined'?currentUser:null}
+function say(t){try{showNotice(t)}catch(e){alert(t)}}
+function db(){return typeof databaseInstance!=='undefined'?databaseInstance:null}
+function get(id){var c=CFG[id]||DEF[id]||{};return{m:c.m||'free',c:Math.max(0,+c.c||0)}}
+function master(){var u=cu();return !!(u&&u.isMaster)}
+function prime(){var u=cu();return !!(u&&(u.isPrime||u.isMaster))}
+function uk(id){var u=cu();return 'sk_unl_'+(u&&u.id||'guest')+'_'+id}
+function unl(id){return Date.now()-(+localStorage.getItem(uk(id))||0)<864e5}
+function ok(id){var c=get(id),n=byId[id]?byId[id].name:'Tool';if(c.m==='free'||master())return true;
+ if(c.m==='prime'){if(prime())return true;say('👑 यह टूल सिर्फ Prime के लिए है');try{switchTab('prime')}catch(e){}return false}
+ if(unl(id))return true;if(!window.SKW)return true;
+ if(!confirm(n+' — '+c.c+' coins में 24 घंटे के लिए unlock करें?'))return false;
+ if(!SKW.spend(c.c,n))return false;localStorage.setItem(uk(id),Date.now());paint();return true}
+function add(o){if(byId[o.id])return;R.push(o);byId[o.id]=o}
+function build(){document.querySelectorAll('[id^="tab-nt-"]').forEach(function(e){add({id:'n:'+e.id.slice(7),name:e.querySelector('.card-title').textContent.trim(),el:e})});
+ document.querySelectorAll('.home-tool:not([id^="tab-nt-"])').forEach(function(b){var n=b.id.slice(4);if(n==='freetools'||n==='genx')return;var cs=b.querySelectorAll(':scope > .ui-card');if(!cs.length)cs=[b];cs.forEach(function(c,i){var t=c.querySelector('.card-title');add({id:'c:'+n+':'+i,name:t?t.textContent.trim():n,el:c})})});
+ document.querySelectorAll('#tab-freetools .tile,#tab-genx .tile').forEach(function(t){var m=(t.getAttribute('onclick')||'').match(/open(Free|Gen)Tool\('(\w+)'\)/);if(m)add({id:(m[1]==='Free'?'f:':'g:')+m[2],name:t.querySelector('.tile-title').textContent.trim(),el:t,tile:1})})}
+function paint(){R.forEach(function(o){var c=get(o.id),lock=c.m!=='free'&&!master()&&!(c.m==='coin'&&unl(o.id))&&!(c.m==='prime'&&prime()),b=c.m==='prime'?'👑':c.m==='coin'?'🪙'+c.c:'';
+ if(o.tile){if(b)o.el.setAttribute('data-nb',b);else o.el.removeAttribute('data-nb');return}
+ var t=o.el.querySelector('.card-title'),bd=o.el.querySelector('.nta-b');
+ if(t){if(!bd){bd=document.createElement('span');bd.className='nta-b';t.appendChild(bd)}bd.textContent=c.m==='prime'?'👑 PRIME':c.m==='coin'?'🪙 '+c.c+' coins':'FREE'}
+ var ov=o.el.querySelector(':scope > .nta-lock');
+ if(lock&&!ov){o.el.style.position='relative';ov=document.createElement('div');ov.className='nta-lock';o.el.appendChild(ov);ov.onclick=function(){if(ok(o.id))paint()}}
+ if(ov){if(lock)ov.innerHTML='<div>'+(c.m==='prime'?'👑 Prime चाहिए':'🪙 '+c.c+' coins में Unlock')+'<small>टैप करें</small></div>';else ov.remove()}})}
+function admin(){var h=$('nta-list');if(!h)return;var q=(($('nta-q')||{}).value||'').toLowerCase();
+ h.innerHTML=R.filter(function(o){return !q||o.name.toLowerCase().indexOf(q)>-1}).map(function(o){var c=get(o.id),s=function(v){return c.m===v?' selected':''};
+ return '<div class="nta-row"><span>'+o.name.replace(/</g,'&lt;')+'</span><select data-i="'+o.id+'" onchange="NTA.set(this)"><option value="free"'+s('free')+'>🆓 Free</option><option value="prime"'+s('prime')+'>👑 Prime</option><option value="coin"'+s('coin')+'>🪙 Coin</option></select><input type="number" min="0" value="'+c.c+'" data-i="'+o.id+'" onchange="NTA.set(this)" style="'+(c.m==='coin'?'':'visibility:hidden')+'"></div>'}).join('')}
+window.NTA={ok:ok,admin:admin,
+ set:function(el){var id=el.getAttribute('data-i'),r=el.parentNode,m=r.querySelector('select').value,i=r.querySelector('input');CFG[id]={m:m,c:+i.value||0};i.style.visibility=m==='coin'?'visible':'hidden'},
+ save:function(){try{localStorage.setItem(K,JSON.stringify(CFG))}catch(e){}try{var d=db();if(d)d.ref('config/tools').set(CFG)}catch(e){}paint();say('✅ Tool access save हो गया')}};
+build();
+[['openFreeTool','f:'],['openGenTool','g:']].forEach(function(a){var o=window[a[0]];if(typeof o!=='function')return;window[a[0]]=function(t){if(!ok(a[1]+t))return;return o.apply(this,arguments)}});
+var sa=window.switchAdminTab;if(typeof sa==='function')window.switchAdminTab=function(t){var r=sa.apply(this,arguments);if(t==='toolaccess')admin();return r};
+paint();setInterval(function(){paint();var d=db();if(d&&!sub){sub=1;d.ref('config/tools').on('value',function(s){var v=s.val();if(v){CFG=v;try{localStorage.setItem(K,JSON.stringify(v))}catch(e){}paint();admin()}})}},3000);
+})();
+</script>
+
+
 </div>
 
 <div id="tab-wallet" class="tab-card"><div class="ui-card"><div class="card-title">🪙 Wallet &amp; Rewards</div><div id="wal-top"></div><div id="rw-slot"></div><div id="wal-dyn"></div></div></div>
@@ -564,106 +1077,8 @@ select.lang-sel option{background:#0f172a;color:#fff}
 </div>
 
 <!-- FREE TOOLS -->
-<div id="tab-freetools" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🆓 Free Mega Tools <span style="margin-left:auto;font-size:.62rem;color:#10b981;font-weight:800;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:8px;">40 FREE</span></div>
-<div class="search-tools-bar"><input type="text" id="free-tools-search" class="ui-input" placeholder="Search tools..." oninput="filterFreeTools(this.value)"></div>
-<div class="freetools-grid" id="free-tools-grid">
-<div class="tile" data-name="text count counter" onclick="openFreeTool('textcounter')"><div class="tile-icon">📊</div><div class="tile-title">Text Count</div></div>
-<div class="tile" data-name="case convert upper lower" onclick="openFreeTool('caseconv')"><div class="tile-icon">🔤</div><div class="tile-title">Case</div></div>
-<div class="tile" data-name="lorem ipsum generate" onclick="openFreeTool('lorem')"><div class="tile-icon">📋</div><div class="tile-title">Lorem</div></div>
-<div class="tile" data-name="hash sha md5" onclick="openFreeTool('hash')"><div class="tile-icon">🔐</div><div class="tile-title">Hash</div></div>
-<div class="tile" data-name="color picker rgb hex" onclick="openFreeTool('colorpicker')"><div class="tile-icon">🎨</div><div class="tile-title">Color</div></div>
-<div class="tile" data-name="gradient css" onclick="openFreeTool('gradient')"><div class="tile-icon">🌈</div><div class="tile-title">Gradient</div></div>
-<div class="tile" data-name="text speech tts voice" onclick="openFreeTool('tts')"><div class="tile-icon">🗣️</div><div class="tile-title">TTS</div></div>
-<div class="tile" data-name="url short link" onclick="openFreeTool('urlshort')"><div class="tile-icon">🔗</div><div class="tile-title">URL Short</div></div>
-<div class="tile" data-name="image compress photo" onclick="openFreeTool('imgcompress')"><div class="tile-icon">🖼️</div><div class="tile-title">Img Comp</div></div>
-<div class="tile" data-name="world clock time zone" onclick="openFreeTool('worldclock')"><div class="tile-icon">🌍</div><div class="tile-title">World Clock</div></div>
-<div class="tile" data-name="currency exchange rate" onclick="openFreeTool('currency')"><div class="tile-icon">💱</div><div class="tile-title">Currency</div></div>
-<div class="tile" data-name="habit tracker daily" onclick="openFreeTool('habit')"><div class="tile-icon">🎯</div><div class="tile-title">Habit</div></div>
-<div class="tile" data-name="expense money tracker" onclick="openFreeTool('expense')"><div class="tile-icon">📈</div><div class="tile-title">Expense</div></div>
-<div class="tile" data-name="decision random choice" onclick="openFreeTool('decision')"><div class="tile-icon">🎲</div><div class="tile-title">Decision</div></div>
-<div class="tile" data-name="markdown editor preview" onclick="openFreeTool('markdown')"><div class="tile-icon">📝</div><div class="tile-title">Markdown</div></div>
-<div class="tile" data-name="base64 encode decode" onclick="openFreeTool('base64')"><div class="tile-icon">🔄</div><div class="tile-title">Base64</div></div>
-<div class="tile" data-name="timestamp unix time" onclick="openFreeTool('timestamp')"><div class="tile-icon">⏰</div><div class="tile-title">Timestamp</div></div>
-<div class="tile" data-name="morse code translator" onclick="openFreeTool('morse')"><div class="tile-icon">📡</div><div class="tile-title">Morse</div></div>
-<div class="tile" data-name="roman numeral converter" onclick="openFreeTool('roman')"><div class="tile-icon">Ⅻ</div><div class="tile-title">Roman</div></div>
-<div class="tile" data-name="word unscrambler anagram" onclick="openFreeTool('unscramble')"><div class="tile-icon">🔀</div><div class="tile-title">Unscramble</div></div>
-<div class="tile" data-name="random password generator strong" onclick="openFreeTool('pwdgen')"><div class="tile-icon">🔑</div><div class="tile-title">Pwd Gen</div></div>
-<div class="tile" data-name="emoji picker search" onclick="openFreeTool('emoji')"><div class="tile-icon">😀</div><div class="tile-title">Emoji</div></div>
-<div class="tile" data-name="ascii art text banner" onclick="openFreeTool('ascii')"><div class="tile-icon">🎨</div><div class="tile-title">ASCII Art</div></div>
-<div class="tile" data-name="url parser query params" onclick="openFreeTool('urlparse')"><div class="tile-icon">🔍</div><div class="tile-title">URL Parse</div></div>
-<div class="tile" data-name="uuid generator v4" onclick="openFreeTool('uuid')"><div class="tile-icon">🆔</div><div class="tile-title">UUID</div></div>
-<div class="tile" data-name="number to words convert" onclick="openFreeTool('numwords')"><div class="tile-icon">🔢</div><div class="tile-title">Num→Words</div></div>
-<div class="tile" data-name="percentage calculator" onclick="openFreeTool('percent')"><div class="tile-icon">%</div><div class="tile-title">Percent</div></div>
-<div class="tile" data-name="tip split bill" onclick="openFreeTool('tip')"><div class="tile-icon">💵</div><div class="tile-title">Tip Split</div></div>
-<div class="tile" data-name="date difference duration" onclick="openFreeTool('datediff')"><div class="tile-icon">📅</div><div class="tile-title">Date Diff</div></div>
-<div class="tile" data-name="text statistics analyze" onclick="openFreeTool('textstats')"><div class="tile-icon">📈</div><div class="tile-title">Text Stats</div></div>
-<div class="tile" data-name="rot13 cipher caesar" onclick="openFreeTool('rot13')"><div class="tile-icon">🔐</div><div class="tile-title">ROT13</div></div>
-<div class="tile" data-name="hex binary ascii convert" onclick="openFreeTool('hex')"><div class="tile-icon">⬡</div><div class="tile-title">Hex Conv</div></div>
-<div class="tile" data-name="duplicate remover text" onclick="openFreeTool('dedup')"><div class="tile-icon">🧹</div><div class="tile-title">Dedup</div></div>
-<div class="tile" data-name="lucky wheel spin fortune" onclick="openFreeTool('luckyspin')"><div class="tile-icon">🍀</div><div class="tile-title">Lucky Spin</div></div>
-<div class="tile" data-name="bmi calorie health" onclick="openFreeTool('bmi2')"><div class="tile-icon">💪</div><div class="tile-title">Health</div></div>
-<div class="tile" data-name="reverse text backwards" onclick="openFreeTool('reverse')"><div class="tile-icon">🔄</div><div class="tile-title">Reverse</div></div>
-<div class="tile" data-name="palindrome check word" onclick="openFreeTool('palindrome')"><div class="tile-icon">🔁</div><div class="tile-title">Palindrome</div></div>
-<div class="tile" data-name="fancy text stylish fonts" onclick="openFreeTool('fancy')"><div class="tile-icon">✨</div><div class="tile-title">Fancy Text</div></div>
-<div class="tile" data-name="slug url seo" onclick="openFreeTool('slug')"><div class="tile-icon">🔗</div><div class="tile-title">Slug</div></div>
-<div class="tile" data-name="word frequency analyze" onclick="openFreeTool('freq')"><div class="tile-icon">📶</div><div class="tile-title">Word Freq</div></div>
-</div>
-</div>
-</div>
 
 <!-- GEN X -->
-<div id="tab-genx" class="tab-card">
-<div class="ui-card">
-<div class="card-title">⚡ Gen X Tools <span style="margin-left:auto;font-size:.6rem;color:#10b981;font-weight:800;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:8px;">30 NEW</span></div>
-<div class="tool-cat-header">🔐 Security & Text</div>
-<div class="freetools-grid">
-<div class="tile" onclick="openGenTool('pwdstrength')"><div class="tile-icon">💪</div><div class="tile-title">Pwd Strength</div></div>
-<div class="tile" onclick="openGenTool('jsonfmt')"><div class="tile-icon">📋</div><div class="tile-title">JSON</div></div>
-<div class="tile" onclick="openGenTool('urlenc')"><div class="tile-icon">🔗</div><div class="tile-title">URL Enc</div></div>
-<div class="tile" onclick="openGenTool('regex')"><div class="tile-icon">🔍</div><div class="tile-title">Regex</div></div>
-<div class="tile" onclick="openGenTool('diff')"><div class="tile-icon">🔀</div><div class="tile-title">Diff</div></div>
-<div class="tile" onclick="openGenTool('binary')"><div class="tile-icon">01</div><div class="tile-title">Binary</div></div>
-</div>
-<div class="tool-cat-header">❤️ Fun & Random</div>
-<div class="freetools-grid">
-<div class="tile" onclick="openGenTool('love')"><div class="tile-icon">💕</div><div class="tile-title">Love %</div></div>
-<div class="tile" onclick="openGenTool('lucky')"><div class="tile-icon">🍀</div><div class="tile-title">Lucky No.</div></div>
-<div class="tile" onclick="openGenTool('wheel')"><div class="tile-icon">🎡</div><div class="tile-title">Spin Wheel</div></div>
-<div class="tile" onclick="openGenTool('randomname')"><div class="tile-icon">👥</div><div class="tile-title">Name Pick</div></div>
-<div class="tile" onclick="openGenTool('truthdare')"><div class="tile-icon">🎭</div><div class="tile-title">Truth/Dare</div></div>
-<div class="tile" onclick="openGenTool('zodiac')"><div class="tile-icon">♈</div><div class="tile-title">Zodiac</div></div>
-</div>
-<div class="tool-cat-header">🏥 Health & Life</div>
-<div class="freetools-grid">
-<div class="tile" onclick="openGenTool('bmr')"><div class="tile-icon">🔥</div><div class="tile-title">BMR</div></div>
-<div class="tile" onclick="openGenTool('water')"><div class="tile-icon">💧</div><div class="tile-title">Water</div></div>
-<div class="tile" onclick="openGenTool('mood')"><div class="tile-icon">😊</div><div class="tile-title">Mood</div></div>
-<div class="tile" onclick="openGenTool('journal')"><div class="tile-icon">📔</div><div class="tile-title">Journal</div></div>
-<div class="tile" onclick="openGenTool('tax')"><div class="tile-icon">💰</div><div class="tile-title">Tax</div></div>
-<div class="tile" onclick="openGenTool('fuel')"><div class="tile-icon">⛽</div><div class="tile-title">Fuel</div></div>
-</div>
-<div class="tool-cat-header">🎨 Creative</div>
-<div class="freetools-grid">
-<div class="tile" onclick="openGenTool('draw')"><div class="tile-icon">🖌️</div><div class="tile-title">Drawing</div></div>
-<div class="tile" onclick="openGenTool('signature')"><div class="tile-icon">✍️</div><div class="tile-title">Signature</div></div>
-<div class="tile" onclick="openGenTool('emojiart')"><div class="tile-icon">😍</div><div class="tile-title">Emoji Art</div></div>
-<div class="tile" onclick="openGenTool('nameart')"><div class="tile-icon">🎨</div><div class="tile-title">Name Art</div></div>
-<div class="tile" onclick="openGenTool('storygen')"><div class="tile-icon">📖</div><div class="tile-title">Story Gen</div></div>
-<div class="tile" onclick="openGenTool('quoteimg')"><div class="tile-icon">💬</div><div class="tile-title">Quote Img</div></div>
-</div>
-<div class="tool-cat-header">💼 Productivity</div>
-<div class="freetools-grid">
-<div class="tile" onclick="openGenTool('pomodoro')"><div class="tile-icon">🍅</div><div class="tile-title">Pomodoro</div></div>
-<div class="tile" onclick="openGenTool('kanban')"><div class="tile-icon">📋</div><div class="tile-title">Kanban</div></div>
-<div class="tile" onclick="openGenTool('countdown')"><div class="tile-icon">⏳</div><div class="tile-title">Countdown</div></div>
-<div class="tile" onclick="openGenTool('habit2')"><div class="tile-icon">📆</div><div class="tile-title">Habit Grid</div></div>
-<div class="tile" onclick="openGenTool('stopwatch2')"><div class="tile-icon">⏱️</div><div class="tile-title">Stopwatch</div></div>
-<div class="tile" onclick="openGenTool('notes2')"><div class="tile-icon">📝</div><div class="tile-title">Sticky</div></div>
-</div>
-</div>
-</div>
 
 <!-- SUPPORT -->
 <div id="tab-support" class="tab-card">
@@ -863,313 +1278,20 @@ select.lang-sel option{background:#0f172a;color:#fff}
 </div>
 
 <!-- CODE -->
-<div id="tab-code" class="tab-card">
-<div class="ui-card">
-<div class="card-title">💻 Code + Encryptor</div>
-<div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(5,1,15,0.6);padding:6px;border-radius:12px;">
-<button type="button" id="mode-btn-code" class="ui-btn" style="flex:1;padding:8px;font-size:.8rem;background:var(--accent-grad);color:#03151e;" onclick="setCodeMode('code')">🔧 Code</button>
-<button type="button" id="mode-btn-text" class="ui-btn" style="flex:1;padding:8px;font-size:.8rem;background:transparent;color:var(--text-muted);border:1px solid var(--border-color);" onclick="setCodeMode('text')">🔐 Encrypt</button>
-</div>
-<p id="code-mode-hint" style="font-size:.75rem;color:var(--text-muted);margin-bottom:12px;"><strong style="color:var(--cyan);">📌 Code Mode:</strong> Natural language me bolo.</p>
-<textarea id="code-prompt-input" class="ui-input" rows="3" placeholder="e.g. Ek calculator banao..."></textarea>
-<select id="code-lang" class="ui-input">
-<option value="html">HTML + CSS + JS</option>
-<option value="python">Python</option>
-<option value="javascript">JavaScript</option>
-<option value="java">Java</option>
-<option value="c">C</option>
-<option value="cpp">C++</option>
-</select>
-<button type="button" class="ui-btn" onclick="generateProtectedCode()" id="code-gen-btn">⚡ Generate</button>
-<div id="code-password-setup" style="display:none;margin-top:14px;border:1.5px solid var(--pink);border-radius:14px;padding:14px;background:rgba(255,0,127,0.05);">
-<div style="font-size:.82rem;font-weight:800;color:var(--pink);margin-bottom:8px;">🔐 Lock with Password</div>
-<input type="password" id="code-lock-password" class="ui-input" placeholder="Password (min 6)">
-<input type="password" id="code-lock-password-confirm" class="ui-input" placeholder="Confirm">
-<button type="button" class="ui-btn pink" onclick="lockAndSaveCode()">🔒 Lock &amp; Save</button>
-</div>
-<div id="code-output-area" style="margin-top:14px;"></div>
-<div id="saved-codes-list" style="margin-top:18px;"></div>
-</div>
-</div>
 
 <!-- SEARCH -->
-<div id="tab-search" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🌐 Web Search</div>
-<input type="text" id="web-search-input" class="ui-input" placeholder="Search..." onkeydown="if(event.key==='Enter') executeWebSearch('google')">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-<button type="button" class="ui-btn" onclick="executeWebSearch('google')">🔍 Google</button>
-<button type="button" class="ui-btn pink" onclick="executeWebSearch('youtube')">▶️ YouTube</button>
-<button type="button" class="ui-btn green" onclick="executeWebSearch('wiki')">📚 Wiki</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="executeWebSearch('insta')">📸 Insta</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="executeWebSearch('chatgpt')">💡 AI Chat</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="executeWebSearch('bing')">🔷 Bing</button>
-</div>
-</div>
-</div>
 
 <!-- CALC -->
-<div id="tab-calc" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🔢 Calculator</div>
-<input type="text" id="calc-display" class="ui-input" readonly value="0" style="text-align:right;font-size:1.5rem;font-weight:900;color:var(--cyan);">
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-<button type="button" class="ui-btn pink" onclick="calcAction('C')">C</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('/')">÷</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('*')">×</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#ff007f;" onclick="calcAction('DEL')">⌫</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('7')">7</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('8')">8</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('9')">9</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('-')">−</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('4')">4</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('5')">5</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('6')">6</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#00f2fe;" onclick="calcAction('+')">+</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('1')">1</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('2')">2</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('3')">3</button>
-<button type="button" class="ui-btn green" style="grid-row:span 2;" onclick="calcAction('=')">=</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;grid-column:span 2;" onclick="calcAction('0')">0</button>
-<button type="button" class="ui-btn" style="background:#1e293b;color:#fff;" onclick="calcAction('.')">.</button>
-</div>
-</div>
-</div>
 
-<div id="tab-age" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🎂 Age Calculator</div>
-<label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px;">Select DOB:</label>
-<input type="date" id="dob-input" class="ui-input">
-<button type="button" class="ui-btn" onclick="calculateExactAge()">Calculate</button>
-<div id="age-result-box" style="margin-top:14px;text-align:center;font-weight:800;color:var(--cyan);font-size:.95rem;"></div>
-</div>
-</div>
 
-<div id="tab-bmi" class="tab-card">
-<div class="ui-card">
-<div class="card-title">⚖️ BMI Calculator</div>
-<input type="number" id="bmi-weight" class="ui-input" placeholder="Weight (kg)">
-<input type="number" id="bmi-height" class="ui-input" placeholder="Height (cm)">
-<button type="button" class="ui-btn" onclick="calculateBmiScore()">Check BMI</button>
-<div id="bmi-result-box" style="margin-top:14px;text-align:center;font-weight:800;color:var(--cyan);font-size:.95rem;"></div>
-</div>
-</div>
 
-<div id="tab-timer" class="tab-card">
-<div class="ui-card" style="text-align:center;">
-<div class="card-title">⏱️ Customizable Timer</div>
-<div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(5,1,15,0.6);padding:6px;border-radius:12px;">
-<button type="button" id="timer-mode-sw" class="ui-btn" style="flex:1;padding:8px;font-size:.72rem;background:var(--accent-grad);color:#03151e;" onclick="setTimerMode('stopwatch')">⏱️ Stopwatch</button>
-<button type="button" id="timer-mode-cd" class="ui-btn" style="flex:1;padding:8px;font-size:.72rem;background:transparent;color:var(--text-muted);border:1px solid var(--border-color);" onclick="setTimerMode('countdown')">⏳ Countdown</button>
-</div>
-<div id="sw-section">
-<div id="stopwatch-display" style="font-size:2.6rem;font-weight:900;color:var(--cyan);margin:20px 0;font-family:monospace;">00:00:00</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">
-<button type="button" class="ui-btn green" onclick="startStopwatch()">Start</button>
-<button type="button" class="ui-btn pink" onclick="stopStopwatch()">Pause</button>
-<button type="button" class="ui-btn" style="background:#334155;color:#fff;" onclick="resetStopwatch()">Reset</button>
-</div>
-<button type="button" class="ui-btn" style="background:rgba(167,139,250,0.15);border:1px solid #a78bfa;color:#a78bfa;padding:10px;font-size:.78rem;margin-bottom:10px;" onclick="addLap()">🏁 Add Lap</button>
-<div id="laps-list" style="max-height:180px;overflow-y:auto;"></div>
-</div>
-<div id="cd-section" style="display:none;">
-<div id="countdown-display" style="font-size:2.6rem;font-weight:900;color:var(--pink);margin:20px 0;font-family:monospace;">00:05:00</div>
-<div style="display:flex;gap:6px;margin-bottom:10px;">
-<input type="number" id="cd-hours" class="ui-input" placeholder="HH" value="0" min="0" max="23" style="margin-bottom:0;text-align:center;font-size:1rem;" oninput="updateCountdownDisplay()">
-<span style="color:var(--cyan);font-weight:900;align-self:center;">:</span>
-<input type="number" id="cd-mins" class="ui-input" placeholder="MM" value="5" min="0" max="59" style="margin-bottom:0;text-align:center;font-size:1rem;" oninput="updateCountdownDisplay()">
-<span style="color:var(--cyan);font-weight:900;align-self:center;">:</span>
-<input type="number" id="cd-secs" class="ui-input" placeholder="SS" value="0" min="0" max="59" style="margin-bottom:0;text-align:center;font-size:1rem;" oninput="updateCountdownDisplay()">
-</div>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;">
-<button onclick="setPresetTime(1,0)" style="background:rgba(0,242,254,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">1 min</button>
-<button onclick="setPresetTime(5,0)" style="background:rgba(0,242,254,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">5 min</button>
-<button onclick="setPresetTime(10,0)" style="background:rgba(0,242,254,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">10 min</button>
-<button onclick="setPresetTime(25,0)" style="background:rgba(251,191,36,0.15);border:1px solid #fbbf24;color:#fbbf24;border-radius:8px;padding:8px;font-size:.68rem;font-weight:800;cursor:pointer;">25 min</button>
-</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-<button type="button" class="ui-btn green" onclick="startCountdown()">▶️ Start</button>
-<button type="button" class="ui-btn pink" onclick="pauseCountdown()">⏸️ Pause</button>
-<button type="button" class="ui-btn" style="background:#334155;color:#fff;" onclick="resetCountdown()">🔄 Reset</button>
-</div>
-<div id="cd-status" style="margin-top:12px;font-size:.78rem;color:var(--text-muted);font-weight:700;"></div>
-</div>
-</div>
-</div>
 
-<div id="tab-todo" class="tab-card">
-<div class="ui-card">
-<div class="card-title">✅ Tasks</div>
-<div style="display:flex;gap:8px;margin-bottom:12px;">
-<input type="text" id="todo-input-field" class="ui-input" style="margin-bottom:0;" placeholder="New task..." onkeydown="if(event.key==='Enter') addNewTodoTask()">
-<button type="button" class="ui-btn" style="width:auto;padding:0 18px;" onclick="addNewTodoTask()">Add</button>
-</div>
-<div id="todo-tasks-container"></div>
-</div>
-</div>
 
-<div id="tab-notes" class="tab-card">
-<div class="ui-card">
-<div class="card-title">📝 Notes</div>
-<textarea id="quick-note-field" class="ui-input" rows="4" placeholder="Private notes..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-<button type="button" class="ui-btn" onclick="savePrivateNote()">💾 Save</button>
-<button type="button" class="ui-btn pink" onclick="clearAllPrivateNotes()">🗑️ Clear</button>
-</div>
-<div id="private-notes-log"></div>
-</div>
-</div>
 
-<div id="tab-qr" class="tab-card">
-<div class="ui-card" style="text-align:center;">
-<div class="card-title">🏁 QR Generator</div>
-<div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(5,1,15,0.6);padding:6px;border-radius:12px;">
-<button type="button" id="qr-mode-text" class="ui-btn" style="flex:1;padding:8px;font-size:.78rem;background:var(--accent-grad);color:#03151e;" onclick="setQrMode('text')">📝 Text/URL</button>
-<button type="button" id="qr-mode-file" class="ui-btn" style="flex:1;padding:8px;font-size:.78rem;background:transparent;color:var(--text-muted);border:1px solid var(--border-color);" onclick="setQrMode('file')">📁 File/Photo</button>
-</div>
-<div id="qr-text-section">
-<input type="text" id="qr-text-input" class="ui-input" placeholder="Enter URL or text...">
-<button type="button" class="ui-btn" onclick="generateQrCodeImage()">Generate QR</button>
-</div>
-<div id="qr-file-section" style="display:none;">
-<input type="file" id="qr-file-input" style="display:none" onchange="handleQrFileUpload(event)" accept="image/*,.pdf,.doc,.docx,.txt">
-<button type="button" class="ui-btn green" onclick="document.getElementById('qr-file-input').click()">📁 Select File</button>
-<div style="font-size:.7rem;color:var(--text-muted);margin-top:6px;">Photo/PDF/Doc — QR me info ban jayega</div>
-<div id="qr-file-info" style="margin-top:10px;font-size:.75rem;color:#fff;"></div>
-</div>
-<div id="qr-output-box" style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:10px;"></div>
-</div>
-</div>
 
-<div id="tab-vault" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🔐 Vault</div>
-<input type="text" id="vault-sec" class="ui-input" placeholder="Platform">
-<input type="text" id="vault-usr" class="ui-input" placeholder="Username">
-<input type="password" id="vault-pwd" class="ui-input" placeholder="Password">
-<button type="button" class="ui-btn" onclick="saveVaultCredential()">🔒 Save</button>
-<div id="vault-log-box" style="margin-top:14px;"></div>
-</div>
-</div>
 
-<div id="tab-focus" class="tab-card">
-<div class="ui-card" style="text-align:center;">
-<div class="card-title">🍅 Pomodoro</div>
-<div id="focus-timer-display" style="font-size:2.8rem;font-weight:900;color:var(--pink);margin:16px 0;font-family:monospace;">25:00</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-<button type="button" class="ui-btn green" onclick="startFocusSession()">Start</button>
-<button type="button" class="ui-btn pink" onclick="pauseFocusSession()">Pause</button>
-<button type="button" class="ui-btn" style="background:#334155;color:#fff;" onclick="resetFocusSession()">Reset</button>
-</div>
-</div>
-</div>
 
-<div id="tab-encrypt" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🔐 Text Encryptor</div>
-<div class="encrypt-mode-tabs">
-<button type="button" id="enc-mode-aes" class="encrypt-mode-btn active" onclick="setEncryptMode('aes')">🔒 AES</button>
-<button type="button" id="enc-mode-normal" class="encrypt-mode-btn" onclick="setEncryptMode('normal')">⚡ Normal</button>
-<button type="button" id="enc-mode-link" class="encrypt-mode-btn" onclick="setEncryptMode('link')">🔗 Link</button>
-</div>
-<div id="enc-aes-section">
-<label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">💬 Message:</label>
-<textarea id="cipher-in" class="ui-input" rows="4" placeholder="Message ya received code paste karo..."></textarea>
-<label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">🔑 Password (min 6):</label>
-<input type="password" id="cipher-password" class="ui-input" placeholder="Password...">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
-<button type="button" class="ui-btn" onclick="runStandardCipher(true)">🔒 Encrypt</button>
-<button type="button" class="ui-btn pink" onclick="runStandardCipher(false)">🔓 Decrypt</button>
-</div>
-<label style="font-size:.75rem;color:var(--cyan);font-weight:800;display:block;margin-bottom:4px;">📤 Output:</label>
-<textarea id="cipher-out" class="ui-input" rows="4" readonly placeholder="Result..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-<button type="button" class="ui-btn green" onclick="copyCipherOutput()">📋 Copy</button>
-<button type="button" class="ui-btn purple" onclick="shareCipherOutput()">📤 Share</button>
-</div>
-</div>
-<div id="enc-normal-section" style="display:none;">
-<div style="background:rgba(16,185,129,0.1);border:1.5px solid #10b981;border-radius:10px;padding:10px;margin-bottom:12px;font-size:.72rem;color:#10b981;">⚡ Simple encoding — Base64 + XOR.</div>
-<textarea id="normal-in" class="ui-input" rows="4" placeholder="Message likho..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
-<button type="button" class="ui-btn" onclick="runNormalCipher(true)">🔒 Encode</button>
-<button type="button" class="ui-btn pink" onclick="runNormalCipher(false)">🔓 Decode</button>
-</div>
-<textarea id="normal-out" class="ui-input" rows="4" readonly placeholder="Result..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-<button type="button" class="ui-btn green" onclick="copyNormalOut()">📋 Copy</button>
-<button type="button" class="ui-btn purple" onclick="shareNormalCode()">📤 Share</button>
-</div>
-</div>
-<div id="enc-link-section" style="display:none;">
-<div style="background:rgba(167,139,250,0.1);border:1.5px solid #a78bfa;border-radius:10px;padding:10px;margin-bottom:12px;font-size:.72rem;color:#a78bfa;">🔗 Short link me convert karo.</div>
-<textarea id="link-msg-in" class="ui-input" rows="3" placeholder="Secret message..."></textarea>
-<input type="password" id="link-pw" class="ui-input" placeholder="Password (optional)">
-<button type="button" class="ui-btn purple" onclick="generateShareLink()">🔗 Generate Link</button>
-<div id="link-output" style="margin-top:12px;"></div>
-</div>
-</div>
-</div>
 
-<div id="tab-tools" class="tab-card">
-<div class="ui-card">
-<div class="card-title">🔄 Unit Converter</div>
-<select id="conv-category" class="ui-input" onchange="updateConverterUnits()">
-<option value="Length">📏 Length</option>
-<option value="Weight">⚖️ Weight</option>
-<option value="Temperature">🌡️ Temperature</option>
-<option value="Time">⏰ Time</option>
-<option value="Data">💾 Data</option>
-</select>
-<input type="number" id="conv-value" class="ui-input" placeholder="Value" value="1">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-<select id="conv-from" class="ui-input"></select>
-<select id="conv-to" class="ui-input"></select>
-</div>
-<button type="button" class="ui-btn" onclick="convertUnit()">Convert</button>
-<div id="conv-result" style="margin-top:12px;text-align:center;font-weight:800;color:var(--cyan);font-size:1rem;"></div>
-</div>
-<div class="ui-card">
-<div class="card-title">🎲 Random</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
-<button type="button" class="ui-btn" onclick="rollDice()">🎲 Dice</button>
-<button type="button" class="ui-btn pink" onclick="flipCoin()">🪙 Coin</button>
-</div>
-<div id="random-result" style="text-align:center;font-size:1.6rem;font-weight:900;color:var(--cyan);min-height:40px;margin-bottom:12px;"></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-<input type="number" id="rnd-min" class="ui-input" placeholder="Min" value="1">
-<input type="number" id="rnd-max" class="ui-input" placeholder="Max" value="100">
-</div>
-<button type="button" class="ui-btn green" onclick="generateRandomNumber()">🔢 Random Number</button>
-</div>
-<div class="ui-card">
-<div class="card-title">🔑 Password Gen</div>
-<label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px;">Length: <span id="pwd-len-view">16</span></label>
-<input type="range" id="pwd-len" min="6" max="40" value="16" style="width:100%;accent-color:var(--cyan);margin-bottom:12px;" oninput="document.getElementById('pwd-len-view').innerText=this.value">
-<input type="text" id="pwd-output" class="ui-input" readonly placeholder="Password...">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-<button type="button" class="ui-btn" onclick="generatePassword()">⚡ Generate</button>
-<button type="button" class="ui-btn green" onclick="copyGeneratedPassword()">📋 Copy</button>
-</div>
-<button type="button" class="ui-btn" style="margin-top:8px;background:linear-gradient(135deg,#a78bfa,#7928ca);color:#fff;" onclick="saveGeneratedPasswordToVault()">💾 Save to Vault</button>
-</div>
-<div class="ui-card">
-<div class="card-title">💰 EMI</div>
-<input type="number" id="emi-principal" class="ui-input" placeholder="Loan (₹)" value="100000">
-<input type="number" id="emi-rate" class="ui-input" placeholder="Rate (%)" value="10">
-<input type="number" id="emi-years" class="ui-input" placeholder="Years" value="2">
-<button type="button" class="ui-btn" onclick="calcEMI()">Calculate</button>
-<div id="emi-result" style="margin-top:14px;text-align:center;color:var(--cyan);font-weight:800;font-size:.9rem;"></div>
-</div>
-<div class="ui-card">
-<div class="card-title">🎯 Discount</div>
-<input type="number" id="disc-price" class="ui-input" placeholder="Price (₹)" value="1000">
-<input type="number" id="disc-percent" class="ui-input" placeholder="Discount %" value="20">
-<button type="button" class="ui-btn green" onclick="calcDiscount()">Calculate</button>
-<div id="disc-result" style="margin-top:14px;text-align:center;color:var(--cyan);font-weight:800;font-size:.9rem;"></div>
-</div>
-</div>
 
 <div id="tab-gallery" class="tab-card">
 <div class="ui-card">
@@ -1224,6 +1346,7 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <button class="admin-tab-btn" data-atab="audit" onclick="switchAdminTab('audit')">🕵️ User Activity</button>
 <button class="admin-tab-btn" data-atab="rewards" onclick="switchAdminTab('rewards')">🎁 Rewards</button>
 <button class="admin-tab-btn" data-atab="appctl" onclick="switchAdminTab('appctl')">🎛️ App Control</button>
+<button class="admin-tab-btn" data-atab="toolaccess" onclick="switchAdminTab('toolaccess')">🎚️ Tool Access</button>
 <button class="admin-tab-btn" data-atab="appmgr" onclick="switchAdminTab('appmgr')">📲 App & Icon</button>
 <button class="admin-tab-btn" data-atab="issues" onclick="switchAdminTab('issues')">🛠️ Problems</button>
 <button class="admin-tab-btn" data-atab="logs" onclick="switchAdminTab('logs')">📋 Logs</button>
@@ -1626,6 +1749,12 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <div style="display:flex;gap:8px;"><button type="button" class="ui-btn green" style="flex:1" onclick="saveAppDownloadUrl('dl-url-adm')">💾 सबके लिए Save</button><button type="button" class="ui-btn" style="flex:1;background:#334155;color:#fff" onclick="downloadOfficialApk()">🔗 Test</button><button type="button" class="ui-btn" style="flex:1;background:#334155;color:#fff" onclick="resetAppDownloadUrl()">↩️ Reset</button></div>
 <div id="dl-status" style="font-size:.7rem;color:var(--text-muted);margin-top:8px;word-break:break-all;"></div></div>
 </div>
+<div class="admin-tab-panel" id="apanel-toolaccess"><div style="border:1.5px solid var(--cyan);border-radius:16px;padding:14px;background:rgba(0,242,254,0.04);margin-bottom:16px;">
+<div style="font-size:.95rem;font-weight:800;color:var(--cyan);margin-bottom:6px;">🎚️ Tool Access Control</div>
+<div style="font-size:.72rem;color:var(--text-muted);margin-bottom:10px;">हर टूल के लिए चुनें: 🆓 Free / 👑 Prime / 🪙 Coin (कितने coins)। Coin वाला टूल एक बार coins देने पर 24 घंटे खुला रहता है। Save करने पर सब users पर लागू होता है।</div>
+<input id="nta-q" class="ui-input" placeholder="🔍 टूल खोजें…" oninput="NTA.admin()">
+<div id="nta-list"></div>
+<button type="button" class="ui-btn" onclick="NTA.save()">💾 Save</button></div></div>
 <div class="admin-tab-panel" id="apanel-appctl"><div style="border:1.5px solid var(--cyan);border-radius:16px;padding:14px;background:rgba(0,242,254,0.04);margin-bottom:16px;">
 <div style="font-size:.95rem;font-weight:800;color:var(--cyan);margin-bottom:6px;">🎛️ App Control</div>
 <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:10px;">Save karne par sab users par lagu hota hai (Firebase se).</div>
@@ -1838,20 +1967,9 @@ select.lang-sel option{background:#0f172a;color:#fff}
 <nav class="bottom-nav">
 <button type="button" class="nav-btn active" data-tab="home" onclick="switchTab('home')"><span class="icon">🏠</span><span>Home</span></button>
 <button type="button" class="nav-btn" data-tab="wallet" onclick="switchTab('wallet')"><span class="icon">🪙</span><span>Wallet</span></button>
-<button type="button" class="nav-btn" data-tab="freetools" onclick="switchTab('freetools')"><span class="icon">🆓</span><span>Free</span></button>
-<button type="button" class="nav-btn" data-tab="genx" onclick="switchTab('genx')"><span class="icon">⚡</span><span>GenX</span></button>
 <button type="button" class="nav-btn" data-tab="ai" onclick="switchTab('ai')"><span class="icon">🤖</span><span>AI</span></button>
 <button type="button" class="nav-btn" data-tab="prime" onclick="switchTab('prime')"><span class="icon">⭐</span><span>Prime</span></button>
 <button type="button" class="nav-btn" data-tab="settings" onclick="switchTab('settings')"><span class="icon">⚙️</span><span>Settings</span></button>
-<button type="button" class="nav-btn" data-tab="code" onclick="switchTab('code')"><span class="icon">💻</span><span>Code</span></button>
-<button type="button" class="nav-btn" data-tab="search" onclick="switchTab('search')"><span class="icon">🌐</span><span>Search</span></button>
-<button type="button" class="nav-btn" data-tab="calc" onclick="switchTab('calc')"><span class="icon">🔢</span><span>Calc</span></button>
-<button type="button" class="nav-btn" data-tab="timer" onclick="switchTab('timer')"><span class="icon">⏱️</span><span>Timer</span></button>
-<button type="button" class="nav-btn" data-tab="todo" onclick="switchTab('todo')"><span class="icon">✅</span><span>Todo</span></button>
-<button type="button" class="nav-btn" data-tab="notes" onclick="switchTab('notes')"><span class="icon">📝</span><span>Notes</span></button>
-<button type="button" class="nav-btn" data-tab="qr" onclick="switchTab('qr')"><span class="icon">🏁</span><span>QR</span></button>
-<button type="button" class="nav-btn" data-tab="vault" onclick="switchTab('vault')"><span class="icon">🔐</span><span>Vault</span></button>
-<button type="button" class="nav-btn" data-tab="tools" onclick="switchTab('tools')"><span class="icon">🧰</span><span>Tools</span></button>
 <button type="button" class="nav-btn" data-tab="gallery" onclick="switchTab('gallery')"><span class="icon">🔥</span><span>Gallery</span></button>
 <button type="button" class="nav-btn" data-tab="hub" onclick="switchTab('hub')"><span class="icon">🎛️</span><span>Hub</span></button>
 </nav>
@@ -2728,7 +2846,7 @@ function renderStickyNotes(){const el=document.getElementById('sn-list');if(!el)
 function delStickyNote(i){stickyNotes.splice(i,1);gSet('sticky_notes',stickyNotes);renderStickyNotes();}
 
 /* TABS */
-function switchTab(tabId){document.querySelectorAll('.tab-card').forEach(el=>el.classList.remove('active'));const t=document.getElementById('tab-'+tabId);if(t)t.classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-tab')===tabId));window.scrollTo({top:0,behavior:'smooth'});if(tabId!=='ai'&&window.speechSynthesis){try{window.speechSynthesis.cancel();}catch(e){}}if(tabId==='support'&&currentUser&&!currentUser.isMaster)loadSupportMessages();}
+function switchTab(tabId){var __h=document.getElementById('tab-'+tabId);if(__h&&__h.classList.contains('home-tool')){switchTab('home');setTimeout(function(){__h.scrollIntoView({behavior:'smooth',block:'start'})},400);return;}document.querySelectorAll('.tab-card').forEach(el=>el.classList.remove('active'));const t=document.getElementById('tab-'+tabId);if(t)t.classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-tab')===tabId));window.scrollTo({top:0,behavior:'smooth'});if(tabId!=='ai'&&window.speechSynthesis){try{window.speechSynthesis.cancel();}catch(e){}}if(tabId==='support'&&currentUser&&!currentUser.isMaster)loadSupportMessages();}
 
 /* CMD PALETTE */
 const CMD_ITEMS=[
@@ -3983,7 +4101,7 @@ document.addEventListener('DOMContentLoaded',apply);if(document.body)apply();
 var $=function(i){return document.getElementById(i)};
 var MAIN={home:1,ai:1,settings:1,hub:1};
 function mkMore(){
-  var nav=document.querySelector('.bottom-nav');if(!nav||$('v33-more'))return;
+  return;
   var b=document.createElement('button');b.type='button';b.id='v33-more';b.className='nav-btn';
   b.innerHTML='<span class="icon">🧰</span><span>Tools</span>';b.onclick=openSheet;nav.appendChild(b);
 }
@@ -4043,7 +4161,7 @@ function mkPrime(){
   var h=document.querySelector('.bottom-nav .nav-btn[data-tab="hub"]');
   if(h){var sp=h.querySelectorAll('span');if(sp[0]&&sp[0].textContent!=='🛡️'){sp[0].textContent='🛡️';if(sp[1])sp[1].textContent='Admin'}}
 }
-function boot(){mkMore();mkSheet();mkPrime();hl()}
+function boot(){mkPrime();hl()}
 setInterval(function(){mkMore();mkPrime();hl()},2500);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSheet()});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
