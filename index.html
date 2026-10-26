@@ -487,7 +487,7 @@ textarea.ui-input{min-height:110px;resize:vertical;font-family:inherit}
 <div id="daily-quote-text" style="font-size:.85rem;font-style:italic;color:#e2e8f0;line-height:1.4;">Loading...</div>
 </div>
 </div>
-<div class="home-sec">🧰 सभी टूल्स — नीचे स्क्रॉल करें</div>
+<div class="tool-bar"><div class="tb-top">🧰 सभी टूल्स</div><input id="tb-q" class="ui-input" type="search" placeholder="🔍 टूल खोजें… (PDF, QR, timer, currency)" oninput="NTUI.q(this.value)"><div class="tb-chips" id="tb-chips"></div><div class="tb-meta"><span id="tb-count"></span><span>टैप करके टूल खोलें ▾</span></div></div>
 <div id="tab-freetools" class="home-tool">
 <div class="ui-card">
 <div class="card-title">🆓 Free Mega Tools <span style="margin-left:auto;font-size:.62rem;color:#10b981;font-weight:800;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:8px;">40 FREE</span></div>
@@ -894,7 +894,6 @@ textarea.ui-input{min-height:110px;resize:vertical;font-family:inherit}
 </div>
 </div>
 <div class="ui-card"><div class="card-title">✨ More Tools</div><div class="freetools-grid" id="home-v34-grid"></div></div>
-<div class="home-sec" style="margin-top:18px">🆕 नए टूल्स</div>
 <div class="ui-card home-tool" id="tab-nt-pdfread"><div class="card-title">📖 PDF Reader</div><input type="file" id="nt-pr-f" accept="application/pdf" class="ui-input" onchange="NT.pdfRead(this.files[0])"><div id="nt-pr-info" style="font-size:.75rem;color:var(--text-muted)"></div><div id="nt-pr-out" style="max-height:70vh;overflow:auto;margin-top:8px"></div></div>
 <div class="ui-card home-tool" id="tab-nt-pdfconv"><div class="card-title">🔁 PDF Converter</div><input type="file" id="nt-pc-f" multiple accept="application/pdf,image/*" class="ui-input"><div style="font-size:.72rem;color:var(--text-muted);margin-bottom:8px">Images चुनें → PDF बनेगी • PDF चुनें → Text (.txt) निकलेगा</div><button type="button" class="ui-btn " onclick="NT.pdfConv()">⚡ Convert</button><div id="nt-pc-out" class="nt-out"></div></div>
 <div class="ui-card home-tool" id="tab-nt-video"><div class="card-title">⬇️ Social Media Video Downloader</div><input id="nt-v-u" class="ui-input" placeholder="Video link पेस्ट करें (Instagram / Facebook / TikTok / X)"><button type="button" class="ui-btn " onclick="NT.vid()">⬇️ Download</button><div id="nt-v-o" class="nt-out"></div></div>
@@ -908,6 +907,7 @@ textarea.ui-input{min-height:110px;resize:vertical;font-family:inherit}
 <div class="ui-card home-tool" id="tab-nt-currency"><div class="card-title">💱 Currency Converter</div><input type="number" id="nt-c-a" class="ui-input" value="1"><div class="nt-row"><select id="nt-c-f" class="ui-input"></select><select id="nt-c-t" class="ui-input"></select></div><button type="button" class="ui-btn " onclick="NT.cur()">💱 Convert</button><div id="nt-c-o" class="nt-out"></div></div>
 <div class="ui-card home-tool" id="tab-nt-strlen"><div class="card-title">📏 String Length Calculator</div><textarea id="nt-s-i" class="ui-input" placeholder="टेक्स्ट लिखें…" oninput="NT.len()"></textarea><div id="nt-s-o"></div></div>
 <div class="ui-card home-tool" id="tab-nt-lorem"><div class="card-title">📃 Lorem Ipsum Generator</div><div class="nt-row"><input type="number" id="nt-l-n" class="ui-input" value="3" min="1"><select id="nt-l-u" class="ui-input"><option value="p">Paragraphs</option><option value="w">Words</option></select></div><button type="button" class="ui-btn " onclick="NT.lor()">⚡ Generate</button><textarea id="nt-l-o" class="ui-input" style="margin-top:10px" readonly></textarea><button type="button" class="ui-btn green" style="margin-top:8px" onclick="NT.cp('nt-l-o',this)">📋 Copy</button></div>
+<div id="tb-empty" style="display:none;text-align:center;color:var(--text-muted);padding:24px">😕 कोई टूल नहीं मिला — दूसरा शब्द आज़माएँ</div>
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)};window.$=window.$||$;
@@ -973,7 +973,7 @@ function paint(){R.forEach(function(o){var c=get(o.id),lock=c.m!=='free'&&!maste
  var t=o.el.querySelector('.card-title'),bd=o.el.querySelector('.nta-b');
  if(t){if(!bd){bd=document.createElement('span');bd.className='nta-b';t.appendChild(bd)}bd.textContent=c.m==='prime'?'👑 PRIME':c.m==='coin'?'🪙 '+c.c+' coins':'FREE'}
  var ov=o.el.querySelector(':scope > .nta-lock');
- if(lock&&!ov){o.el.style.position='relative';ov=document.createElement('div');ov.className='nta-lock';o.el.appendChild(ov);ov.onclick=function(){if(ok(o.id))paint()}}
+ if(lock&&!ov){o.el.style.position='relative';ov=document.createElement('div');ov.className='nta-lock';o.el.appendChild(ov);ov.onclick=function(){if(ok(o.id)){paint();if(window.NTUI)NTUI.open(o.el)}}}
  if(ov){if(lock)ov.innerHTML='<div>'+(c.m==='prime'?'👑 Prime चाहिए':'🪙 '+c.c+' coins में Unlock')+'<small>टैप करें</small></div>';else ov.remove()}})}
 function admin(){var h=$('nta-list');if(!h)return;var q=(($('nta-q')||{}).value||'').toLowerCase();
  h.innerHTML=R.filter(function(o){return !q||o.name.toLowerCase().indexOf(q)>-1}).map(function(o){var c=get(o.id),s=function(v){return c.m===v?' selected':''};
@@ -985,6 +985,43 @@ build();
 [['openFreeTool','f:'],['openGenTool','g:']].forEach(function(a){var o=window[a[0]];if(typeof o!=='function')return;window[a[0]]=function(t){if(!ok(a[1]+t))return;return o.apply(this,arguments)}});
 var sa=window.switchAdminTab;if(typeof sa==='function')window.switchAdminTab=function(t){var r=sa.apply(this,arguments);if(t==='toolaccess')admin();return r};
 paint();setInterval(function(){paint();var d=db();if(d&&!sub){sub=1;d.ref('config/tools').on('value',function(s){var v=s.val();if(v){CFG=v;try{localStorage.setItem(K,JSON.stringify(v))}catch(e){}paint();admin()}})}},3000);
+})();
+</script>
+
+<style>
+.tool-bar{margin:0 0 14px;padding:14px;border:1.5px solid var(--border-color);border-radius:20px;background:var(--card-bg)}
+.tb-top{font-size:1rem;font-weight:900;color:var(--cyan);margin-bottom:10px}
+.tool-bar .ui-input{margin-bottom:10px}
+.tb-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}.tb-chips::-webkit-scrollbar{display:none}
+.tb-chip{flex:none;padding:8px 13px;border-radius:999px;border:1px solid rgba(0,242,254,.3);background:rgba(0,242,254,.08);color:#cbd5e1;font-size:.76rem;font-weight:800;cursor:pointer}
+.tb-chip.on{background:var(--accent-grad);color:#03151e;border-color:transparent}
+.tb-meta{display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted);margin-top:8px}
+.acc{padding:0 16px!important;overflow:hidden;margin-bottom:10px!important;transition:border-color .2s,box-shadow .2s;scroll-margin-top:90px}
+.acc>.card-title{margin:0 -16px;padding:15px 16px;border:0;cursor:pointer;user-select:none;font-size:.98rem}
+.acc:not(.open)>*:not(.card-title):not(.nta-lock){display:none!important}
+.acc.open{padding-bottom:16px!important;border-color:var(--cyan);box-shadow:0 0 0 1px rgba(0,242,254,.25),0 10px 35px rgba(0,0,0,.5)}
+.acc.open>.card-title{border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:14px}
+.acc-ch{margin-left:auto;font-style:normal;color:var(--cyan);transition:transform .2s}.nta-b+.acc-ch{margin-left:8px}.acc.open>.card-title .acc-ch{transform:rotate(180deg)}
+</style>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},C=[['all','🔎 सभी'],['new','🆕 नए'],['media','🎬 Media & Files'],['text','✍️ Text'],['dev','💻 Dev & Security'],['calc','🧮 Calculators'],['prod','⏱️ Productivity'],['pack','📦 Mega Packs']],U=[],cat='all',q='';
+function kind(n,pk){if(pk)return'pack';n=n.toLowerCase();if(/string|lorem|hashtag|plagiar/.test(n))return'text';return/pdf|image|qr|thumbnail|video|speech|tts/.test(n)?'media':/json|xml|code|encrypt|vault|password|domain|search/.test(n)?'dev':/calc|currency|emi|discount|age|bmi|unit|random/.test(n)?'calc':/timer|task|notes|pomodoro|focus/.test(n)?'prod':'text'}
+function tog(el,f){var o=f==null?!el.classList.contains('open'):f;el.classList.toggle('open',o);if(o)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'nearest'})},120)}
+function apply(){var s=q.trim().toLowerCase(),n=0;U.forEach(function(u){if(u.pk)u.tiles=[].slice.call(u.el.querySelectorAll('.tile'));var ok=cat==='all'||(cat==='new'?u.nw:u.c===cat),hit=!s||u.name.indexOf(s)>-1,tm=0;
+ if(u.tiles.length){u.tiles.forEach(function(t){var m=!s||hit||(t.textContent+' '+(t.getAttribute('data-name')||'')).toLowerCase().indexOf(s)>-1;t.style.display=m?'':'none';if(m)tm++});hit=hit||tm>0}
+ var v=ok&&hit;u.el.style.display=v?'':'none';if(v){n++;if(s&&u.tiles.length)u.el.classList.add('open')}});
+ $('tb-count').textContent=n+' tools';$('tb-empty').style.display=n?'none':'block';
+ [].forEach.call(document.querySelectorAll('.tb-chip'),function(b){b.classList.toggle('on',b.getAttribute('data-c')===cat)})}
+function build(){var v=$('home-v34-grid');if(v&&!$('home-v34-card'))v.parentNode.id='home-v34-card';
+ [].forEach.call(document.querySelectorAll('.home-tool:not([id^="tab-nt-"])>.ui-card,#home-v34-card,[id^="tab-nt-"]'),function(el){var t=el.querySelector('.card-title');if(!t)return;
+  var nm=[].filter.call(t.childNodes,function(x){return x.nodeType===3}).map(function(x){return x.textContent}).join('').trim()||t.textContent.trim(),pk=!!el.querySelector('.tile')||el.id==='home-v34-card';
+  el.classList.add('acc');var ch=document.createElement('i');ch.className='acc-ch';ch.textContent='▾';t.appendChild(ch);t.onclick=function(){tog(el)};
+  U.push({el:el,name:nm.toLowerCase(),c:kind(nm,pk),pk:pk,nw:el.id.indexOf('tab-nt-')===0,tiles:[]})});
+ $('tb-chips').innerHTML=C.map(function(c){return'<button type="button" class="tb-chip" data-c="'+c[0]+'" onclick="NTUI.cat(\''+c[0]+'\')">'+c[1]+'</button>'}).join('');apply()}
+window.NTUI={q:function(v){q=v;apply()},cat:function(c){cat=c;apply()},
+ open:function(el){var c=el.classList.contains('ui-card')?el:(el.querySelector('.ui-card')||el);cat='all';q='';var i=$('tb-q');if(i)i.value='';apply();tog(c,true)}};
+build();
 })();
 </script>
 
@@ -2846,7 +2883,7 @@ function renderStickyNotes(){const el=document.getElementById('sn-list');if(!el)
 function delStickyNote(i){stickyNotes.splice(i,1);gSet('sticky_notes',stickyNotes);renderStickyNotes();}
 
 /* TABS */
-function switchTab(tabId){var __h=document.getElementById('tab-'+tabId);if(__h&&__h.classList.contains('home-tool')){switchTab('home');setTimeout(function(){__h.scrollIntoView({behavior:'smooth',block:'start'})},400);return;}document.querySelectorAll('.tab-card').forEach(el=>el.classList.remove('active'));const t=document.getElementById('tab-'+tabId);if(t)t.classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-tab')===tabId));window.scrollTo({top:0,behavior:'smooth'});if(tabId!=='ai'&&window.speechSynthesis){try{window.speechSynthesis.cancel();}catch(e){}}if(tabId==='support'&&currentUser&&!currentUser.isMaster)loadSupportMessages();}
+function switchTab(tabId){var __h=document.getElementById('tab-'+tabId);if(__h&&__h.classList.contains('home-tool')){switchTab('home');if(window.NTUI)NTUI.open(__h);setTimeout(function(){__h.scrollIntoView({behavior:'smooth',block:'start'})},400);return;}document.querySelectorAll('.tab-card').forEach(el=>el.classList.remove('active'));const t=document.getElementById('tab-'+tabId);if(t)t.classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-tab')===tabId));window.scrollTo({top:0,behavior:'smooth'});if(tabId!=='ai'&&window.speechSynthesis){try{window.speechSynthesis.cancel();}catch(e){}}if(tabId==='support'&&currentUser&&!currentUser.isMaster)loadSupportMessages();}
 
 /* CMD PALETTE */
 const CMD_ITEMS=[
