@@ -5884,7 +5884,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)},imgs={},raf=0,oc=0,nb=0,bl=0,last=0,fake=0,cam=null,on=true;
-function cfg(){var c=window.SKC?SKC():{};return window.SKPHOTO?Object.assign({},c,{aiPhoto:SKPHOTO()}):c}
+function cfg(){var c=window.SKC?SKC():{};return window.SKPHOTO?Object.assign({},c,{aiPhoto:SKPHOTO(),aiVMode:SKPHOTO()?'photo':c.aiVMode}):c}
 function getImg(src,cb){if(!src)return null;var o=imgs[src];if(o)return o.complete&&o.naturalWidth?o:null;o=new Image();o.onload=cb||function(){};o.src=src;imgs[src]=o;return null}
 function speaking(){return fake>Date.now()||(typeof callSpeaking!=='undefined'&&callSpeaking)}
 function amp(t,sp){var g=sp?Math.max(0,Math.sin(t/85)*.5+.5)*(.55+.45*Math.sin(t/310))*(Math.sin(t/900)>-.9?1:.15):0;oc+=(g-oc)*.45;return oc}
@@ -5904,16 +5904,16 @@ function drawChar(c,W,H,o,t,bk,name){var u=Math.min(W*.3,H*.17),cx=W/2,fy=H*.4,s
  if(o<.06){c.strokeStyle='#b83b5a';c.lineWidth=.05*u;c.beginPath();c.moveTo(cx-mw,my);c.quadraticCurveTo(cx,my+.16*u,cx+mw,my);c.stroke()}
  else{c.beginPath();c.moveTo(cx-mw,my);c.quadraticCurveTo(cx,my-.06*u,cx+mw,my);c.quadraticCurveTo(cx,my+mh*2,cx-mw,my);c.fillStyle='#5a0f26';c.fill();ell(c,cx,my+mh*.9,mw*.55,mh*.45,'#e0607a');c.fillStyle='#fff';c.fillRect(cx-mw*.62,my-.015*u,mw*1.24,Math.min(.05*u,mh*.4));c.strokeStyle='#b83b5a';c.lineWidth=.035*u;c.beginPath();c.moveTo(cx-mw,my);c.quadraticCurveTo(cx,my-.06*u,cx+mw,my);c.stroke()}
  c.restore()}
-function drawPhoto(c,W,H,im,o,t,k){var iw=im.naturalWidth,ih=im.naturalHeight,z=1.01+Math.sin(t/2200)*.006,bs=Math.max(W/iw,H/ih);
- c.save();try{c.filter='blur(22px) brightness(.55)'}catch(e){}c.drawImage(im,(W-iw*bs)/2-20,(H-ih*bs)/2-20,iw*bs+40,ih*bs+40);c.restore();
+function drawPhoto(c,W,H,im,o,t,k){var yw=Math.sin(t/2600)*.05+Math.sin(t/430)*.015*o,iw=im.naturalWidth,ih=im.naturalHeight,z=1.01+Math.sin(t/2200)*.006,bs=Math.max(W/iw,H/ih);
+ c.save();try{c.filter='blur(22px) brightness(.55)'}catch(e){}c.drawImage(im,(W-iw*bs)/2-20-yw*W*.25,(H-ih*bs)/2-20,iw*bs+40,ih*bs+40);c.restore();
  var s=Math.max(W/iw,H*.62/ih)*z,dw=iw*s,dh=ih*s,dx=(W-dw)/2,dy=Math.max(Math.min(0,H-dh),Math.min(0,0)+Math.min(H-dh,H*.5-dh/2));if(dh<H)dy=Math.max(0,Math.min(H-dh,H*.5-dh/2));
  var my=dy+dh*(k.aiMouthY/100),mx=W*(k.aiMouthX/100),d=o*dh*.03,b=dh*.05,sy=function(y){return(y-dy)/s},e=1;
- c.save();c.translate(Math.sin(t/1700)*W*.004,0);c.rotate(Math.sin(t/2300)*.006);
+ c.save();c.translate(W/2,H/2);c.transform(1-Math.abs(yw)*.5,Math.sin(t/3100)*.01+o*.012,yw*.12,1+Math.sin(t/2000)*.004+o*.003,Math.sin(t/1700)*W*.004,o*H*.002);c.rotate(Math.sin(t/2300)*.006+yw*.1);c.translate(-W/2,-H/2);
  c.drawImage(im,0,0,iw,sy(my-b),dx,dy,dw,my-b-dy);
  c.drawImage(im,0,sy(my-b)-e/s,iw,sy(my+b)-sy(my-b)+e/s,dx,my-b-e,dw,2*b+d+e);
  var y3=my+b+d,s3=sy(my+b);if(y3<dy+dh)c.drawImage(im,0,s3-e/s,iw,ih-s3+e/s,dx,y3-e,dw,dy+dh-y3+e);
  if(o>.08){var g=c.createRadialGradient(mx,my+d*.4,1,mx,my+d*.4,dw*.09);g.addColorStop(0,'rgba(40,5,15,'+Math.min(.9,o*1.3)+')');g.addColorStop(1,'rgba(40,5,15,0)');c.fillStyle=g;c.beginPath();c.ellipse(mx,my+d*.4,dw*.085,Math.max(1,d*.9+dh*.006),0,0,6.2832);c.fill()}
- c.restore()}
+ c.restore();var vg=c.createRadialGradient(W/2+yw*W*2,H*.4,W*.15,W/2,H*.5,Math.max(W,H)*.75);vg.addColorStop(0,'rgba(255,240,230,.07)');vg.addColorStop(1,'rgba(0,0,0,.38)');c.fillStyle=vg;c.fillRect(0,0,W,H)}
 function render(c,W,H,t,k,im,nm){c.clearRect(0,0,W,H);var sp=speaking(),o=amp(t,sp),bk=blink(t);if(k.aiVMode==='photo'&&im)drawPhoto(c,W,H,im,o,t,k);else drawChar(c,W,H,o,t,bk,nm)}
 function fit(cv){var d=Math.min(window.devicePixelRatio||1,1.5),w=Math.round((cv.clientWidth||360)*d),h=Math.round((cv.clientHeight||640)*d);if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}}
 function loop(ts){var sc=$('ai-call-screen');if(!sc||!sc.classList.contains('show')||!sc.classList.contains('vid')){raf=0;return}raf=requestAnimationFrame(loop);if(ts-last<33)return;last=ts;var cv=$('av-cv'),k=cfg();fit(cv);render(cv.getContext('2d'),cv.width,cv.height,ts,k,getImg(k.aiPhoto),k.aiName||'Sikku AI')}
