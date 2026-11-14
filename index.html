@@ -5944,5 +5944,67 @@ window.ANAV={open:function(o){document.getElementById('an-menu').style.display=o
 filter:function(q){q=q.toLowerCase().trim();document.querySelectorAll('#an-menu .admin-tab-btn').forEach(function(b){b.style.display=(!q||(b.textContent+' '+(b.dataset.kw||'')).toLowerCase().indexOf(q)>-1)?'':'none'});document.querySelectorAll('#an-menu .an-grp').forEach(function(g){g.style.display=Array.from(g.querySelectorAll('.admin-tab-btn')).some(function(b){return b.style.display!=='none'})?'':'none'})}};
 (function(){var o=window.switchAdminTab;window.switchAdminTab=function(t){var r=o.apply(this,arguments);var b=document.querySelector('#an-menu .admin-tab-btn[data-atab="'+t+'"]'),h=document.getElementById('an-here-name');if(h&&b)h.textContent=b.querySelector('b').textContent;ANAV.open(false);var tp=document.querySelector('.an-top');if(tp)tp.scrollIntoView({behavior:'smooth',block:'start'});return r}})();
 </script>
+<style id="sv-css">.svd{border:1.5px solid var(--cyan);border-radius:14px;margin-bottom:12px;background:rgba(0,242,254,.04)}.svd>summary{padding:12px;font-weight:900;font-size:.9rem;color:var(--cyan);cursor:pointer}.svd>div{padding:0 12px 12px}.svr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 0;border-top:1px solid var(--border-color);font-size:.78rem;color:#fff}.svr>b{flex:1 1 100%;font-size:.8rem}.svr button,.svr label{border:0;border-radius:8px;padding:8px 10px;font-weight:800;font-size:.72rem;background:#1e293b;color:var(--cyan);cursor:pointer}.sv-st{font-size:.65rem;color:#10b981}.svh{font-size:.72rem;color:#fbbf24;font-weight:800;margin:10px 0 2px}.sv-has{position:relative}.sv-has:after{content:'🔊';position:absolute;right:-4px;bottom:-6px;font-size:.55rem}</style>
+<script id="sv-js">
+/* ===== SIKKU v2: Voice fix + Settings Hub + Icon Audio (added on top, nothing removed) ===== */
+(function(){try{
+var $=function(i){return document.getElementById(i)},ss=window.speechSynthesis;
+function vs(){return ss?ss.getVoices():[]}
+if(ss){ss.onvoiceschanged=vs;vs()}
+function pick(l,g){var p=String(l||'hi').slice(0,2).toLowerCase(),a=vs().filter(function(v){return(v.lang||'').toLowerCase().indexOf(p)===0});if(!a.length&&p==='hi')a=vs().filter(function(v){return/hindi|india/i.test(v.name+v.lang)});var m=a.filter(function(v){var f=/female|kalpana|swara|lekha|heera|zira/i.test(v.name);return g==='male'?!f:f});return m[0]||a[0]||null}
+function chunks(t){t=String(t||'').replace(/<[^>]+>/g,' ').replace(/https?:\/\/\S+/g,' ').replace(/[*#`_~>|]/g,'').replace(/\s+/g,' ').trim();var o=[],c='';(t.match(/[^.!?।\n]+[.!?।]*/g)||[t]).forEach(function(s){if(c&&(c+s).length>170){o.push(c);c=s}else c+=s});if(c)o.push(c);return o.slice(0,14)}
+var tok=0;
+window.SV={stop:function(){tok++;try{ss.cancel()}catch(e){}},
+speak:function(text,which,done){var parts=chunks(text);if(!ss||!parts.length){done&&done();return}
+ var my=++tok,i=0,fin=false,kp=null;
+ function end(){if(fin)return;fin=true;clearInterval(kp);done&&done()}
+ function next(){if(my!==tok||i>=parts.length)return end();
+  var u=new SpeechSynthesisUtterance(parts[i++]);u.lang=getSpeechLang(which,u.text);
+  var vp=getVoiceParams(which)||{},r=vp.rate||1;
+  if(which==='call'&&typeof isCompanionMode!=='undefined'&&isCompanionMode)r*=(companionProfile.voiceRate||.95);
+  u.pitch=Math.max(.1,Math.min(2,vp.pitch||1));u.rate=Math.max(.5,Math.min(2,r));u.volume=1;
+  var v=null;try{v=pickSystemVoice(vp.gender,u.lang)}catch(e){}v=v||pick(u.lang,vp.gender);if(v)u.voice=v;
+  u.onend=next;u.onerror=function(e){var er=e&&e.error;(er==='canceled'||er==='interrupted')?end():next()};ss.speak(u)}
+ try{ss.cancel()}catch(e){}
+ setTimeout(function(){if(my!==tok)return end();try{ss.resume()}catch(e){}kp=setInterval(function(){if(ss.speaking&&!ss.paused){ss.pause();ss.resume()}},9000);next()},120)}};
+function unlock(){try{var u=new SpeechSynthesisUtterance(' ');u.volume=0;ss.speak(u)}catch(e){}document.removeEventListener('pointerdown',unlock,true)}
+if(ss)document.addEventListener('pointerdown',unlock,true);
+function von(){try{return localStorage.getItem('sv_voice')!=='0'}catch(e){return true}}
+speakReply=function(t){if(von())SV.speak(t,'ai')};
+callSpeak=function(t){return new Promise(function(res){if(!ss||!callActive){res();return}stopCallRecognition();callSpeaking=true;setCallStatus('🔊 Speaking...');setCallWaveform(true);SV.speak(t,'call',function(){callSpeaking=false;setCallWaveform(false);res()})})};
+var ot=window.toggleSettingVoice;window.toggleSettingVoice=function(v){try{localStorage.setItem('sv_voice',v?'1':'0')}catch(e){}return ot&&ot.apply(this,arguments)};
+document.addEventListener('change',function(e){if(e.target&&e.target.id==='ai-voice-toggle')try{localStorage.setItem('sv_voice',e.target.checked?'1':'0')}catch(x){}});
+function sync(){voiceRepliesEnabled=von();var c=$('ai-voice-toggle');if(c)c.checked=von()}
+sync();setTimeout(sync,2500);setTimeout(sync,7000);
+/* ---- Icon audio messages ---- */
+var IC=[['cmd','⌘ Search','.header-btns .h-btn[title="Cmd+K"]'],['support','💬 Support','.header-btns .h-btn.support'],['insta','📸 Instagram','.header-btns .h-btn.insta'],['call','📞 Call','.header-btns .h-btn.call'],['coin','🪙 Coins','#hdr-coin'],['me','👤 Profile chip','#app-icon-chip'],['logo','🏠 Logo / Naam','.brand-left']];
+var AU={},cur=null;try{AU=JSON.parse(localStorage.getItem('sv_icaud')||'{}')}catch(e){}
+function play(d){try{SV.stop();if(cur)cur.pause();cur=new Audio(d);cur.play().catch(function(){})}catch(e){}}
+function st(k,t){var e=$('sv-st-'+k);if(e)e.textContent=t}
+function paint(){IC.forEach(function(c){var e=document.querySelector(c[2]);if(e&&c[0]!=='logo')e.classList.toggle('sv-has',!!(AU[c[0]]&&AU[c[0]].d));st(c[0],AU[c[0]]&&AU[c[0]].n?'🔊 '+AU[c[0]].n:'')})}
+function save(){try{localStorage.setItem('sv_icaud',JSON.stringify(AU))}catch(e){}}
+function dbr(k){return typeof databaseInstance!=='undefined'&&databaseInstance?databaseInstance.ref('config/icon_audio'+(k?'/'+k:'')):null}
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;for(var i=0;i<IC.length;i++)if(t.closest(IC[i][2])){var a=AU[IC[i][0]];if(a&&a.d)play(a.d);return}},true);
+window.SVIA={pl:function(k){AU[k]&&AU[k].d?play(AU[k].d):showNotice('Pehle audio daalo')},
+ up:function(k,inp){var f=inp.files&&inp.files[0];if(!f)return;if(f.size>716800){showNotice('⚠️ Audio 700KB se chhota rakho');inp.value='';return}
+  var r=new FileReader();r.onload=function(){var o={n:f.name,d:r.result,t:Date.now()};AU[k]=o;save();var d=dbr(k);if(d)d.set(o).then(function(){st(k,'✅ Sabhi users ke liye publish: '+f.name)}).catch(function(){st(k,'⚠️ Firebase save fail (sirf is device par)')});else st(k,'⚠️ Firebase ready nahin (sirf is device par)');paint()};r.readAsDataURL(f)},
+ rm:function(k){delete AU[k];save();var d=dbr(k);if(d)d.remove();paint();st(k,'🗑 Hata diya')}};
+var n=0,iv=setInterval(function(){var d=dbr();if(d){clearInterval(iv);d.on('value',function(s){AU=s.val()||{};save();paint()})}else if(++n>60)clearInterval(iv)},1500);
+paint();
+/* ---- Master Settings Hub ---- */
+var ov=$('apanel-overview'),m=$('an-menu');
+function row(c){return'<div class="svr"><b>'+c[1]+'</b><label>🎵 Audio chuno<input type="file" accept="audio/*" hidden onchange="SVIA.up(\''+c[0]+'\',this)"></label><button type="button" onclick="SVIA.pl(\''+c[0]+'\')">▶ Suno</button><button type="button" onclick="SVIA.rm(\''+c[0]+'\')">🗑 Hatao</button><span class="sv-st" id="sv-st-'+c[0]+'"></span></div>'}
+if(ov){var p=document.createElement('div');p.className='admin-tab-panel';p.id='apanel-mset';
+ p.innerHTML='<details class="svd" open><summary>🔊 Awaaz &amp; Audio</summary><div><div id="sv-b1"></div><div class="svr"><b>Sikku AI ki awaaz</b><button type="button" onclick="SV.speak(\'Namaste, main Sikku AI hoon. Ab main aapse bol kar baat kar sakta hoon.\',\'ai\')">🔊 Awaaz test karo</button><button type="button" onclick="switchAdminTab(\'voice\')">🎙️ Voice profile / speed / pitch</button></div><div class="svh">🎵 Icon Audio Message: upar ke kisi bhi icon par click karne par yeh audio sabhi users ko bajega</div>'+IC.map(row).join('')+'</div></details><details class="svd" open><summary>🤖 AI Behaviour</summary><div><div id="sv-b2"></div><div class="svr"><button type="button" onclick="switchAdminTab(\'ai\')">🧠 Prompt &amp; AI model</button></div></div></details><details class="svd" open><summary>🛡️ Safety &amp; Guard</summary><div><div id="sv-b3"></div><div class="svr"><button type="button" onclick="switchAdminTab(\'guard\')">🛡️ Guard report</button></div></div></details>';
+ ov.parentNode.insertBefore(p,ov);
+ var dirty=[];function mv(id,b){var e=$(id),r=e&&e.closest('.setting-row,.flag-row');if(r&&$(b)){dirty.push(r.parentElement);$(b).appendChild(r);r.style.borderBottom='1px solid var(--border-color)'}}
+ ['admin-voice-allow','flag-voice-call'].forEach(function(i){mv(i,'sv-b1')});
+ ['admin-smart-intent','admin-img-allow','flag-image-gen','flag-img-edit','flag-ai-memory','flag-video','flag-video-gen','admin-ai-auto-toggle','admin-save-ai-toggle','admin-priority-toggle'].forEach(function(i){mv(i,'sv-b2')});
+ ['guard-enabled-toggle','guard-repair-toggle','weekly-ui-toggle'].forEach(function(i){mv(i,'sv-b3')});
+ dirty.forEach(function(d){if(d&&!d.querySelector('.setting-row,.flag-row,textarea,select,button,input:not([type=checkbox])'))d.style.display='none'});paint()}
+if(m){var g=document.createElement('div');g.className='an-grp';g.innerHTML='<div class="an-grp-t">🎛️ Master Settings — sab ek jagah</div><div class="an-grid"><button class="admin-tab-btn" data-atab="mset" data-kw="settings hub voice audio sound icon awaaz ai safety guard" onclick="switchAdminTab(\'mset\')"><b>⚙️ Settings Hub</b><small>Awaaz, Audio Icons, AI, Safety — sab ek jagah</small></button></div>';var f=m.querySelector('.an-grp');f?m.insertBefore(g,f):m.appendChild(g)}
+}catch(e){console.warn('SV block',e)}})();
+</script>
+
 </body>
 </html>
