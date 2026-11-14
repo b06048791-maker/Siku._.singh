@@ -5984,7 +5984,7 @@ function st(k,t){var e=$('sv-st-'+k);if(e)e.textContent=t}
 function paint(){IC.forEach(function(c){var e=document.querySelector(c[2]);if(e&&c[0]!=='logo')e.classList.toggle('sv-has',!!(AU[c[0]]&&AU[c[0]].d));st(c[0],AU[c[0]]&&AU[c[0]].n?'🔊 '+AU[c[0]].n:'')})}
 function save(){try{localStorage.setItem('sv_icaud',JSON.stringify(AU))}catch(e){}}
 function dbr(k){return typeof databaseInstance!=='undefined'&&databaseInstance?databaseInstance.ref('config/icon_audio'+(k?'/'+k:'')):null}
-document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;for(var i=0;i<IC.length;i++)if(t.closest(IC[i][2])){var a=AU[IC[i][0]];if(a&&a.d)play(a.d);return}},true);
+if(0)document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;for(var i=0;i<IC.length;i++)if(t.closest(IC[i][2])){var a=AU[IC[i][0]];if(a&&a.d)play(a.d);return}},true);
 window.SVIA={pl:function(k){AU[k]&&AU[k].d?play(AU[k].d):showNotice('Pehle audio daalo')},
  up:function(k,inp){var f=inp.files&&inp.files[0];if(!f)return;if(f.size>716800){showNotice('⚠️ Audio 700KB se chhota rakho');inp.value='';return}
   var r=new FileReader();r.onload=function(){var o={n:f.name,d:r.result,t:Date.now()};AU[k]=o;save();var d=dbr(k);if(d)d.set(o).then(function(){st(k,'✅ Sabhi users ke liye publish: '+f.name)}).catch(function(){st(k,'⚠️ Firebase save fail (sirf is device par)')});else st(k,'⚠️ Firebase ready nahin (sirf is device par)');paint()};r.readAsDataURL(f)},
@@ -5995,7 +5995,7 @@ paint();
 var ov=$('apanel-overview'),m=$('an-menu');
 function row(c){return'<div class="svr"><b>'+c[1]+'</b><label>🎵 Audio chuno<input type="file" accept="audio/*" hidden onchange="SVIA.up(\''+c[0]+'\',this)"></label><button type="button" onclick="SVIA.pl(\''+c[0]+'\')">▶ Suno</button><button type="button" onclick="SVIA.rm(\''+c[0]+'\')">🗑 Hatao</button><span class="sv-st" id="sv-st-'+c[0]+'"></span></div>'}
 if(ov){var p=document.createElement('div');p.className='admin-tab-panel';p.id='apanel-mset';
- p.innerHTML='<details class="svd" open><summary>🔊 Awaaz &amp; Audio</summary><div><div id="sv-b1"></div><div class="svr"><b>Sikku AI ki awaaz</b><button type="button" onclick="SV.speak(\'Namaste, main Sikku AI hoon. Ab main aapse bol kar baat kar sakta hoon.\',\'ai\')">🔊 Awaaz test karo</button><button type="button" onclick="switchAdminTab(\'voice\')">🎙️ Voice profile / speed / pitch</button></div><div class="svh">🎵 Icon Audio Message: upar ke kisi bhi icon par click karne par yeh audio sabhi users ko bajega</div>'+IC.map(row).join('')+'</div></details><details class="svd" open><summary>🤖 AI Behaviour</summary><div><div id="sv-b2"></div><div class="svr"><button type="button" onclick="switchAdminTab(\'ai\')">🧠 Prompt &amp; AI model</button></div></div></details><details class="svd" open><summary>🛡️ Safety &amp; Guard</summary><div><div id="sv-b3"></div><div class="svr"><button type="button" onclick="switchAdminTab(\'guard\')">🛡️ Guard report</button></div></div></details>';
+ p.innerHTML='<details class="svd" open><summary>🔊 Awaaz &amp; Audio</summary><div><div id="sv-b1"></div><div class="svr"><b>Sikku AI ki awaaz</b><button type="button" onclick="SV.speak(\'Namaste, main Sikku AI hoon. Ab main aapse bol kar baat kar sakta hoon.\',\'ai\')">🔊 Awaaz test karo</button><button type="button" onclick="switchAdminTab(\'voice\')">🎙️ Voice profile / speed / pitch</button></div><div class="svr"><button type="button" onclick="switchAdminTab(\'sound\')">🎵 Sound Studio kholo</button></div></div></details><details class="svd" open><summary>🤖 AI Behaviour</summary><div><div id="sv-b2"></div><div class="svr"><button type="button" onclick="switchAdminTab(\'ai\')">🧠 Prompt &amp; AI model</button></div></div></details><details class="svd" open><summary>🛡️ Safety &amp; Guard</summary><div><div id="sv-b3"></div><div class="svr"><button type="button" onclick="switchAdminTab(\'guard\')">🛡️ Guard report</button></div></div></details>';
  ov.parentNode.insertBefore(p,ov);
  var dirty=[];function mv(id,b){var e=$(id),r=e&&e.closest('.setting-row,.flag-row');if(r&&$(b)){dirty.push(r.parentElement);$(b).appendChild(r);r.style.borderBottom='1px solid var(--border-color)'}}
  ['admin-voice-allow','flag-voice-call'].forEach(function(i){mv(i,'sv-b1')});
@@ -6004,6 +6004,91 @@ if(ov){var p=document.createElement('div');p.className='admin-tab-panel';p.id='a
  dirty.forEach(function(d){if(d&&!d.querySelector('.setting-row,.flag-row,textarea,select,button,input:not([type=checkbox])'))d.style.display='none'});paint()}
 if(m){var g=document.createElement('div');g.className='an-grp';g.innerHTML='<div class="an-grp-t">🎛️ Master Settings — sab ek jagah</div><div class="an-grid"><button class="admin-tab-btn" data-atab="mset" data-kw="settings hub voice audio sound icon awaaz ai safety guard" onclick="switchAdminTab(\'mset\')"><b>⚙️ Settings Hub</b><small>Awaaz, Audio Icons, AI, Safety — sab ek jagah</small></button></div>';var f=m.querySelector('.an-grp');f?m.insertBefore(g,f):m.appendChild(g)}
 }catch(e){console.warn('SV block',e)}})();
+</script>
+
+<style id="sv2-css">.svd2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;margin-bottom:10px;border:1px solid var(--cyan);border-radius:12px;background:rgba(0,242,254,.08);color:#fff}.svc{border:1px solid var(--border-color);border-radius:12px;padding:10px;margin:8px 0;display:flex;flex-direction:column;gap:6px;background:rgba(5,1,15,.5);color:#fff}.svc select,.svr select{background:#0f172a;color:#fff;border:1px solid var(--border-color);border-radius:8px;padding:8px;font-size:.75rem}.svd2 button,.svc button{border:0;border-radius:8px;padding:8px 10px;font-weight:800;font-size:.72rem;background:#1e293b;color:var(--cyan);cursor:pointer}.svbtn{display:inline-block;border:0;border-radius:8px;padding:9px 12px;font-weight:800;font-size:.75rem;background:var(--accent-grad);color:#03151e;cursor:pointer;margin:6px 0}.sv-fb{position:fixed;z-index:9990;width:44px;height:44px;border-radius:50%;border:0;background:var(--accent-grad);font-size:1.2rem;box-shadow:0 4px 14px rgba(0,0,0,.4)}.sv-tl{top:70px;left:10px}.sv-tr{top:70px;right:10px}.sv-bl{bottom:80px;left:10px}.sv-br{bottom:80px;right:10px}#sv-stop{display:none;position:fixed;bottom:76px;left:50%;transform:translateX(-50%);z-index:9991;align-items:center;border:0;border-radius:20px;padding:9px 14px;background:#ef4444;color:#fff;font-weight:800;font-size:.75rem}#sv-pickbar{position:fixed;top:0;left:0;right:0;z-index:99999;padding:12px;background:#f0abfc;color:#000;font-weight:800;font-size:.8rem;text-align:center}#sv-pickbar button{margin-left:8px;border:0;border-radius:8px;padding:6px 10px;font-weight:800}.sv-hl{outline:3px solid #f0abfc!important;outline-offset:2px}</style>
+<script id="sv2-js">
+/* ===== SIKKU STUDIO: Sound Studio + Site Controls (added on top, nothing removed) ===== */
+(function(){try{
+var $=function(i){return document.getElementById(i)},esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})},E=function(h){var d=document.createElement('div');d.innerHTML=h;return d.firstChild};
+var DB=function(p){return typeof databaseInstance!=='undefined'&&databaseInstance?databaseInstance.ref('config/'+p):null};
+var ST={on:true,rules:[],lib:{},ui:[]},DATA={},au=[],pend=[],tm=null,PK=0;
+try{Object.assign(ST,JSON.parse(localStorage.getItem('sv2')||'{}'))}catch(e){}
+var PRE=[['⌘ Search','.header-btns .h-btn[title="Cmd+K"]'],['💬 Support','.header-btns .h-btn.support'],['📸 Instagram','.header-btns .h-btn.insta'],['📞 Call','.header-btns .h-btn.call'],['🪙 Coins','#hdr-coin'],['👤 Profile chip','#app-icon-chip'],['🏠 Logo / Naam','.brand-left']];
+function keep(){try{localStorage.setItem('sv2',JSON.stringify(ST))}catch(e){}}
+function stat(t){document.querySelectorAll('.sv-live').forEach(function(e){e.textContent=t})}
+function pub(){keep();clearTimeout(tm);tm=setTimeout(function(){var d=DB('studio');if(d)d.update(JSON.parse(JSON.stringify({on:ST.on,rules:ST.rules,ui:ST.ui}))).then(function(){stat('✅ Live: sabhi users par lagu')}).catch(function(){stat('⚠️ Firebase save fail')});else stat('⚠️ Firebase ready nahin (sirf is device par)')},700)}
+/* ---- engine ---- */
+function freq(r){var f=r.f||'always';if(f==='always')return true;var v=(f==='session'?sessionStorage:localStorage).getItem('svf_'+r.id);return f==='daily'?v!==new Date().toDateString():!v}
+function mark(r){var f=r.f||'always';if(f!=='always')(f==='session'?sessionStorage:localStorage).setItem('svf_'+r.id,f==='daily'?new Date().toDateString():'1')}
+function src(id,cb){var m=ST.lib[id];if(!m)return;if(m.u)return cb(m.u);if(DATA[id])return cb(DATA[id]);var d=DB('sound_data/'+id);if(d)d.once('value').then(function(s){DATA[id]=s.val();if(DATA[id])cb(DATA[id])})}
+function chip(on){var c=$('sv-stop');if(c)c.style.display=on?'flex':'none'}
+function stopAll(){au.forEach(function(a){try{a.pause()}catch(e){}});au=[];chip(0)}
+function fire(r,force){if(!r||!force&&(!ST.on||!r.on||!freq(r)))return;src(r.s,function(u){setTimeout(function(){var a=new Audio(u);a.volume=(r.v==null?100:r.v)/100;a.loop=!!r.l;au.push(a);a.onended=function(){au=au.filter(function(x){return x!==a});if(!au.length)chip(0)};a.play().then(function(){mark(r);chip(1)}).catch(function(){pend.push(r)})},(r.d||0)*1000)})}
+window.SVS={stop:stopAll};
+['pointerdown','keydown'].forEach(function(ev){document.addEventListener(ev,function(){while(pend.length)fire(pend.shift(),1)},true)});
+function hit(t,s){try{return t.closest(s)}catch(e){return 0}}
+document.addEventListener('click',function(e){if(PK||!e.target.closest||e.target.closest('#sv-stop,.sv-fb,#apanel-sound'))return;ST.rules.forEach(function(r){if(r.t==='any'||(r.t==='click'&&r.sel&&hit(e.target,r.sel)))fire(r)})},true);
+var _st=window.switchTab;if(_st)window.switchTab=function(t){var x=_st.apply(this,arguments);ST.rules.forEach(function(r){if(r.t==='tab'&&r.tab===t)fire(r)});return x};
+/* ---- picker ---- */
+function selOf(el){var p=[];while(el&&el.nodeType===1&&el!==document.body&&p.length<7){if(el.id&&!/^\d/.test(el.id)&&document.querySelectorAll('#'+CSS.escape(el.id)).length===1){p.unshift('#'+CSS.escape(el.id));break}var i=1,s=el;while(s=s.previousElementSibling)i++;p.unshift(el.tagName.toLowerCase()+':nth-child('+i+')');el=el.parentElement}return p.join('>')}
+function pick(cb){PK=1;var bar=E('<div id="sv-pickbar">🎯 Jis icon / cheez ko chunna hai us par tap karo <button type="button">✖ Cancel</button></div>');document.body.appendChild(bar);
+ function clr(){document.querySelectorAll('.sv-hl').forEach(function(x){x.classList.remove('sv-hl')})}
+ function fin(){PK=0;clr();bar.remove();document.removeEventListener('click',h,true);document.removeEventListener('mouseover',o,true)}
+ function o(e){clr();if(!bar.contains(e.target))e.target.classList.add('sv-hl')}
+ function h(e){if(bar.contains(e.target)){if(e.target.tagName==='BUTTON')fin();return}e.preventDefault();e.stopPropagation();var t=e.target.closest('button,a,[onclick],.h-btn,.user-chip,label,input')||e.target;fin();cb(selOf(t),(t.title||t.textContent||t.id||t.tagName).trim().slice(0,24));showNotice('✅ Chuna gaya')}
+ document.addEventListener('click',h,true);document.addEventListener('mouseover',o,true)}
+/* ---- apply (hide/order/floating buttons) ---- */
+function safe(sel){try{var e=document.querySelector(sel);return!(e&&(e.matches('[onclick*="hub"],[onclick*="dmin"]')||e.querySelector('[onclick*="hub"],[onclick*="dmin"],#admin-gate-card')||e.closest('#tab-hub')))}catch(x){return false}}
+function apply(){var s=$('sv-ui');if(!s){s=document.createElement('style');s.id='sv-ui';document.head.appendChild(s)}
+ s.textContent=ST.ui.map(function(u){if(!u.sel||!safe(u.sel))return'';return(u.h?'body:not(.admin-open) '+u.sel+'{display:none!important}':'')+(u.o!==''&&u.o!=null?u.sel+'{order:'+(+u.o||0)+'}':'')}).join('');
+ document.querySelectorAll('.sv-fb').forEach(function(n){n.remove()});if(!ST.on)return;
+ ST.rules.forEach(function(r){if(r.t==='button'&&r.on){var b=E('<button type="button" class="sv-fb sv-'+(r.pos||'br')+'">'+esc(r.ic||'🔊')+'</button>');b.onclick=function(){fire(r,1)};document.body.appendChild(b)}})}
+/* ---- admin UI ---- */
+function addLib(m,data){var id='s'+Date.now().toString(36)+Math.floor(Math.random()*99);ST.lib[id]=m;if(data){DATA[id]=data;var s=DB('sound_data/'+id);if(s)s.set(data);else stat('⚠️ Firebase ready nahin (sirf is device par)')}var d=DB('studio/lib/'+id);if(d)d.set(m);keep();rs()}
+function rs(){var P=$('apanel-sound');if(!P)return;var K=Object.keys(ST.lib);
+ var op=function(a,v){return a.map(function(x){return'<option value="'+x[0]+'"'+(x[0]===v?' selected':'')+'>'+x[1]+'</option>'}).join('')};
+ var so=function(v){return'<option value="">— sound chuno —</option>'+K.map(function(k){return'<option value="'+k+'"'+(k===v?' selected':'')+'>'+esc(ST.lib[k].n)+'</option>'}).join('')};
+ var tabs=[].map.call(document.querySelectorAll('.tab-card'),function(x){return x.id.replace('tab-','')});
+ var T=[['open','🌐 Website khulte hi'],['click','👆 Kisi icon/button par click'],['any','🖱️ Har click par'],['tab','📄 Koi page/tab khulne par'],['button','🔘 Floating 🔊 button']],F=[['always','Har baar'],['session','Ek visit mein ek baar'],['device','Is device par sirf ek baar'],['daily','Roz ek baar']];
+ var h='<div class="svd2"><b>🎵 Sound Studio</b><label class="switch"><input type="checkbox" data-m="on"'+(ST.on?' checked':'')+'><span class="slider"></span></label><button data-a="stop">⏹ Sab band</button><span class="sv-live sv-st"></span></div>';
+ h+='<details class="svd" open><summary>📚 Mera Sound Library</summary><div><label class="svbtn">🎵 Audio / gaana daalo (max 1.5MB)<input type="file" accept="audio/*" multiple hidden data-a="file"></label><div class="svr"><input class="ui-input" id="sv-un" placeholder="Naam"><input class="ui-input" id="sv-ul" placeholder="Ya audio ka direct link (bade gaane ke liye)"><button data-a="url">➕ Link jodo</button></div>'+(K.length?K.map(function(k){var m=ST.lib[k];return'<div class="svr"><b>'+esc(m.n)+'</b><span class="sv-st">'+(m.u?'🔗 link':Math.round((m.sz||0)/1024)+' KB')+'</span><button data-a="play" data-k="'+k+'">▶ Suno</button><button data-a="del" data-k="'+k+'">🗑 Hatao</button></div>'}).join(''):'<div class="svh">Abhi koi sound nahin. Upar se daalo.</div>')+'</div></details>';
+ h+='<details class="svd" open><summary>⚙️ Sound Rules — kab aur kahan bajega</summary><div>'+ST.rules.map(function(r,i){var d='data-i="'+i+'" ',x='<div class="svc"><div class="svr"><b>Rule '+(i+1)+'</b><label class="switch"><input type="checkbox" '+d+'data-f="on"'+(r.on?' checked':'')+'><span class="slider"></span></label><button data-a="test" '+d+'>▶ Test</button><button data-a="rdel" '+d+'>🗑</button></div><select '+d+'data-f="s">'+so(r.s)+'</select><select '+d+'data-f="t">'+op(T,r.t)+'</select>';
+  if(r.t==='click')x+='<select '+d+'data-f="pre"><option value="">Kaunsa icon? (list)</option>'+PRE.map(function(p){return'<option value="'+esc(p[1])+'"'+(p[1]===r.sel?' selected':'')+'>'+p[0]+'</option>'}).join('')+'</select><button data-a="pick" '+d+'>🎯 Screen se chuno</button><input class="ui-input" '+d+'data-f="sel" value="'+esc(r.sel)+'" placeholder="ya CSS selector">';
+  if(r.t==='tab')x+='<select '+d+'data-f="tab">'+tabs.map(function(t){return'<option'+(t===r.tab?' selected':'')+'>'+t+'</option>'}).join('')+'</select>';
+  if(r.t==='button')x+='<select '+d+'data-f="pos">'+op([['tl','↖ Upar-left'],['tr','↗ Upar-right'],['bl','↙ Neeche-left'],['br','↘ Neeche-right']],r.pos)+'</select><input class="ui-input" '+d+'data-f="ic" value="'+esc(r.ic)+'" maxlength="4" style="max-width:70px">';
+  return x+'<select '+d+'data-f="f">'+op(F,r.f)+'</select><div class="svr">🔉 <input type="range" min="0" max="100" '+d+'data-f="v" value="'+r.v+'"> ⏱ <input type="number" min="0" max="60" class="ui-input" style="width:64px" '+d+'data-f="d" value="'+r.d+'">s <label><input type="checkbox" '+d+'data-f="l"'+(r.l?' checked':'')+'> 🔁 Loop</label></div></div>'}).join('')+'<button class="svbtn" data-a="radd">➕ Naya Sound Rule</button><div class="svh">Rule badalte hi sabhi users par live ho jaata hai. Browser ki policy: website khulte hi wala sound tab bajta hai jab user pehli baar kahin tap kare.</div></div></details>';
+ P.innerHTML=h}
+function aclk(e){var b=e.target.closest('[data-a]');if(!b||b.type==='file')return;var a=b.dataset.a,i=+b.dataset.i,k=b.dataset.k;
+ if(a==='stop')stopAll();
+ else if(a==='play')src(k,function(u){stopAll();var x=new Audio(u);au.push(x);x.play();chip(1)});
+ else if(a==='del'){if(!confirm('Yeh sound hataoon? Isse jude rules bhi hat jayenge.'))return;delete ST.lib[k];ST.rules=ST.rules.filter(function(r){return r.s!==k});var d=DB('studio/lib/'+k),s=DB('sound_data/'+k);if(d)d.remove();if(s)s.remove();pub();apply();rs()}
+ else if(a==='radd'){ST.rules.push({id:'r'+Date.now().toString(36),s:'',t:'open',sel:'',tab:'home',pos:'br',ic:'🔊',v:100,f:'session',d:0,l:false,on:true});pub();rs()}
+ else if(a==='rdel'){ST.rules.splice(i,1);pub();apply();rs()}
+ else if(a==='test')fire(ST.rules[i],1);
+ else if(a==='pick')pick(function(sel){ST.rules[i].sel=sel;pub();rs()});
+ else if(a==='url'){var u=$('sv-ul').value.trim();if(!/^https?:\/\//.test(u))return showNotice('Sahi link daalo (https://...)');addLib({n:$('sv-un').value.trim()||'Link sound',u:u,sz:0})}}
+function achg(e){var t=e.target;if(t.dataset.m==='on'){ST.on=t.checked;apply();pub();return}
+ if(t.dataset.a==='file'){[].forEach.call(t.files,function(f){if(f.size>1572864){showNotice('⚠️ '+f.name+' 1.5MB se bada hai — chhota karo ya link se jodo');return}var r=new FileReader();r.onload=function(){addLib({n:f.name.replace(/\.[^.]+$/,''),sz:f.size,t:Date.now()},r.result)};r.readAsDataURL(f)});t.value='';return}
+ var f=t.dataset.f,r=ST.rules[t.dataset.i];if(!f||!r)return;
+ if(f==='pre'){r.sel=t.value;rs();pub();return}
+ r[f]=t.type==='checkbox'?t.checked:(f==='v'||f==='d')?+t.value:t.value;if(f==='t'&&e.type==='change')rs();pub();apply()}
+function ru(){var Q=$('apanel-sitectl');if(!Q)return;Q.innerHTML='<div class="svd2"><b>🧩 Site Controls</b><span class="sv-live sv-st"></span></div><div class="svh">Har icon / button / cheez ke liye: dikhana hai ya chhupana, aur kis order mein. Sabhi users par live. Master panel khula ho tab sab dikhta hai.</div>'+ST.ui.map(function(u,i){return'<div class="svr"><b>'+esc(u.n||u.sel)+'</b><label>👁 Dikhao <input type="checkbox" data-i="'+i+'" data-f="vis"'+(u.h?'':' checked')+'></label><label>Order <input type="number" class="ui-input" style="width:64px" data-i="'+i+'" data-f="o" value="'+esc(u.o)+'"></label><button data-a="udel" data-i="'+i+'">🗑</button></div>'}).join('')+'<div class="svr"><button data-a="upre">📋 Header icons ki list lao</button><button data-a="upick">🎯 Screen se koi bhi cheez chuno</button></div>'}
+function uclk(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a;
+ if(a==='udel')ST.ui.splice(+b.dataset.i,1);
+ else if(a==='upre')PRE.forEach(function(p){if(!ST.ui.some(function(u){return u.sel===p[1]}))ST.ui.push({n:p[0],sel:p[1],h:0,o:''})});
+ else if(a==='upick'){pick(function(sel,n){if(!safe(sel)){showNotice('⚠️ Admin/Master ko chhupa nahin sakte');return}ST.ui.push({n:n,sel:sel,h:0,o:''});apply();pub();ru()});return}
+ else return;apply();pub();ru()}
+function uchg(e){var t=e.target,u=ST.ui[t.dataset.i];if(!u)return;if(t.dataset.f==='vis')u.h=t.checked?0:1;else u.o=t.value;apply();pub()}
+/* ---- init ---- */
+document.body.appendChild(E('<button id="sv-stop" type="button" onclick="SVS.stop()">⏹ Sound band karo</button>'));
+var ov=$('apanel-overview'),m=$('an-menu');
+if(ov){['sound','sitectl'].forEach(function(k){var p=document.createElement('div');p.className='admin-tab-panel';p.id='apanel-'+k;ov.parentNode.insertBefore(p,ov)});
+ var P=$('apanel-sound'),Q=$('apanel-sitectl');['click','change','input'].forEach(function(ev){P.addEventListener(ev,ev==='click'?aclk:achg)});Q.addEventListener('click',uclk);Q.addEventListener('change',uchg)}
+if(m){var g=document.createElement('div');g.className='an-grp';g.innerHTML='<div class="an-grp-t">🎵 Studio — Sound &amp; Site Control</div><div class="an-grid"><button class="admin-tab-btn" data-atab="sound" data-kw="sound audio gaana music song play icon click open awaaz" onclick="switchAdminTab(\'sound\')"><b>🎵 Sound Studio</b><small>Apna gaana/audio daalo, kahan bajega khud chuno</small></button><button class="admin-tab-btn" data-atab="sitectl" data-kw="show hide icon button position order dikhao chhupao control" onclick="switchAdminTab(\'sitectl\')"><b>🧩 Site Controls</b><small>Kya dikhega, kya nahin, kis order mein</small></button></div>';var f=m.querySelector('.an-grp');f?m.insertBefore(g,f):m.appendChild(g)}
+apply();rs();ru();
+var n=0,iv=setInterval(function(){var d=DB('studio');if(d){clearInterval(iv);d.on('value',function(s){var v=s.val()||{};ST.on=v.on!==false;ST.rules=(v.rules||[]).filter(Boolean);ST.lib=v.lib||{};ST.ui=(v.ui||[]).filter(Boolean);keep();apply();var ae=document.activeElement;if(!(ae&&$('apanel-sound')&&$('apanel-sound').contains(ae)))rs();ru();if(!window.__svo){window.__svo=1;ST.rules.forEach(function(r){if(r.t==='open')fire(r)})}})}else if(++n>60)clearInterval(iv)},1000);
+}catch(e){console.warn('SV2 block',e)}})();
 </script>
 
 </body>
