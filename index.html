@@ -6115,5 +6115,272 @@ var _sa=window.switchAdminTab;if(_sa)window.switchAdminTab=function(x){var r=_sa
 }catch(e){console.warn('SV2 block',e)}})();
 </script>
 
+<script>
+/* ===== v38: Visitor Insights + Auto Health-Fix + Weekly Drops ===== */
+(function(){'use strict';try{
+var $=function(i){return document.getElementById(i)};
+function g(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}
+function s(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function dk(d){d=d||new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function DB(){try{return databaseInstance||null}catch(e){return null}}
+function note(m,t){try{showNotice(m,t)}catch(e){}}
+function el(t,a,x){var e=document.createElement(t);if(a)for(var k in a){if(k==='style')e.style.cssText=a[k];else e.setAttribute(k,a[k])}if(x!=null)e.textContent=x;return e}
+function fmt(sec){sec=Math.round(sec||0);if(sec<60)return sec+'s';var m=Math.floor(sec/60);if(m<60)return m+'m '+(sec%60)+'s';return Math.floor(m/60)+'h '+(m%60)+'m'}
+function tm(ts){var d=new Date(ts);return dk(d)+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
+
+/* ---------- device info (no phone number: browsers never expose it) ---------- */
+function parseDevice(ua){
+ ua=ua||navigator.userAgent||'';var o={brand:'',model:'',os:'',br:'',inapp:'',type:'phone'},m;
+ m=/\d+dpi;\s*\d+x\d+;\s*([^;]+);\s*([^;]+);/.exec(ua);if(m){o.brand=m[1].trim();o.model=m[2].trim()}
+ if(!o.model){m=/Android [\d.]+;\s*([^;)]+)/.exec(ua);if(m){var x=m[1].replace(/Build\/.*$/,'').trim();if(x&&x!=='K'&&x!=='wv')o.model=x}}
+ if(!o.model&&/iPhone/.test(ua))o.model='iPhone';
+ if(!o.model&&/iPad/.test(ua)){o.model='iPad';o.type='tablet'}
+ if(!o.model&&/Windows/.test(ua)){o.model='Windows PC';o.type='desktop'}
+ if(!o.model&&/Macintosh/.test(ua)){o.model='Mac';o.type='desktop'}
+ if(!o.model&&/Linux/.test(ua)&&!/Android/.test(ua)){o.model='Linux PC';o.type='desktop'}
+ m=/Android ([\d.]+)/.exec(ua);
+ if(m)o.os='Android '+m[1];
+ else{m=/OS ([\d_]+) like Mac/.exec(ua);if(m)o.os='iOS '+m[1].replace(/_/g,'.');else if(/Windows NT/.test(ua))o.os='Windows';else if(/Mac OS X/.test(ua))o.os='macOS'}
+ m=/(Instagram|FBAN|FBAV|Snapchat|Line)[\/ ]?[\d.]*/.exec(ua);if(m)o.inapp=(m[1]==='FBAN'||m[1]==='FBAV')?'Facebook':m[1];
+ if(/SamsungBrowser/.test(ua))o.br='Samsung Browser';else if(/Edg\//.test(ua))o.br='Edge';else if(/Firefox/.test(ua))o.br='Firefox';else if(/Chrome|CriOS/.test(ua))o.br='Chrome';else if(/Safari/.test(ua))o.br='Safari';
+ if(!o.inapp&&/; wv\)/.test(ua))o.inapp='WebView';
+ return o}
+var HE={};
+try{if(navigator.userAgentData&&navigator.userAgentData.getHighEntropyValues)navigator.userAgentData.getHighEntropyValues(['model']).then(function(v){HE=v||{}}).catch(function(){})}catch(e){}
+function info(){var d=parseDevice();if(!d.model&&HE.model)d.model=HE.model;var c=navigator.connection||{},tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+ return{brand:d.brand,model:d.model||'Unknown',os:d.os||String(navigator.platform||''),br:d.br,inapp:d.inapp,type:d.type,scr:(screen.width||0)+'x'+(screen.height||0),lang:navigator.language||'',net:c.effectiveType||'',tz:tz}}
+
+/* ---------- consent + visit tracking ---------- */
+var KC='sikku_an_consent_v1',KS='sikku_an_stats_v1',KL='sikku_an_local_v1',KV='sikku_vid_v1';
+function consent(){return g(KC,'')}
+function vid(){var v=g(KV,null);if(!v){v='v'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);s(KV,v)}return v}
+var VID=vid(),SID=Date.now().toString(36),T0=Date.now(),DAY=dk(),ACT=0,LASTACT=0,STARTED=false;
+function who(){try{if(currentUser&&currentUser.isMaster)return{uid:'',name:'',m:1};if(consent()==='yes'&&currentUser&&!currentUser.isGuest)return{uid:String(currentUser.id||''),name:String(currentUser.name||'').slice(0,40),m:currentUser.isMaster?1:0}}catch(e){}return{uid:'',name:'',m:0}}
+function curTab(){var t=document.querySelector('.tab-card.active');return t?t.id.replace('tab-',''):'?'}
+function stats(){var st=g(KS,null);if(!st||typeof st!=='object')st={first:Date.now(),visits:0,sec:0,days:{}};return st}
+function startVisit(){if(STARTED||consent()==='no')return;STARTED=true;var st=stats();st.visits=(st.visits||0)+1;st.days=st.days||{};st.days[DAY]=1;var ks=Object.keys(st.days).sort();while(ks.length>60)delete st.days[ks.shift()];s(KS,st);flush()}
+function flush(){
+ if(consent()==='no'||!STARTED)return;var w=who();if(w.m)return;
+ var st=stats();st.sec=(st.sec||0)+(ACT-LASTACT);LASTACT=ACT;s(KS,st);
+ var base=info(),rec={vid:VID,start:T0,end:Date.now(),sec:ACT,tab:curTab(),brand:base.brand,model:base.model,os:base.os,br:base.br,inapp:base.inapp,type:base.type,scr:base.scr,lang:base.lang,net:base.net,uid:w.uid,name:w.name};
+ var loc=g(KL,[]),i,f=false;for(i=0;i<loc.length;i++)if(loc[i].sid===SID){loc[i]=Object.assign({sid:SID},rec);f=true}
+ if(!f)loc.push(Object.assign({sid:SID},rec));s(KL,loc.slice(-60));
+ var d=DB();if(!d)return;
+ try{
+  d.ref('analytics/visits/'+DAY+'/'+VID+'_'+SID).update(rec);
+  d.ref('analytics/devices/'+VID).update({brand:base.brand,model:base.model,os:base.os,br:base.br,inapp:base.inapp,type:base.type,scr:base.scr,lang:base.lang,tz:base.tz,uid:w.uid,name:w.name,last:Date.now(),first:st.first,visits:st.visits,sec:st.sec});
+  d.ref('analytics/devices/'+VID+'/days/'+DAY).set(1);
+ }catch(e){}
+}
+var tick=0;
+setInterval(function(){if(consent()==='no')return;if(!document.hidden){ACT+=5}tick++;if(tick%6===0)flush()},5000);
+document.addEventListener('visibilitychange',function(){if(document.hidden)flush()});
+window.addEventListener('pagehide',flush);
+function consentBanner(){
+ if(consent()||$('v38-consent'))return;
+ var b=el('div',{id:'v38-consent',style:'position:fixed;left:10px;right:10px;bottom:76px;z-index:99998;background:#120a2a;border:1.5px solid var(--cyan);border-radius:14px;padding:12px;font-size:.74rem;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.6)'});
+ b.appendChild(el('div',{style:'margin-bottom:8px;line-height:1.4'},'📊 Sikku AI behtar banane ke liye ye record karta hai: aapka device model, kitni der ruke, kis din aaye (aur login naam/ID). Phone number kabhi nahi liya jaata. Allow karein?'));
+ var r=el('div',{style:'display:flex;gap:8px'});
+ var y=el('button',{type:'button',class:'ui-btn',style:'flex:1'},'✅ Theek hai'),n=el('button',{type:'button',class:'ui-btn',style:'flex:1;background:transparent;border:1px solid var(--border-color);color:#fff'},'❌ Nahi');
+ y.onclick=function(){s(KC,'yes');b.remove();startVisit();note('Shukriya!')};
+ n.onclick=function(){s(KC,'no');b.remove()};
+ r.appendChild(y);r.appendChild(n);b.appendChild(r);document.body.appendChild(b)}
+setTimeout(startVisit,3000);
+function privacyNote(){var home=$('tab-home');if(!home||$('v38-priv'))return;var d=el('div',{id:'v38-priv',style:'text-align:center;font-size:.62rem;color:var(--text-muted);padding:10px 8px 80px;line-height:1.5'});d.appendChild(document.createTextNode('Privacy: anonymous device model aur visit time ke stats record hote hain (phone number ya naam nahi). '));var a=el('a',{href:'#',style:'color:var(--cyan);text-decoration:underline'},consent()==='no'?'Chalu karo':'Band karo');a.onclick=function(e){e.preventDefault();var off=consent()!=='no';s(KC,off?'no':'');a.textContent=off?'Chalu karo':'Band karo';note(off?'Tracking band ho gayi':'Tracking chalu');if(!off)startVisit();return false};d.appendChild(a);home.appendChild(d)}
+setTimeout(privacyNote,1500);
+
+/* ---------- in-app browser banner ---------- */
+function inAppBanner(d){
+ if(!d.inapp||$('v38-iab'))return;try{if(sessionStorage.getItem('v38_iab'))return}catch(e){}
+ var b=el('div',{id:'v38-iab',style:'position:fixed;top:0;left:0;right:0;z-index:99999;background:#3b0a45;border-bottom:2px solid #fbbf24;padding:10px;font-size:.72rem;color:#fff'});
+ b.appendChild(el('div',{style:'margin-bottom:6px;line-height:1.4'},'🔊 '+d.inapp+' ke andar awaaz/mic/camera aksar band hote hain. Poore features ke liye Chrome me kholo.'));
+ var r=el('div',{style:'display:flex;gap:6px;flex-wrap:wrap'});
+ if(/Android/.test(navigator.userAgent)){var a=el('button',{type:'button',class:'ui-btn',style:'padding:6px 10px;font-size:.7rem'},'🌐 Chrome me kholo');a.onclick=function(){location.href='intent://'+location.host+location.pathname+location.search+'#Intent;scheme=https;package=com.android.chrome;end'};r.appendChild(a)}
+ var c=el('button',{type:'button',class:'ui-btn',style:'padding:6px 10px;font-size:.7rem'},'📋 Link copy');
+ c.onclick=function(){var u=location.href;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(function(){note('Link copy ho gaya, Chrome me paste karo')},function(){note(u,6000)});else note(u,6000)};
+ var x=el('button',{type:'button',class:'ui-btn',style:'padding:6px 10px;font-size:.7rem;background:transparent;border:1px solid #fff;color:#fff'},'✕');
+ x.onclick=function(){b.remove();try{sessionStorage.setItem('v38_iab','1')}catch(e){}};
+ r.appendChild(c);r.appendChild(x);b.appendChild(r);document.body.appendChild(b)}
+
+/* ---------- auto health check + fix ---------- */
+var PH='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#1a1230"/><text x="50%" y="50%" fill="#8b7fb0" font-size="18" text-anchor="middle" font-family="sans-serif">Photo load nahi hui</text></svg>');
+function healImg(i){
+ if(!i||i.tagName!=='IMG'||i.dataset.guardHandled||i.dataset.hfix==='2')return false;
+ var src=i.getAttribute('src')||'';if(!src||src.indexOf('data:')===0)return false;
+ if(!i.dataset.hfix){i.dataset.hfix='1';setTimeout(function(){i.src=src+(src.indexOf('?')>-1?'&':'?')+'r='+Date.now()},1200);return true}
+ i.dataset.hfix='2';i.src=PH;return true}
+window.addEventListener('error',function(e){if(e.target&&e.target.tagName==='IMG')healImg(e.target)},true);
+function brokenImgs(){return Array.prototype.filter.call(document.images,function(i){return i.complete&&i.naturalWidth===0&&!!i.currentSrc&&!i.dataset.guardHandled&&i.dataset.hfix!=='2'&&i.currentSrc.indexOf('data:')!==0})}
+var STUCK0=0,QRTRY=false;
+var HC=[
+ {id:'net',name:'Internet',test:function(){return navigator.onLine},fix:function(){return'Offline - net aate hi apne aap dobara check hoga'}},
+ {id:'tts',name:'Voice output (awaaz)',test:function(){return!!window.speechSynthesis},fix:function(){window.__noTTS=1;var d=parseDevice();inAppBanner(d);return d.inapp?d.inapp+' me awaaz nahi chalti - Chrome me kholne ka banner dikha diya, tab tak text mode':'Is browser me awaaz support nahi - text mode'}},
+ {id:'voices',name:'Voice list',test:function(){return!window.speechSynthesis||speechSynthesis.getVoices().length>0||(Date.now()-T0<12000)},async:1,fix:function(){try{var u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);speechSynthesis.getVoices()}catch(e){}return'Awaaz engine jagaya'}},
+ {id:'media',name:'Camera/Mic API',test:function(){return!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)},fix:function(){inAppBanner(parseDevice());return'Is browser me camera/mic nahi - Chrome me kholein'}},
+ {id:'store',name:'Local storage',test:function(){try{localStorage.setItem('__h','1');localStorage.removeItem('__h');return true}catch(e){return false}},fix:function(){return'Browser storage band hai (private mode?) - settings save nahi honge'}},
+ {id:'fb',name:'Firebase',test:function(){return!!DB()},async:1,fix:function(){if(typeof firebase==='undefined')return'Firebase library load nahi hui (net ya adblock check karein)';if(typeof initFirebaseSync==='function'){initFirebaseSync();return'Firebase dobara jod rahe hain'}return'initFirebaseSync nahi mila'}},
+ {id:'qr',name:'QR library',test:function(){return typeof QRCode!=='undefined'},async:1,fix:function(){if(QRTRY)return'QR library abhi bhi nahi mili';QRTRY=true;var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';document.head.appendChild(sc);return'QR library cdnjs se dobara load ki'}},
+ {id:'img',name:'Photos',test:function(){return brokenImgs().length===0},async:1,fix:function(){var b=brokenImgs(),n=0;b.forEach(function(i){if(healImg(i))n++});return n+' photo dobara try/placeholder lagaya'}},
+ {id:'ai',name:'AI chat (atka hua?)',test:function(){try{if(aiBusy){if(!STUCK0)STUCK0=Date.now();return Date.now()-STUCK0<90000}}catch(e){}STUCK0=0;return true},fix:function(){try{aiBusy=false}catch(e){}Array.prototype.forEach.call(document.querySelectorAll('.dot-anim'),function(e){e.remove()});STUCK0=0;try{if(typeof refreshChatUi==='function')refreshChatUi()}catch(e){}return'Atka hua AI loading hata diya'}},
+ {id:'https',name:'HTTPS',test:function(){return location.protocol==='https:'},fix:function(){return'Site HTTPS par nahi hai'}}
+];
+var WHY={
+ net:['Internet band ya bahut weak hai','Wi-Fi/mobile data check karo. Net aate hi app apne aap dobara check karegi.'],
+ tts:['Browser (Instagram/WebView) awaaz bolne ki suvidha (speechSynthesis) deta hi nahi, isliye app ise khud theek nahi kar sakti','Link ko Chrome me kholo (upar ke banner ka "Chrome me kholo" ya "Link copy" dabao aur Chrome me paste karo). Tab tak AI sirf text me jawab dega.'],
+ voices:['Browser ne awaaz ki list abhi tak nahi di','Page ek baar reload karo aur screen par tap karo. Phone Settings > Text-to-speech me Google engine install/update karo.'],
+ media:['Is browser me camera/mic API nahi hai (aksar in-app browser)','Link Chrome me kholo aur camera/mic ki permission Allow karo.'],
+ store:['Browser storage band hai (private/incognito ya storage full)','Normal tab me kholo, ya browser Settings > Site settings me storage allow karo / purana data saaf karo.'],
+ fb:['Firebase database se connection nahi bana','Net check karo, VPN/adblock band karo. Phir bhi na ho to Firebase console me database URL (siku-singh-default-rtdb) aur rules check karo.'],
+ qr:['qrcode.min.js file cdnjs se load nahi hui','Net/adblock check karo. Pakka fix: qrcode.min.js ko GitHub repo me upload karke script src us file par karo.'],
+ img:['Kuch photos bahar ki site (picsum/unsplash) se nahi aayin','Net check karo. Baar-baar ho to wo photos repo me rakho taaki bahar ki site par nirbhar na rehna pade.'],
+ ai:['AI ka jawab 90 second se zyada atka raha','Page reload karo. Baar-baar ho to AI server (pollinations) ka status dekho.'],
+ https:['Site HTTPS par nahi khuli hai','GitHub repo Settings > Pages me "Enforce HTTPS" chalu karo.']};
+var KH='sikku_hfix_log_v1',LASTRES=[],RECHECK=false;
+function hlog(id,msg){var a=g(KH,[]),l=a[a.length-1];if(l&&l.id===id&&Date.now()-l.t<600000)return;a.push({t:Date.now(),id:id,m:msg});s(KH,a.slice(-40))}
+function runHealth(manual){
+ var res=[],needRe=false;
+ HC.forEach(function(c){var ok=false;try{ok=!!c.test()}catch(e){}
+  if(ok){res.push({id:c.id,name:c.name,st:'ok',msg:'theek hai'});return}
+  var msg='',st='warn';
+  try{msg=c.fix()||'';var ok2=false;try{ok2=!!c.test()}catch(e){}
+   if(ok2)st='fixed';else if(c.async){st='fixing';needRe=true}}catch(e){msg='fix fail: '+(e&&e.message)}
+  res.push({id:c.id,name:c.name,st:st,msg:msg});if(st!=='warn'||manual)hlog(c.id,msg)});
+ LASTRES=res;paintHealth();
+ if(needRe&&!RECHECK){RECHECK=true;setTimeout(function(){RECHECK=false;runHealth(false)},5000)}
+ var bad=res.filter(function(r){return r.st!=='ok'});
+ if(consent()!=='no'&&bad.length&&DB()&&!who().m){try{var o={};bad.forEach(function(r){o[r.id]=r.st});DB().ref('analytics/health/'+DAY+'/'+VID).set({t:Date.now(),f:o})}catch(e){}}
+ if(manual)note(bad.length?('Check poora: '+bad.length+' cheez par kaam hua'):'Sab theek hai ✅');
+ return res}
+function paintHealth(){
+ var box=$('v38-hrows');if(!box)return;box.textContent='';
+ LASTRES.forEach(function(r){var ic=r.st==='ok'?'✅':r.st==='fixed'?'🔧':r.st==='fixing'?'⏳':'⚠️';
+  var row=el('div',{style:'display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.74rem'});
+  row.appendChild(el('span',null,ic));row.appendChild(el('b',{style:'min-width:120px'},r.name));row.appendChild(el('span',{style:'color:var(--text-muted)'},r.msg));box.appendChild(row);
+  if(r.st==='warn'||r.st==='fixing'){var w=WHY[r.id];if(w){var t=el('div',{style:'font-size:.68rem;padding:4px 0 6px 26px;color:#fbbf24;line-height:1.4'});t.appendChild(el('div',null,'Kyun: '+w[0]));t.appendChild(el('div',null,'Aapko karna hai: '+w[1]));box.appendChild(t)}}});
+ var lg=$('v38-hlog');if(lg)lg.textContent=g(KH,[]).slice(-12).reverse().map(function(x){return tm(x.t)+'  '+x.id+': '+x.m}).join('\n')||'Abhi tak koi fix nahi laga.'}
+function buildReport(){
+ var i=info(),res=LASTRES.length?LASTRES:runHealth(false),L=[],c={ok:0,fixed:0,fixing:0,warn:0};
+ res.forEach(function(r){c[r.st]=(c[r.st]||0)+1});
+ L.push('SIKKU AI - HEALTH REPORT','Time: '+tm(Date.now())+' | Site: '+location.href,
+  'Device: '+label(i)+' | '+i.os+' | '+(i.br||'?')+(i.inapp?' ('+i.inapp+' in-app browser)':'')+' | Screen '+i.scr+' | Net '+(i.net||'?')+' | Lang '+i.lang,
+  'UA: '+(navigator.userAgent||''),'',
+  'EK LINE ME: '+c.ok+' theek, '+c.fixed+' apne aap theek hui, '+c.fixing+' fix chal raha, '+c.warn+' me aapko khud kuch karna hai','','--- CHECKS ---');
+ res.forEach(function(r){var tag=r.st==='ok'?'OK     ':r.st==='fixed'?'FIXED  ':r.st==='fixing'?'FIXING ':'PROBLEM';
+  L.push(tag+' '+r.name+(r.st==='ok'?'':' - '+r.msg));
+  if(r.st!=='ok'&&WHY[r.id]){L.push('        Kyun: '+WHY[r.id][0]);L.push('        Aapko karna hai: '+WHY[r.id][1])}});
+ var todo=res.filter(function(r){return r.st==='warn'&&WHY[r.id]});
+ L.push('','--- AB KYA THEEK KARNA HAI ---');
+ if(todo.length)todo.forEach(function(r,k){L.push((k+1)+'. '+r.name+': '+WHY[r.id][1])});else L.push('Kuch nahi, sab theek ya apne aap theek ho gaya.');
+ var fl=g(KH,[]).slice(-12).reverse();L.push('','--- AUTO-FIX LOG ---');
+ if(fl.length)fl.forEach(function(x){L.push(tm(x.t)+'  '+x.id+': '+x.m)});else L.push('Abhi tak koi auto-fix nahi laga.');
+ var er=g('sikku_issue_log_v1',[]).slice(0,10);L.push('','--- HAAL KE ERRORS (top 10) ---');
+ if(er.length)er.forEach(function(x){L.push('['+x.t+' x'+x.n+', tab '+x.tab+'] '+x.m)});else L.push('Koi error nahi pakda gaya.');
+ return L.join('\n')}
+function copyReport(){
+ var t=buildReport();
+ function fb(){var x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}x.remove();note(ok?'Health report copy ho gayi ✅':'Copy nahi hui - neeche box se select karo')}
+ var lg=$('v38-hlog');if(lg)lg.textContent=t;
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){note('Health report copy ho gayi ✅')},fb);else fb()}
+setTimeout(function(){runHealth(false)},8000);
+setInterval(function(){runHealth(false)},30000);
+window.addEventListener('online',function(){setTimeout(function(){runHealth(false)},1500)});
+
+/* ---------- master panel: Visitors & Health ---------- */
+function table(head,rows){var w=el('div',{style:'overflow-x:auto'}),t=el('table',{style:'width:100%;border-collapse:collapse;font-size:.68rem'}),tr=el('tr');
+ head.forEach(function(h){tr.appendChild(el('th',{style:'text-align:left;padding:6px;border-bottom:1px solid var(--border-color);color:var(--cyan);white-space:nowrap'},h))});t.appendChild(tr);
+ rows.forEach(function(r){var tr2=el('tr');r.forEach(function(c){var td=el('td',{style:'padding:6px;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap'});if(c&&c.nodeType)td.appendChild(c);else td.textContent=c==null?'':String(c);tr2.appendChild(td)});t.appendChild(tr2)});
+ w.appendChild(t);return w}
+function lastDays(n){var a=[],i;for(i=n-1;i>=0;i--)a.push(dk(new Date(Date.now()-i*864e5)));return a}
+function strip(days,map){var w=el('span',{style:'display:inline-flex;gap:2px'});days.forEach(function(d){w.appendChild(el('span',{title:d+(map[d]?' - aaya':' - nahi aaya'),style:'width:9px;height:14px;border-radius:2px;background:'+(map[d]?'#22c55e':'rgba(255,255,255,.12)')}))});return w}
+function card(title,sub){var c=el('div',{style:'margin:0 0 12px'});c.appendChild(el('div',{style:'font-weight:800;color:var(--cyan);font-size:.82rem;margin-bottom:4px'},title));if(sub)c.appendChild(el('div',{style:'font-size:.68rem;color:var(--text-muted);margin-bottom:6px'},sub));return c}
+function label(d){return((d.brand?d.brand+' ':'')+(d.model||'Unknown')).trim()}
+var DATA=null;
+function loadAll(cb){
+ var d=DB();if(!d){cb(null);return}
+ var out={devices:{},visits:{},health:{}},n=3,fail=0;function done(){if(--n===0)cb(out,fail)}
+ d.ref('analytics/devices').limitToLast(300).once('value',function(x){out.devices=x.val()||{};done()},function(){fail++;done()});
+ d.ref('analytics/visits').limitToLast(14).once('value',function(x){out.visits=x.val()||{};done()},function(){fail++;done()});
+ d.ref('analytics/health').limitToLast(14).once('value',function(x){out.health=x.val()||{};done()},function(){fail++;done()})}
+function renderVisitors(){
+ var sum=$('v38-sum'),dev=$('v38-dev'),ses=$('v38-ses'),hal=$('v38-hall');if(!sum)return;
+ sum.textContent='Load ho raha hai...';dev.textContent='';ses.textContent='';hal.textContent='';
+ loadAll(function(D,fail){
+  sum.textContent='';
+  if(!D){sum.textContent='⚠️ Firebase abhi juda nahi - sirf is device ka local record neeche dikh raha hai.';D={devices:{},visits:{},health:{}};
+   var lc=g(KL,[]);lc.forEach(function(r){var day=dk(new Date(r.start));D.visits[day]=D.visits[day]||{};D.visits[day][r.vid+'_'+r.sid]=r})}
+  else if(fail)sum.textContent='⚠️ Kuch data padh nahi paaye - Firebase rules me analytics ka read allow karein.';
+  DATA=D;
+  var days=lastDays(14),today=days[13],last7=days.slice(7),ids=Object.keys(D.devices);
+  var tcount=0,w7=0,gone=[];
+  ids.forEach(function(k){var dy=D.devices[k].days||{};if(dy[today])tcount++;var any7=last7.some(function(x){return dy[x]});if(any7)w7++;if(any7&&!dy[today])gone.push(k)});
+  var all=[];Object.keys(D.visits).forEach(function(day){var o=D.visits[day]||{};Object.keys(o).forEach(function(k){all.push(o[k])})});
+  all.sort(function(a,b){return(b.start||0)-(a.start||0)});
+  var avg=all.length?all.reduce(function(a,r){return a+(r.sec||0)},0)/all.length:0,inapp=all.filter(function(r){return r.inapp}).length;
+  var grid=el('div',{style:'display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px'});
+  [['Aaj aaye (devices)',tcount],['7 din me unique devices',w7],['Aaj nahi aaye (7 din me the)',gone.length],['Avg ruke (14 din)',fmt(avg)],['Total sessions (14 din)',all.length],['In-app browser (Instagram etc)',inapp]].forEach(function(p){var b=el('div',{style:'background:rgba(0,242,254,.06);border:1px solid var(--border-color);border-radius:10px;padding:8px'});b.appendChild(el('div',{style:'font-size:1.05rem;font-weight:900'},String(p[1])));b.appendChild(el('div',{style:'font-size:.64rem;color:var(--text-muted)'},p[0]));grid.appendChild(b)});
+  sum.appendChild(grid);
+  var dc=card('📱 Devices','Har anonymous visitor ID ka ek device. Hari patti = us din aaya, dhundhli = nahi aaya (14 din).');
+  var rows=ids.map(function(k){return D.devices[k]}).sort(function(a,b){return(b.last||0)-(a.last||0)}).map(function(r){return[label(r),r.os||'',(r.br||'')+(r.inapp?' ('+r.inapp+')':''),r.scr||'',r.visits||0,fmt(r.sec),tm(r.last||0),strip(days,r.days||{}),r.name||r.uid||'guest']});
+  dc.appendChild(rows.length?table(['Device','OS','Browser','Screen','Visits','Total time','Last','14 din','User'],rows):el('div',{style:'font-size:.72rem'},'Abhi koi device record nahi hua (consent dene wale users ke aate hi dikhega).'));dev.appendChild(dc);
+  if(gone.length){var gc=card('😴 Aaj nahi aaye (pichhle 7 din me aaye the)');gc.appendChild(el('div',{style:'font-size:.72rem'},gone.map(function(k){return label(D.devices[k])+' (last '+tm(D.devices[k].last||0)+')'}).join(' • ')));dev.appendChild(gc)}
+  var sc=card('🕒 Taaza sessions (latest 40)');
+  sc.appendChild(all.length?table(['Time','Device','Ruke','Tab','Net','User'],all.slice(0,40).map(function(r){return[tm(r.start||0),label(r),fmt(r.sec),r.tab||'',r.net||'',r.name||r.uid||'guest']})):el('div',{style:'font-size:.72rem'},'Koi session nahi.'));ses.appendChild(sc);
+  var cnt={},tot=0;Object.keys(D.health).forEach(function(day){var o=D.health[day]||{};Object.keys(o).forEach(function(v){tot++;var f=(o[v]||{}).f||{};Object.keys(f).forEach(function(id){cnt[id]=cnt[id]||{n:0,st:{}};cnt[id].n++;cnt[id].st[f[id]]=1})})});
+  var hc=card('🩺 Sab users ki health problems (14 din)','Kitni baar kaun si dikkat aayi aur auto-fix laga ya nahi.');
+  var hr=Object.keys(cnt).sort(function(a,b){return cnt[b].n-cnt[a].n}).map(function(id){return[id,cnt[id].n,Object.keys(cnt[id].st).join(', ')]});
+  hc.appendChild(hr.length?table(['Check','Kitni baar','Status'],hr):el('div',{style:'font-size:.72rem'},'Koi problem report nahi hui ✅'));hal.appendChild(hc)})}
+function csv(){
+ if(!DATA){note('Pehle refresh karein');return}
+ var days=lastDays(14),rows=[['device','os','browser','inapp','screen','visits','total_sec','last_seen','user','days_came_14']];
+ Object.keys(DATA.devices).forEach(function(k){var r=DATA.devices[k];rows.push([label(r),r.os||'',r.br||'',r.inapp||'',r.scr||'',r.visits||0,r.sec||0,tm(r.last||0),r.name||r.uid||'',days.filter(function(d){return(r.days||{})[d]}).join(' ')])});
+ var t=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+ var b=new Blob([t],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sikku-devices.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},3000)}
+
+/* ---------- weekly drops (safe text cards, no remote code) ---------- */
+var SEED=[
+ ['🧠','Is hafte ka challenge: roz ek naya shabd','Sikku AI se roz ek naya English/Hindi shabd seekho aur usse apna ek vakya banao. 7 din, 7 shabd!'],
+ ['💧','Hydration week','Din me 8 glass paani ka target rakho. Water tracker me roz tick lagao aur streak badhao.'],
+ ['🎯','Focus week','Roz 25 minute bina phone ke ek kaam karo, phir 5 minute break. AI se apna study/work plan banwao.'],
+ ['✍️','Likhne ka hafta','Roz 5 line apni diary ya shayari likho. Shayari Maker se idea lo aur apna twist do.'],
+ ['🤝','Dost week','Ek purane dost ko aaj message karo. Smart Reply Helper se sahi shabd dhundho.'],
+ ['🚶','Chalna shuru karo','Roz 15 minute walk karo. Fitness tool se simple plan banwao.'],
+ ['💡','Naya idea week','Ek chhota business ya side-project idea likho. AI se uske 3 pehle kadam poochho.'],
+ ['🌙','Neend sudhaar week','Roz ek hi time par soyo. Sone se 30 minute pehle screen band karo.']];
+function weekNo(d){d=d||new Date();var t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),dy=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-dy);var y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return t.getUTCFullYear()*100+Math.ceil(((t-y)/864e5+1)/7)}
+function pickDrop(remote){
+ var today=dk(),best=null;
+ if(remote)Object.keys(remote).forEach(function(k){var r=remote[k];if(r&&r.t&&r.from&&r.from<=today&&(!best||r.from>=best.from))best=Object.assign({id:k},r)});
+ if(best)return{id:best.id,e:best.e||'🆕',t:String(best.t).slice(0,60),x:String(best.x||'').slice(0,240)};
+ var wk=weekNo(),it=SEED[wk%SEED.length];return{id:'seed'+wk,e:it[0],t:it[1],x:it[2]}}
+function showDrop(remote){
+ var home=$('tab-home');if(!home)return;var old=$('v38-drop');if(old)old.remove();
+ var d=pickDrop(remote);if(g('sikku_drop_seen_'+d.id,0))return;
+ var c=el('div',{id:'v38-drop',class:'ui-card',style:'border:1.5px solid #fbbf24;background:rgba(251,191,36,.07);margin-bottom:12px'});
+ c.appendChild(el('div',{style:'font-size:.66rem;font-weight:800;color:#fbbf24;margin-bottom:4px'},'🆕 IS HAFTE KA NAYA'));
+ c.appendChild(el('div',{style:'font-size:.95rem;font-weight:800;margin-bottom:4px'},d.e+' '+d.t));
+ c.appendChild(el('div',{style:'font-size:.76rem;color:var(--text-muted);margin-bottom:8px;line-height:1.4'},d.x));
+ var b=el('button',{type:'button',class:'ui-btn',style:'padding:6px 12px;font-size:.72rem'},'✅ Dekh liya');b.onclick=function(){s('sikku_drop_seen_'+d.id,1);c.remove()};c.appendChild(b);
+ home.insertBefore(c,home.firstChild)}
+(function(){var n=0,iv=setInterval(function(){var d=DB();if(d){clearInterval(iv);try{d.ref('config/drops').limitToLast(12).once('value',function(x){showDrop(x.val()||null)},function(){showDrop(null)})}catch(e){showDrop(null)}}else if(++n>12){clearInterval(iv);showDrop(null)}},1500)})();
+function saveDrop(){
+ var e=$('v38-d-e').value.trim()||'🆕',t=$('v38-d-t').value.trim(),x=$('v38-d-x').value.trim(),f=$('v38-d-f').value;
+ if(!t||!f){note('Title aur date zaroori hai');return}
+ var d=DB();if(!d){note('Firebase juda nahi');return}
+ d.ref('config/drops').push({e:e.slice(0,4),t:t.slice(0,60),x:x.slice(0,240),from:f}).then(function(){note('Drop schedule ho gaya ✅');$('v38-d-t').value='';$('v38-d-x').value=''},function(er){note('Save nahi hua: '+(er&&er.code))})}
+
+/* ---------- inject panel + menu ---------- */
+var ov=$('apanel-overview'),m=$('an-menu');
+if(ov){var P=document.createElement('div');P.className='admin-tab-panel';P.id='apanel-vhealth';
+ P.innerHTML='<div class="ui-card" style="border:1.5px solid var(--cyan);margin-bottom:14px"><div style="font-weight:800;color:var(--cyan);margin-bottom:6px">🩺 Auto Health &amp; Fix (is device par)</div><div style="font-size:.68rem;color:var(--text-muted);margin-bottom:8px">Har 30 second me check hota hai aur jo theek ho sakta hai wo apne aap theek hota hai.</div><div id="v38-hrows"></div><div style="display:flex;gap:8px;margin:10px 0"><button type="button" class="ui-btn" style="flex:1" onclick="SikkuInsight.check(true)">🔧 Check &amp; Fix abhi</button><button type="button" class="ui-btn green" style="flex:1" onclick="SikkuInsight.copyReport()">📋 Copy Health Report</button></div><pre id="v38-hlog" style="white-space:pre-wrap;font-size:.64rem;background:rgba(5,1,15,.7);border:1px solid var(--border-color);border-radius:10px;padding:8px;margin:0"></pre></div>'
+ +'<div class="ui-card" style="border:1.5px solid var(--cyan);margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-weight:800;color:var(--cyan)">📊 Visitors &amp; Devices</div><div style="display:flex;gap:6px"><button type="button" class="ui-btn" style="padding:5px 10px;font-size:.7rem" onclick="SikkuInsight.refresh()">🔄</button><button type="button" class="ui-btn green" style="padding:5px 10px;font-size:.7rem" onclick="SikkuInsight.csv()">⬇️ CSV</button></div></div><div id="v38-sum"></div><div id="v38-dev"></div><div id="v38-ses"></div><div id="v38-hall"></div><div style="font-size:.64rem;color:var(--text-muted);margin-top:8px;line-height:1.4">ℹ️ Sab visitors anonymous ID se dikhte hain (jinhone privacy link se band kiya wo nahi). Phone number browser se mil hi nahi sakta. Naam/ID tabhi dikhega jab user ne khud allow kiya ho.</div></div>'
+ +'<div class="ui-card" style="border:1.5px solid #fbbf24;margin-bottom:14px"><div style="font-weight:800;color:#fbbf24;margin-bottom:6px">🆕 Weekly Drops schedule karo</div><div style="font-size:.68rem;color:var(--text-muted);margin-bottom:8px">Home par us date se ek naya card dikhega. Koi schedule na ho to har hafte built-in naya card apne aap aata hai. (Sirf text, naya code nahi.)</div><input id="v38-d-e" class="ui-input" placeholder="Emoji (jaise 🎉)" maxlength="4"><input id="v38-d-t" class="ui-input" placeholder="Title" maxlength="60"><textarea id="v38-d-x" class="ui-input" rows="2" placeholder="Chhota description" maxlength="240"></textarea><input id="v38-d-f" class="ui-input" type="date"><button type="button" class="ui-btn" style="margin-top:6px" onclick="SikkuInsight.saveDrop()">📅 Schedule</button></div>';
+ ov.parentNode.insertBefore(P,ov)}
+if(m){var gp=document.createElement('div');gp.className='an-grp';gp.innerHTML='<div class="an-grp-t">📡 Visitors &amp; Health</div><div class="an-grid"><button class="admin-tab-btn" data-atab="vhealth" data-kw="visitors devices device model time health fix auto weekly drop update users aaya" onclick="switchAdminTab(\'vhealth\')"><b>📡 Visitors &amp; Health</b><small>Device, time, aane ki taareekh, auto-fix, weekly drops</small></button></div>';var f1=m.querySelector('.an-grp');f1?m.insertBefore(gp,f1):m.appendChild(gp)}
+var _sa=window.switchAdminTab;
+if(typeof _sa==='function')window.switchAdminTab=function(t){var r=_sa.apply(this,arguments);if(t==='vhealth'){paintHealth();runHealth(false);renderVisitors()}return r};
+window.SikkuInsight={check:runHealth,copyReport:copyReport,report:buildReport,refresh:renderVisitors,csv:csv,saveDrop:saveDrop,parseDevice:parseDevice,setConsent:function(v){s(KC,v?'yes':'no');if(v)startVisit()}};
+}catch(e){console.warn('v38 block',e)}})();
+</script>
+
 </body>
 </html>
