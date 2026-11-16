@@ -1761,7 +1761,8 @@ build();
 
 <div class="admin-tab-panel" id="apanel-audit">
 <div class="audit-toolbar"><div><div class="audit-title">User Activity & Login Tracking</div><div class="audit-sub">Login, feature use, settings changes और admin actions का timestamped record.</div></div><button class="um-btn chat" onclick="loadAuditUsers()">Refresh</button></div>
-<input id="audit-search" class="ui-input" placeholder="नाम, email या user ID खोजें" oninput="renderAuditUsers()">
+<div class="dv-box" id="dev-tracker"><div class="dv-head"><div><div class="audit-title">📱 Device Tracker</div><div class="audit-sub">Har device ki ek hi permanent ID banti hai. Us par tap karo — kitni baar aaya, kitni baar nahin, sab usi ek jagah dikhega. Baar-baar nayi entry nahin banegi.</div></div><button class="um-btn chat" onclick="DEVTRK&&DEVTRK.load()">Refresh</button></div><input id="dev-search" class="ui-input" placeholder="Device ID, naam ya email khojein" oninput="DEVTRK&&DEVTRK.render()"><div class="dv-status" id="dev-status"></div><div id="dev-list" class="audit-user-list"><div class="empty-state">Tab kholte hi devices yahan aa jayenge.</div></div><div id="dev-detail" class="audit-profile"><div class="empty-state">Upar se kisi device par tap karein.</div></div></div>
+<div class="audit-sub" style="margin:6px 0">👥 Users ke hisaab se activity:</div><input id="audit-search" class="ui-input" placeholder="नाम, email या user ID खोजें" oninput="renderAuditUsers()">
 <div id="audit-user-list" class="audit-user-list"><div class="empty-state">Firebase connect होने पर users यहाँ दिखेंगे।</div></div>
 <div id="audit-profile" class="audit-profile"><div class="empty-state">किसी user को चुनकर पूरी activity profile देखें।</div></div>
 </div>
@@ -2239,9 +2240,9 @@ function setGuardEnabled(v){guardEnabled=v;gSet('guard_enabled',v);const t=docum
 function setGuardRepair(v){guardRepairEnabled=v;gSet('guard_auto_repair',v);recordGuardEvent('update','Safe Auto-Repair '+(v?'enabled':'disabled'),'Preference saved.');}
 function toggleKeyboardShortcuts(v){gSet('keyboard_shortcuts',v);showNotice(v?'⌨️ Shortcuts ON':'⌨️ Shortcuts OFF');}
 function openGuardCenter(){switchTab('hub');if(document.getElementById('admin-unlocked-box').style.display!=='none'){switchAdminTab('guard');runGuardDiagnostics(false);}else showNotice('AI Guard खोलने के लिए Master Unlock करें');}
-function collectGuardDiagnostics(){const required=['tab-home','tab-ai','tab-hub','ai-msg-input','ai-call-screen','admin-gate-card'];const missing=required.filter(id=>!document.getElementById(id));const ids=Array.from(document.querySelectorAll('[id]')).map(e=>e.id),duplicates=ids.filter((id,i)=>ids.indexOf(id)!==i);const brokenAnchors=Array.from(document.querySelectorAll('a[href^="#"]')).map(a=>a.getAttribute('href')).filter(h=>h.length>1&&!document.getElementById(h.slice(1)));const brokenImages=Array.from(document.images).filter(img=>img.complete&&img.naturalWidth===0&&!!img.currentSrc&&!img.dataset.guardHandled).length;let storageOk=false;try{localStorage.setItem('__guard_probe','1');storageOk=localStorage.getItem('__guard_probe')==='1';localStorage.removeItem('__guard_probe');}catch(e){}return[{name:'Core interface',ok:missing.length===0,detail:missing.length?'Missing: '+missing.join(', '):'Main tabs, AI and access controls present'},{name:'Unique element IDs',ok:duplicates.length===0,detail:duplicates.length?'Duplicate: '+Array.from(new Set(duplicates)).slice(0,5).join(', '):'No duplicate IDs found'},{name:'Internal navigation',ok:brokenAnchors.length===0,detail:brokenAnchors.length?'Broken links: '+brokenAnchors.join(', '):'In-page links have valid targets'},{name:'Browser storage',ok:storageOk,detail:storageOk?'Settings and history can be saved':'Storage blocked or full'},{name:'Network status',ok:navigator.onLine,detail:navigator.onLine?'Browser reports online':'Offline; cloud AI and Firebase unavailable'},{name:'AI chat state',ok:!document.querySelector('.dot-anim')||!aiBusy,detail:aiBusy?'AI is processing a request':'No stuck loading indicator'},{name:'Images',ok:brokenImages===0,detail:brokenImages?brokenImages+' image(s) failed to load':'No confirmed broken images'},{name:'Voice input',ok:!!(window.SpeechRecognition||window.webkitSpeechRecognition),detail:window.SpeechRecognition||window.webkitSpeechRecognition?'Speech recognition available':'Use Chrome/Edge for microphone calling'},{name:'Voice output',ok:!!window.speechSynthesis,detail:window.speechSynthesis?'Speech synthesis available':'Browser does not support speech output'}];}
+function collectGuardDiagnostics(){const required=['tab-home','tab-ai','tab-hub','ai-msg-input','ai-call-screen','admin-gate-card'];const missing=required.filter(id=>!document.getElementById(id));const ids=Array.from(document.querySelectorAll('[id]')).filter(e=>!e.closest('#sv-map,.svthumb,.svth')).map(e=>e.id),duplicates=ids.filter((id,i)=>ids.indexOf(id)!==i);const brokenAnchors=Array.from(document.querySelectorAll('a[href^="#"]')).map(a=>a.getAttribute('href')).filter(h=>h.length>1&&!document.getElementById(h.slice(1)));const brokenImages=Array.from(document.images).filter(img=>img.complete&&img.naturalWidth===0&&!!img.currentSrc&&!img.dataset.guardHandled).length;let storageOk=false;try{localStorage.setItem('__guard_probe','1');storageOk=localStorage.getItem('__guard_probe')==='1';localStorage.removeItem('__guard_probe');}catch(e){}return[{name:'Core interface',ok:missing.length===0,detail:missing.length?'Missing: '+missing.join(', '):'Main tabs, AI and access controls present'},{name:'Unique element IDs',ok:duplicates.length===0,detail:duplicates.length?'Duplicate: '+Array.from(new Set(duplicates)).slice(0,8).join(', '):'No duplicate IDs found'},{name:'Internal navigation',ok:brokenAnchors.length===0,detail:brokenAnchors.length?'Broken links: '+brokenAnchors.join(', '):'In-page links have valid targets'},{name:'Browser storage',ok:storageOk,detail:storageOk?'Settings and history can be saved':'Storage blocked or full'},{name:'Network status',ok:navigator.onLine,detail:navigator.onLine?'Browser reports online':'Offline; cloud AI and Firebase unavailable'},{name:'AI chat state',ok:!document.querySelector('.dot-anim')||!aiBusy,detail:aiBusy?'AI is processing a request':'No stuck loading indicator'},{name:'Images',ok:brokenImages===0,detail:brokenImages?brokenImages+' image(s) failed to load':'No confirmed broken images'},{name:'Voice input',ok:!!(window.SpeechRecognition||window.webkitSpeechRecognition),detail:window.SpeechRecognition||window.webkitSpeechRecognition?'Speech recognition available':'Use Chrome/Edge for microphone calling'},{name:'Voice output',ok:!!window.speechSynthesis,detail:window.speechSynthesis?'Speech synthesis available':'Browser does not support speech output'},(function(){try{const d=window.DEVTRK.status();return{name:'Device tracking',ok:d.ok,detail:d.detail}}catch(e){return{name:'Device tracking',ok:false,detail:'Device tracker load nahin hua'}}})()];}
 async function runGuardDiagnostics(manual=false){const results=collectGuardDiagnostics();guardLastResults=results;const list=document.getElementById('guard-diagnostic-list');if(list)list.innerHTML=results.map(r=>'<div class="diagnostic-row"><span>'+(r.ok?'●':'▲')+'</span><div><b>'+escapeHtml(r.name)+'</b><small>'+escapeHtml(r.detail)+'</small></div><span class="diagnostic-state '+(r.ok?'':'issue')+'">'+(r.ok?'PASS':'CHECK')+'</span></div>').join('');updateGuardMetrics();if(manual){const issues=results.filter(r=>!r.ok);recordGuardEvent(issues.length?'error':'repair','Full diagnostic scan completed',issues.length?issues.map(i=>i.name).join(', '):'All checks passed');showNotice(issues.length?issues.length+' checks need attention':'✅ All checks passed');}return results;}
-function runGuardRepair(manual=false){if(!guardRepairEnabled&&!manual){showNotice('Safe Auto-Repair बंद है');return;}const fixes=[];const active=document.querySelectorAll('.tab-card.active');if(active.length!==1){document.querySelectorAll('.tab-card').forEach((e,i)=>e.classList.toggle('active',i===0));fixes.push('Active tab restored');}if(aiBusy&&!document.querySelector('.dot-anim')){aiBusy=false;companionBusy=false;setAiStatus('🟢 Online','#10b981');fixes.push('AI busy state reset');}if(!callActive&&callProcessing){callProcessing=false;fixes.push('Call state reset');}const splash=document.getElementById('insta-splash');if(splash&&getComputedStyle(splash).visibility!=='hidden'&&Date.now()-performance.timeOrigin>4000){dismissSplash();fixes.push('Unresponsive splash dismissed');}if(!fixes.length)fixes.push('No safe UI repair was necessary');else{guardRepairCount+=fixes.length;gSet('guard_repair_count',guardRepairCount);}recordGuardEvent('repair','Safe repair completed',fixes.join('; '));if(manual)showNotice(fixes.join(' · '),4500);updateGuardMetrics();return fixes;}
+function runGuardRepair(manual=false){if(!guardRepairEnabled&&!manual){showNotice('Safe Auto-Repair बंद है');return;}const fixes=[];const active=document.querySelectorAll('.tab-card.active');if(active.length!==1){document.querySelectorAll('.tab-card').forEach((e,i)=>e.classList.toggle('active',i===0));fixes.push('Active tab restored');}if(aiBusy&&!document.querySelector('.dot-anim')){aiBusy=false;companionBusy=false;setAiStatus('🟢 Online','#10b981');fixes.push('AI busy state reset');}if(!callActive&&callProcessing){callProcessing=false;fixes.push('Call state reset');}const splash=document.getElementById('insta-splash');if(splash&&getComputedStyle(splash).visibility!=='hidden'&&Date.now()-performance.timeOrigin>4000){dismissSplash();fixes.push('Unresponsive splash dismissed');}try{const cleaned=window.__stripCloneIds?window.__stripCloneIds():0;if(cleaned)fixes.push('Duplicate IDs cleaned ('+cleaned+')');}catch(e){}if(!fixes.length)fixes.push('No safe UI repair was necessary');else{guardRepairCount+=fixes.length;gSet('guard_repair_count',guardRepairCount);}recordGuardEvent('repair','Safe repair completed',fixes.join('; '));if(manual)showNotice(fixes.join(' · '),4500);updateGuardMetrics();if(fixes.some(f=>/Duplicate IDs/.test(f)))setTimeout(()=>{try{runGuardDiagnostics(false)}catch(e){}},50);return fixes;}
 function setWeeklyUi(v){weeklyUiEnabled=v;gSet('weekly_ui_enabled',v);if(v&&!lastWeeklyRun){lastWeeklyRun=Date.now();gSet('last_weekly_run',lastWeeklyRun);}recordGuardEvent('update','Weekly UI auto-update '+(v?'enabled':'disabled'),v?'Curated UI pack will advance after seven days.':'Schedule paused.');renderWeeklyStatus();}
 function applyUiPack(index,manual=false){uiPackIndex=((index%UI_PACKS_V27.length)+UI_PACKS_V27.length)%UI_PACKS_V27.length;const pack=UI_PACKS_V27[uiPackIndex];document.body.classList.remove(...UI_PACKS_V27.map(p=>p.cls));document.body.classList.add(pack.cls);applyAccent(pack.accent);gSet('accent',pack.accent);gSet('ui_pack_index',uiPackIndex);lastWeeklyRun=Date.now();gSet('last_weekly_run',lastWeeklyRun);recordGuardEvent('update','UI pack applied: '+pack.name,manual?'Applied manually by master.':'Seven-day schedule completed.');renderWeeklyStatus();showNotice('✨ '+pack.name+' applied');}
 function applyNextUiPack(manual=true){applyUiPack(uiPackIndex+1,manual);}
@@ -6044,7 +6045,7 @@ var _st=window.switchTab;if(_st)window.switchTab=function(t){var x=_st.apply(thi
 function selOf(el){var p=[];while(el&&el.nodeType===1&&el!==document.body&&p.length<7){if(el.id&&!/^\d/.test(el.id)&&[].filter.call(document.querySelectorAll('#'+CSS.escape(el.id)),function(x){return!x.closest('#sv-map,.svthumb')}).length===1){p.unshift('#'+CSS.escape(el.id));break}var i=1,s=el;while(s=s.previousElementSibling)i++;p.unshift(el.tagName.toLowerCase()+':nth-child('+i+')');el=el.parentElement}return p.join('>')}
 function pick(cb){openMap(cb)}
 function navEl(){var b=[].filter.call(document.querySelectorAll('[onclick^="switchTab("]'),function(x){return!x.closest('header,.tab-card,#an-menu,#sv-map')})[0];return b?(b.closest('nav,.bottom-nav,.nav-bar,#bottom-nav')||b.parentElement):null}
-function clone(root){var c=root.cloneNode(true),o=[root].concat([].slice.call(root.querySelectorAll('*'))),k=[c].concat([].slice.call(c.querySelectorAll('*')));k.forEach(function(n,i){MP.set(o[i],n);n.__o=o[i];['onclick','onchange','oninput','href'].forEach(function(a){n.removeAttribute(a)});if(/^(SCRIPT|VIDEO|AUDIO|IFRAME)$/.test(n.tagName))n.remove()});c.style.cssText+=';position:relative!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;transform:none!important;margin:0 0 8px;width:100%';return c}
+function clone(root){var c=root.cloneNode(true),o=[root].concat([].slice.call(root.querySelectorAll('*'))),k=[c].concat([].slice.call(c.querySelectorAll('*')));k.forEach(function(n,i){MP.set(o[i],n);n.__o=o[i];['onclick','onchange','oninput','href','id'].forEach(function(a){n.removeAttribute(a)});if(/^(SCRIPT|VIDEO|AUDIO|IFRAME)$/.test(n.tagName))n.remove()});c.style.cssText+=';position:relative!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;transform:none!important;margin:0 0 8px;width:100%';return c}
 function openMap(cb){var W=Math.min(document.documentElement.clientWidth,520),M=E('<div id="sv-map"><div class="svm-t"><b>🗺️ Screen Map</b><select id="svm-pg"></select><button type="button" id="svm-x" class="svbtn">✖ Band</button></div><div class="svm-h">👆 Jis icon / button par sound lagana hai, use tap karo. Lal chamakta nishaan = aapki chuni hui jagah. Dusre page ke liye upar list se page badlo.</div><div id="svm-v"></div><div id="svm-s">Abhi kuchh nahin chuna.</div></div>'),pk=null;document.body.appendChild(M);
  var pg=$('svm-pg'),v=$('svm-v');pg.innerHTML='<option value="bar">⬆️⬇️ Upar ka bar + neeche ka menu</option>'+[].map.call(document.querySelectorAll('.tab-card'),function(x){return x.id.replace('tab-','')}).map(function(x){return'<option value="'+x+'">📄 Page: '+x+'</option>'}).join('');
  function draw(){v.innerHTML='';var b=E('<div class="svm-b" style="width:'+W+'px"></div>');v.appendChild(b);if(pg.value==='bar'){[document.querySelector('header'),navEl()].forEach(function(r){if(r)b.appendChild(clone(r))})}else{var tb=$('tab-'+pg.value);if(tb){var c=clone(tb);c.classList.add('active');c.style.display='block';var w=E('<div class="main-container" style="padding:0;margin:0;max-width:none"></div>');w.appendChild(c);b.appendChild(w)}}}
@@ -6531,5 +6532,226 @@ window.SikkuSmart={mem:mem,addMem:addMem,forget:function(){s(KM,[])},local:local
 }catch(e){console.warn('v39 block',e)}})();
 </script>
 
+<style id="dv-css">.dv-box{border:1.5px solid var(--cyan);border-radius:14px;padding:12px;margin:0 0 14px;background:rgba(0,242,254,.04)}.dv-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:10px}.dv-pills{display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex:none}.dv-pills i{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:.62rem;font-weight:800;padding:3px 8px;border-radius:8px;white-space:nowrap}.dv-pills .ok{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.35)}.dv-pills .no{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.35)}.dv-strip{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.dv-d{display:inline-block;width:16px;height:16px;border-radius:4px;background:rgba(255,255,255,.09);vertical-align:middle}.dv-d.s-ok{background:#34d399}.dv-d.s-v{background:#fbbf24}.dv-d.s-f{background:#f87171}.dv-d.s-na{background:transparent;border:1px dashed rgba(255,255,255,.12)}.dv-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.6rem;color:var(--text-muted)}.dv-legend .dv-d{width:10px;height:10px;margin-right:3px}.dv-sub{font-weight:900;font-size:.8rem;color:#f1f5f9;margin:14px 0 6px}.dv-user{display:flex;justify-content:space-between;gap:8px;font-size:.7rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.07)}.dv-status{font-size:.62rem;color:var(--text-muted);margin:6px 0}.dv-me{font-size:.55rem;color:#22d3ee;border:1px solid rgba(34,211,238,.4);padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:middle}</style>
+<script>
+/* ===== SIKKU v40: Device Tracker — har device ki ek permanent ID, ek hi jagah poora hisaab ===== */
+(function(){
+'use strict';
+var IDK='sikku_device_id',RK='sikku_device_rec_v1',MAXEV=150,MAXDAYS=120;
+var lastMsg='',syncState='local',cache={},selected='',cloudNote='';
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function pad(n){return ('0'+n).slice(-2)}
+function dayKey(t){var d=new Date(t||Date.now());return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function fmt(t){return t?new Date(t).toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—'}
+function rnd(n){var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',o='',i;try{var b=new Uint8Array(n);crypto.getRandomValues(b);for(i=0;i<n;i++)o+=a[b[i]%a.length]}catch(e){o='';for(i=0;i<n;i++)o+=a[Math.floor(Math.random()*a.length)]}return o}
+function safeKey(s){return String(s||'x').replace(/[.#$\[\]\/\s]/g,'_').slice(0,80)}
+function db(){try{return(typeof databaseInstance!=='undefined'&&databaseInstance)?databaseInstance:null}catch(e){return null}}
+function cu(){try{return currentUser||null}catch(e){return null}}
+
+/* ---- permanent device id (localStorage + cookie backup) ---- */
+function getId(){
+ var id='';
+ try{id=localStorage.getItem(IDK)||''}catch(e){}
+ if(!id){try{id=((document.cookie.match(/(?:^|;\s*)sikku_dev=([^;]+)/)||[])[1])||''}catch(e){}}
+ if(!/^DEV-[A-Z0-9]{6,16}$/.test(id))id='DEV-'+rnd(10);
+ try{localStorage.setItem(IDK,id)}catch(e){}
+ try{document.cookie='sikku_dev='+id+'; max-age=315360000; path=/; SameSite=Lax'}catch(e){}
+ return id;
+}
+function parseUA(){
+ var ua=navigator.userAgent||'',os='Device',model='',br='Browser',m;
+ if(/Android/i.test(ua)){m=ua.match(/Android\s[\d.]+;\s*([^;)]+?)(?:\sBuild|[;)])/);model=m?m[1].trim():'';os='Android'+((ua.match(/Android\s([\d.]+)/)||[])[1]?' '+ua.match(/Android\s([\d.]+)/)[1]:'')}
+ else if(/iPhone|iPad|iPod/i.test(ua)){os='iOS';model=/iPad/i.test(ua)?'iPad':'iPhone'}
+ else if(/Windows/i.test(ua))os='Windows';else if(/Mac OS X/i.test(ua))os='Mac';else if(/Linux/i.test(ua))os='Linux';
+ if(/; wv\)/i.test(ua))br='App (WebView)';else if(/SamsungBrowser/i.test(ua))br='Samsung Browser';else if(/EdgA?\//i.test(ua))br='Edge';else if(/OPR\//i.test(ua))br='Opera';else if(/Firefox|FxiOS/i.test(ua))br='Firefox';else if(/Chrome|CriOS/i.test(ua))br='Chrome';else if(/Safari/i.test(ua))br='Safari';
+ return{label:(model?model+' ('+os+')':os)+' · '+br,ua:ua.slice(0,220)};
+}
+function hash(str){var h=5381,i;for(i=0;i<str.length;i++)h=((h<<5)+h+str.charCodeAt(i))|0;return(h>>>0).toString(16)}
+
+/* ---- local record (source of truth for this device) ---- */
+function blank(id){var n=Date.now();return{id:id,firstSeen:n,lastSeen:n,ok:0,fail:0,guest:0,otpSent:0,visits:0,lastUser:'',days:{},users:{},events:[]}}
+var rec=(function(){
+ var id=getId(),r=null;
+ try{r=JSON.parse(localStorage.getItem(RK)||'null')}catch(e){}
+ if(!r||typeof r!=='object')r=blank(id);
+ r.id=id;r.days=r.days||{};r.users=r.users||{};r.events=Array.isArray(r.events)?r.events:[];
+ ['ok','fail','guest','otpSent','visits'].forEach(function(k){r[k]=+r[k]||0});
+ var u=parseUA();r.label=u.label;r.ua=u.ua;
+ r.screen=(screen.width||0)+'x'+(screen.height||0)+' @'+(window.devicePixelRatio||1);
+ try{r.tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){r.tz=''}
+ r.lang=navigator.language||'';
+ r.fp=hash([r.ua,r.screen,r.tz,r.lang,navigator.platform||'',navigator.hardwareConcurrency||''].join('|'));
+ return r;
+})();
+function save(){
+ try{
+  var ks=Object.keys(rec.days).sort();
+  while(ks.length>MAXDAYS)delete rec.days[ks.shift()];
+  localStorage.setItem(RK,JSON.stringify(rec));
+ }catch(e){}
+}
+function sync(){
+ var D=db();if(!D)return;
+ var up={deviceId:rec.id,label:rec.label,ua:rec.ua,screen:rec.screen,tz:rec.tz||'',lang:rec.lang||'',fp:rec.fp,firstSeen:rec.firstSeen,lastSeen:rec.lastSeen,ok:rec.ok,fail:rec.fail,guest:rec.guest,otpSent:rec.otpSent,visits:rec.visits,lastUser:rec.lastUser||''};
+ Object.keys(rec.days).forEach(function(d){up['days/'+d]=rec.days[d]});
+ Object.keys(rec.users).forEach(function(k){up['users/'+k]=rec.users[k]});
+ var pend=rec.events.filter(function(e){return!e.s});
+ pend.forEach(function(e){var c={};for(var p in e)if(p!=='s'&&p!=='id')c[p]=e[p];up['events/'+e.id]=c});
+ try{
+  D.ref('devices/'+rec.id).update(up).then(function(){pend.forEach(function(e){e.s=1});syncState='ok';save()}).catch(function(){syncState='fail'});
+ }catch(e){syncState='fail'}
+}
+
+/* ---- record one event ---- */
+function record(type,note,who){
+ var now=Date.now(),d=dayKey(now),dd=rec.days[d]||(rec.days[d]={ok:0,fail:0,g:0,v:0});
+ var u=cu(),uid=(u&&u.id)?String(u.id):'',name=(u&&u.name)||(who&&who.name)||'',email=(u&&u.email)||(who&&who.email)||'';
+ if(type==='ok'){rec.ok++;dd.ok++}else if(type==='guest'){rec.guest++;dd.g++}else if(type==='fail'){rec.fail++;dd.fail++}else if(type==='otp'){rec.otpSent++}else if(type==='visit'){rec.visits++;dd.v++}
+ if(type==='fail'||type==='otp'){uid='';name=(who&&who.name)||'';email=(who&&who.email)||''}
+ if((type==='ok'||type==='guest')&&uid){
+  var k=safeKey(uid),us=rec.users[k]||(rec.users[k]={id:uid,name:'',email:'',ok:0,first:now,last:now});
+  us.name=name;us.email=email;us.ok++;us.last=now;rec.lastUser=name||email||uid;
+ }
+ rec.lastSeen=now;
+ rec.events.unshift({id:'e'+now.toString(36)+rnd(3).toLowerCase(),t:now,type:type,uid:uid,name:String(name).slice(0,60),email:String(email).slice(0,80),note:String(note||'').slice(0,120),s:0});
+ rec.events=rec.events.slice(0,MAXEV);
+ save();sync();
+ if($('apanel-audit')&&$('apanel-audit').classList.contains('active')){cache[rec.id]=own();render()}
+}
+function own(){return JSON.parse(JSON.stringify(rec))}
+function norm(v,id){
+ v=v||{};var ev=v.events||{};
+ v.events=Object.keys(ev).map(function(k){var e=ev[k];e.id=k;return e}).sort(function(a,b){return(b.t||0)-(a.t||0)}).slice(0,100);
+ v.users=v.users||{};v.days=v.days||{};v.id=id;return v;
+}
+
+/* ---- hooks on existing login flow ---- */
+var _sn=window.showNotice;
+if(typeof _sn==='function')window.showNotice=function(m){lastMsg=String(m==null?'':m);return _sn.apply(this,arguments)};
+
+var _vo=window.verifyOtpCode;
+if(typeof _vo==='function')window.verifyOtpCode=function(){
+ var before=cu()&&cu().id,em='',nm='';
+ try{em=($('otp-email-display').innerText||'').trim();nm=($('login-name').value||'').trim()}catch(e){}
+ lastMsg='';
+ var r=_vo.apply(this,arguments),after=cu()&&cu().id;
+ if(after&&after!==before)record('ok','Email OTP login',{email:em,name:nm});
+ else if(/wrong otp|expired|too many/i.test(lastMsg))record('fail',lastMsg.replace(/^❌\s*/,''),{email:em,name:nm});
+ return r;
+};
+var _ro=window.requestOtp;
+if(typeof _ro==='function')window.requestOtp=function(){
+ var em='',nm='';
+ try{em=($('login-email').value||'').trim().toLowerCase();nm=($('login-name').value||'').trim()}catch(e){}
+ var p=_ro.apply(this,arguments);
+ Promise.resolve(p).then(function(){try{if($('login-step-2')&&$('login-step-2').style.display==='block')record('otp','OTP bheja gaya',{email:em,name:nm})}catch(e){}});
+ return p;
+};
+var _lg=window.loginAsGuest;
+if(typeof _lg==='function')window.loginAsGuest=function(){
+ var before=cu()&&cu().id,r=_lg.apply(this,arguments),u=cu();
+ if(u&&u.id&&u.id!==before)record('guest','Guest login (local profile)');
+ return r;
+};
+
+/* ---- app opened (once per browser session) ---- */
+try{if(!sessionStorage.getItem('sikku_dev_visit')){sessionStorage.setItem('sikku_dev_visit','1');record('visit','App khola')}}catch(e){record('visit','App khola')}
+
+/* ---- admin UI ---- */
+var EV={ok:['✅','Email login hua'],guest:['👤','Guest login hua'],fail:['❌','Login nahin hua'],otp:['📩','OTP bheja gaya'],visit:['🔁','App khola']};
+function load(){
+ var box=$('dev-list');if(box)box.innerHTML='<div class="empty-state">Devices load ho rahe hain…</div>';
+ cache={};cache[rec.id]=own();sync();
+ var D=db();
+ if(!D){cloudNote='☁️ Firebase offline — abhi sirf is device ka record dikh raha hai.';render();return}
+ D.ref('devices').once('value').then(function(s){
+  var v=s.val()||{};
+  Object.keys(v).forEach(function(id){if(id!==rec.id)cache[id]=norm(v[id],id)});
+  cloudNote='☁️ Cloud se '+Object.keys(cache).length+' device mile.';render();
+ }).catch(function(){cloudNote='⚠️ Cloud read blocked — Firebase rules me "devices" path ko allow karein. Abhi sirf is device ka record dikh raha hai.';render()});
+}
+function list(){
+ var q=(($('dev-search')&&$('dev-search').value)||'').toLowerCase();
+ return Object.keys(cache).filter(function(id){var d=cache[id];if(!q)return true;
+  var us=Object.keys(d.users||{}).map(function(k){return(d.users[k].name||'')+' '+(d.users[k].email||'')}).join(' ');
+  return[id,d.label,d.lastUser,us].join(' ').toLowerCase().indexOf(q)>-1})
+  .sort(function(a,b){return(cache[b].lastSeen||0)-(cache[a].lastSeen||0)});
+}
+function render(){
+ var st=$('dev-status');if(st)st.textContent=cloudNote;
+ var box=$('dev-list');if(!box)return;
+ var ids=list();
+ if(!ids.length)box.innerHTML='<div class="empty-state">Abhi koi device record nahin.</div>';
+ else box.innerHTML=ids.map(function(id){var d=cache[id],came=(d.ok||0)+(d.guest||0);
+  return'<button type="button" class="audit-user '+(id===selected?'active':'')+'" data-dev="'+esc(id)+'"><span><b>📱 '+esc(d.label||'Device')+(id===rec.id?'<span class="dv-me">YE DEVICE</span>':'')+'</b><small>'+esc(id)+(d.lastUser?' · '+esc(d.lastUser):'')+'<br>Last: '+esc(fmt(d.lastSeen))+'</small></span><span class="dv-pills"><i class="ok">✅ '+came+' aaya</i><i class="no">❌ '+(d.fail||0)+' nahin</i></span></button>'}).join('');
+ box.onclick=function(e){var b=e.target.closest&&e.target.closest('[data-dev]');if(b)open(b.getAttribute('data-dev'))};
+ var pr=$('dev-detail');if(pr)pr.innerHTML=detail(selected);
+}
+function open(id){selected=id;render();var p=$('dev-detail');if(p&&p.scrollIntoView)try{p.scrollIntoView({behavior:'smooth',block:'nearest'})}catch(e){}}
+function detail(id){
+ var d=cache[id];
+ if(!d)return'<div class="empty-state">Upar se kisi device par tap karein — uska poora hisaab (kitni baar aaya, kitni baar nahin) yahin dikhega.</div>';
+ var came=(d.ok||0)+(d.guest||0),fail=d.fail||0,visits=d.visits||0,days=d.days||{},now=new Date();now.setHours(0,0,0,0);
+ var st=new Date(d.firstSeen||Date.now());st.setHours(0,0,0,0);
+ var total=Math.min(MAXDAYS,Math.max(1,Math.round((now-st)/864e5)+1));
+ var active=Object.keys(days).filter(function(k){var x=days[k];return(x.ok||0)+(x.g||0)+(x.v||0)>0}).length;
+ if(active>total)active=total;
+ var absent=Math.max(0,total-active),pending=Math.max(0,(d.otpSent||0)-(d.ok||0)-(d.fail||0));
+ var strip='',i;
+ for(i=29;i>=0;i--){var t=new Date(now);t.setDate(t.getDate()-i);var k=dayKey(t),x=days[k]||{},c='';
+  if(t<st)c='s-na';else if((x.ok||0)+(x.g||0)>0)c='s-ok';else if((x.fail||0)>0)c='s-f';else if((x.v||0)>0)c='s-v';
+  strip+='<i class="dv-d '+c+'" title="'+k+'"></i>'}
+ var users=Object.keys(d.users||{}).map(function(k){return d.users[k]}).sort(function(a,b){return(b.last||0)-(a.last||0)});
+ var ev=(d.events||[]).slice(0,100);
+ return'<div class="audit-title">📱 '+esc(d.label||'Device')+(id===rec.id?'<span class="dv-me">YE DEVICE</span>':'')+'</div>'
+ +'<div class="audit-sub">Permanent ID: <b>'+esc(id)+'</b></div>'
+ +'<div class="audit-metrics"><div class="audit-metric"><b style="color:#34d399">'+came+'</b><span>Aaya (login)</span></div><div class="audit-metric"><b style="color:#f87171">'+fail+'</b><span>Nahin aaya (fail)</span></div><div class="audit-metric"><b>'+visits+'</b><span>App khola</span></div></div>'
+ +'<div class="audit-metrics" style="margin-top:8px"><div class="audit-metric"><b>'+active+'</b><span>Aaya din</span></div><div class="audit-metric"><b>'+absent+'</b><span>Nahin aaya din</span></div><div class="audit-metric"><b>'+pending+'</b><span>OTP adhura</span></div></div>'
+ +'<div class="dv-sub">Pichhle 30 din</div><div class="dv-strip">'+strip+'</div><div class="dv-legend"><span><i class="dv-d s-ok"></i> login hua</span><span><i class="dv-d s-v"></i> sirf app khola</span><span><i class="dv-d s-f"></i> login fail</span><span><i class="dv-d"></i> nahin aaya</span></div>'
+ +'<div class="dv-sub">Device ki jaankari</div>'
+ +'<div class="user-detail-row"><span>Pehli baar</span><span>'+esc(fmt(d.firstSeen))+'</span></div>'
+ +'<div class="user-detail-row"><span>Aakhri baar</span><span>'+esc(fmt(d.lastSeen))+'</span></div>'
+ +'<div class="user-detail-row"><span>Screen / Zone</span><span>'+esc((d.screen||'—')+' · '+(d.tz||'—'))+'</span></div>'
+ +'<div class="user-detail-row"><span>Bhasha</span><span>'+esc(d.lang||'—')+'</span></div>'
+ +'<div class="dv-sub">Is device se login karne wale ('+users.length+')</div>'
+ +(users.length?users.map(function(u){return'<div class="dv-user"><span><b>'+esc(u.name||'User')+'</b><br><small>'+esc(u.email||u.id||'')+'</small></span><span style="text-align:right">✅ '+(u.ok||0)+' baar<br><small>'+esc(fmt(u.last))+'</small></span></div>'}).join(''):'<div class="empty-state">Abhi koi login nahin.</div>')
+ +'<div style="display:flex;gap:8px;margin:14px 0;"><button type="button" class="ui-btn" style="font-size:.72rem;padding:9px;" data-dact="exp">Export</button><button type="button" class="ui-btn pink" style="font-size:.72rem;padding:9px;" data-dact="del">Record hatao</button></div>'
+ +'<div class="dv-sub">Poori timeline (latest '+ev.length+')</div>'
+ +(ev.length?ev.map(function(e){var m=EV[e.type]||['•',e.type||'event'];
+   return'<div class="audit-event"><time>'+esc(fmt(e.t))+'</time><div><b>'+m[0]+' '+esc(m[1])+'</b><small>'+esc((e.name||e.email||'')+(e.note&&e.type!=='visit'&&e.type!=='guest'?(e.name||e.email?' · ':'')+e.note:''))+'</small></div></div>'}).join(''):'<div class="empty-state">Abhi koi event nahin.</div>');
+}
+function exp(id){
+ var d=cache[id];if(!d)return;
+ try{var a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.href=u;a.download='sikku-device-'+id+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},3000)}catch(e){}
+}
+function del(id){
+ if(!cache[id])return;
+ if(!confirm('Is device ('+id+') ka poora record hata dein?'))return;
+ var D=db(),fin=function(){
+  if(id===rec.id){var b=blank(id);b.label=rec.label;b.ua=rec.ua;b.screen=rec.screen;b.tz=rec.tz;b.lang=rec.lang;b.fp=rec.fp;rec=b;save()}
+  delete cache[id];if(selected===id)selected='';render();
+ };
+ if(D)D.ref('devices/'+id).remove().then(fin).catch(function(){try{showNotice('Delete nahin hua — Firebase permission jaanchein')}catch(e){}});else fin();
+}
+document.addEventListener('click',function(e){
+ var b=e.target.closest&&e.target.closest('[data-dact]');if(!b||!selected)return;
+ if(b.getAttribute('data-dact')==='exp')exp(selected);else del(selected);
+});
+
+var _sa=window.switchAdminTab;
+if(typeof _sa==='function')window.switchAdminTab=function(tab){var r=_sa.apply(this,arguments);if(tab==='audit')load();return r};
+
+window.DEVTRK={load:load,render:render,open:open,id:function(){return rec.id},
+ status:function(){return{ok:syncState!=='fail',detail:syncState==='fail'?'Cloud sync blocked — Firebase rules me "devices" allow karein (local record safe hai). ID: '+rec.id:(syncState==='ok'?'Device ID '+rec.id+' · cloud sync chalu':'Device ID '+rec.id+' · local record safe')}}};
+
+/* Clone ids hatane ka safe repair (AI Guard ke liye) */
+window.__stripCloneIds=function(){var n=0;try{document.querySelectorAll('#sv-map [id], .svthumb [id], .svth [id]').forEach(function(e){e.removeAttribute('id');n++})}catch(e){}return n};
+
+setTimeout(sync,2500);setTimeout(sync,9000);
+window.addEventListener('online',sync);
+})();
+
+</script>
 </body>
 </html>
