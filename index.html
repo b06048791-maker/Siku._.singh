@@ -1376,7 +1376,22 @@ build();
 <div style="font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;">ADMIN-SIKKU-3837</div>
 <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.75rem;color:#10b981;font-weight:700;"><span>🟢 Master Mode Active v27</span><button type="button" class="um-btn revoke" onclick="lockMasterAdminPanel()">🔒 Lock Panel</button></div>
 </div>
-<style>#admin-nav{margin-bottom:14px}.an-top{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:12px;background:rgba(0,242,254,.1);border:1px solid var(--cyan);margin-bottom:8px;font-size:.8rem}.an-top button{border:0;border-radius:8px;padding:8px 12px;font-weight:800;background:var(--accent-grad);color:#03151e;cursor:pointer}.an-grp-t{font-size:.78rem;font-weight:900;color:var(--cyan);margin:12px 0 6px}.an-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}#an-menu .admin-tab-btn{text-align:left;padding:10px;border-radius:10px;background:rgba(5,1,15,.6);border:1px solid var(--border-color);white-space:normal;color:#fff;flex-shrink:1}#an-menu .admin-tab-btn.active{background:var(--accent-grad);color:#03151e}#an-menu .admin-tab-btn b{display:block;font-size:.8rem}#an-menu .admin-tab-btn small{display:block;font-weight:600;font-size:.62rem;opacity:.75;margin-top:2px}.an-q{margin-bottom:6px}.ph-card,.acx-box{border:1.5px solid var(--cyan);border-radius:14px;padding:12px;margin-bottom:12px;background:rgba(0,242,254,.04)}.ph-h{font-weight:900;font-size:.88rem;margin-bottom:4px}.ph-s{font-size:.7rem;color:var(--text-muted);margin-bottom:8px;line-height:1.5}.ph-r{display:flex;gap:12px;align-items:center}.ph-b{width:96px;height:96px;border-radius:14px;border:2px dashed var(--border-color);display:grid;place-items:center;overflow:hidden;font-size:.65rem;text-align:center;color:var(--text-muted);flex:none}.ph-b img{width:100%;height:100%;object-fit:cover}.ph-a{display:flex;flex-direction:column;gap:6px;flex:1}.ph-pick{text-align:center;cursor:pointer;margin:0}.ph-del{background:#334155!important;color:#fff!important;margin:0}.acx-h{font-size:.88rem;font-weight:900;color:#fbbf24;margin:16px 0 6px;padding-top:8px;border-top:1px solid var(--border-color)}.acx-l{display:block;font-size:.72rem;color:var(--text-muted);margin-top:8px}#call-mic-help{display:none;position:relative;z-index:5;max-width:460px;margin:6px auto;padding:10px 12px;border-radius:12px;background:rgba(245,158,11,.2);border:1px solid #f59e0b;color:#fff;font-size:.78rem;text-align:center}#call-mic-help small{display:block;opacity:.8;margin-top:4px}#call-mic-help button{margin-top:8px;border:0;border-radius:10px;padding:8px 14px;font-weight:800;background:#f59e0b;color:#000}</style><div id="admin-nav"><div class="an-top"><div>📍 Abhi yahan: <b id="an-here-name">📊 Overview</b></div><button type="button" onclick="ANAV.toggle()">☰ Sab Controls</button></div><div id="an-menu"><input id="an-search" class="ui-input" placeholder="🔍 Control dhundho (jaise: photo, coins, user, call)" oninput="ANAV.filter(this.value)"><div class="an-grp"><div class="an-grp-t">🖼️ Photo & Look</div><div class="an-grid"><button class="admin-tab-btn" data-atab="photos" data-kw="photo foto image tasveer chehra face avatar profile ai naam" onclick="switchAdminTab('photos')"><b>🖼️ Photos</b><small>AI ka photo, users ka photo, AI chehra, naam</small></button><button class="admin-tab-btn" data-atab="appmgr" data-kw="apk download link icon" onclick="switchAdminTab('appmgr')"><b>📲 App & Icon</b><small>App download link</small></button></div></div><div class="an-grp"><div class="an-grp-t">🎛️ App kaise chale</div><div class="an-grid"><button class="admin-tab-btn" data-atab="appctl" data-kw="coins share login announcement maintenance live video female gift call turn" onclick="switchAdminTab('appctl')"><b>🎛️ App Control</b><small>Features on/off, coins, announcement</small></button><button class="admin-tab-btn" data-atab="toolaccess" data-kw="tool free prime coin video downloader" onclick="switchAdminTab('toolaccess')"><b>🎚️ Tool Access</b><small>Kaun sa tool Free / Prime / Coin</small></button><button class="admin-tab-btn" data-atab="rewards" data-kw="reward daily mission" onclick="switchAdminTab('rewards')"><b>🎁 Rewards</b><small>Daily reward, missions</small></button><button class="admin-tab-btn" data-atab="config" data-kw="flag feature config" onclick="switchAdminTab('config')"><b>⚙️ Config</b><small>Feature flags</small></button></div></div><div class="an-grp"><div class="an-grp-t">🤖 AI</div><div class="an-grid"><button class="admin-tab-btn" data-atab="ai" data-kw="ai prompt image voice behavior" onclick="switchAdminTab('ai')"><b>🤖 AI Control</b><small>AI prompt, image/voice allow</small></button><button class="admin-tab-btn" data-atab="voice" data-kw="voice awaaz mic" onclick="switchAdminTab('voice')"><b>🎙️ Voice & Core</b><small>Awaaz aur core check</small></button><button class="admin-tab-btn" data-atab="companion" data-kw="care companion key wife" onclick="switchAdminTab('companion')"><b>💞 Companion Key</b><small>Care mode key</small></button><button class="admin-tab-btn" data-atab="guard" data-kw="guard safety diagnostics" onclick="switchAdminTab('guard')"><b>🛡️ AI Guard</b><small>Safety aur diagnostics</small></button></div></div><div class="an-grp"><div class="an-grp-t">👥 Users & Support</div><div class="an-grid"><button class="admin-tab-btn" data-atab="users" data-kw="user prime ban" onclick="switchAdminTab('users')"><b>👥 Users</b><small>Prime, ban, search</small></button><button class="admin-tab-btn" data-atab="chats" data-kw="chat support reply" onclick="switchAdminTab('chats')"><b>💬 Chats</b><small>Support chats</small></button><button class="admin-tab-btn" data-atab="audit" data-kw="activity login audit" onclick="switchAdminTab('audit')"><b>🕵️ User Activity</b><small>Login aur activity record</small></button></div></div><div class="an-grp"><div class="an-grp-t">📊 Report & Safety</div><div class="an-grid"><button class="admin-tab-btn active" data-atab="overview" data-kw="overview home" onclick="switchAdminTab('overview')"><b>📊 Overview</b><small>Sab ek nazar me</small></button><button class="admin-tab-btn" data-atab="analytics" data-kw="analytics stats" onclick="switchAdminTab('analytics')"><b>📈 Analytics</b><small>Kitne users, kitna use</small></button><button class="admin-tab-btn" data-atab="issues" data-kw="problem issue error" onclick="switchAdminTab('issues')"><b>🛠️ Problems</b><small>App ki dikkatein</small></button><button class="admin-tab-btn" data-atab="logs" data-kw="log" onclick="switchAdminTab('logs')"><b>📋 Logs</b><small>System logs</small></button><button class="admin-tab-btn" data-atab="danger" data-kw="danger delete reset" onclick="switchAdminTab('danger')"><b>⚠️ Danger</b><small>Reset / delete</small></button></div></div></div></div>
+<style>#admin-nav{margin-bottom:14px}.an-top{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:12px;background:rgba(0,242,254,.1);border:1px solid var(--cyan);margin-bottom:8px;font-size:.8rem}.an-top button{border:0;border-radius:8px;padding:8px 12px;font-weight:800;background:var(--accent-grad);color:#03151e;cursor:pointer}.an-grp-t{font-size:.78rem;font-weight:900;color:var(--cyan);margin:12px 0 6px}.an-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}#an-menu .admin-tab-btn{text-align:left;padding:10px;border-radius:10px;background:rgba(5,1,15,.6);border:1px solid var(--border-color);white-space:normal;color:#fff;flex-shrink:1}#an-menu .admin-tab-btn.active{background:var(--accent-grad);color:#03151e}#an-menu .admin-tab-btn b{display:block;font-size:.8rem}#an-menu .admin-tab-btn small{display:block;font-weight:600;font-size:.62rem;opacity:.75;margin-top:2px}.an-q{margin-bottom:6px}.ph-card,.acx-box{border:1.5px solid var(--cyan);border-radius:14px;padding:12px;margin-bottom:12px;background:rgba(0,242,254,.04)}.ph-h{font-weight:900;font-size:.88rem;margin-bottom:4px}.ph-s{font-size:.7rem;color:var(--text-muted);margin-bottom:8px;line-height:1.5}.ph-r{display:flex;gap:12px;align-items:center}.ph-b{width:96px;height:96px;border-radius:14px;border:2px dashed var(--border-color);display:grid;place-items:center;overflow:hidden;font-size:.65rem;text-align:center;color:var(--text-muted);flex:none}.ph-b img{width:100%;height:100%;object-fit:cover}.ph-a{display:flex;flex-direction:column;gap:6px;flex:1}.ph-pick{text-align:center;cursor:pointer;margin:0}.ph-del{background:#334155!important;color:#fff!important;margin:0}.acx-h{font-size:.88rem;font-weight:900;color:#fbbf24;margin:16px 0 6px;padding-top:8px;border-top:1px solid var(--border-color)}.acx-l{display:block;font-size:.72rem;color:var(--text-muted);margin-top:8px}#call-mic-help{display:none;position:relative;z-index:5;max-width:460px;margin:6px auto;padding:10px 12px;border-radius:12px;background:rgba(245,158,11,.2);border:1px solid #f59e0b;color:#fff;font-size:.78rem;text-align:center}#call-mic-help small{display:block;opacity:.8;margin-top:4px}#call-mic-help button{margin-top:8px;border:0;border-radius:10px;padding:8px 14px;font-weight:800;background:#f59e0b;color:#000}
+/* --- admin UI polish: easier to scan & tap --- */
+#an-menu{max-height:72vh;overflow-y:auto;padding-right:2px}
+#an-search{position:sticky;top:0;z-index:2;margin-bottom:10px}
+.an-top button{transition:transform .12s,opacity .12s}
+.an-top button:active{transform:scale(.96);opacity:.85}
+#an-menu .admin-tab-btn{transition:background .15s,border-color .15s,transform .1s;min-height:54px}
+#an-menu .admin-tab-btn:active{transform:scale(.97)}
+#an-menu .admin-tab-btn:hover{border-color:var(--cyan)}
+#an-menu .admin-tab-btn b{display:flex;align-items:center;gap:4px}
+.an-grp{background:rgba(255,255,255,.015);border-radius:12px;padding:6px;margin-bottom:4px}
+.an-grp-t{display:flex;align-items:center;padding-left:2px}
+@media (max-width:420px){.an-grid{grid-template-columns:1fr}}
+.admin-tab-panel .ui-card,.admin-tab-panel>div[style*="border"]{transition:box-shadow .2s}
+.admin-tab-panel .ui-card:hover{box-shadow:0 4px 18px rgba(0,242,254,.08)}
+</style><div id="admin-nav"><div class="an-top"><div>📍 Abhi yahan: <b id="an-here-name">📊 Overview</b></div><button type="button" onclick="ANAV.toggle()">☰ Sab Controls</button></div><div id="an-menu"><input id="an-search" class="ui-input" placeholder="🔍 Control dhundho (jaise: photo, coins, user, call)" oninput="ANAV.filter(this.value)"><div class="an-grp"><div class="an-grp-t">🖼️ Photo & Look</div><div class="an-grid"><button class="admin-tab-btn" data-atab="photos" data-kw="photo foto image tasveer chehra face avatar profile ai naam" onclick="switchAdminTab('photos')"><b>🖼️ Photos</b><small>AI ka photo, users ka photo, AI chehra, naam</small></button><button class="admin-tab-btn" data-atab="appmgr" data-kw="apk download link icon" onclick="switchAdminTab('appmgr')"><b>📲 App & Icon</b><small>App download link</small></button></div></div><div class="an-grp"><div class="an-grp-t">🎛️ App kaise chale</div><div class="an-grid"><button class="admin-tab-btn" data-atab="appctl" data-kw="coins share login announcement maintenance live video female gift call turn" onclick="switchAdminTab('appctl')"><b>🎛️ App Control</b><small>Features on/off, coins, announcement</small></button><button class="admin-tab-btn" data-atab="toolaccess" data-kw="tool free prime coin video downloader" onclick="switchAdminTab('toolaccess')"><b>🎚️ Tool Access</b><small>Kaun sa tool Free / Prime / Coin</small></button><button class="admin-tab-btn" data-atab="rewards" data-kw="reward daily mission" onclick="switchAdminTab('rewards')"><b>🎁 Rewards</b><small>Daily reward, missions</small></button><button class="admin-tab-btn" data-atab="config" data-kw="flag feature config" onclick="switchAdminTab('config')"><b>⚙️ Config</b><small>Feature flags</small></button></div></div><div class="an-grp"><div class="an-grp-t">🤖 AI</div><div class="an-grid"><button class="admin-tab-btn" data-atab="ai" data-kw="ai prompt image voice behavior" onclick="switchAdminTab('ai')"><b>🤖 AI Control</b><small>AI prompt, image/voice allow</small></button><button class="admin-tab-btn" data-atab="voice" data-kw="voice awaaz mic" onclick="switchAdminTab('voice')"><b>🎙️ Voice & Core</b><small>Awaaz aur core check</small></button><button class="admin-tab-btn" data-atab="companion" data-kw="care companion key wife" onclick="switchAdminTab('companion')"><b>💞 Companion Key</b><small>Care mode key</small></button><button class="admin-tab-btn" data-atab="guard" data-kw="guard safety diagnostics" onclick="switchAdminTab('guard')"><b>🛡️ AI Guard</b><small>Safety aur diagnostics</small></button></div></div><div class="an-grp"><div class="an-grp-t">👥 Users & Support</div><div class="an-grid"><button class="admin-tab-btn" data-atab="users" data-kw="user prime ban" onclick="switchAdminTab('users')"><b>👥 Users</b><small>Prime, ban, search</small></button><button class="admin-tab-btn" data-atab="chats" data-kw="chat support reply" onclick="switchAdminTab('chats')"><b>💬 Chats</b><small>Support chats</small></button><button class="admin-tab-btn" data-atab="audit" data-kw="activity login audit" onclick="switchAdminTab('audit')"><b>🕵️ User Activity</b><small>Login aur activity record</small></button></div></div><div class="an-grp"><div class="an-grp-t">📊 Report & Safety</div><div class="an-grid"><button class="admin-tab-btn active" data-atab="overview" data-kw="overview home" onclick="switchAdminTab('overview')"><b>📊 Overview</b><small>Sab ek nazar me</small></button><button class="admin-tab-btn" data-atab="analytics" data-kw="analytics stats" onclick="switchAdminTab('analytics')"><b>📈 Analytics</b><small>Kitne users, kitna use</small></button><button class="admin-tab-btn" data-atab="issues" data-kw="problem issue error" onclick="switchAdminTab('issues')"><b>🛠️ Problems</b><small>App ki dikkatein</small></button><button class="admin-tab-btn" data-atab="logs" data-kw="log" onclick="switchAdminTab('logs')"><b>📋 Logs</b><small>System logs</small></button><button class="admin-tab-btn" data-atab="danger" data-kw="danger delete reset" onclick="switchAdminTab('danger')"><b>⚠️ Danger</b><small>Reset / delete</small></button></div></div></div></div>
 
 <div class="admin-tab-panel active" id="apanel-overview">
 <div style="border:1.5px solid #fbbf24;border-radius:16px;padding:14px;background:rgba(251,191,36,0.06);margin-bottom:16px;">
@@ -6149,7 +6164,38 @@ function parseDevice(ua){
 var HE={};
 try{if(navigator.userAgentData&&navigator.userAgentData.getHighEntropyValues)navigator.userAgentData.getHighEntropyValues(['model']).then(function(v){HE=v||{}}).catch(function(){})}catch(e){}
 function info(){var d=parseDevice();if(!d.model&&HE.model)d.model=HE.model;var c=navigator.connection||{},tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
- return{brand:d.brand,model:d.model||'Unknown',os:d.os||String(navigator.platform||''),br:d.br,inapp:d.inapp,type:d.type,scr:(screen.width||0)+'x'+(screen.height||0),lang:navigator.language||'',net:c.effectiveType||'',tz:tz}}
+ return{brand:d.brand,model:d.model||'Unknown',os:d.os||String(navigator.platform||''),br:d.br,inapp:d.inapp,type:d.type,scr:(screen.width||0)+'x'+(screen.height||0),lang:navigator.language||'',net:c.effectiveType||'',dl:c.downlink||'',rtt:c.rtt||'',tz:tz}}
+
+/* ---------- first-touch (referrer + UTM, captured once) ---------- */
+function firstTouch(){
+ var k='sikku_ft_v1',v=g(k,null);
+ if(!v){var qs;try{qs=new URLSearchParams(location.search||'')}catch(e){qs=null}
+  v={ref:document.referrer||'',utm_source:(qs&&qs.get('utm_source'))||'',utm_medium:(qs&&qs.get('utm_medium'))||'',utm_campaign:(qs&&qs.get('utm_campaign'))||'',gclid:(qs&&qs.get('gclid'))||'',fbclid:(qs&&qs.get('fbclid'))||'',landing:location.href,t:Date.now()};
+  s(k,v)}
+ return v}
+function channel(ft){
+ if(ft.utm_source)return'Campaign: '+ft.utm_source;
+ if(ft.gclid||ft.fbclid)return'Paid Ads';
+ if(!ft.ref)return'Direct';
+ try{var h=new URL(ft.ref).hostname;
+  if(/google\.|bing\.|yahoo\.|duckduckgo/i.test(h))return'Organic Search';
+  if(/facebook|instagram|twitter|\bx\.com|t\.co|linkedin|whatsapp|t\.me/i.test(h))return'Social';
+  return'Referral: '+h}catch(e){return'Referral'}}
+
+/* ---------- approximate country-level location (IP based, no GPS prompt) ---------- */
+var GEO=null;
+function loadGeo(cb){
+ if(GEO){cb(GEO);return}
+ var c=g('sikku_geo_v1',null);
+ if(c&&(Date.now()-(c.t||0)<21600000)){GEO=c;cb(GEO);return}
+ try{
+  var ctrl=(typeof AbortController!=='undefined')?new AbortController():null,tmr=ctrl?setTimeout(function(){ctrl.abort()},4000):0;
+  fetch('https://ipapi.co/json/',ctrl?{signal:ctrl.signal}:{}).then(function(r){return r.json()}).then(function(j){
+   if(tmr)clearTimeout(tmr);
+   GEO={country:j.country_name||'',cc:j.country_code||'',region:j.region||'',city:j.city||'',isp:j.org||'',t:Date.now()};
+   s('sikku_geo_v1',GEO);cb(GEO)
+  }).catch(function(){cb(null)})
+ }catch(e){cb(null)}}
 
 /* ---------- consent + visit tracking ---------- */
 var KC='sikku_an_consent_v1',KS='sikku_an_stats_v1',KL='sikku_an_local_v1',KV='sikku_vid_v1';
@@ -6163,31 +6209,75 @@ function startVisit(){if(STARTED||consent()==='no')return;STARTED=true;var st=st
 function flush(){
  if(consent()==='no'||!STARTED)return;var w=who();if(w.m)return;
  var st=stats();st.sec=(st.sec||0)+(ACT-LASTACT);LASTACT=ACT;s(KS,st);
- var base=info(),rec={vid:VID,start:T0,end:Date.now(),sec:ACT,tab:curTab(),brand:base.brand,model:base.model,os:base.os,br:base.br,inapp:base.inapp,type:base.type,scr:base.scr,lang:base.lang,net:base.net,uid:w.uid,name:w.name};
+ var base=info(),ft=firstTouch(),ch=channel(ft);
+ var rec={vid:VID,start:T0,end:Date.now(),sec:ACT,tab:curTab(),brand:base.brand,model:base.model,os:base.os,br:base.br,inapp:base.inapp,type:base.type,scr:base.scr,lang:base.lang,net:base.net,uid:w.uid,name:w.name,ref:ft.ref||'direct',chan:ch};
  var loc=g(KL,[]),i,f=false;for(i=0;i<loc.length;i++)if(loc[i].sid===SID){loc[i]=Object.assign({sid:SID},rec);f=true}
  if(!f)loc.push(Object.assign({sid:SID},rec));s(KL,loc.slice(-60));
  var d=DB();if(!d)return;
  try{
   d.ref('analytics/visits/'+DAY+'/'+VID+'_'+SID).update(rec);
-  d.ref('analytics/devices/'+VID).update({brand:base.brand,model:base.model,os:base.os,br:base.br,inapp:base.inapp,type:base.type,scr:base.scr,lang:base.lang,tz:base.tz,uid:w.uid,name:w.name,last:Date.now(),first:st.first,visits:st.visits,sec:st.sec});
+  d.ref('analytics/devices/'+VID).update({brand:base.brand,model:base.model,os:base.os,br:base.br,inapp:base.inapp,type:base.type,scr:base.scr,lang:base.lang,tz:base.tz,uid:w.uid,name:w.name,last:Date.now(),first:st.first,visits:st.visits,sec:st.sec,chan:ch,ref:ft.ref||'direct'});
   d.ref('analytics/devices/'+VID+'/days/'+DAY).set(1);
+  loadGeo(function(gd){if(gd)try{d.ref('analytics/devices/'+VID).update({country:gd.country||'',cc:gd.cc||'',region:gd.region||'',city:gd.city||'',isp:gd.isp||''})}catch(e){}});
  }catch(e){}
 }
 var tick=0;
 setInterval(function(){if(consent()==='no')return;if(!document.hidden){ACT+=5}tick++;if(tick%6===0)flush()},5000);
 document.addEventListener('visibilitychange',function(){if(document.hidden)flush()});
 window.addEventListener('pagehide',flush);
+function showPrivacy(){
+ if($('v38-priv-modal'))return;
+ var o=el('div',{id:'v38-priv-modal',style:'position:fixed;inset:0;z-index:999998;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:16px'});
+ var box=el('div',{style:'background:#0c1220;border:1.5px solid var(--cyan);border-radius:16px;max-width:480px;max-height:80vh;overflow-y:auto;padding:16px;font-size:.74rem;color:#fff;line-height:1.6'});
+ box.innerHTML='<div style="font-weight:900;font-size:.95rem;color:var(--cyan);margin-bottom:8px">📄 Privacy Policy</div>'
+ +'<p><b>Kya record hota hai:</b> device model/OS/browser, screen size, language, kitni der app par rahe, kis page/site se aaye (referrer/campaign), approximate desh-shahar (IP se, sirf city/country level), aur agar aap login karke allow karein to naam/ID.</p>'
+ +'<p><b>Kya kabhi nahi liya jaata:</b> phone number, exact GPS location, copy/paste ya type ki gayi text, mouse/click tracking.</p>'
+ +'<p><b>Kyun:</b> app behtar banane, dikkat pakadne aur spam/abuse rokne (security) ke liye.</p>'
+ +'<p><b>Aapka control:</b> niche se kabhi bhi tracking band kar sakte hain — app kaam karna band nahi karega.</p>';
+ var btn=el('button',{type:'button',class:'ui-btn',style:'margin-top:8px;width:100%'},'Band karein ✕');btn.onclick=function(){o.remove()};box.appendChild(btn);
+ o.appendChild(box);o.onclick=function(e){if(e.target===o)o.remove()};document.body.appendChild(o)}
 function consentBanner(){
  if(consent()||$('v38-consent'))return;
  var b=el('div',{id:'v38-consent',style:'position:fixed;left:10px;right:10px;bottom:76px;z-index:99998;background:#120a2a;border:1.5px solid var(--cyan);border-radius:14px;padding:12px;font-size:.74rem;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.6)'});
- b.appendChild(el('div',{style:'margin-bottom:8px;line-height:1.4'},'📊 Sikku AI behtar banane ke liye ye record karta hai: aapka device model, kitni der ruke, kis din aaye (aur login naam/ID). Phone number kabhi nahi liya jaata. Allow karein?'));
- var r=el('div',{style:'display:flex;gap:8px'});
+ b.appendChild(el('div',{style:'margin-bottom:8px;line-height:1.4'},'📊 Sikku AI behtar banane ke liye ye record karta hai: device model, kitni der ruke, kis din/kahan se aaye (page referrer), approximate desh-shahar, aur login ho to naam/ID. Phone number ya GPS kabhi nahi liya jaata. Allow karein?'));
+ var r=el('div',{style:'display:flex;gap:8px;margin-bottom:6px'});
  var y=el('button',{type:'button',class:'ui-btn',style:'flex:1'},'✅ Theek hai'),n=el('button',{type:'button',class:'ui-btn',style:'flex:1;background:transparent;border:1px solid var(--border-color);color:#fff'},'❌ Nahi');
  y.onclick=function(){s(KC,'yes');b.remove();startVisit();note('Shukriya!')};
  n.onclick=function(){s(KC,'no');b.remove()};
- r.appendChild(y);r.appendChild(n);b.appendChild(r);document.body.appendChild(b)}
+ r.appendChild(y);r.appendChild(n);b.appendChild(r);
+ var pl=el('a',{href:'#',style:'font-size:.68rem;color:var(--cyan);text-decoration:underline'},'📄 Poori Privacy Policy padhein');pl.onclick=function(e){e.preventDefault();showPrivacy()};
+ b.appendChild(pl);document.body.appendChild(b)}
+/* ---------- security: admin block list (country / device) ---------- */
+function showBlocked(msg){
+ if($('v38-blocked'))return;
+ var o=el('div',{id:'v38-blocked',style:'position:fixed;inset:0;z-index:999999;background:#05010f;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px'});
+ o.innerHTML='<div><div style="font-size:2.2rem;margin-bottom:10px">🚫</div><div style="font-weight:800;margin-bottom:6px;font-size:1rem">Access Restricted</div><div style="font-size:.78rem;color:#94a3b8;max-width:280px;margin:0 auto">'+msg+'</div></div>';
+ document.body.appendChild(o);try{document.body.style.overflow='hidden'}catch(e){}}
+function checkBlock(){
+ var d=DB();if(!d)return;
+ d.ref('config/blocked').once('value').then(function(snap){
+  var b=snap.val()||{},devs=b.devices||{},ctys=b.countries||{};
+  if(devs[VID]){showBlocked('Is device ko admin ne block kiya hai.');return}
+  if(Object.keys(ctys).length)loadGeo(function(gd){if(gd&&gd.cc&&ctys[gd.cc])showBlocked('Is region se access band hai.')})
+ }).catch(function(){})}
+function blockCountry(){var v=(($('v38-blk-cc')||{}).value||'').trim().toUpperCase();if(v.length!==2){note('2-letter country code daalein (jaise IN, US)');return}var d=DB();if(!d){note('Firebase nahi juda');return}d.ref('config/blocked/countries/'+v).set(true).then(function(){note('🚫 Blocked: '+v);renderBlockList()})}
+function unblockCountry(v){var d=DB();if(!d)return;d.ref('config/blocked/countries/'+v).remove().then(renderBlockList)}
+function blockDevice(){var v=(($('v38-blk-dev')||{}).value||'').trim();if(!v){note('Device ID daalein');return}var d=DB();if(!d){note('Firebase nahi juda');return}d.ref('config/blocked/devices/'+v).set(true).then(function(){note('🚫 Blocked: '+v);renderBlockList()})}
+function unblockDevice(v){var d=DB();if(!d)return;d.ref('config/blocked/devices/'+v).remove().then(renderBlockList)}
+function renderBlockList(){
+ var box=$('v38-blk-list');if(!box)return;var d=DB();if(!d){box.textContent='Firebase nahi juda';return}
+ d.ref('config/blocked').once('value').then(function(snap){
+  var b=snap.val()||{},ctys=Object.keys(b.countries||{}),devs=Object.keys(b.devices||{});
+  box.innerHTML='';
+  if(!ctys.length&&!devs.length){box.textContent='Koi block nahi.';return}
+  if(ctys.length){var c1=el('div',{style:'margin-bottom:6px'});c1.appendChild(document.createTextNode('Countries: '));ctys.forEach(function(cc){var btn=el('button',{type:'button',style:'margin:2px;padding:3px 8px;border-radius:999px;background:rgba(239,68,68,.15);border:1px solid #ef4444;color:#ef4444;font-size:.68rem;cursor:pointer'},cc+' ✕');btn.onclick=function(){unblockCountry(cc)};c1.appendChild(btn)});box.appendChild(c1)}
+  if(devs.length){var c2=el('div',null);c2.appendChild(document.createTextNode('Devices: '));devs.forEach(function(id){var btn=el('button',{type:'button',style:'margin:2px;padding:3px 8px;border-radius:999px;background:rgba(239,68,68,.15);border:1px solid #ef4444;color:#ef4444;font-size:.68rem;cursor:pointer'},id.slice(0,10)+'… ✕');btn.onclick=function(){unblockDevice(id)};c2.appendChild(btn)});box.appendChild(c2)}
+ }).catch(function(){box.textContent='Load nahi hua'})}
 setTimeout(startVisit,3000);
-function privacyNote(){var home=$('tab-home');if(!home||$('v38-priv'))return;var d=el('div',{id:'v38-priv',style:'text-align:center;font-size:.62rem;color:var(--text-muted);padding:10px 8px 80px;line-height:1.5'});d.appendChild(document.createTextNode('Privacy: anonymous device model aur visit time ke stats record hote hain (phone number ya naam nahi). '));var a=el('a',{href:'#',style:'color:var(--cyan);text-decoration:underline'},consent()==='no'?'Chalu karo':'Band karo');a.onclick=function(e){e.preventDefault();var off=consent()!=='no';s(KC,off?'no':'');a.textContent=off?'Chalu karo':'Band karo';note(off?'Tracking band ho gayi':'Tracking chalu');if(!off)startVisit();return false};d.appendChild(a);home.appendChild(d)}
+setTimeout(checkBlock,5000);
+function privacyNote(){var home=$('tab-home');if(!home||$('v38-priv'))return;var d=el('div',{id:'v38-priv',style:'text-align:center;font-size:.62rem;color:var(--text-muted);padding:10px 8px 80px;line-height:1.5'});d.appendChild(document.createTextNode('Privacy: anonymous device model aur visit time ke stats record hote hain (phone number ya naam nahi). '));var a=el('a',{href:'#',style:'color:var(--cyan);text-decoration:underline'},consent()==='no'?'Chalu karo':'Band karo');a.onclick=function(e){e.preventDefault();var off=consent()!=='no';s(KC,off?'no':'');a.textContent=off?'Chalu karo':'Band karo';note(off?'Tracking band ho gayi':'Tracking chalu');if(!off)startVisit();return false};d.appendChild(a);
+ d.appendChild(document.createTextNode(' · '));var pl2=el('a',{href:'#',style:'color:var(--cyan);text-decoration:underline'},'Privacy Policy');pl2.onclick=function(e){e.preventDefault();showPrivacy()};d.appendChild(pl2);
+ home.appendChild(d)}
 setTimeout(privacyNote,1500);
 
 /* ---------- in-app browser banner ---------- */
@@ -6336,6 +6426,15 @@ function renderVisitors(){
   var dc=card('📱 Devices','Har anonymous visitor ID ka ek device. Hari patti = us din aaya, dhundhli = nahi aaya (14 din).');
   var rows=ids.map(function(k){return D.devices[k]}).sort(function(a,b){return(b.last||0)-(a.last||0)}).map(function(r){return[label(r),r.os||'',(r.br||'')+(r.inapp?' ('+r.inapp+')':''),r.scr||'',r.visits||0,fmt(r.sec),tm(r.last||0),strip(days,r.days||{}),r.name||r.uid||'guest']});
   dc.appendChild(rows.length?table(['Device','OS','Browser','Screen','Visits','Total time','Last','14 din','User'],rows):el('div',{style:'font-size:.72rem'},'Abhi koi device record nahi hua (consent dene wale users ke aate hi dikhega).'));dev.appendChild(dc);
+  var tc={},cc={};ids.forEach(function(k){var r=D.devices[k],ch=r.chan||'Unknown',co=r.country||'Unknown (consent nahi / geo load nahi hua)';tc[ch]=(tc[ch]||0)+1;cc[co]=(cc[co]||0)+1});
+  var trc=card('🌍 Traffic Source & Location','Visitor kahan se aaye (channel/referrer) aur approximate desh — IP-based, exact GPS nahi.');
+  var trRows=Object.keys(tc).sort(function(a,b){return tc[b]-tc[a]}).map(function(k){return[k,tc[k]]});
+  trc.appendChild(el('div',{style:'font-weight:800;font-size:.72rem;margin-bottom:4px'},'Channel'));
+  trc.appendChild(trRows.length?table(['Channel','Devices'],trRows):el('div',{style:'font-size:.72rem;margin-bottom:8px'},'Data nahi hai'));
+  var geoRows=Object.keys(cc).sort(function(a,b){return cc[b]-cc[a]}).map(function(k){return[k,cc[k]]});
+  trc.appendChild(el('div',{style:'font-weight:800;font-size:.72rem;margin:8px 0 4px'},'Country'));
+  trc.appendChild(geoRows.length?table(['Country','Devices'],geoRows):el('div',{style:'font-size:.72rem'},'Data nahi hai'));
+  dev.appendChild(trc);
   if(gone.length){var gc=card('😴 Aaj nahi aaye (pichhle 7 din me aaye the)');gc.appendChild(el('div',{style:'font-size:.72rem'},gone.map(function(k){return label(D.devices[k])+' (last '+tm(D.devices[k].last||0)+')'}).join(' • ')));dev.appendChild(gc)}
   var sc=card('🕒 Taaza sessions (latest 40)');
   sc.appendChild(all.length?table(['Time','Device','Ruke','Tab','Net','User'],all.slice(0,40).map(function(r){return[tm(r.start||0),label(r),fmt(r.sec),r.tab||'',r.net||'',r.name||r.uid||'guest']})):el('div',{style:'font-size:.72rem'},'Koi session nahi.'));ses.appendChild(sc);
@@ -6346,8 +6445,8 @@ function renderVisitors(){
   hc.appendChild(hr.length?table(['Check','Kitni baar','Status'],hr):el('div',{style:'font-size:.72rem'},'Koi problem report nahi hui ✅'));hal.appendChild(hc)})}
 function csv(){
  if(!DATA){note('Pehle refresh karein');return}
- var days=lastDays(14),rows=[['device','os','browser','inapp','screen','visits','total_sec','last_seen','user','days_came_14']];
- Object.keys(DATA.devices).forEach(function(k){var r=DATA.devices[k];rows.push([label(r),r.os||'',r.br||'',r.inapp||'',r.scr||'',r.visits||0,r.sec||0,tm(r.last||0),r.name||r.uid||'',days.filter(function(d){return(r.days||{})[d]}).join(' ')])});
+ var days=lastDays(14),rows=[['device','os','browser','inapp','screen','visits','total_sec','last_seen','user','channel','country','city','days_came_14']];
+ Object.keys(DATA.devices).forEach(function(k){var r=DATA.devices[k];rows.push([label(r),r.os||'',r.br||'',r.inapp||'',r.scr||'',r.visits||0,r.sec||0,tm(r.last||0),r.name||r.uid||'',r.chan||'',r.country||'',r.city||'',days.filter(function(d){return(r.days||{})[d]}).join(' ')])});
  var t=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
  var b=new Blob([t],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sikku-devices.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},3000)}
 
@@ -6388,12 +6487,13 @@ var ov=$('apanel-overview'),m=$('an-menu');
 if(ov){var P=document.createElement('div');P.className='admin-tab-panel';P.id='apanel-vhealth';
  P.innerHTML='<div class="ui-card" style="border:1.5px solid var(--cyan);margin-bottom:14px"><div style="font-weight:800;color:var(--cyan);margin-bottom:6px">🩺 Auto Health &amp; Fix (is device par)</div><div style="font-size:.68rem;color:var(--text-muted);margin-bottom:8px">Har 30 second me check hota hai aur jo theek ho sakta hai wo apne aap theek hota hai.</div><div id="v38-score"></div><div id="v38-hrows"></div><div style="display:flex;gap:8px;margin:10px 0"><button type="button" class="ui-btn" style="flex:1" onclick="SikkuInsight.check(true)">🔧 Check &amp; Fix abhi</button><button type="button" class="ui-btn green" style="flex:1" onclick="SikkuInsight.copyReport()">📋 Copy Health Report</button></div><pre id="v38-hlog" style="white-space:pre-wrap;font-size:.64rem;background:rgba(5,1,15,.7);border:1px solid var(--border-color);border-radius:10px;padding:8px;margin:0"></pre></div>'
  +'<div class="ui-card" style="border:1.5px solid var(--cyan);margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-weight:800;color:var(--cyan)">📊 Visitors &amp; Devices</div><div style="display:flex;gap:6px"><button type="button" class="ui-btn" style="padding:5px 10px;font-size:.7rem" onclick="SikkuInsight.refresh()">🔄</button><button type="button" class="ui-btn green" style="padding:5px 10px;font-size:.7rem" onclick="SikkuInsight.csv()">⬇️ CSV</button></div></div><div id="v38-sum"></div><div id="v38-dev"></div><div id="v38-ses"></div><div id="v38-hall"></div><div style="font-size:.64rem;color:var(--text-muted);margin-top:8px;line-height:1.4">ℹ️ Sab visitors anonymous ID se dikhte hain (jinhone privacy link se band kiya wo nahi). Phone number browser se mil hi nahi sakta. Naam/ID tabhi dikhega jab user ne khud allow kiya ho.</div></div>'
+ +'<div class="ui-card" style="border:1.5px solid #ef4444;margin-bottom:14px"><div style="font-weight:800;color:#ef4444;margin-bottom:6px">🔒 Security — Block List</div><div style="font-size:.68rem;color:var(--text-muted);margin-bottom:8px">Device ya desh (country code, jaise IN, US, CN) block karo — agli visit par automatically rok diya jayega. (Note: ye app-level soft block hai; asli network/IP firewall ke liye hosting/CDN level security chahiye.)</div><div style="display:flex;gap:6px;margin-bottom:6px"><input id="v38-blk-cc" class="ui-input" placeholder="Country code (IN, US...)" style="flex:1;text-transform:uppercase" maxlength="2"><button type="button" class="ui-btn" style="width:auto;padding:8px 12px" onclick="SikkuInsight.blockCountry()">🚫 Block</button></div><div style="display:flex;gap:6px;margin-bottom:8px"><input id="v38-blk-dev" class="ui-input" placeholder="Device ID" style="flex:1"><button type="button" class="ui-btn" style="width:auto;padding:8px 12px" onclick="SikkuInsight.blockDevice()">🚫 Block</button></div><div id="v38-blk-list" style="font-size:.72rem"></div></div>'
  +'<div class="ui-card" style="border:1.5px solid #fbbf24;margin-bottom:14px"><div style="font-weight:800;color:#fbbf24;margin-bottom:6px">🆕 Weekly Drops schedule karo</div><div style="font-size:.68rem;color:var(--text-muted);margin-bottom:8px">Home par us date se ek naya card dikhega. Koi schedule na ho to har hafte built-in naya card apne aap aata hai. (Sirf text, naya code nahi.)</div><input id="v38-d-e" class="ui-input" placeholder="Emoji (jaise 🎉)" maxlength="4"><input id="v38-d-t" class="ui-input" placeholder="Title" maxlength="60"><textarea id="v38-d-x" class="ui-input" rows="2" placeholder="Chhota description" maxlength="240"></textarea><input id="v38-d-f" class="ui-input" type="date"><button type="button" class="ui-btn" style="margin-top:6px" onclick="SikkuInsight.saveDrop()">📅 Schedule</button></div>';
  ov.parentNode.insertBefore(P,ov)}
 if(m){var gp=document.createElement('div');gp.className='an-grp';gp.innerHTML='<div class="an-grp-t">📡 Visitors &amp; Health</div><div class="an-grid"><button class="admin-tab-btn" data-atab="vhealth" data-kw="visitors devices device model time health fix auto weekly drop update users aaya" onclick="switchAdminTab(\'vhealth\')"><b>📡 Visitors &amp; Health</b><small>Device, time, aane ki taareekh, auto-fix, weekly drops</small></button></div>';var f1=m.querySelector('.an-grp');f1?m.insertBefore(gp,f1):m.appendChild(gp)}
 var _sa=window.switchAdminTab;
-if(typeof _sa==='function')window.switchAdminTab=function(t){var r=_sa.apply(this,arguments);if(t==='vhealth'){paintHealth();runHealth(false);renderVisitors()}return r};
-window.SikkuInsight={check:runHealth,copyReport:copyReport,report:buildReport,refresh:renderVisitors,csv:csv,saveDrop:saveDrop,parseDevice:parseDevice,setConsent:function(v){s(KC,v?'yes':'no');if(v)startVisit()}};
+if(typeof _sa==='function')window.switchAdminTab=function(t){var r=_sa.apply(this,arguments);if(t==='vhealth'){paintHealth();runHealth(false);renderVisitors();renderBlockList()}return r};
+window.SikkuInsight={check:runHealth,copyReport:copyReport,report:buildReport,refresh:renderVisitors,csv:csv,saveDrop:saveDrop,parseDevice:parseDevice,setConsent:function(v){s(KC,v?'yes':'no');if(v)startVisit()},showPrivacy:showPrivacy,blockCountry:blockCountry,blockDevice:blockDevice,renderBlockList:renderBlockList};
 }catch(e){console.warn('v38 block',e)}})();
 </script>
 <script>
