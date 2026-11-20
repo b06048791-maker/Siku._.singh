@@ -1308,6 +1308,13 @@ build();
 </div>
 <button type="button" class="ui-btn" style="background:linear-gradient(135deg,#00F2FE,#4facfe);color:#03151e;padding:10px;font-size:.78rem;" onclick="openArchivedChats()">📂 View Archived (<span id="archive-count">0</span>)</button>
 </div>
+<div style="background:rgba(239,68,68,0.08);border:1.5px solid #ef4444;border-radius:14px;padding:14px;margin-bottom:16px;">
+<div style="font-size:.95rem;font-weight:800;color:#ef4444;margin-bottom:6px;">🆘 Emergency SOS</div>
+<div style="font-size:.72rem;color:var(--text-muted);margin-bottom:10px;line-height:1.5;">Apna trusted contact number set karein. SOS button dabane par SIRF usi waqt, sirf ek baar, aapki live location is number par WhatsApp se jaayegi — koi cheez chupke se kahin save nahi hoti, sab kuch aapke ek tap aur aapki marzi se hota hai.</div>
+<input id="sos-contact-input" class="ui-input" type="tel" placeholder="Trusted contact (jaise +91XXXXXXXXXX)">
+<button type="button" class="ui-btn" style="background:#1e293b;color:#ef4444;box-shadow:none;" onclick="saveSosContact()">💾 Contact Save karein</button>
+<button type="button" class="ui-btn" style="background:#ef4444;margin-top:10px;" onclick="triggerSOS()">🆘 Abhi SOS bhejein</button>
+</div>
 <div style="background:rgba(255,0,127,0.05);border:1.5px solid var(--pink);border-radius:14px;padding:14px;margin-bottom:16px;">
 <div style="font-size:.95rem;font-weight:800;color:var(--pink);margin-bottom:6px;">🆘 Help Center</div>
 <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:12px;">Form fill karo — AI + Team reply karegi.</div>
@@ -2198,6 +2205,32 @@ function uSet(k,v){try{if(!currentUser)return;localStorage.setItem('sikku_u_'+cu
 function uDel(k){try{if(!currentUser)return;localStorage.removeItem('sikku_u_'+currentUser.id+'_'+k);}catch(e){}}
 function gGet(k,def){try{const s=localStorage.getItem('sikku_global_'+k);return s===null?def:JSON.parse(s);}catch(e){return def;}}
 function gSet(k,v){try{localStorage.setItem('sikku_global_'+k,JSON.stringify(v));}catch(e){}}
+
+/* EMERGENCY SOS — user-initiated only; nothing collected or sent unless the user taps the button */
+function saveSosContact(){
+  const el=document.getElementById('sos-contact-input');
+  let v=((el&&el.value)||'').trim();
+  if(!/^\+?[0-9]{10,15}$/.test(v.replace(/[\s-]/g,''))){showNotice('⚠️ Sahi number daalein, country code ke saath (jaise +91XXXXXXXXXX)');return;}
+  gSet('sos_contact',v);
+  showNotice('✅ Emergency contact save ho gaya');
+}
+function triggerSOS(){
+  const num=gGet('sos_contact','');
+  if(!num){showNotice('⚠️ Pehle Emergency contact number save karein');return;}
+  if(!confirm('🆘 Yeh abhi aapki live location '+num+' par WhatsApp se bhejega. Bhejna chahte hain?'))return;
+  if(!navigator.geolocation){showNotice('⚠️ Is browser mein location support nahi hai');return;}
+  showNotice('📍 Location li ja rahi hai…');
+  navigator.geolocation.getCurrentPosition(function(pos){
+    const lat=pos.coords.latitude.toFixed(6),lng=pos.coords.longitude.toFixed(6),acc=Math.round(pos.coords.accuracy||0);
+    const msg='🆘 Emergency! Mujhe abhi madad chahiye.\nMeri location: https://maps.google.com/?q='+lat+','+lng+'\n(Accuracy ~'+acc+'m)\nTime: '+new Date().toLocaleString('hi-IN');
+    const wa='https://wa.me/'+num.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent(msg);
+    window.open(wa,'_blank');
+    showNotice('✅ Location bhej di gayi');
+  },function(){
+    showNotice('❌ Location nahin mil payi — phone/browser ki location permission ON karein');
+  },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+document.addEventListener('DOMContentLoaded',function(){try{const el=document.getElementById('sos-contact-input');if(el)el.value=gGet('sos_contact','');}catch(e){}});
 
 /* USER */
 const USER_SESSION_KEY='sikku_current_user',OTP_STORE_KEY='sikku_otp_store';
@@ -6145,7 +6178,7 @@ function rs(){var P=$('apanel-sound');if(!P)return;var K=Object.keys(ST.lib);
  var tabs=[].map.call(document.querySelectorAll('.tab-card'),function(x){return x.id.replace('tab-','')});
  var T=[['open','🌐 Website khulte hi'],['login','🔐 Login / app mein entry hote hi'],['click','👆 Kisi icon/button par click'],['any','🖱️ Har click par'],['tab','📄 Koi page/tab khulne par'],['button','🔘 Floating 🔊 button']],F=[['always','Har baar'],['session','Ek visit mein ek baar'],['device','Is device par sirf ek baar'],['daily','Roz ek baar']];
  var h='<div class="svck" id="sv-ck"></div><div class="svd2"><b>🎵 Sound Studio</b><label class="switch"><input type="checkbox" data-m="on"'+(ST.on?' checked':'')+'><span class="slider"></span></label><button data-a="stop">⏹ Sab band</button><span class="sv-live sv-st"></span></div>';
- h+='<details class="svd" open><summary>📚 Mera Sound Library</summary><div><label class="svbtn">🎵 Audio / gaana daalo (max 1.5MB)<input type="file" accept="audio/*" multiple hidden data-a="file"></label><div class="svr"><input class="ui-input" id="sv-un" placeholder="Naam"><input class="ui-input" id="sv-ul" placeholder="Ya audio ka direct link (bade gaane ke liye)"><button data-a="url">➕ Link jodo</button></div>'+(K.length?K.map(function(k){var m=ST.lib[k];return'<div class="svr"><b>'+esc(m.n)+'</b><span class="sv-st">'+(m.u?'🔗 link':Math.round((m.sz||0)/1024)+' KB')+'</span><button data-a="play" data-k="'+k+'">▶ Suno</button><button data-a="del" data-k="'+k+'">🗑 Hatao</button></div>'}).join(''):'<div class="svh">Abhi koi sound nahin. Upar se daalo.</div>')+'</div></details>';
+ h+='<details class="svd" open><summary>📚 Mera Sound Library</summary><div><label class="svbtn">🎵 Audio / gaana daalo (max 10MB)<input type="file" accept="audio/*" multiple hidden data-a="file"></label><div class="svr"><input class="ui-input" id="sv-un" placeholder="Naam"><input class="ui-input" id="sv-ul" placeholder="Ya audio ka direct link (bade gaane ke liye)"><button data-a="url">➕ Link jodo</button></div>'+(K.length?K.map(function(k){var m=ST.lib[k];return'<div class="svr"><b>'+esc(m.n)+'</b><span class="sv-st">'+(m.u?'🔗 link':Math.round((m.sz||0)/1024)+' KB')+'</span><button data-a="play" data-k="'+k+'">▶ Suno</button><button data-a="del" data-k="'+k+'">🗑 Hatao</button></div>'}).join(''):'<div class="svh">Abhi koi sound nahin. Upar se daalo.</div>')+'</div></details>';
  h+='<details class="svd" open><summary>⚙️ Sound Rules — kab aur kahan bajega</summary><div>'+ST.rules.map(function(r,i){var d='data-i="'+i+'" ',x='<div class="svc"><div class="svr"><b>Rule '+(i+1)+'</b><label class="switch"><input type="checkbox" '+d+'data-f="on"'+(r.on?' checked':'')+'><span class="slider"></span></label><button data-a="test" '+d+'>▶ Test</button><button data-a="rdel" '+d+'>🗑</button></div><select '+d+'data-f="s">'+so(r.s)+'</select><select '+d+'data-f="t">'+op(T,r.t)+'</select>';
   if(r.t==='click')x+='<select '+d+'data-f="pre"><option value="">Kaunsa icon? (list)</option>'+PRE.map(function(p){return'<option value="'+esc(p[1])+'"'+(p[1]===r.sel?' selected':'')+'>'+p[0]+'</option>'}).join('')+'</select><button data-a="pick" '+d+'>🎯 Screen se chuno</button><input class="ui-input" '+d+'data-f="sel" value="'+esc(r.sel)+'" placeholder="ya CSS selector"><div class="svthumb" data-sel="'+esc(r.sel)+'"></div>';
   if(r.t==='tab')x+='<select '+d+'data-f="tab">'+tabs.map(function(t){return'<option'+(t===r.tab?' selected':'')+'>'+t+'</option>'}).join('')+'</select>';
@@ -6162,7 +6195,7 @@ function aclk(e){var b=e.target.closest('[data-a]');if(!b||b.type==='file')retur
  else if(a==='pick')pick(function(sel){ST.rules[i].sel=sel;pub();rs()});
  else if(a==='url'){var u=$('sv-ul').value.trim();if(!/^https?:\/\//.test(u))return showNotice('Sahi link daalo (https://...)');addLib({n:$('sv-un').value.trim()||'Link sound',u:u,sz:0})}}
 function achg(e){var t=e.target;if(t.dataset.m==='on'){ST.on=t.checked;apply();pub();return}
- if(t.dataset.a==='file'){[].forEach.call(t.files,function(f){if(f.size>1572864){showNotice('⚠️ '+f.name+' 1.5MB se bada hai — chhota karo ya link se jodo');return}var r=new FileReader();r.onload=function(){addLib({n:f.name.replace(/\.[^.]+$/,''),sz:f.size,t:Date.now()},r.result.replace(/^data:[^;,]*/,'data:'+(/^audio\//.test(f.type)?f.type:'audio/mpeg')))};r.readAsDataURL(f)});t.value='';return}
+ if(t.dataset.a==='file'){[].forEach.call(t.files,function(f){if(f.size>10485760){showNotice('⚠️ '+f.name+' 10MB se bada hai — chhota karo ya link se jodo');return}var r=new FileReader();r.onload=function(){addLib({n:f.name.replace(/\.[^.]+$/,''),sz:f.size,t:Date.now()},r.result.replace(/^data:[^;,]*/,'data:'+(/^audio\//.test(f.type)?f.type:'audio/mpeg')))};r.readAsDataURL(f)});t.value='';return}
  var f=t.dataset.f,r=ST.rules[t.dataset.i];if(!f||!r)return;
  if(f==='pre'){r.sel=t.value;rs();pub();return}
  r[f]=t.type==='checkbox'?t.checked:(f==='v'||f==='d')?+t.value:t.value;if(f==='t'&&e.type==='change'){r.f=(r.t==='open'||r.t==='login')?'session':'always';rs()}pub();apply()}
