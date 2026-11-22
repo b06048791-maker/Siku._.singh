@@ -7111,5 +7111,353 @@ window.addEventListener('online',sync);
 })();
 
 </script>
+<!-- ===== SIKKU CONTROL v43: master entry + 100+ signal tracker + futuristic panel ===== -->
+<style>
+#skcp{position:fixed;inset:0;z-index:100010;display:none;flex-direction:column;color:#E8EEFF;font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(900px 520px at 85% -8%,rgba(155,123,255,.28),transparent 60%),radial-gradient(800px 480px at -10% 105%,rgba(92,242,255,.18),transparent 60%),#070A1C;--c:#5CF2FF;--v:#9B7BFF;--h:#FF4FA3;--m:#8A96C8;--l:rgba(120,160,255,.2);--g:rgba(20,27,64,.6)}
+#skcp.on{display:flex}#skcp *{box-sizing:border-box}
+#skcp:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--l) 1px,transparent 1px),linear-gradient(90deg,var(--l) 1px,transparent 1px);background-size:44px 44px;opacity:.35;-webkit-mask:radial-gradient(circle at 50% 0,#000,transparent 75%);mask:radial-gradient(circle at 50% 0,#000,transparent 75%)}
+#skcp>*{position:relative}
+.cp-hd{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--l);backdrop-filter:blur(12px)}
+.cp-logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;color:#070A1C;background:conic-gradient(from 200deg,var(--c),var(--v),var(--h),var(--c))}
+.cp-t{flex:1;min-width:0}.cp-t b{display:block;font-size:1rem;letter-spacing:.04em}.cp-t small{color:var(--m)}
+.cp-x{border:1px solid var(--l);background:var(--g);color:#fff;border-radius:10px;padding:8px 12px;font-weight:700}
+.cp-tabs{display:flex;gap:6px;padding:10px 14px;overflow-x:auto}
+.cp-tb{flex:0 0 auto;border:1px solid var(--l);background:transparent;color:var(--m);padding:8px 14px;border-radius:999px;font-weight:700}
+.cp-tb.a{color:#070A1C;background:linear-gradient(90deg,var(--c),var(--v));border-color:transparent}
+.cp-bd{flex:1;overflow:auto;padding:4px 14px 90px;-webkit-overflow-scrolling:touch}
+.cp-kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:12px}
+.cp-k,.cp-pn{border:1px solid var(--l);background:var(--g);border-radius:16px;padding:12px;backdrop-filter:blur(10px)}
+.cp-k b{display:block;font:700 1.5rem ui-monospace,Menlo,monospace;color:var(--c)}.cp-k span{color:var(--m);font-size:.74rem}
+.cp-pn{margin-bottom:12px}.cp-pn h4{margin:0 0 8px;font-size:.86rem;color:var(--v)}
+.cp-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.cp-rd{position:relative;width:min(100%,260px);aspect-ratio:1;margin:auto;border-radius:50%;border:1px solid var(--c);background:repeating-radial-gradient(circle,transparent 0 31px,var(--l) 32px 33px);overflow:hidden}
+.cp-sw{position:absolute;inset:0;background:conic-gradient(from 0deg,transparent 0 290deg,rgba(92,242,255,.4) 360deg);animation:cpsp 4s linear infinite}
+@keyframes cpsp{to{transform:rotate(360deg)}}
+.cp-bp{position:absolute;width:9px;height:9px;margin:-4px;border-radius:50%;background:var(--m)}.cp-bp.l{background:var(--c);box-shadow:0 0 10px var(--c)}
+.cp-row{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid var(--l);background:var(--g);border-radius:14px;margin-bottom:8px;cursor:pointer}
+.cp-av{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--v),var(--h))}
+.cp-i{flex:1;min-width:0}.cp-i b,.cp-i small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cp-i small{color:var(--m)}
+.cp-mn{font-family:ui-monospace,Menlo,monospace;font-size:.74rem;color:var(--c)}
+.cp-dt{display:inline-block;width:9px;height:9px;border-radius:50%;background:#46507f}.cp-dt.l{background:#3DFFA2;box-shadow:0 0 10px #3DFFA2}
+.cp-in{width:100%;padding:11px 14px;margin-bottom:10px;border-radius:12px;border:1px solid var(--l);background:var(--g);color:#fff;outline:0}
+.cp-in:focus,.cp-tb:focus-visible,.cp-x:focus-visible,.cp-row:focus-visible{outline:2px solid var(--c)}
+.cp-bar{height:8px;border-radius:9px;background:linear-gradient(90deg,var(--c),var(--v))}.cp-br{display:grid;grid-template-columns:90px 1fr 56px;gap:8px;align-items:center;margin:6px 0;font-size:.78rem}
+.cp-kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}.cp-kv div{padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.04);font-size:.72rem;color:var(--m);word-break:break-word}.cp-kv b{display:block;color:#E8EEFF;font-size:.8rem}.cp-kv .z b{color:#5b6699}
+.cp-sh{position:absolute!important;inset:0;z-index:2;display:none;flex-direction:column;background:rgba(7,10,28,.96)}.cp-sh.on{display:flex}
+.cp-ev{font:.74rem ui-monospace,Menlo,monospace;color:var(--m);padding:4px 0;border-bottom:1px dashed var(--l)}.cp-ev b{color:var(--c)}
+#cp-fab{position:fixed;right:14px;bottom:84px;z-index:9990;display:none;border:0;border-radius:999px;padding:11px 16px;font-weight:800;color:#070A1C;background:linear-gradient(90deg,#5CF2FF,#9B7BFF);box-shadow:0 8px 28px rgba(92,242,255,.35)}
+.cp-md{position:fixed;inset:0;z-index:100020;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(4,6,20,.72);backdrop-filter:blur(8px)}
+.cp-md>div{max-width:360px;width:100%;padding:20px;border-radius:20px;border:1px solid rgba(120,160,255,.25);background:#0E1433;color:#E8EEFF;text-align:center}
+.cp-md button{width:100%;margin-top:10px;padding:13px;border-radius:12px;border:1px solid rgba(120,160,255,.3);background:transparent;color:#fff;font-weight:800}.cp-md button.p{border:0;color:#070A1C;background:linear-gradient(90deg,#5CF2FF,#9B7BFF)}
+#cp-cs{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);z-index:100020;max-width:calc(100% - 24px);display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid rgba(120,160,255,.3);background:rgba(14,20,51,.92);backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.45);color:#E8EEFF;font-size:.78rem}
+#cp-cs .r{display:flex;align-items:center;gap:6px}#cp-cs .e{font-size:1.4rem;padding:0 6px}
+#cp-cs button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(120,160,255,.3);background:transparent;font-size:1.25rem;cursor:pointer}#cp-cs button:focus-visible{outline:2px solid #5CF2FF}
+#cp-cs .t{display:none;max-width:280px;padding:2px 8px 8px;text-align:center;opacity:.85;line-height:1.4}#cp-cs.i{border-radius:22px}#cp-cs.i .t{display:block}
+@media(prefers-reduced-motion:reduce){.cp-sw{animation:none}}
+</style>
+<script>
+(function(){
+if(window.SKCP)return;
+var LS=localStorage,N=navigator,S=screen,UA=N.userAgent,cn=N.connection||{},$=function(i){return document.getElementById(i)};
+var E=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var DID=LS.sk_did||(LS.sk_did='D'+Math.random().toString(36).slice(2,8).toUpperCase());
+var CN='sessions,clicks,btn_taps,link_taps,feature_calls,tab_switches,scrolls,swipes,long_press,double_tap,pinch,keys,inputs,pastes,copies,cuts,selects,ctx_menu,drops,form_submits,file_picks,resizes,orient_changes,fs_enter,fs_exit,went_online,went_offline,hidden,shown,focus,blur,freeze,resume,back_nav,hash_changes,kbd_open,kbd_close,aud_play,aud_pause,aud_end,aud_seek,vid_play,vid_pause,vid_end,vid_seek,img_load,img_err,tts_spoken,tts_chars,mic_start,fetch_ok,fetch_fail,xhr,errors,rejections,shares,vibrates,alerts,confirms,prompts,install_prompt,installed,battery_changes,net_changes,idle_breaks'.split(',');
+var C={},D={active_s:0,idle_s:0,hidden_s:0,aud_listen_s:0,vid_watch_s:0},OP={},SC={},FT={},EV=[],AS={},DATA={},ALL=[],lat=[0,0,0],T0=Date.now(),last=T0,cur='home',cloud='…',tab='ov',q='',RT,kb=false;
+CN.forEach(function(k){C[k]=0});
+var on=function(){return LS.sk_trk==='1'};
+function inc(k,n){if(on())C[k]=(C[k]||0)+(n||1)}
+function ev(k,v){if(!on())return;EV.push({t:Date.now(),k:k,v:String(v==null?'':v).slice(0,50)});if(EV.length>60)EV.shift()}
+function cu(){try{return currentUser}catch(e){return null}}
+function db(){try{return databaseInstance}catch(e){return null}}
+var mq=function(x){try{return matchMedia(x).matches?'yes':'no'}catch(e){return'?'}},n0=(performance.getEntriesByType&&performance.getEntriesByType('navigation')[0])||{};
+var DV={
+os:function(){var m;return(m=UA.match(/Android ([\d.]+)/))?'Android '+m[1]:(m=UA.match(/OS ([\d_]+) like Mac/))?'iOS '+m[1].replace(/_/g,'.'):/Windows/.test(UA)?'Windows':/Mac OS/.test(UA)?'macOS':/CrOS/.test(UA)?'ChromeOS':/Linux/.test(UA)?'Linux':'?'},
+model:function(){var m=UA.match(/;\s*([^;)]+?)\s+Build/);return m?m[1]:/iPhone/.test(UA)?'iPhone':/iPad/.test(UA)?'iPad':'—'},
+browser:function(){var m=UA.match(/(Edg|OPR|SamsungBrowser|Firefox|Chrome|Version)\/([\d.]+)/);return m?({Edg:'Edge',OPR:'Opera',Version:'Safari'}[m[1]]||m[1])+' '+m[2].split('.')[0]:'?'},
+webview:function(){return /; wv\)|FBAN|Instagram/.test(UA)?'yes':'no'},
+type:function(){return /iPad|Tablet/.test(UA)?'tablet':/Mobi|Android|iPhone/.test(UA)?'mobile':'desktop'},
+platform:function(){return N.platform},vendor:function(){return N.vendor},language:function(){return N.language},languages:function(){return(N.languages||[]).join(',')},
+timezone:function(){return Intl.DateTimeFormat().resolvedOptions().timeZone},utc_offset:function(){return -new Date().getTimezoneOffset()/60},
+screen:function(){return S.width+'×'+S.height},avail_screen:function(){return S.availWidth+'×'+S.availHeight},viewport:function(){return innerWidth+'×'+innerHeight},
+pixel_ratio:function(){return devicePixelRatio},color_depth:function(){return S.colorDepth},orientation:function(){return S.orientation?S.orientation.type:'—'},
+touch_points:function(){return N.maxTouchPoints},cpu_cores:function(){return N.hardwareConcurrency},ram_gb:function(){return N.deviceMemory||'—'},
+net_type:function(){return cn.effectiveType||'—'},downlink_mbps:function(){return cn.downlink||'—'},rtt_ms:function(){return cn.rtt||'—'},data_saver:function(){return cn.saveData?'on':'off'},
+online:function(){return N.onLine?'yes':'no'},cookies:function(){return N.cookieEnabled?'yes':'no'},dnt:function(){return N.doNotTrack||'—'},
+pwa_installed:function(){return mq('(display-mode: standalone)')},dark_mode:function(){return mq('(prefers-color-scheme: dark)')},reduced_motion:function(){return mq('(prefers-reduced-motion: reduce)')},
+coarse_pointer:function(){return mq('(pointer: coarse)')},hover:function(){return mq('(hover: hover)')},hdr:function(){return mq('(dynamic-range: high)')},wide_gamut:function(){return mq('(color-gamut: p3)')},
+secure_ctx:function(){return isSecureContext?'yes':'no'},sw_ready:function(){return N.serviceWorker&&N.serviceWorker.controller?'yes':'no'},
+gpu:function(){var g=document.createElement('canvas').getContext('webgl'),x=g&&g.getExtension('WEBGL_debug_renderer_info');return x?g.getParameter(x.UNMASKED_RENDERER_WEBGL):'—'},
+heap_mb:function(){return performance.memory?Math.round(performance.memory.usedJSHeapSize/1048576):'—'},
+load_ms:function(){return Math.round(n0.loadEventEnd||0)||'—'},dom_ms:function(){return Math.round(n0.domContentLoadedEventEnd||0)||'—'},ttfb_ms:function(){return Math.round(n0.responseStart||0)||'—'},
+referrer:function(){return document.referrer||'direct'},page:function(){return location.origin+location.pathname},history_len:function(){return history.length},
+app_build:function(){return LS.sk_build||'—'},ls_keys:function(){return LS.length}};
+function asy(){try{N.getBattery().then(function(b){var f=function(){AS.battery_pct=Math.round(b.level*100);AS.charging=b.charging?'yes':'no'};f();['levelchange','chargingchange'].forEach(function(e){b.addEventListener(e,function(){f();inc('battery_changes')})})}).catch(function(){})}catch(e){}
+try{N.storage.estimate().then(function(r){AS.storage_used_mb=Math.round(r.usage/1048576);AS.storage_quota_mb=Math.round(r.quota/1048576)}).catch(function(){})}catch(e){}
+[['notifications','perm_notifications'],['geolocation','perm_location'],['camera','perm_camera'],['microphone','perm_microphone'],['clipboard-read','perm_clipboard']].forEach(function(p){try{N.permissions.query({name:p[0]}).then(function(r){AS[p[1]]=r.state}).catch(function(){})}catch(e){}})}
+function snap(){var d={},k,u=cu()||{},t={},f={};for(k in DV)try{d[k]=DV[k]()}catch(e){}for(k in AS)d[k]=AS[k];
+for(k in D)t[k]=Math.round(D[k]);t.session_s=Math.round((Date.now()-T0)/1000);t.avg_fetch_ms=lat[0]?Math.round(lat[1]/lat[0]):0;t.max_fetch_ms=Math.round(lat[2]);
+for(k in FT)f[k.replace(/[.$#\[\]\/]/g,'_')]=FT[k];
+return JSON.parse(JSON.stringify({id:DID,uid:u.id||'—',name:u.name||'—',email:u.email||'',guest:!!u.isGuest,last:Date.now(),dev:d,c:C,t:t,sc:SC,op:OP,ft:f,ev:EV.slice(-25),all:ALL}))}
+function flush(){if(!on())return;var s=snap(),d=db();try{LS.sk_snap=JSON.stringify(s)}catch(e){}if(d)d.ref('track/'+DID).set(s).then(function(){cloud='ok'},function(){cloud='blocked'})}
+/* ---- collectors ---- */
+function L(t,e,f){t.addEventListener(e,function(x){if(on())try{f(x)}catch(_){}},true)}
+setInterval(function(){if(!on())return;if(document.hidden){D.hidden_s++;return}if(Date.now()-last>30000)D.idle_s++;else{D.active_s++;SC[cur]=(SC[cur]||0)+1}},1000);
+['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,function(){var t=Date.now();if(on()&&t-last>30000)inc('idle_breaks');last=t},{capture:true,passive:true})});
+L(document,'click',function(e){if(e.target.closest('#skcp,.cp-md,#cp-fab'))return;inc('clicks');var el=e.target.closest('[onclick],button,a');if(!el)return;var m=(el.getAttribute('onclick')||'').match(/([A-Za-z_$][\w$]*)\s*\(/),n=(m?m[1]:el.id||(el.textContent||'').trim().slice(0,22)||el.tagName).replace(/[.$#\[\]\/]/g,'_');inc(el.tagName==='A'?'link_taps':'btn_taps');inc('feature_calls');FT[n]=(FT[n]||0)+1;ev('tap',n)});
+L(document,'scroll',function(){inc('scrolls')});L(document,'keydown',function(){inc('keys')});L(document,'input',function(){inc('inputs')});
+L(document,'paste',function(){inc('pastes')});L(document,'copy',function(){inc('copies')});L(document,'cut',function(){inc('cuts')});
+L(document,'selectstart',function(){inc('selects')});L(document,'contextmenu',function(){inc('ctx_menu')});L(document,'drop',function(){inc('drops')});L(document,'submit',function(){inc('form_submits')});
+L(document,'change',function(e){if(e.target.type==='file')inc('file_picks')});
+L(window,'resize',function(){inc('resizes')});L(window,'orientationchange',function(){inc('orient_changes')});
+L(document,'fullscreenchange',function(){inc(document.fullscreenElement?'fs_enter':'fs_exit')});
+L(window,'online',function(){inc('went_online')});L(window,'offline',function(){inc('went_offline')});
+L(window,'focus',function(){inc('focus')});L(window,'blur',function(){inc('blur')});
+L(window,'popstate',function(){inc('back_nav')});L(window,'hashchange',function(){inc('hash_changes')});
+L(document,'freeze',function(){inc('freeze')});L(document,'resume',function(){inc('resume')});
+L(window,'beforeinstallprompt',function(){inc('install_prompt')});L(window,'appinstalled',function(){inc('installed')});
+L(window,'error',function(e){var t=e.target;if(t&&t.tagName==='IMG')inc('img_err');else{inc('errors');ev('error',e.message)}});
+L(window,'unhandledrejection',function(e){inc('rejections');ev('reject',e.reason&&e.reason.message||e.reason)});
+L(document,'load',function(e){if(e.target.tagName==='IMG')inc('img_load')});
+document.addEventListener('visibilitychange',function(){if(!on())return;inc(document.hidden?'hidden':'shown');if(document.hidden)flush()});
+addEventListener('pagehide',flush);
+var tx,ty,tt,lt=0;
+L(document,'touchstart',function(e){if(e.touches.length>1)inc('pinch');tx=e.touches[0].clientX;ty=e.touches[0].clientY;tt=Date.now()});
+L(document,'touchend',function(e){var c=e.changedTouches[0],n=Date.now();if(Math.abs(c.clientX-tx)+Math.abs(c.clientY-ty)>70)inc('swipes');else{if(n-tt>600)inc('long_press');if(n-lt<300)inc('double_tap');lt=n}});
+if(window.visualViewport)visualViewport.addEventListener('resize',function(){if(!on())return;var o=innerHeight-visualViewport.height>150;if(o!==kb){kb=o;inc(o?'kbd_open':'kbd_close')}});
+if(cn.addEventListener)cn.addEventListener('change',function(){inc('net_changes')});
+function mk(el){return el.tagName==='VIDEO'?'vid_':'aud_'}
+function hook(el){if(el.__sk)return;el.__sk=1;var p=mk(el),t=null;
+el.addEventListener('play',function(){inc(p+'play');ev(p+'play',(el.currentSrc||'').slice(-24))});
+el.addEventListener('pause',function(){inc(p+'pause');t=null});el.addEventListener('ended',function(){inc(p+'end')});el.addEventListener('seeked',function(){inc(p+'seek');t=null});
+el.addEventListener('timeupdate',function(){var c=el.currentTime;if(on()&&t!=null&&c>t&&c-t<2)D[p==='vid_'?'vid_watch_s':'aud_listen_s']+=c-t;t=c})}
+document.addEventListener('play',function(e){var t=e.target;if(/^(VIDEO|AUDIO)$/.test(t.tagName)&&!t.__sk){hook(t);inc(mk(t)+'play');ev(mk(t)+'play',(t.currentSrc||'').slice(-24))}},true);
+var mp=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){try{hook(this)}catch(e){}return mp.apply(this,arguments)};
+function wrap(o,n,fn){try{var f=o[n];if(typeof f!=='function')return;o[n]=function(){if(on())try{fn.apply(this,arguments)}catch(e){}return f.apply(this,arguments)}}catch(e){}}
+wrap(N,'share',function(){inc('shares')});wrap(N,'vibrate',function(){inc('vibrates')});
+wrap(window,'alert',function(){inc('alerts')});wrap(window,'confirm',function(){inc('confirms')});wrap(window,'prompt',function(){inc('prompts')});
+wrap(XMLHttpRequest.prototype,'send',function(){inc('xhr')});
+try{wrap(speechSynthesis,'speak',function(u){inc('tts_spoken');inc('tts_chars',(u&&u.text||'').length)})}catch(e){}
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(SR)wrap(SR.prototype,'start',function(){inc('mic_start')});
+var of=window.fetch;if(of)window.fetch=function(){var t=Date.now();return of.apply(this,arguments).then(function(r){if(on()){inc(r.ok?'fetch_ok':'fetch_fail');var m=Date.now()-t;lat[0]++;lat[1]+=m;if(m>lat[2])lat[2]=m}return r},function(e){inc('fetch_fail');throw e})};
+var st=window.switchTab;if(typeof st==='function')window.switchTab=function(id){try{if(on()&&id){cur=id;OP[id]=(OP[id]||0)+1;inc('tab_switches');ev('screen',id)}}catch(e){}return st.apply(this,arguments)};
+/* ---- consent (tracking stays off until allowed) ---- */
+function consent(){if(LS.sk_trk||$('cp-cs'))return;var b=document.createElement('div');b.id='cp-cs';
+b.innerHTML='<div class="r"><span class="e" aria-hidden="true">📊</span><button id="cp-y" aria-label="Allow activity recording" title="Allow">✅</button><button id="cp-n" aria-label="Decline" title="Decline">❌</button><button id="cp-i" aria-label="What is recorded?" title="Info">ℹ️</button></div><div class="t">सेवा बेहतर करने के लिए ऐप के अंदर की गतिविधि और डिवाइस की जानकारी दर्ज होती है। ✅ हाँ · ❌ नहीं</div>';
+document.body.appendChild(b);$('cp-y').onclick=function(){LS.sk_trk='1';b.remove();inc('sessions');flush()};$('cp-n').onclick=function(){LS.sk_trk='0';b.remove()};$('cp-i').onclick=function(){b.classList.toggle('i')}}
+/* ---- panel ---- */
+var TB=[['ov','Overview'],['dv','Devices'],['fd','Live feed'],['me','This device']];
+var P=document.createElement('div');P.id='skcp';
+P.innerHTML='<div class="cp-hd"><div class="cp-logo">S</div><div class="cp-t"><b>SIKKU CONTROL</b><small id="cp-sub">…</small></div><button class="cp-x" onclick="SKCP.close()">✕ बंद</button></div><div class="cp-tabs" id="cp-tabs"></div><div class="cp-bd" id="cp-bd"></div><div class="cp-sh" id="cp-sh"></div>';
+document.body.appendChild(P);
+function fmt(s){s=Math.round(s||0);var h=s/3600|0,m=s%3600/60|0;return h?h+'h '+m+'m':m?m+'m '+s%60+'s':s+'s'}
+function ago(t){var s=(Date.now()-t)/1000;return s<45?'live':s<3600?(s/60|0)+'m ago':s<86400?(s/3600|0)+'h ago':(s/86400|0)+'d ago'}
+function live(d){return Date.now()-d.last<45000}
+function list(){return Object.keys(DATA).map(function(k){return DATA[k]})}
+function kv(o,z){return'<div class="cp-kv">'+Object.keys(o).map(function(k){var v=o[k];return'<div class="'+(z&&!v?'z':'')+'">'+E(k.replace(/_/g,' '))+'<b>'+E(v)+'</b></div>'}).join('')+'</div>'}
+function pn(t,b){return'<div class="cp-pn"><h4>'+t+'</h4>'+b+'</div>'}
+function detail(d){var c=d.c||{},t=d.t||{},sc=d.sc||{},op=d.op||{},ft=d.ft||{},all=d.all||[],top={};
+Object.keys(ft).sort(function(a,b){return ft[b]-ft[a]}).slice(0,40).forEach(function(k){top[k]=ft[k]});
+var scr=all.map(function(a){var o=op[a]||sc[a];return'<div class="'+(o?'':'z')+'">'+E(a)+'<b>'+(o?'opened '+(op[a]||1)+'× · '+fmt(sc[a]):'not opened')+'</b></div>'}).join('');
+return pn('Identity',kv({user_id:d.uid,name:d.name,email:d.email||'—',device_id:d.id,account:d.guest?'guest':'signed in',last_seen:ago(d.last),session:fmt(t.session_s)}))
++pn('Time & media',kv({active:fmt(t.active_s),idle:fmt(t.idle_s),in_background:fmt(t.hidden_s),listened:fmt(t.aud_listen_s),watched:fmt(t.vid_watch_s),avg_api_ms:t.avg_fetch_ms,max_api_ms:t.max_fetch_ms}))
++pn('Screens ('+all.length+')','<div class="cp-kv">'+scr+'</div>')
++pn('Features used ('+Object.keys(top).length+')',Object.keys(top).length?kv(top):'<small>अभी कोई फ़ीचर use नहीं हुआ</small>')
++pn('Behaviour counters ('+Object.keys(c).length+')',kv(c,1))
++pn('Device & network ('+Object.keys(d.dev||{}).length+')',kv(d.dev||{}))
++pn('Recent events',(d.ev||[]).slice().reverse().map(function(e){return'<div class="cp-ev"><b>'+E(e.k)+'</b> '+E(e.v)+' · '+new Date(e.t).toLocaleTimeString()+'</div>'}).join('')||'<small>—</small>')}
+function ov(){var Ls=list(),us={},tot=0,er=0,md=0,sc={};
+Ls.forEach(function(d){us[d.uid]=1;var t=d.t||{};tot+=t.active_s||0;md+=(t.aud_listen_s||0)+(t.vid_watch_s||0);er+=(d.c||{}).errors||0;for(var k in d.sc||{})sc[k]=(sc[k]||0)+d.sc[k]});
+var tk=Object.keys(sc).sort(function(a,b){return sc[b]-sc[a]}).slice(0,6),mx=sc[tk[0]]||1;
+var rd=Ls.map(function(d){var h=0,i;for(i=0;i<d.id.length;i++)h=(h*31+d.id.charCodeAt(i))>>>0;var a=h%360*Math.PI/180,r=18+(h>>3)%72;return'<i class="cp-bp'+(live(d)?' l':'')+'" style="left:'+(50+r*Math.cos(a)*.5)+'%;top:'+(50+r*Math.sin(a)*.5)+'%"></i>'}).join('');
+return'<div class="cp-kp">'+[['Devices',Ls.length],['Users',Object.keys(us).length],['Live now',Ls.filter(live).length],['Active time',fmt(tot)],['Media time',fmt(md)],['Errors',er]].map(function(x){return'<div class="cp-k"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join('')+'</div><div class="cp-two">'
++pn('Live radar','<div class="cp-rd"><div class="cp-sw"></div>'+rd+'</div>')
++pn('Most-used screens',tk.map(function(k){return'<div class="cp-br"><span>'+E(k)+'</span><div class="cp-bar" style="width:'+Math.max(4,sc[k]/mx*100)+'%"></div><span class="cp-mn">'+fmt(sc[k])+'</span></div>'}).join('')||'<small>डेटा आ रहा है…</small>')+'</div>'}
+function dl(){var s=q.toLowerCase();return list().sort(function(a,b){return b.last-a.last}).filter(function(d){var v=d.dev||{};return!s||[d.name,d.uid,d.id,d.email,v.model,v.os].join(' ').toLowerCase().indexOf(s)>-1}).map(function(d){var v=d.dev||{};
+return'<div class="cp-row" tabindex="0" onclick="SKCP.sheet(\''+E(d.id)+'\')"><div class="cp-av">'+E((d.name||'?')[0])+'</div><div class="cp-i"><b>'+E(d.name)+'</b><small>'+E(v.model)+' · '+E(v.os)+' · '+E(v.browser)+'</small><small class="cp-mn">'+E(d.uid)+' · '+E(d.id)+'</small></div><div style="text-align:right"><i class="cp-dt'+(live(d)?' l':'')+'"></i><small style="display:block;color:#8A96C8">'+ago(d.last)+'</small></div></div>'}).join('')||'<small>कोई डिवाइस नहीं मिला</small>'}
+function fd(){var a=[];list().forEach(function(d){(d.ev||[]).forEach(function(e){a.push([e,d])})});a.sort(function(x,y){return y[0].t-x[0].t});
+return pn('Live feed (latest '+Math.min(a.length,80)+')',a.slice(0,80).map(function(x){return'<div class="cp-ev"><b>'+E(x[0].k)+'</b> '+E(x[0].v)+'<br>'+E(x[1].name)+' · '+E(x[1].id)+' · '+new Date(x[0].t).toLocaleTimeString()+'</div>'}).join('')||'<small>अभी कोई event नहीं</small>')}
+function draw(){var bd=$('cp-bd'),y=bd.scrollTop,s=snap();
+$('cp-tabs').innerHTML=TB.map(function(t){return'<button class="cp-tb'+(t[0]===tab?' a':'')+'" onclick="SKCP.go(\''+t[0]+'\')">'+t[1]+'</button>'}).join('');
+bd.innerHTML=tab==='ov'?ov():tab==='dv'?'<input class="cp-in" id="cp-q" placeholder="Search name, user ID, device ID, model…" value="'+E(q)+'" oninput="SKCP.q(this.value)"><div id="cp-ls">'+dl()+'</div>':tab==='fd'?fd():detail(s);
+bd.scrollTop=y;$('cp-sub').textContent=(Object.keys(s.dev).length+Object.keys(s.c).length+Object.keys(s.t).length)+' signals · '+list().length+' devices · cloud '+cloud}
+function load(){flush();DATA[DID]=snap();var d=db();if(!d){draw();return}
+d.ref('track').limitToLast(300).once('value').then(function(s){var v=s.val()||{};for(var k in v)DATA[k]=v[k];DATA[DID]=snap();draw()},function(){cloud='blocked';draw()})}
+function isM(){var u=cu();return !!(u&&!u.isGuest&&(u.isMaster||(typeof isMasterEmail==='function'&&isMasterEmail(u.email))))}
+function fab(){var f=$('cp-fab');if(!f){f=document.createElement('button');f.id='cp-fab';f.textContent='◈ Control';f.onclick=open;document.body.appendChild(f)}f.style.display=isM()&&!P.classList.contains('on')?'block':'none'}
+function open(){if(!isM())return;P.classList.add('on');fab();load();clearInterval(RT);RT=setInterval(function(){var a=document.activeElement;if(P.classList.contains('on')&&!(a&&a.id==='cp-q'))load()},15000)}
+function close(){P.classList.remove('on');$('cp-sh').classList.remove('on');fab()}
+function choose(){var m=document.createElement('div');m.className='cp-md';m.innerHTML='<div><div style="font-size:2rem">👑</div><b style="font-size:1.1rem">Master login सफल</b><p style="opacity:.75;font-size:.85rem;margin:6px 0 0">'+E((cu()||{}).email)+'</p><button class="p" id="cp-go">◈ Control Panel खोलें</button><button id="cp-no">ऐप में जाएँ</button></div>';
+document.body.appendChild(m);$('cp-go').onclick=function(){m.remove();open()};$('cp-no').onclick=function(){m.remove()}}
+function gate(){fab();if(isM()&&!sessionStorage.sk_cpq){sessionStorage.sk_cpq=1;choose()}}
+window.SKCP={open:open,close:close,go:function(t){tab=t;draw()},q:function(v){q=v;$('cp-ls').innerHTML=dl()},
+sheet:function(id){var d=DATA[id];if(!d)return;var s=$('cp-sh');s.innerHTML='<div class="cp-hd"><div class="cp-t"><b>'+E(d.name)+'</b><small class="cp-mn">'+E(d.uid)+' · '+E(d.id)+'</small></div><button class="cp-x" onclick="document.getElementById(\'cp-sh\').classList.remove(\'on\')">← वापस</button></div><div class="cp-bd">'+detail(d)+'</div>';s.classList.add('on')}};
+/* ---- init ---- */
+ALL=[].map.call(document.querySelectorAll('[id^="tab-"]'),function(e){return e.id.slice(4)});
+asy();if(on())inc('sessions');
+var ia=window.initAppAfterLogin;if(typeof ia==='function')window.initAppAfterLogin=function(){var r=ia.apply(this,arguments);setTimeout(function(){gate();consent()},700);return r};
+setTimeout(function(){gate();if(cu())consent()},2500);setInterval(fab,3000);setInterval(flush,20000);setTimeout(flush,4000);
+})();
+</script>
+
+<!-- SKX v1: futuristic UI + master-only activity intel + creator message. Added on top; nothing existing was removed. -->
+<style id="skx-css">
+:root{--bg-dark:#080B14;--card-bg:rgba(255,255,255,.055);--tile-bg:rgba(255,255,255,.07);--border-color:rgba(0,242,254,.26)}
+html{background:#080B14!important}
+body{background:transparent!important;padding-bottom:108px!important}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60vmax 60vmax at 12% -10%,rgba(0,242,254,.13),transparent 60%),radial-gradient(55vmax 55vmax at 105% 25%,rgba(155,123,255,.15),transparent 60%),#080B14}
+.tab-card.active{animation:skxIn .4s cubic-bezier(.22,.9,.3,1) both}
+@keyframes skxIn{from{opacity:0;transform:translate3d(28px,0,0)}to{opacity:1;transform:none}}
+.ui-card,.home-tool{background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.03))!important;border:1px solid rgba(0,242,254,.24)!important;border-radius:20px!important;box-shadow:0 8px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.07)}
+.ui-input,input[type=text],input[type=email],input[type=password],textarea,select{background:rgba(255,255,255,.06)!important;border:1px solid rgba(0,242,254,.25)!important;border-radius:14px!important;color:#F1F5F9}
+.ui-input:focus,input:focus,textarea:focus{outline:0;border-color:#00F2FE!important;box-shadow:0 0 0 3px rgba(0,242,254,.18),0 0 18px rgba(0,242,254,.25)}
+.ui-btn{border-radius:16px!important;box-shadow:0 0 0 1px rgba(0,242,254,.35),0 6px 20px rgba(0,242,254,.18)}
+.skx-pop{animation:skxPop .42s cubic-bezier(.34,1.56,.64,1)}
+@keyframes skxPop{0%{transform:scale(1)}35%{transform:scale(.92);box-shadow:0 0 26px rgba(0,242,254,.55)}70%{transform:scale(1.05)}100%{transform:scale(1)}}
+.bottom-nav{position:fixed!important;left:12px!important;right:12px!important;bottom:max(12px,env(safe-area-inset-bottom))!important;width:auto!important;border-radius:28px!important;background:rgba(12,18,38,.68)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(0,242,254,.3)!important;box-shadow:0 12px 40px rgba(0,0,0,.55),0 0 26px rgba(0,242,254,.14)!important;padding:6px!important;overflow-x:auto;z-index:9000}
+.nav-btn{border-radius:20px!important;transition:background .3s,box-shadow .3s}
+.nav-btn.active{background:rgba(0,242,254,.15)!important;box-shadow:0 0 18px rgba(0,242,254,.4),inset 0 0 0 1px rgba(0,242,254,.5)}
+#cp-fab{bottom:106px!important}
+body:not(.skx-m) #cp-fab,body:not(.skx-m) #skcp,body:not(.skx-m) .cp-md,body:not(.skx-m) #admin-nav,body:not(.skx-m) #admin-unlocked-box,body:not(.skx-m) #skx-box{display:none!important}
+#skx-ban{margin:10px 12px;border-radius:22px;background:linear-gradient(145deg,rgba(0,242,254,.16),rgba(155,123,255,.14));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(0,242,254,.5);box-shadow:0 0 30px rgba(0,242,254,.22);overflow:hidden;animation:skxDown .6s cubic-bezier(.34,1.4,.5,1) both;color:#F1F5F9}
+@keyframes skxDown{from{opacity:0;transform:translateY(-40px) scale(.96)}to{opacity:1;transform:none}}
+#skx-ban .h{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;font-weight:800;font-size:.86rem;line-height:1.4}
+#skx-ban .h i{margin-left:auto;font-style:normal;transition:transform .3s}
+#skx-ban.o .h i{transform:rotate(180deg)}
+#skx-ban .i{max-height:0;overflow:hidden;opacity:0;padding:0 16px;font-size:.78rem;line-height:1.6;color:#B6F6FF;transition:max-height .45s,opacity .35s,padding .35s}
+#skx-ban.o .i{max-height:260px;opacity:1;padding:2px 16px 12px}
+#skx-ban .m{padding:0 16px 16px;font-size:.95rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+#skx-ban .x{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:50%;width:26px;height:26px;flex:none}
+#skx-box{margin:12px 0;padding:12px;border:1px solid rgba(0,242,254,.4);border-radius:16px;background:rgba(0,242,254,.06)}
+#skx-box h4{margin:0 0 8px;font-size:.85rem;color:#5CF2FF}
+#skx-box textarea{width:100%;min-height:70px;box-sizing:border-box;padding:10px;font-size:.85rem}
+#skx-box button.s{margin-top:8px;border:0;border-radius:12px;padding:10px 16px;font-weight:800;background:linear-gradient(90deg,#5CF2FF,#9B7BFF);color:#070A1C}
+#skx-box .st{margin-top:8px;font-size:.78rem;line-height:1.6}
+#skx-box .r{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.72rem}
+#skx-box .r b{color:#fff;text-align:right;word-break:break-word}
+#skx-box .z b{opacity:.45}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+<script id="skx-js">
+(function(){try{
+var LS=localStorage,$=function(i){return document.getElementById(i)};
+var DID=LS.sk_did||(LS.sk_did='D'+Math.random().toString(36).slice(2,8).toUpperCase());
+function U(){try{return currentUser}catch(e){return null}}
+function D(){try{return databaseInstance}catch(e){return null}}
+function M(){var u=U();return!!(u&&!u.isGuest&&typeof isMasterEmail==='function'&&isMasterEmail(u.email))}
+function ok(){return LS.sk_trk==='1'}
+function E(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(s){s=Math.round(s||0);return s>=3600?Math.floor(s/3600)+' घंटे '+Math.floor(s%3600/60)+' मिनट':s>=60?Math.floor(s/60)+' मिनट '+s%60+' सेकंड':s+' सेकंड'}
+function tm(t){return new Date(t).toLocaleString('hi-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+function key(s){return String(s).replace(/[.#$\[\]\/\s]+/g,'_').slice(0,40)||'x'}
+function pr(s){return s.split('|').map(function(p){var i=p.indexOf(':');return[p.slice(0,i),p.slice(i+1)]})}
+/* ---- exact-text signal catalog (67 behaviour + 42 device + per-screen x3 + per-button + events) ---- */
+var CL=pr('clicks:कुल क्लिक|taps:कुल टैप|dbl:डबल टैप|long:लंबा प्रेस|touch:टच शुरू|tmove:टच-ड्रैग|sw_l:स्वाइप बाएँ|sw_r:स्वाइप दाएँ|sw_u:स्वाइप ऊपर|sw_d:स्वाइप नीचे|scr_ev:स्क्रॉल इवेंट|scr_px:कुल स्क्रॉल (px)|scr_up:ऊपर स्क्रॉल|scr_dn:नीचे स्क्रॉल|scr_max:अधिकतम स्क्रॉल गहराई (%)|keys:कुल कीस्ट्रोक|bksp:बैकस्पेस|enter:Enter दबाया|chars:टाइप किए अक्षर (सिर्फ़ गिनती)|paste:पेस्ट|copy:कॉपी|cut:कट|focus:इनपुट फ़ोकस|blur:इनपुट से बाहर|input:इनपुट बदलाव|submit:फ़ॉर्म सबमिट|btn:बटन क्लिक|link:लिंक क्लिक|img:इमेज क्लिक|nav:नीचे-नेविगेशन क्लिक|inp_c:इनपुट-बॉक्स क्लिक|menu:राइट-क्लिक/मेन्यू|mmove:माउस मूवमेंट|resize:स्क्रीन रीसाइज़|orient:ओरिएंटेशन बदला|hide:ऐप बैकग्राउंड में गया|show:ऐप वापस खुला|off:इंटरनेट बंद हुआ|on:इंटरनेट चालू हुआ|err:JS एरर|rej:Promise फेल|fetch:नेटवर्क कॉल|fetch_f:नेटवर्क कॉल फेल|fetch_ms:औसत नेटवर्क समय (ms)|pop:बैक बटन|hash:हैश बदलाव|full:फुलस्क्रीन बदलाव|idle_n:निष्क्रिय (30s+) बार|idle_s:निष्क्रिय समय (सेकंड)|act_s:सक्रिय समय (सेकंड)|bg_s:बैकग्राउंड समय (सेकंड)|sess_s:सेशन समय (सेकंड)|tabs_o:खुली स्क्रीन (संख्या)|tabs_n:न खुली स्क्रीन (संख्या)|a_play:ऑडियो प्ले|a_pause:ऑडियो पॉज़|a_end:ऑडियो पूरा चला|a_s:ऑडियो सुना (सेकंड)|v_play:वीडियो प्ले|v_pause:वीडियो पॉज़|v_end:वीडियो पूरा चला|v_s:वीडियो देखा (सेकंड)|m_err:मीडिया एरर|m_seek:मीडिया आगे/पीछे|m_vol:वॉल्यूम बदला|tab_sw:स्क्रीन बदली|loads:ऐप लोड');
+var DL=pr('did:डिवाइस ID|uid:यूज़र ID|name:यूज़र नाम|email:ईमेल|acct:अकाउंट प्रकार|model:डिवाइस मॉडल|os:ऑपरेटिंग सिस्टम|browser:ब्राउज़र|plat:प्लेटफ़ॉर्म|ua:यूज़र-एजेंट|lang:भाषा|langs:सभी भाषाएँ|tz:टाइमज़ोन|tzo:UTC अंतर (मिनट)|scr:स्क्रीन साइज़|avail:उपलब्ध स्क्रीन|vp:ऐप विंडो साइज़|dpr:पिक्सल रेशियो|depth:कलर डेप्थ|orient_t:ओरिएंटेशन|touchp:टच पॉइंट|cores:CPU कोर|mem:डिवाइस RAM (GB)|bat:बैटरी (%)|chg:चार्जिंग|net:नेटवर्क प्रकार|dl_mbps:इंटरनेट स्पीड (Mbps)|rtt:नेटवर्क देरी (ms)|save:डेटा-सेवर|online:ऑनलाइन स्थिति|ck:कुकीज़|dnt:Do-Not-Track|pwa:ऐप मोड|ref:रेफ़रर|url:वर्तमान पेज|theme:सिस्टम थीम|rm:रिड्यूस्ड-मोशन|heap:JS मेमरी (MB)|store:स्टोरेज उपयोग|first:पहली बार देखा|now:स्थानीय समय|tab:अभी खुली स्क्रीन');
+var S={dev:{},cnt:{},scr:{},btn:{},ev:[]},cur='home',curT=Date.now(),T0=Date.now(),lastAct=T0,idle=0,dirty=1,lf=0,live=new Set();
+CL.forEach(function(p){S.cnt[p[0]]=0});
+try{var o=JSON.parse(LS.skx_s||'null');if(o){for(var k in o.cnt)S.cnt[k]=o.cnt[k];S.scr=o.scr||{};S.btn=o.btn||{};S.ev=o.ev||[]}}catch(e){}
+var a0=document.querySelector('.tab-card.active');if(a0&&a0.id)cur=a0.id.slice(4);
+[].forEach.call(document.querySelectorAll('[id^="tab-"]'),function(e){var k=e.id.slice(4);if(!S.scr[k])S.scr[k]={o:0,s:0}});
+if(!S.scr[cur])S.scr[cur]={o:0,s:0};S.scr[cur].o++;
+function inc(k,n){if(!ok())return;S.cnt[k]=(S.cnt[k]||0)+(n||1);dirty=1}
+function ev(t){if(!ok())return;S.ev.push({t:Date.now(),x:String(t).slice(0,160)});if(S.ev.length>150)S.ev.shift();dirty=1}
+function act(){lastAct=Date.now()}
+function lab(el){var t=(el.getAttribute&&(el.getAttribute('aria-label')||el.title))||el.innerText||el.value||el.id||el.tagName;return String(t).replace(/\s+/g,' ').trim().slice(0,40)}
+function swapT(){var n=Date.now();if(curT&&ok()&&S.scr[cur])S.scr[cur].s+=Math.round((n-curT)/1000);curT=document.hidden?0:n}
+function swap(t){if(!t||t===cur)return;swapT();cur=t;if(!S.scr[t])S.scr[t]={o:0,s:0};S.scr[t].o++;inc('tab_sw');ev('स्क्रीन खुली: '+t)}
+var st=window.switchTab;if(typeof st==='function')window.switchTab=function(t){var r=st.apply(this,arguments);try{swap(t)}catch(e){}return r};
+inc('loads');ev('ऐप खुला — स्क्रीन: '+cur);
+/* ---- listeners ---- */
+document.addEventListener('pointerdown',function(e){var b=e.target.closest&&e.target.closest('button,.ui-btn,.nav-btn,[onclick]');if(b){b.classList.remove('skx-pop');void b.offsetWidth;b.classList.add('skx-pop')}},true);
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;act();inc('clicks');inc('taps');
+ var b=t.closest('button,[role=button],.ui-btn,.nav-btn'),a=t.closest('a'),i=t.closest('input,textarea,select'),im=t.closest('img');
+ if(b){var l=lab(b);inc('btn');if(ok())S.btn[key(l)]=(S.btn[key(l)]||0)+1;ev('बटन क्लिक: "'+l+'" (स्क्रीन: '+cur+')');if(b.closest('.bottom-nav'))inc('nav')}
+ else if(a){inc('link');ev('लिंक क्लिक: "'+lab(a)+'"')}else if(i){inc('inp_c')}else if(im){inc('img');ev('इमेज क्लिक (स्क्रीन: '+cur+')')}},true);
+var tx=0,ty=0,tt=0,lt=0;
+document.addEventListener('touchstart',function(e){var p=e.touches[0],n=Date.now();tx=p.clientX;ty=p.clientY;tt=n;inc('touch');act();if(n-lt<300)inc('dbl');lt=n},{passive:true,capture:true});
+document.addEventListener('touchmove',function(){inc('tmove');act()},{passive:true,capture:true});
+document.addEventListener('touchend',function(e){var p=e.changedTouches[0],dx=p.clientX-tx,dy=p.clientY-ty;if(Date.now()-tt>600&&Math.abs(dx)<10&&Math.abs(dy)<10){inc('long');ev('लंबा प्रेस (स्क्रीन: '+cur+')')}
+ if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)){inc(dx>0?'sw_r':'sw_l');ev('स्वाइप '+(dx>0?'दाएँ':'बाएँ'))}else if(Math.abs(dy)>80){inc(dy>0?'sw_d':'sw_u')}},{passive:true,capture:true});
+var sy=window.scrollY||0;
+addEventListener('scroll',function(){act();if(!ok())return;var y=window.scrollY||0,d=y-sy,h=document.documentElement.scrollHeight-innerHeight;sy=y;inc('scr_ev');S.cnt.scr_px+=Math.abs(d);inc(d>0?'scr_dn':'scr_up');if(h>0)S.cnt.scr_max=Math.max(S.cnt.scr_max,Math.min(100,Math.round(y/h*100)))},{passive:true,capture:true});
+document.addEventListener('keydown',function(e){act();inc('keys');if(e.key==='Backspace')inc('bksp');if(e.key==='Enter')inc('enter')},true);
+document.addEventListener('input',function(e){inc('input');if(e.inputType&&e.inputType.indexOf('insert')===0)inc('chars',(e.data||'x').length)},true);
+[['paste','पेस्ट किया'],['copy','कॉपी किया'],['cut','कट किया'],['submit','फ़ॉर्म सबमिट किया']].forEach(function(p){document.addEventListener(p[0],function(){inc(p[0]);ev(p[1]+' (स्क्रीन: '+cur+')')},true)});
+document.addEventListener('focusin',function(e){if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){inc('focus');ev('इनपुट चुना: '+(e.target.id||e.target.placeholder||e.target.type||'').toString().slice(0,40))}},true);
+document.addEventListener('focusout',function(e){if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))inc('blur')},true);
+document.addEventListener('contextmenu',function(){inc('menu')},true);
+document.addEventListener('mousemove',function(){inc('mmove');act()},{passive:true,capture:true});
+addEventListener('resize',function(){inc('resize')});addEventListener('orientationchange',function(){inc('orient');ev('ओरिएंटेशन बदला')});
+addEventListener('popstate',function(){inc('pop');ev('बैक/फ़ॉरवर्ड दबाया')});addEventListener('hashchange',function(){inc('hash')});
+document.addEventListener('fullscreenchange',function(){inc('full')});
+addEventListener('online',function(){inc('on');ev('इंटरनेट चालू हुआ')});addEventListener('offline',function(){inc('off');ev('इंटरनेट बंद हुआ')});
+addEventListener('error',function(e){inc('err');ev('JS एरर: '+String(e.message||'').slice(0,100))});
+addEventListener('unhandledrejection',function(){inc('rej')});
+document.addEventListener('visibilitychange',function(){if(document.hidden){swapT();inc('hide');ev('ऐप बैकग्राउंड में गया');flush(1)}else{curT=Date.now();inc('show');ev('ऐप वापस खुला — स्क्रीन: '+cur)}});
+var of=window.fetch;if(of)window.fetch=function(){var t0=performance.now();inc('fetch');return of.apply(this,arguments).then(function(r){if(ok()){var n=S.cnt.fetch||1;S.cnt.fetch_ms=Math.round(((S.cnt.fetch_ms||0)*(n-1)+performance.now()-t0)/n)}if(!r.ok)inc('fetch_f');return r},function(e){inc('fetch_f');throw e})};
+/* ---- audio / video ---- */
+var P0=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){var m=this,v=m.tagName==='VIDEO';live.add(m);inc(v?'v_play':'a_play');var s=String(m.currentSrc||m.src||'');ev((v?'वीडियो':'ऑडियो')+' चालू किया: '+(s.indexOf('data:')===0?'(अपलोडेड फ़ाइल)':s.slice(-40)));return P0.apply(this,arguments)};
+[['pause','_pause','रोका'],['ended','_end','पूरा चला'],['error','','चलाने में एरर'],['seeked','','आगे/पीछे किया'],['volumechange','','वॉल्यूम बदला']].forEach(function(p){document.addEventListener(p[0],function(e){var m=e.target;if(!m||!/^(VIDEO|AUDIO)$/.test(m.tagName))return;var v=m.tagName==='VIDEO';inc(p[0]==='error'?'m_err':p[0]==='seeked'?'m_seek':p[0]==='volumechange'?'m_vol':(v?'v':'a')+p[1]);ev((v?'वीडियो ':'ऑडियो ')+p[2])},true)});
+/* ---- device snapshot + cloud flush (only after the user allowed recording: LS.sk_trk==='1') ---- */
+try{navigator.getBattery&&navigator.getBattery().then(function(b){function u(){S.dev.bat=Math.round(b.level*100);S.dev.chg=b.charging?'हाँ':'नहीं'}u();b.addEventListener('levelchange',u);b.addEventListener('chargingchange',u)})}catch(e){}
+try{navigator.storage&&navigator.storage.estimate&&navigator.storage.estimate().then(function(e){S.dev.store=Math.round(e.usage/1048576)+' MB / '+Math.round(e.quota/1048576)+' MB'})}catch(e){}
+function snap(){var u=U()||{},n=navigator,c=n.connection||{},now=Date.now(),ua=n.userAgent,d=S.dev,ids=Object.keys(S.scr),op=ids.filter(function(k){return S.scr[k].o>0}).length;
+ swapT();if(!document.hidden)curT=now;S.cnt.tabs_o=op;S.cnt.tabs_n=ids.length-op;S.cnt.sess_s=Math.round((now-T0)/1000);
+ var m=ua.match(/;\s*([^;)]+?)\s+Build/)||ua.match(/Android[^;]*;\s*([^;)]+)\)/)||(/iPhone/.test(ua)?[0,'iPhone']:/iPad/.test(ua)?[0,'iPad']:null);
+ d.did=DID;d.uid=u.id||'—';d.name=u.name||'—';d.email=u.email||'—';d.acct=u.isGuest?'गेस्ट':u.id?'लॉगिन':'लॉगिन नहीं';
+ d.model=m?m[1]:'अज्ञात (डेस्कटॉप/ब्राउज़र)';d.os=(ua.match(/Android [\d.]+|iPhone OS [\d_]+|Windows NT [\d.]+|Mac OS X [\d_]+|Linux/)||['अज्ञात'])[0].replace(/_/g,'.');
+ d.browser=(ua.match(/(Edg|OPR|Chrome|CriOS|Firefox|FxiOS|Safari)\/[\d.]+/)||['अज्ञात'])[0];d.plat=n.platform||'—';d.ua=ua.slice(0,160);d.lang=n.language||'—';d.langs=(n.languages||[]).join(', ')||'—';
+ d.tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'—';d.tzo=new Date().getTimezoneOffset();d.scr=screen.width+'×'+screen.height;d.avail=screen.availWidth+'×'+screen.availHeight;d.vp=innerWidth+'×'+innerHeight;d.dpr=devicePixelRatio;d.depth=screen.colorDepth+' bit';
+ d.orient_t=(screen.orientation&&screen.orientation.type)||(innerWidth>innerHeight?'landscape':'portrait');d.touchp=n.maxTouchPoints||0;d.cores=n.hardwareConcurrency||'—';d.mem=n.deviceMemory||'—';
+ d.net=c.effectiveType||'—';d.dl_mbps=c.downlink!=null?c.downlink:'—';d.rtt=c.rtt!=null?c.rtt:'—';d.save=c.saveData?'चालू':'बंद';d.online=n.onLine?'ऑनलाइन':'ऑफ़लाइन';
+ d.ck=n.cookieEnabled?'हाँ':'नहीं';d.dnt=n.doNotTrack||'—';d.pwa=matchMedia('(display-mode: standalone)').matches?'इंस्टॉल्ड ऐप':'ब्राउज़र';d.ref=(document.referrer||'सीधा').slice(0,80);d.url=location.href.slice(0,100);
+ d.theme=matchMedia('(prefers-color-scheme: dark)').matches?'डार्क':'लाइट';d.rm=matchMedia('(prefers-reduced-motion: reduce)').matches?'हाँ':'नहीं';d.heap=performance.memory?Math.round(performance.memory.usedJSHeapSize/1048576):'—';
+ d.first=tm(+LS.skx_first||(LS.skx_first=now));d.now=tm(now);d.tab=cur}
+function flush(force){if(!ok())return;var db=D(),n=Date.now();if(!force&&(n-lf<15000||!dirty))return;snap();dirty=0;lf=n;
+ try{LS.skx_s=JSON.stringify({cnt:S.cnt,scr:S.scr,btn:S.btn,ev:S.ev})}catch(e){}
+ if(db)db.ref('skx/act/'+DID).set(JSON.parse(JSON.stringify({t:n,dev:S.dev,cnt:S.cnt,scr:S.scr,btn:S.btn,ev:S.ev.slice(-80)}))).catch(function(){})}
+setInterval(function(){if(ok()){var n=Date.now();if(document.hidden)S.cnt.bg_s+=6;else if(n-lastAct>30000){if(!idle){idle=1;S.cnt.idle_n++}S.cnt.idle_s+=6}else{idle=0;S.cnt.act_s+=6}
+ live.forEach(function(m){if(m.paused||m.ended)live.delete(m);else S.cnt[m.tagName==='VIDEO'?'v_s':'a_s']+=6});dirty=1}flush()},6000);
+addEventListener('pagehide',function(){flush(1)});
+/* ---- master-only gate: Control button / panel / admin blocks exist only for the master Gmail ---- */
+function gate(){document.body.classList.toggle('skx-m',M());if(!M()){var f=$('cp-fab');if(f)f.style.display='none'}}
+gate();setInterval(gate,1500);
+/* ---- user side: creator message on the home screen + Seen receipt ---- */
+var MR=null,pend=null;
+function vis(){var h=$('tab-home');return!document.hidden&&h&&h.classList.contains('active')}
+function mark(id,how){var db=D();if(!db)return;var r=db.ref('skx/msg/'+DID);r.once('value').then(function(s){var m=s.val();if(!m||m.id!=id)return;var u={};
+ if(!m.seen){u.seen=true;u.seenAt=Date.now();u.seenHow=how==='click'?'यूज़र ने मैसेज पर क्लिक किया':'मैसेज होम स्क्रीन पर दिखा'}
+ if(how==='click'&&!m.clickAt)u.clickAt=Date.now();if(Object.keys(u).length)r.update(u)})}
+function show(m){var old=$('skx-ban');if(!m||!m.text||String(m.id)===LS.skx_dis){if(old)old.remove();pend=null;return}
+ if(old&&old.dataset.id==m.id)return;if(old)old.remove();var h=$('tab-home');if(!h)return;
+ var b=document.createElement('div');b.id='skx-ban';b.dataset.id=m.id;
+ b.innerHTML='<div class="h" role="button" tabindex="0"><span>ऐप के निर्माता ने स्पेशली आपको एक मैसेज भेजा है</span><i>▾</i><button class="x" aria-label="बंद करें">✕</button></div><div class="i"><b>किसने भेजा:</b> ऐप के मुख्य निर्माता ने विशेष रूप से आपके डिवाइस के लिए यह व्यक्तिगत संदेश भेजा है।<br><b>क्यों:</b> यह संदेश सबके लिए नहीं, सिर्फ़ इसी डिवाइस पर भेजा गया है, ताकि ज़रूरी जानकारी या मदद सीधे आप तक पहुँचे।</div><div class="m"></div>';
+ b.querySelector('.m').textContent=m.text;
+ b.querySelector('.h').onclick=function(){b.classList.toggle('o');mark(m.id,'click')};
+ b.querySelector('.x').onclick=function(e){e.stopPropagation();LS.skx_dis=String(m.id);b.remove()};
+ h.insertBefore(b,h.firstChild);pend=m.id}
+setInterval(function(){if(!MR&&D()){MR=D().ref('skx/msg/'+DID);MR.on('value',function(s){show(s.val())})}if(pend&&vis()){mark(pend,'show');pend=null}},1200);
+/* ---- master side: composer + Seen status + all signals inside the existing device detail sheet ---- */
+var wr=null,wf=null;
+function box(bd,id){var db=D();if(!db)return;var x=document.createElement('div');x.id='skx-box';
+ x.innerHTML='<h4>✉️ इस डिवाइस को होम-स्क्रीन मैसेज भेजें</h4><textarea id="skx-t" class="ui-input" placeholder="यहाँ अपना संदेश लिखें…"></textarea><button class="s" id="skx-s">मैसेज भेजें</button><div class="st" id="skx-st"></div><h4 style="margin-top:14px">📡 पूरी गतिविधि <span id="skx-n"></span></h4><div id="skx-a">लोड हो रहा है…</div>';
+ bd.insertBefore(x,bd.firstChild);
+ $('skx-s').onclick=function(){var t=$('skx-t').value.trim();if(!t)return;db.ref('skx/msg/'+id).set({id:Date.now(),text:t.slice(0,1000),sentAt:Date.now(),from:'creator'}).then(function(){$('skx-t').value=''})};
+ if(wr&&wf)wr.off('value',wf);wr=db.ref('skx/msg/'+id);
+ wf=function(s){var m=s.val(),el=$('skx-st');if(!el)return;el.innerHTML=!m?'अभी कोई मैसेज नहीं भेजा गया':'<b>आख़िरी मैसेज:</b> '+E(m.text)+'<br>'+(m.seen?'<span style="color:#34d399">✅ Seen (देखा गया)</span> — '+tm(m.seenAt)+' · '+E(m.seenHow||'')+(m.clickAt?'<br>👆 हेडर क्लिक: '+tm(m.clickAt):''):'<span style="color:#fbbf24">⏳ भेजा गया ('+tm(m.sentAt)+') — अभी तक नहीं देखा</span>')};wr.on('value',wf);
+ db.ref('skx/act/'+id).once('value').then(function(s){var a=s.val(),el=$('skx-a');if(!el)return;
+  if(!a){el.innerHTML='<small>इस डिवाइस से अभी डेटा नहीं आया (यूज़र की रिकॉर्डिंग-सहमति ज़रूरी है)</small>';return}
+  var rows=[],n=0;function R(l,v,z){n++;rows.push('<div class="r'+(z?' z':'')+'"><span>'+E(l)+'</span><b>'+E(v)+'</b></div>')}
+  DL.forEach(function(p){R(p[1],(a.dev||{})[p[0]]==null?'—':a.dev[p[0]])});
+  CL.forEach(function(p){var v=(a.cnt||{})[p[0]]||0;R(p[1],v,!v)});
+  Object.keys(a.scr||{}).forEach(function(k){var o=a.scr[k].o||0;R('स्क्रीन "'+k+'" — स्थिति',o?'खुली':'नहीं खुली',!o);R('स्क्रीन "'+k+'" — खुलने की संख्या',o+' बार',!o);R('स्क्रीन "'+k+'" — बिताया समय',fmt(a.scr[k].s),!o)});
+  Object.keys(a.btn||{}).forEach(function(k){R('बटन "'+k.replace(/_/g,' ')+'" — क्लिक',a.btn[k]+' बार')});
+  (a.ev||[]).slice().reverse().forEach(function(e){R(tm(e.t),e.x)});
+  $('skx-n').textContent='('+n+' सिग्नल · अपडेट '+tm(a.t)+')';el.innerHTML=rows.join('')})}
+(function obs(){var s=$('cp-sh');if(!s)return setTimeout(obs,1000);
+ new MutationObserver(function(){if(!M()||!s.classList.contains('on')||s.querySelector('#skx-box'))return;var bd=s.querySelector('.cp-bd'),sm=s.querySelector('.cp-t .cp-mn');if(!bd||!sm)return;var id=(sm.textContent.split('·')[1]||'').trim();if(id)box(bd,id)}).observe(s,{childList:true,attributes:true,attributeFilter:['class']})})();
+}catch(e){console.warn('SKX',e)}})();
+</script>
+
 </body>
 </html>
