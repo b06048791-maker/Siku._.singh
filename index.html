@@ -23,7 +23,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
-:root{--bg-dark:#05010f;--card-bg:rgba(12,25,42,0.94);--tile-bg:rgba(22,45,70,0.85);--text-main:#F1F5F9;--text-muted:#94A3B8;--cyan:#00F2FE;--pink:#FF007F;--accent-grad:linear-gradient(135deg,#00F2FE 0%,#4facfe 100%);--insta-grad:linear-gradient(135deg,#ff04d3 0%,#e6683c 25%,#dc2743 50%,#cc2375 75%,#bc1888 100%);--green-grad:linear-gradient(135deg,#10b981 0%,#059669 100%);--border-color:rgba(0,242,254,0.28);--prime-grad:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);--font-size-base:15px}
+:root{--bg-dark:#080B14;--card-bg:rgba(12,25,42,0.72);--tile-bg:rgba(22,45,70,0.85);--text-main:#F1F5F9;--text-muted:#94A3B8;--cyan:#00F2FE;--pink:#FF007F;--accent-grad:linear-gradient(135deg,#00F2FE 0%,#4facfe 100%);--insta-grad:linear-gradient(135deg,#ff04d3 0%,#e6683c 25%,#dc2743 50%,#cc2375 75%,#bc1888 100%);--green-grad:linear-gradient(135deg,#10b981 0%,#059669 100%);--border-color:rgba(0,242,254,0.28);--prime-grad:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);--font-size-base:15px}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
 body{background-color:var(--bg-dark);background-image:radial-gradient(circle at 50% 0%,rgba(0,242,254,0.14),transparent 60%),radial-gradient(circle at 85% 80%,rgba(255,0,127,0.12),transparent 50%);background-attachment:fixed;color:var(--text-main);padding-bottom:110px;min-height:100vh;overflow-x:hidden;font-size:var(--font-size-base);transition:background .3s,font-size .2s}
 body.prime-gold-theme{--cyan:#fbbf24;--border-color:rgba(251,191,36,0.4)}
@@ -440,6 +440,28 @@ body.sk-noanim .sk-shimmer::after{display:none}
 #sk-quicknav::-webkit-scrollbar-thumb{background:#00ff9d;border-radius:4px}
 #sk-quicknav button{flex:0 0 auto;background:rgba(0,242,254,.07);border:1px solid rgba(0,242,254,.35);border-radius:8px;padding:7px 11px;font-size:.64rem;font-weight:800;color:#8ef3ff;white-space:nowrap;cursor:pointer;font-family:'Courier New',monospace;transition:.15s}
 #sk-quicknav button.active{background:#00ff9d;color:#001a10;border-color:#00ff9d;box-shadow:0 0 14px #00ff9d}
+
+/* ===== Phase 2: app-wide motion language ===== */
+.tab-card.active{animation:sk-slide-fade .32s cubic-bezier(.16,1,.3,1)}
+@keyframes sk-slide-fade{0%{opacity:0;transform:translateY(14px) scale(.98)}100%{opacity:1;transform:translateY(0) scale(1)}}
+body.sk-noanim .tab-card.active{animation:none}
+.ui-btn{transition:transform .15s cubic-bezier(.34,1.56,.64,1),box-shadow .2s}
+.ui-btn:active{transform:scale(.93);box-shadow:0 0 22px rgba(0,242,254,.5)}
+.nav-btn{transition:transform .15s cubic-bezier(.34,1.56,.64,1)}
+.nav-btn:active{transform:scale(.86)}
+body.sk-noanim .ui-btn:active,body.sk-noanim .nav-btn:active{transform:none}
+.sk-cc-close{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--text-muted);font-size:1rem;cursor:pointer;line-height:1}
+#sk-creator-card{position:relative}
+
+/* ===== Phase 2: desktop — left sidebar nav + centered wide content ===== */
+@media (min-width:1024px){
+  .tab-card{max-width:1120px;margin:0 auto}
+  body{padding-left:96px;padding-bottom:24px}
+  .bottom-nav{left:0;top:0;bottom:0;right:auto;width:96px;flex-direction:column;justify-content:flex-start;align-items:center;padding:20px 6px;gap:8px;overflow-y:auto;overflow-x:visible;border-top:none;border-right:1.5px solid var(--border-color)}
+  .nav-btn{min-width:unset;width:100%}
+  #sk-wa-float,#sk-lead-float{right:24px}
+  #sk-consent{left:96px}
+}
 </style>
 </head>
 <body>
@@ -559,6 +581,7 @@ body.sk-noanim .sk-shimmer::after{display:none}
 <!-- HOME -->
 <div id="tab-home" class="tab-card active">
 <div id="sk-creator-card" onclick="SKCREATOR.open()">
+<button type="button" class="sk-cc-close" onclick="event.stopPropagation();SKCREATOR.close()">✕</button>
 <div class="sk-cc-h">✨ ऐप के निर्माता ने स्पेशली आपको एक मैसेज भेजा है</div>
 <div class="sk-cc-m" id="sk-cc-msg"></div>
 <div class="sk-cc-t" id="sk-cc-time"></div>
@@ -1623,6 +1646,12 @@ build();
 </div>
 <div class="sk-row"><button type="button" class="ui-btn" style="background:#1e293b;color:var(--cyan);" onclick="SKTELE.render()">🔍 Filter Apply</button><button type="button" class="ui-btn" onclick="SKTELE.exportCsv()">⬇️ CSV Export</button></div>
 <div class="sk-table-wrap"><table class="sk-table"><thead><tr><th>Last Seen</th><th>Device</th><th>OS/Browser</th><th>Country/City</th><th>ISP</th><th>Channel</th><th>Visits</th></tr></thead><tbody id="sk-tele-table"></tbody></table></div>
+</div>
+
+<div class="ph-card">
+<div class="ph-h">🏆 Most-Liked Features (dwell time se)</div>
+<div class="ph-s">Kaun se tabs/tools sabse zyada use + sabse zyada der tak use hote hain, sab users ka total milakar.</div>
+<div id="sk-dwell-list"></div>
 </div>
 
 <div class="admin-tab-panel" id="apanel-ai">
@@ -7292,7 +7321,15 @@ window.SKLEADS={
 
 /* ================= CREATOR PERSONAL MESSAGE ================= */
 window.SKCREATOR={
+ _shownAt:0,
  open:function(){var m=$('sk-creator-modal'); if(m)m.classList.add('show'); SKCREATOR._markClicked();},
+ close:function(){
+   var ce=$('sk-creator-card'); if(ce)ce.classList.remove('show');
+   var d=db(); if(d && SKCREATOR._shownAt){
+     var secs=Math.round((Date.now()-SKCREATOR._shownAt)/1000);
+     try{d.ref('creator_msg/'+safeKey(devId())).update({readSeconds:secs,closedTime:Date.now()})}catch(e){}
+   }
+ },
  send:function(){
    var idEl=$('sk-cm-devid'), msgEl=$('sk-cm-msg');
    var id=idEl?idEl.value.trim():''; var msg=msgEl?msgEl.value.trim():'';
@@ -7310,7 +7347,7 @@ window.SKCREATOR={
    d.ref('creator_msg').limitToLast(100).once('value').then(function(s){
      var v=s.val()||{};
      var rows=Object.keys(v).map(function(k){var o=v[k]; o.id=k; return o}).sort(function(a,b){return (b.time||0)-(a.time||0)});
-     tb.innerHTML=rows.map(function(r){return '<tr><td>'+esc(r.id)+'</td><td>'+esc((r.msg||'').slice(0,40))+'</td><td>'+fmt(r.time)+'</td><td>'+(r.seen?('\u2705 '+fmt(r.seenTime)):'\u231b Not yet')+'</td></tr>'}).join('')||'<tr><td colspan="4" style="text-align:center;color:var(--text-muted)">Koi message nahi bheja gaya.</td></tr>';
+     tb.innerHTML=rows.map(function(r){return '<tr><td>'+esc(r.id)+'</td><td>'+esc((r.msg||'').slice(0,40))+'</td><td>'+fmt(r.time)+'</td><td>'+(r.seen?('\u2705 '+fmt(r.seenTime)+(r.readSeconds?' ('+r.readSeconds+'s, '+(r.clicked?'clicked':'not clicked')+')':'')):'\u231b Not yet')+'</td></tr>'}).join('')||'<tr><td colspan="4" style="text-align:center;color:var(--text-muted)">Koi message nahi bheja gaya.</td></tr>';
    }).catch(function(){});
  },
  checkInbox:function(){
@@ -7322,7 +7359,13 @@ window.SKCREATOR={
      if(me)me.textContent=v.msg;
      if(te)te.textContent=fmt(v.time);
      if(ce)ce.classList.add('show');
+     SKCREATOR._shownAt=Date.now();
      if(!v.seen){try{d.ref('creator_msg/'+safeKey(id)).update({seen:true,seenTime:Date.now()})}catch(e){}}
+     window.addEventListener('beforeunload',function(){
+       if(ce && ce.classList.contains('show') && SKCREATOR._shownAt){
+         try{d.ref('creator_msg/'+safeKey(id)).update({readSeconds:Math.round((Date.now()-SKCREATOR._shownAt)/1000),closedTime:Date.now()})}catch(e){}
+       }
+     });
    }).catch(function(){});
  },
  _markClicked:function(){
@@ -7524,6 +7567,40 @@ window.SKTELE={
  }
 };
 
+/* ================= DWELL-TIME + MOST-USED-FEATURE TRACKING (consent-gated) ================= */
+window.SKDWELL={_tab:null,_since:0,
+ onSwitch:function(newTab){
+   if(!SKCONSENT.analyticsAllowed())return;
+   var d=db(); var now=Date.now();
+   if(d && SKDWELL._tab && SKDWELL._since){
+     var ms=now-SKDWELL._since;
+     if(ms>400 && ms<30*60000){
+       try{
+         var r=d.ref('feature_usage/'+safeKey(SKDWELL._tab));
+         r.transaction(function(cur){cur=cur||{visits:0,totalMs:0};cur.visits=(cur.visits||0)+1;cur.totalMs=(cur.totalMs||0)+ms;return cur});
+       }catch(e){}
+     }
+   }
+   SKDWELL._tab=newTab; SKDWELL._since=now;
+ },
+ render:function(){
+   var d=db(); var box=$('sk-dwell-list'); if(!d||!box)return;
+   d.ref('feature_usage').once('value').then(function(s){
+     var v=s.val()||{};
+     var rows=Object.keys(v).map(function(k){return {tab:k,visits:v[k].visits||0,totalMs:v[k].totalMs||0}}).sort(function(a,b){return b.totalMs-a.totalMs}).slice(0,10);
+     box.innerHTML=rows.map(function(r,i){return '<div class="sk-row" style="justify-content:space-between"><span>#'+(i+1)+' '+esc(r.tab)+'</span><span style="color:var(--cyan);font-weight:800">'+r.visits+' visits \u00b7 '+Math.round(r.totalMs/60000)+'m</span></div>'}).join('')||'<div style="font-size:.68rem;color:var(--text-muted)">Abhi data nahi hai.</div>';
+   }).catch(function(){});
+ }
+};
+var _skST=window.switchTab;
+if(typeof _skST==='function'){
+ window.switchTab=function(tabId){
+   var r=_skST.apply(this,arguments);
+   try{SKDWELL.onSwitch(tabId)}catch(e){}
+   return r;
+ };
+}
+
 /* ================= ADMIN TAB WIRING (safe monkey-patch, mirrors existing DEVTRK pattern for 'audit') ================= */
 var _skSA=window.switchAdminTab;
 if(typeof _skSA==='function'){
@@ -7532,7 +7609,7 @@ if(typeof _skSA==='function'){
    if(tab==='security')SKSEC.render();
    if(tab==='privacy')SKPRIV.load();
    if(tab==='leads')SKLEADS.load();
-   if(tab==='analytics'){SKTELE.render(); SKCREATOR.renderSentList();}
+   if(tab==='analytics'){SKTELE.render(); SKCREATOR.renderSentList(); SKDWELL.render();}
    try{
      var qn=document.querySelectorAll('#sk-quicknav button');
      for(var i=0;i<qn.length;i++)qn[i].classList.toggle('active',qn[i].getAttribute('data-qn')===tab);
